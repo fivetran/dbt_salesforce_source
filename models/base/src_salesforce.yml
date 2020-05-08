@@ -27,8 +27,6 @@ sources:
           description: An industry associated with this account. Maximum size is 40 characters.
         - name: number_of_employees
           description: Number of employees working at the company represented by this account. Maximum size is eight digits.
-        - name: annual_revenue
-          description: Estimated annual revenue of the account.
       
       - name: opportunity
         loaded_at_field: _fivetran_synced
