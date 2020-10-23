@@ -2,12 +2,9 @@ version: 2
 
 sources:
   - name: salesforce
-    # If your data does not exist in the {{ target.database }}.salesforce schema
-    # copy this file into your own project, uncomment the next two lines, and
-    # update the values as required.
-
-    # schema: "{{ var('salesforce_schema', 'salesforce') }}" # you will need to customize if your schema name is not salesforce
-    # database: "{{ var('salesforce_database', target.database) }}"
+  
+    schema: "{{ var('salesforce_schema', 'salesforce') }}" # you will need to customize if your schema name is not salesforce
+    database: "{{ var('salesforce_database', target.database) }}"
     loader: fivetran
     loaded_at_field: _fivetran_synced
     freshness:
@@ -21,6 +18,9 @@ sources:
         columns:
         - name: id
           description: the unique, system-generated ID assigned during creation
+          tests:
+              - unique
+              - not_null
         - name: name
           description: Name of the account. Maximum size is 255 characters.
         - name: industry
@@ -34,6 +34,9 @@ sources:
         columns:
         - name: id
           description: the unique, system-generated ID assigned during creation.
+          tests:
+              - unique
+              - not_null
         - name: amount
           description: Estimated total sale amount. For opportunities with products, the amount is the sum of the related products.
         - name: probability
@@ -59,6 +62,9 @@ sources:
         columns:
         - name: id
           description: the unique, system-generated ID assigned during creation.
+          tests:
+              - unique
+              - not_null
         - name: name
           description: Concatenation of FirstName and LastName fields.
         - name: city
@@ -76,5 +82,8 @@ sources:
         columns:
         - name: id
           description: the unique, system-generated ID assigned during creation
+          tests:
+              - unique
+              - not_null
         - name: name
           description: The name assigned the the role

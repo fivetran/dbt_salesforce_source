@@ -1220,3 +1220,667 @@ dbt.exceptions.CompilationException: Compilation Error in model stg_salesforce_o
 2020-05-05 22:49:13.252838 (MainThread): Connection 'model.salesforce_source.stg_salesforce_user_role' was properly closed.
 2020-05-05 22:49:13.253645 (MainThread): Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105909cd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1058fe390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10592a1d0>]}
 2020-05-05 22:49:13.253904 (MainThread): Flushing usage events
+2020-10-23 18:10:11.961048 (MainThread): Running with dbt=0.18.1
+2020-10-23 18:10:12.145945 (MainThread): running dbt with arguments Namespace(cls=<class 'dbt.task.run.RunTask'>, debug=False, defer=None, exclude=None, fail_fast=False, full_refresh=False, log_cache_events=False, log_format='default', models=None, partial_parse=None, profile=None, profiles_dir='/Users/kristin/.dbt', project_dir=None, record_timing_info=None, rpc_method='run', selector_name=None, single_threaded=False, state=None, strict=False, target=None, test_new_parser=False, threads=None, use_cache=True, use_colors=None, vars='{}', version_check=True, warn_error=False, which='run', write_json=True)
+2020-10-23 18:10:12.147124 (MainThread): Tracking: tracking
+2020-10-23 18:10:12.153457 (MainThread): Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab3f79a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab424910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab4248e0>]}
+2020-10-23 18:10:12.175734 (MainThread): Partial parsing not enabled
+2020-10-23 18:10:12.176695 (MainThread): Parsing macros/etc.sql
+2020-10-23 18:10:12.178548 (MainThread): Parsing macros/catalog.sql
+2020-10-23 18:10:12.185208 (MainThread): Parsing macros/adapters.sql
+2020-10-23 18:10:12.205166 (MainThread): Parsing macros/materializations/seed.sql
+2020-10-23 18:10:12.207719 (MainThread): Parsing macros/materializations/view.sql
+2020-10-23 18:10:12.210194 (MainThread): Parsing macros/materializations/table.sql
+2020-10-23 18:10:12.219339 (MainThread): Parsing macros/materializations/copy.sql
+2020-10-23 18:10:12.223509 (MainThread): Parsing macros/materializations/incremental.sql
+2020-10-23 18:10:12.235180 (MainThread): Parsing macros/materializations/snapshot.sql
+2020-10-23 18:10:12.238167 (MainThread): Parsing macros/core.sql
+2020-10-23 18:10:12.241457 (MainThread): Parsing macros/materializations/helpers.sql
+2020-10-23 18:10:12.250040 (MainThread): Parsing macros/materializations/snapshot/snapshot_merge.sql
+2020-10-23 18:10:12.251636 (MainThread): Parsing macros/materializations/snapshot/strategies.sql
+2020-10-23 18:10:12.267252 (MainThread): Parsing macros/materializations/snapshot/snapshot.sql
+2020-10-23 18:10:12.295232 (MainThread): Parsing macros/materializations/seed/seed.sql
+2020-10-23 18:10:12.315039 (MainThread): Parsing macros/materializations/incremental/helpers.sql
+2020-10-23 18:10:12.316957 (MainThread): Parsing macros/materializations/incremental/incremental.sql
+2020-10-23 18:10:12.322589 (MainThread): Parsing macros/materializations/common/merge.sql
+2020-10-23 18:10:12.335602 (MainThread): Parsing macros/materializations/table/table.sql
+2020-10-23 18:10:12.342054 (MainThread): Parsing macros/materializations/view/view.sql
+2020-10-23 18:10:12.347625 (MainThread): Parsing macros/materializations/view/create_or_replace_view.sql
+2020-10-23 18:10:12.352207 (MainThread): Parsing macros/etc/get_custom_alias.sql
+2020-10-23 18:10:12.353036 (MainThread): Parsing macros/etc/query.sql
+2020-10-23 18:10:12.353961 (MainThread): Parsing macros/etc/is_incremental.sql
+2020-10-23 18:10:12.355450 (MainThread): Parsing macros/etc/datetime.sql
+2020-10-23 18:10:12.363426 (MainThread): Parsing macros/etc/get_custom_schema.sql
+2020-10-23 18:10:12.365404 (MainThread): Parsing macros/etc/get_custom_database.sql
+2020-10-23 18:10:12.366874 (MainThread): Parsing macros/adapters/common.sql
+2020-10-23 18:10:12.405909 (MainThread): Parsing macros/schema_tests/relationships.sql
+2020-10-23 18:10:12.407717 (MainThread): Parsing macros/schema_tests/not_null.sql
+2020-10-23 18:10:12.409050 (MainThread): Parsing macros/schema_tests/unique.sql
+2020-10-23 18:10:12.410588 (MainThread): Parsing macros/schema_tests/accepted_values.sql
+2020-10-23 18:10:12.418015 (MainThread): Partial parsing not enabled
+2020-10-23 18:10:12.482306 (MainThread): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_opportunity".
+2020-10-23 18:10:12.506041 (MainThread): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_user".
+2020-10-23 18:10:12.515098 (MainThread): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_user_role".
+2020-10-23 18:10:12.524501 (MainThread): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_account".
+2020-10-23 18:10:12.940459 (MainThread): Found 4 models, 16 tests, 0 snapshots, 0 analyses, 155 macros, 0 operations, 0 seed files, 4 sources
+2020-10-23 18:10:12.941449 (MainThread): 
+2020-10-23 18:10:12.941846 (MainThread): Acquiring new bigquery connection "master".
+2020-10-23 18:10:12.945971 (ThreadPoolExecutor-0_0): Acquiring new bigquery connection "list_digital-arbor-400".
+2020-10-23 18:10:12.946112 (ThreadPoolExecutor-0_0): Opening a new connection, currently in state init
+2020-10-23 18:10:12.947800 (ThreadPoolExecutor-0_0): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:15.055795 (ThreadPoolExecutor-1_0): Acquiring new bigquery connection "list_digital-arbor-400_dbt_kristin_marketo".
+2020-10-23 18:10:15.056090 (ThreadPoolExecutor-1_0): Opening a new connection, currently in state closed
+2020-10-23 18:10:15.056463 (ThreadPoolExecutor-1_0): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:16.563040 (ThreadPoolExecutor-1_0): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:16.965229 (MainThread): 11:10:16 | Concurrency: 4 threads (target='dev')
+2020-10-23 18:10:16.965453 (MainThread): 11:10:16 | 
+2020-10-23 18:10:16.969259 (Thread-1): Began running node model.salesforce_source.stg_salesforce_account
+2020-10-23 18:10:16.970460 (Thread-1): 11:10:16 | 1 of 4 START table model dbt_kristin_marketo.stg_salesforce_account.. [RUN]
+2020-10-23 18:10:16.970796 (Thread-1): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_account".
+2020-10-23 18:10:16.970961 (Thread-1): Compiling model.salesforce_source.stg_salesforce_account
+2020-10-23 18:10:16.976152 (Thread-2): Began running node model.salesforce_source.stg_salesforce_opportunity
+2020-10-23 18:10:16.977302 (Thread-2): 11:10:16 | 2 of 4 START table model dbt_kristin_marketo.stg_salesforce_opportunity [RUN]
+2020-10-23 18:10:16.983021 (Thread-2): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_opportunity".
+2020-10-23 18:10:16.983221 (Thread-3): Began running node model.salesforce_source.stg_salesforce_user
+2020-10-23 18:10:16.983371 (Thread-2): Compiling model.salesforce_source.stg_salesforce_opportunity
+2020-10-23 18:10:16.990224 (Thread-1): unclosed <socket.socket fd=19, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.4.24', 55896), raddr=('216.58.217.42', 443)>
+2020-10-23 18:10:16.990407 (Thread-4): Began running node model.salesforce_source.stg_salesforce_user_role
+2020-10-23 18:10:16.991633 (Thread-3): 11:10:16 | 3 of 4 START table model dbt_kristin_marketo.stg_salesforce_user..... [RUN]
+2020-10-23 18:10:17.005974 (Thread-1): unclosed <socket.socket fd=20, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.4.24', 55897), raddr=('142.250.107.95', 443)>
+2020-10-23 18:10:17.007238 (Thread-4): 11:10:17 | 4 of 4 START table model dbt_kristin_marketo.stg_salesforce_user_role [RUN]
+2020-10-23 18:10:17.007817 (Thread-2): finished collecting timing info
+2020-10-23 18:10:17.008279 (Thread-3): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_user".
+2020-10-23 18:10:17.008487 (Thread-1): unclosed <socket.socket fd=21, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.4.24', 55902), raddr=('216.58.217.42', 443)>
+2020-10-23 18:10:17.008816 (Thread-4): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_user_role".
+2020-10-23 18:10:17.009400 (Thread-3): Compiling model.salesforce_source.stg_salesforce_user
+2020-10-23 18:10:17.009838 (Thread-1): unclosed <socket.socket fd=22, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.4.24', 55903), raddr=('142.250.107.95', 443)>
+2020-10-23 18:10:17.009968 (Thread-4): Compiling model.salesforce_source.stg_salesforce_user_role
+2020-10-23 18:10:17.018931 (Thread-3): Writing injected SQL for node "model.salesforce_source.stg_salesforce_user"
+2020-10-23 18:10:17.031284 (Thread-1): Writing injected SQL for node "model.salesforce_source.stg_salesforce_account"
+2020-10-23 18:10:17.034919 (Thread-4): Writing injected SQL for node "model.salesforce_source.stg_salesforce_user_role"
+2020-10-23 18:10:17.036542 (Thread-3): finished collecting timing info
+2020-10-23 18:10:17.042860 (Thread-1): finished collecting timing info
+2020-10-23 18:10:17.049010 (Thread-4): finished collecting timing info
+2020-10-23 18:10:17.083674 (Thread-3): Opening a new connection, currently in state init
+2020-10-23 18:10:17.084965 (Thread-1): Opening a new connection, currently in state closed
+2020-10-23 18:10:17.085353 (Thread-4): Opening a new connection, currently in state init
+2020-10-23 18:10:17.009100 (Thread-2): Compilation Error in model stg_salesforce_opportunity (models/base/stg_salesforce_opportunity.sql)
+  'dbt_utils' is undefined
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/clients/jinja.py", line 496, in catch_jinja
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/clients/jinja.py", line 528, in render_template
+    return template.render(ctx)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "<template>", line 22, in top-level template code
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/sandbox.py", line 407, in getattr
+    value = getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'dbt_utils' is undefined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/task/base.py", line 333, in safe_run
+    result = self.compile_and_execute(manifest, ctx)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/task/base.py", line 270, in compile_and_execute
+    ctx.node = self.compile(manifest)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/task/compile.py", line 23, in compile
+    return compiler.compile_node(self.node, manifest, {})
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/compilation.py", line 479, in compile_node
+    node = self._compile_node(node, manifest, extra_context)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/compilation.py", line 385, in _compile_node
+    compiled_node.compiled_sql = jinja.get_rendered(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/clients/jinja.py", line 577, in get_rendered
+    return render_template(template, ctx, node)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/clients/jinja.py", line 528, in render_template
+    return template.render(ctx)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/dbt/clients/jinja.py", line 501, in catch_jinja
+    raise CompilationException(str(e), node) from e
+dbt.exceptions.CompilationException: Compilation Error in model stg_salesforce_opportunity (models/base/stg_salesforce_opportunity.sql)
+  'dbt_utils' is undefined
+2020-10-23 18:10:17.086136 (Thread-2): Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8f5709ac-ab34-4be2-bd0a-fb7f698f0d26', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab7055b0>]}
+2020-10-23 18:10:17.087011 (Thread-2): 11:10:17 | 2 of 4 ERROR creating table model dbt_kristin_marketo.stg_salesforce_opportunity [ERROR in 0.10s]
+2020-10-23 18:10:17.087151 (Thread-4): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:17.087418 (Thread-2): Finished running node model.salesforce_source.stg_salesforce_opportunity
+2020-10-23 18:10:17.087769 (Thread-3): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:17.093162 (Thread-1): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:18.794249 (Thread-1): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:18.796018 (Thread-4): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:18.797987 (Thread-3): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:19.206025 (Thread-4): Writing runtime SQL for node "model.salesforce_source.stg_salesforce_user_role"
+2020-10-23 18:10:19.207208 (Thread-3): Writing runtime SQL for node "model.salesforce_source.stg_salesforce_user"
+2020-10-23 18:10:19.208135 (Thread-1): Writing runtime SQL for node "model.salesforce_source.stg_salesforce_account"
+2020-10-23 18:10:19.208964 (Thread-4): On model.salesforce_source.stg_salesforce_user_role: /* {"app": "dbt", "dbt_version": "0.18.1", "profile_name": "fivetran", "target_name": "dev", "node_id": "model.salesforce_source.stg_salesforce_user_role"} */
+
+
+  create or replace table `digital-arbor-400`.`dbt_kristin_marketo`.`stg_salesforce_user_role`
+  
+  
+  OPTIONS()
+  as (
+    with base as (
+
+    select *
+    from `digital-arbor-400`.`salesforce`.`user_role`
+    where not _fivetran_deleted
+
+), fields as (
+
+    select 
+
+      id as user_role_id,
+      name as role_name
+
+    from base
+
+)
+
+select *
+from fields
+  );
+    
+2020-10-23 18:10:19.209652 (Thread-1): On model.salesforce_source.stg_salesforce_account: /* {"app": "dbt", "dbt_version": "0.18.1", "profile_name": "fivetran", "target_name": "dev", "node_id": "model.salesforce_source.stg_salesforce_account"} */
+
+
+  create or replace table `digital-arbor-400`.`dbt_kristin_marketo`.`stg_salesforce_account`
+  
+  
+  OPTIONS()
+  as (
+    with base as (
+
+    select *
+    from `digital-arbor-400`.`salesforce`.`account`
+    where not is_deleted
+
+), fields as (
+
+    select 
+
+      id as account_id,
+      name as account_name,
+      industry,
+      number_of_employees,
+      account_source
+
+    from base
+
+)
+
+select *
+from fields
+  );
+    
+2020-10-23 18:10:19.210556 (Thread-3): On model.salesforce_source.stg_salesforce_user: /* {"app": "dbt", "dbt_version": "0.18.1", "profile_name": "fivetran", "target_name": "dev", "node_id": "model.salesforce_source.stg_salesforce_user"} */
+
+
+  create or replace table `digital-arbor-400`.`dbt_kristin_marketo`.`stg_salesforce_user`
+  
+  
+  OPTIONS()
+  as (
+    with base as (
+
+    select *
+    from `digital-arbor-400`.`salesforce`.`user`
+
+), fields as (
+
+    select 
+      id as user_id,
+      name,
+      city,
+      state,
+      manager_id,
+      user_role_id
+    from base
+
+)
+
+select *
+from fields
+  );
+    
+2020-10-23 18:10:21.121745 (Thread-4): finished collecting timing info
+2020-10-23 18:10:21.123148 (Thread-4): Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8f5709ac-ab34-4be2-bd0a-fb7f698f0d26', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab6b2970>]}
+2020-10-23 18:10:21.124788 (Thread-4): 11:10:21 | 4 of 4 OK created table model dbt_kristin_marketo.stg_salesforce_user_role [CREATE TABLE (96.0 rows, 4.5 KB processed) in 4.11s]
+2020-10-23 18:10:21.124979 (Thread-4): Finished running node model.salesforce_source.stg_salesforce_user_role
+2020-10-23 18:10:21.141063 (Thread-3): finished collecting timing info
+2020-10-23 18:10:21.142080 (Thread-3): Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8f5709ac-ab34-4be2-bd0a-fb7f698f0d26', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab6d3df0>]}
+2020-10-23 18:10:21.143248 (Thread-3): 11:10:21 | 3 of 4 OK created table model dbt_kristin_marketo.stg_salesforce_user [CREATE TABLE (376.0 rows, 26.0 KB processed) in 4.13s]
+2020-10-23 18:10:21.143402 (Thread-3): Finished running node model.salesforce_source.stg_salesforce_user
+2020-10-23 18:10:23.589187 (Thread-1): finished collecting timing info
+2020-10-23 18:10:23.590031 (Thread-1): Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8f5709ac-ab34-4be2-bd0a-fb7f698f0d26', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab9e2820>]}
+2020-10-23 18:10:23.591336 (Thread-1): 11:10:23 | 1 of 4 OK created table model dbt_kristin_marketo.stg_salesforce_account [CREATE TABLE (265.4k rows, 27.5 MB processed) in 6.62s]
+2020-10-23 18:10:23.591509 (Thread-1): Finished running node model.salesforce_source.stg_salesforce_account
+2020-10-23 18:10:23.593078 (MainThread): Acquiring new bigquery connection "master".
+2020-10-23 18:10:23.593445 (MainThread): 11:10:23 | 
+2020-10-23 18:10:23.593589 (MainThread): 11:10:23 | Finished running 4 table models in 10.65s.
+2020-10-23 18:10:23.593704 (MainThread): Connection 'master' was properly closed.
+2020-10-23 18:10:23.593789 (MainThread): Connection 'model.salesforce_source.stg_salesforce_account' was properly closed.
+2020-10-23 18:10:23.593872 (MainThread): Connection 'model.salesforce_source.stg_salesforce_opportunity' was properly closed.
+2020-10-23 18:10:23.593950 (MainThread): Connection 'model.salesforce_source.stg_salesforce_user' was properly closed.
+2020-10-23 18:10:23.594026 (MainThread): Connection 'model.salesforce_source.stg_salesforce_user_role' was properly closed.
+2020-10-23 18:10:23.607049 (MainThread): 
+2020-10-23 18:10:23.607234 (MainThread): Completed with 1 error and 0 warnings:
+2020-10-23 18:10:23.607354 (MainThread): 
+2020-10-23 18:10:23.607470 (MainThread): Compilation Error in model stg_salesforce_opportunity (models/base/stg_salesforce_opportunity.sql)
+2020-10-23 18:10:23.607573 (MainThread):   'dbt_utils' is undefined
+2020-10-23 18:10:23.607676 (MainThread): 
+Done. PASS=3 WARN=0 ERROR=1 SKIP=0 TOTAL=4
+2020-10-23 18:10:23.607888 (MainThread): Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab5c6160>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab59d8e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd9ab487ca0>]}
+2020-10-23 18:10:23.608099 (MainThread): Flushing usage events
+2020-10-23 18:10:28.292213 (MainThread): Running with dbt=0.18.1
+2020-10-23 18:10:28.491128 (MainThread): running dbt with arguments Namespace(cls=<class 'dbt.task.deps.DepsTask'>, debug=False, defer=None, log_cache_events=False, log_format='default', partial_parse=None, profile=None, profiles_dir='/Users/kristin/.dbt', project_dir=None, record_timing_info=None, rpc_method='deps', single_threaded=False, state=None, strict=False, target=None, test_new_parser=False, use_cache=True, use_colors=None, vars='{}', warn_error=False, which='deps', write_json=True)
+2020-10-23 18:10:28.491438 (MainThread): Tracking: tracking
+2020-10-23 18:10:28.496882 (MainThread): Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb80f6d5ee0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb80fd2dee0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb80fd2dfa0>]}
+2020-10-23 18:10:28.498469 (MainThread): Set downloads directory='/var/folders/sk/bwywl8692vlbvlbk71j59w780000gp/T/dbt-downloads-iyv0twf8'
+2020-10-23 18:10:28.500027 (MainThread): Making package registry request: GET https://hub.getdbt.com/api/v1/index.json
+2020-10-23 18:10:28.823390 (MainThread): Response from registry: GET https://hub.getdbt.com/api/v1/index.json 200
+2020-10-23 18:10:28.823711 (MainThread): Making package registry request: GET https://hub.getdbt.com/api/v1/fishtown-analytics/dbt_utils.json
+2020-10-23 18:10:29.104536 (MainThread): Response from registry: GET https://hub.getdbt.com/api/v1/fishtown-analytics/dbt_utils.json 200
+2020-10-23 18:10:29.119967 (MainThread): Making package registry request: GET https://hub.getdbt.com/api/v1/fishtown-analytics/dbt_utils/0.6.2.json
+2020-10-23 18:10:29.464118 (MainThread): Response from registry: GET https://hub.getdbt.com/api/v1/fishtown-analytics/dbt_utils/0.6.2.json 200
+2020-10-23 18:10:29.469202 (MainThread): Making package registry request: GET https://hub.getdbt.com/api/v1/fishtown-analytics/dbt_utils.json
+2020-10-23 18:10:29.760056 (MainThread): Response from registry: GET https://hub.getdbt.com/api/v1/fishtown-analytics/dbt_utils.json 200
+2020-10-23 18:10:29.775748 (MainThread): Making package registry request: GET https://hub.getdbt.com/api/v1/fishtown-analytics/dbt_utils/0.6.2.json
+2020-10-23 18:10:30.109273 (MainThread): Response from registry: GET https://hub.getdbt.com/api/v1/fishtown-analytics/dbt_utils/0.6.2.json 200
+2020-10-23 18:10:30.110383 (MainThread): Installing fishtown-analytics/dbt_utils@0.6.2
+2020-10-23 18:10:30.670832 (MainThread):   Installed from version 0.6.2
+
+2020-10-23 18:10:30.671150 (MainThread): Sending event: {'category': 'dbt', 'action': 'package', 'label': 'cb63eef5-b337-4ce1-896a-146ab5dc741d', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb80fd57520>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb80fd575e0>]}
+2020-10-23 18:10:30.672086 (MainThread): Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb80f6d5ee0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb80fd57430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb80fd577f0>]}
+2020-10-23 18:10:30.672435 (MainThread): Flushing usage events
+2020-10-23 18:10:37.026697 (MainThread): Running with dbt=0.18.1
+2020-10-23 18:10:37.210601 (MainThread): running dbt with arguments Namespace(cls=<class 'dbt.task.run.RunTask'>, debug=False, defer=None, exclude=None, fail_fast=False, full_refresh=False, log_cache_events=False, log_format='default', models=None, partial_parse=None, profile=None, profiles_dir='/Users/kristin/.dbt', project_dir=None, record_timing_info=None, rpc_method='run', selector_name=None, single_threaded=False, state=None, strict=False, target=None, test_new_parser=False, threads=None, use_cache=True, use_colors=None, vars='{}', version_check=True, warn_error=False, which='run', write_json=True)
+2020-10-23 18:10:37.211762 (MainThread): Tracking: tracking
+2020-10-23 18:10:37.217825 (MainThread): Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef162f160>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef1636880>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef1636850>]}
+2020-10-23 18:10:37.248882 (MainThread): Partial parsing not enabled
+2020-10-23 18:10:37.249818 (MainThread): Parsing macros/etc.sql
+2020-10-23 18:10:37.251438 (MainThread): Parsing macros/catalog.sql
+2020-10-23 18:10:37.256883 (MainThread): Parsing macros/adapters.sql
+2020-10-23 18:10:37.274272 (MainThread): Parsing macros/materializations/seed.sql
+2020-10-23 18:10:37.276822 (MainThread): Parsing macros/materializations/view.sql
+2020-10-23 18:10:37.279459 (MainThread): Parsing macros/materializations/table.sql
+2020-10-23 18:10:37.289074 (MainThread): Parsing macros/materializations/copy.sql
+2020-10-23 18:10:37.292967 (MainThread): Parsing macros/materializations/incremental.sql
+2020-10-23 18:10:37.303817 (MainThread): Parsing macros/materializations/snapshot.sql
+2020-10-23 18:10:37.306300 (MainThread): Parsing macros/core.sql
+2020-10-23 18:10:37.309590 (MainThread): Parsing macros/materializations/helpers.sql
+2020-10-23 18:10:37.317550 (MainThread): Parsing macros/materializations/snapshot/snapshot_merge.sql
+2020-10-23 18:10:37.319096 (MainThread): Parsing macros/materializations/snapshot/strategies.sql
+2020-10-23 18:10:37.334310 (MainThread): Parsing macros/materializations/snapshot/snapshot.sql
+2020-10-23 18:10:37.362611 (MainThread): Parsing macros/materializations/seed/seed.sql
+2020-10-23 18:10:37.382490 (MainThread): Parsing macros/materializations/incremental/helpers.sql
+2020-10-23 18:10:37.384215 (MainThread): Parsing macros/materializations/incremental/incremental.sql
+2020-10-23 18:10:37.389981 (MainThread): Parsing macros/materializations/common/merge.sql
+2020-10-23 18:10:37.403181 (MainThread): Parsing macros/materializations/table/table.sql
+2020-10-23 18:10:37.409328 (MainThread): Parsing macros/materializations/view/view.sql
+2020-10-23 18:10:37.414751 (MainThread): Parsing macros/materializations/view/create_or_replace_view.sql
+2020-10-23 18:10:37.419100 (MainThread): Parsing macros/etc/get_custom_alias.sql
+2020-10-23 18:10:37.419906 (MainThread): Parsing macros/etc/query.sql
+2020-10-23 18:10:37.420808 (MainThread): Parsing macros/etc/is_incremental.sql
+2020-10-23 18:10:37.422196 (MainThread): Parsing macros/etc/datetime.sql
+2020-10-23 18:10:37.429897 (MainThread): Parsing macros/etc/get_custom_schema.sql
+2020-10-23 18:10:37.431579 (MainThread): Parsing macros/etc/get_custom_database.sql
+2020-10-23 18:10:37.433019 (MainThread): Parsing macros/adapters/common.sql
+2020-10-23 18:10:37.471927 (MainThread): Parsing macros/schema_tests/relationships.sql
+2020-10-23 18:10:37.473573 (MainThread): Parsing macros/schema_tests/not_null.sql
+2020-10-23 18:10:37.474869 (MainThread): Parsing macros/schema_tests/unique.sql
+2020-10-23 18:10:37.476430 (MainThread): Parsing macros/schema_tests/accepted_values.sql
+2020-10-23 18:10:37.480034 (MainThread): Parsing macros/cross_db_utils/except.sql
+2020-10-23 18:10:37.481068 (MainThread): Parsing macros/cross_db_utils/replace.sql
+2020-10-23 18:10:37.482320 (MainThread): Parsing macros/cross_db_utils/concat.sql
+2020-10-23 18:10:37.484540 (MainThread): Parsing macros/cross_db_utils/datatypes.sql
+2020-10-23 18:10:37.490387 (MainThread): Parsing macros/cross_db_utils/_is_relation.sql
+2020-10-23 18:10:37.491566 (MainThread): Parsing macros/cross_db_utils/length.sql
+2020-10-23 18:10:37.493363 (MainThread): Parsing macros/cross_db_utils/dateadd.sql
+2020-10-23 18:10:37.495708 (MainThread): Parsing macros/cross_db_utils/intersect.sql
+2020-10-23 18:10:37.496815 (MainThread): Parsing macros/cross_db_utils/right.sql
+2020-10-23 18:10:37.499157 (MainThread): Parsing macros/cross_db_utils/datediff.sql
+2020-10-23 18:10:37.532969 (MainThread): Parsing macros/cross_db_utils/safe_cast.sql
+2020-10-23 18:10:37.535786 (MainThread): Parsing macros/cross_db_utils/hash.sql
+2020-10-23 18:10:37.537800 (MainThread): Parsing macros/cross_db_utils/identifier.sql
+2020-10-23 18:10:37.540160 (MainThread): Parsing macros/cross_db_utils/position.sql
+2020-10-23 18:10:37.542350 (MainThread): Parsing macros/cross_db_utils/literal.sql
+2020-10-23 18:10:37.543781 (MainThread): Parsing macros/cross_db_utils/current_timestamp.sql
+2020-10-23 18:10:37.548398 (MainThread): Parsing macros/cross_db_utils/width_bucket.sql
+2020-10-23 18:10:37.555323 (MainThread): Parsing macros/cross_db_utils/_get_utils_namespaces.sql
+2020-10-23 18:10:37.556368 (MainThread): Parsing macros/cross_db_utils/last_day.sql
+2020-10-23 18:10:37.559666 (MainThread): Parsing macros/cross_db_utils/split_part.sql
+2020-10-23 18:10:37.561877 (MainThread): Parsing macros/cross_db_utils/date_trunc.sql
+2020-10-23 18:10:37.563716 (MainThread): Parsing macros/cross_db_utils/_is_ephemeral.sql
+2020-10-23 18:10:37.566157 (MainThread): Parsing macros/materializations/insert_by_period_materialization.sql
+2020-10-23 18:10:37.590651 (MainThread): Parsing macros/logger/pretty_log_format.sql
+2020-10-23 18:10:37.591563 (MainThread): Parsing macros/logger/pretty_time.sql
+2020-10-23 18:10:37.592263 (MainThread): Parsing macros/logger/log_info.sql
+2020-10-23 18:10:37.592908 (MainThread): Parsing macros/datetime/date_spine.sql
+2020-10-23 18:10:37.596582 (MainThread): Parsing macros/web/get_url_host.sql
+2020-10-23 18:10:37.597869 (MainThread): Parsing macros/web/get_url_path.sql
+2020-10-23 18:10:37.599734 (MainThread): Parsing macros/web/get_url_parameter.sql
+2020-10-23 18:10:37.600682 (MainThread): Parsing macros/geo/haversine_distance.sql
+2020-10-23 18:10:37.601479 (MainThread): Parsing macros/schema_tests/equal_rowcount.sql
+2020-10-23 18:10:37.602593 (MainThread): Parsing macros/schema_tests/relationships_where.sql
+2020-10-23 18:10:37.604456 (MainThread): Parsing macros/schema_tests/recency.sql
+2020-10-23 18:10:37.605504 (MainThread): Parsing macros/schema_tests/not_constant.sql
+2020-10-23 18:10:37.606349 (MainThread): Parsing macros/schema_tests/test_unique_where.sql
+2020-10-23 18:10:37.607696 (MainThread): Parsing macros/schema_tests/at_least_one.sql
+2020-10-23 18:10:37.608789 (MainThread): Parsing macros/schema_tests/unique_combination_of_columns.sql
+2020-10-23 18:10:37.611099 (MainThread): Parsing macros/schema_tests/cardinality_equality.sql
+2020-10-23 18:10:37.612393 (MainThread): Parsing macros/schema_tests/expression_is_true.sql
+2020-10-23 18:10:37.613321 (MainThread): Parsing macros/schema_tests/test_not_null_where.sql
+2020-10-23 18:10:37.614606 (MainThread): Parsing macros/schema_tests/equality.sql
+2020-10-23 18:10:37.617453 (MainThread): Parsing macros/schema_tests/mutually_exclusive_ranges.sql
+2020-10-23 18:10:37.623002 (MainThread): Parsing macros/sql/nullcheck_table.sql
+2020-10-23 18:10:37.624876 (MainThread): Parsing macros/sql/get_relations_by_pattern.sql
+2020-10-23 18:10:37.627868 (MainThread): Parsing macros/sql/generate_series.sql
+2020-10-23 18:10:37.632465 (MainThread): Parsing macros/sql/get_relations_by_prefix.sql
+2020-10-23 18:10:37.635327 (MainThread): Parsing macros/sql/get_tables_by_prefix_sql.sql
+2020-10-23 18:10:37.636250 (MainThread): Parsing macros/sql/star.sql
+2020-10-23 18:10:37.638893 (MainThread): Parsing macros/sql/unpivot.sql
+2020-10-23 18:10:37.644622 (MainThread): Parsing macros/sql/union.sql
+2020-10-23 18:10:37.651637 (MainThread): Parsing macros/sql/groupby.sql
+2020-10-23 18:10:37.652497 (MainThread): Parsing macros/sql/surrogate_key.sql
+2020-10-23 18:10:37.655078 (MainThread): Parsing macros/sql/safe_add.sql
+2020-10-23 18:10:37.655986 (MainThread): Parsing macros/sql/nullcheck.sql
+2020-10-23 18:10:37.657058 (MainThread): Parsing macros/sql/get_tables_by_pattern_sql.sql
+2020-10-23 18:10:37.662539 (MainThread): Parsing macros/sql/get_column_values.sql
+2020-10-23 18:10:37.666063 (MainThread): Parsing macros/sql/pivot.sql
+2020-10-23 18:10:37.668516 (MainThread): Parsing macros/sql/get_query_results_as_dict.sql
+2020-10-23 18:10:37.674624 (MainThread): Partial parsing not enabled
+2020-10-23 18:10:37.710527 (MainThread): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_opportunity".
+2020-10-23 18:10:37.740266 (MainThread): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_user".
+2020-10-23 18:10:37.749843 (MainThread): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_user_role".
+2020-10-23 18:10:37.759600 (MainThread): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_account".
+2020-10-23 18:10:38.292744 (MainThread): Found 4 models, 16 tests, 0 snapshots, 0 analyses, 287 macros, 0 operations, 0 seed files, 4 sources
+2020-10-23 18:10:38.293969 (MainThread): 
+2020-10-23 18:10:38.294311 (MainThread): Acquiring new bigquery connection "master".
+2020-10-23 18:10:38.298254 (ThreadPoolExecutor-0_0): Acquiring new bigquery connection "list_digital-arbor-400".
+2020-10-23 18:10:38.298377 (ThreadPoolExecutor-0_0): Opening a new connection, currently in state init
+2020-10-23 18:10:38.300195 (ThreadPoolExecutor-0_0): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:40.480458 (ThreadPoolExecutor-1_0): Acquiring new bigquery connection "list_digital-arbor-400_dbt_kristin_marketo".
+2020-10-23 18:10:40.480733 (ThreadPoolExecutor-1_0): Opening a new connection, currently in state closed
+2020-10-23 18:10:40.481086 (ThreadPoolExecutor-1_0): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:41.705985 (ThreadPoolExecutor-1_0): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:42.105320 (MainThread): 11:10:42 | Concurrency: 4 threads (target='dev')
+2020-10-23 18:10:42.105528 (MainThread): 11:10:42 | 
+2020-10-23 18:10:42.107783 (MainThread): unclosed <socket.socket fd=19, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.4.24', 55933), raddr=('172.217.3.170', 443)>
+2020-10-23 18:10:42.107964 (MainThread): unclosed <socket.socket fd=20, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6, laddr=('192.168.4.24', 55934), raddr=('142.250.107.95', 443)>
+2020-10-23 18:10:42.109950 (Thread-1): Began running node model.salesforce_source.stg_salesforce_account
+2020-10-23 18:10:42.111124 (Thread-1): 11:10:42 | 1 of 4 START table model dbt_kristin_marketo.stg_salesforce_account.. [RUN]
+2020-10-23 18:10:42.111469 (Thread-1): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_account".
+2020-10-23 18:10:42.111624 (Thread-1): Compiling model.salesforce_source.stg_salesforce_account
+2020-10-23 18:10:42.117019 (Thread-2): Began running node model.salesforce_source.stg_salesforce_opportunity
+2020-10-23 18:10:42.123213 (Thread-2): 11:10:42 | 2 of 4 START table model dbt_kristin_marketo.stg_salesforce_opportunity [RUN]
+2020-10-23 18:10:42.123396 (Thread-3): Began running node model.salesforce_source.stg_salesforce_user
+2020-10-23 18:10:42.124474 (Thread-3): 11:10:42 | 3 of 4 START table model dbt_kristin_marketo.stg_salesforce_user..... [RUN]
+2020-10-23 18:10:42.124635 (Thread-4): Began running node model.salesforce_source.stg_salesforce_user_role
+2020-10-23 18:10:42.125743 (Thread-4): 11:10:42 | 4 of 4 START table model dbt_kristin_marketo.stg_salesforce_user_role [RUN]
+2020-10-23 18:10:42.131413 (Thread-2): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_opportunity".
+2020-10-23 18:10:42.139848 (Thread-1): Writing injected SQL for node "model.salesforce_source.stg_salesforce_account"
+2020-10-23 18:10:42.140137 (Thread-3): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_user".
+2020-10-23 18:10:42.140233 (Thread-2): Compiling model.salesforce_source.stg_salesforce_opportunity
+2020-10-23 18:10:42.140450 (Thread-4): Acquiring new bigquery connection "model.salesforce_source.stg_salesforce_user_role".
+2020-10-23 18:10:42.140771 (Thread-3): Compiling model.salesforce_source.stg_salesforce_user
+2020-10-23 18:10:42.146073 (Thread-4): Compiling model.salesforce_source.stg_salesforce_user_role
+2020-10-23 18:10:42.157567 (Thread-2): Writing injected SQL for node "model.salesforce_source.stg_salesforce_opportunity"
+2020-10-23 18:10:42.157735 (Thread-1): finished collecting timing info
+2020-10-23 18:10:42.167345 (Thread-3): Writing injected SQL for node "model.salesforce_source.stg_salesforce_user"
+2020-10-23 18:10:42.176148 (Thread-4): Writing injected SQL for node "model.salesforce_source.stg_salesforce_user_role"
+2020-10-23 18:10:42.198309 (Thread-1): Opening a new connection, currently in state closed
+2020-10-23 18:10:42.198559 (Thread-2): finished collecting timing info
+2020-10-23 18:10:42.202387 (Thread-2): Opening a new connection, currently in state init
+2020-10-23 18:10:42.202621 (Thread-3): finished collecting timing info
+2020-10-23 18:10:42.207163 (Thread-3): Opening a new connection, currently in state init
+2020-10-23 18:10:42.207566 (Thread-1): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:42.210116 (Thread-2): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:42.211608 (Thread-3): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:42.217526 (Thread-4): finished collecting timing info
+2020-10-23 18:10:42.225936 (Thread-4): Opening a new connection, currently in state init
+2020-10-23 18:10:42.226526 (Thread-4): Your application has authenticated using end user credentials from Google Cloud SDK. We recommend that most server applications use service accounts instead. If your application continues to use end user credentials from Cloud SDK, you might receive a "quota exceeded" or "API not enabled" error. For more information about service accounts, see https://cloud.google.com/docs/authentication/
+2020-10-23 18:10:43.648426 (Thread-1): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:43.818687 (Thread-3): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:43.847761 (Thread-2): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:43.895572 (Thread-4): Client.dataset is deprecated and will be removed in a future version. Use a string like 'my_project.my_dataset' or a cloud.google.bigquery.DatasetReference object, instead.
+2020-10-23 18:10:44.037244 (Thread-1): Writing runtime SQL for node "model.salesforce_source.stg_salesforce_account"
+2020-10-23 18:10:44.039204 (Thread-1): On model.salesforce_source.stg_salesforce_account: /* {"app": "dbt", "dbt_version": "0.18.1", "profile_name": "fivetran", "target_name": "dev", "node_id": "model.salesforce_source.stg_salesforce_account"} */
+
+
+  create or replace table `digital-arbor-400`.`dbt_kristin_marketo`.`stg_salesforce_account`
+  
+  
+  OPTIONS()
+  as (
+    with base as (
+
+    select *
+    from `digital-arbor-400`.`salesforce`.`account`
+    where not is_deleted
+
+), fields as (
+
+    select 
+
+      id as account_id,
+      name as account_name,
+      industry,
+      number_of_employees,
+      account_source
+
+    from base
+
+)
+
+select *
+from fields
+  );
+    
+2020-10-23 18:10:44.209717 (Thread-3): Writing runtime SQL for node "model.salesforce_source.stg_salesforce_user"
+2020-10-23 18:10:44.210269 (Thread-3): On model.salesforce_source.stg_salesforce_user: /* {"app": "dbt", "dbt_version": "0.18.1", "profile_name": "fivetran", "target_name": "dev", "node_id": "model.salesforce_source.stg_salesforce_user"} */
+
+
+  create or replace table `digital-arbor-400`.`dbt_kristin_marketo`.`stg_salesforce_user`
+  
+  
+  OPTIONS()
+  as (
+    with base as (
+
+    select *
+    from `digital-arbor-400`.`salesforce`.`user`
+
+), fields as (
+
+    select 
+      id as user_id,
+      name,
+      city,
+      state,
+      manager_id,
+      user_role_id
+    from base
+
+)
+
+select *
+from fields
+  );
+    
+2020-10-23 18:10:44.258689 (Thread-2): Writing runtime SQL for node "model.salesforce_source.stg_salesforce_opportunity"
+2020-10-23 18:10:44.259384 (Thread-2): On model.salesforce_source.stg_salesforce_opportunity: /* {"app": "dbt", "dbt_version": "0.18.1", "profile_name": "fivetran", "target_name": "dev", "node_id": "model.salesforce_source.stg_salesforce_opportunity"} */
+
+
+  create or replace table `digital-arbor-400`.`dbt_kristin_marketo`.`stg_salesforce_opportunity`
+  
+  
+  OPTIONS()
+  as (
+    with base as (
+
+    select *
+    from `digital-arbor-400`.`salesforce`.`opportunity`
+    where not is_deleted
+
+), fields as (
+
+    select 
+
+        id as opportunity_id,
+        account_id as opportunity_account_id,
+        amount,
+        probability,
+        created_date, 
+        is_won,
+        is_closed,
+        forecast_category,
+        stage_name,
+        owner_id,
+        close_date,
+        created_date >= 
+    timestamp_trunc(
+        cast(
+    current_timestamp
+ as timestamp),
+        month
+    )
+
+ as is_created_this_month,
+        created_date >= 
+    timestamp_trunc(
+        cast(
+    current_timestamp
+ as timestamp),
+        quarter
+    )
+
+ as is_created_this_quarter,
+        
+  
+
+    datetime_diff(
+        cast(created_date as datetime),
+        cast(
+    current_timestamp
+ as datetime),
+        day
+    )
+
+
+ as days_since_created,
+        
+  
+
+    datetime_diff(
+        cast(created_date as datetime),
+        cast(close_date as datetime),
+        day
+    )
+
+
+ as days_to_close,
+        
+    timestamp_trunc(
+        cast(close_date as timestamp),
+        month
+    )
+
+ = 
+    timestamp_trunc(
+        cast(
+    current_timestamp
+ as timestamp),
+        month
+    )
+
+ as is_closed_this_month,
+        
+    timestamp_trunc(
+        cast(close_date as timestamp),
+        quarter
+    )
+
+ = 
+    timestamp_trunc(
+        cast(
+    current_timestamp
+ as timestamp),
+        quarter
+    )
+
+ as is_closed_this_quarter
+
+    from base
+
+)
+
+select *
+from fields
+  );
+    
+2020-10-23 18:10:44.263794 (Thread-4): Writing runtime SQL for node "model.salesforce_source.stg_salesforce_user_role"
+2020-10-23 18:10:44.264231 (Thread-4): On model.salesforce_source.stg_salesforce_user_role: /* {"app": "dbt", "dbt_version": "0.18.1", "profile_name": "fivetran", "target_name": "dev", "node_id": "model.salesforce_source.stg_salesforce_user_role"} */
+
+
+  create or replace table `digital-arbor-400`.`dbt_kristin_marketo`.`stg_salesforce_user_role`
+  
+  
+  OPTIONS()
+  as (
+    with base as (
+
+    select *
+    from `digital-arbor-400`.`salesforce`.`user_role`
+    where not _fivetran_deleted
+
+), fields as (
+
+    select 
+
+      id as user_role_id,
+      name as role_name
+
+    from base
+
+)
+
+select *
+from fields
+  );
+    
+2020-10-23 18:10:46.083357 (Thread-4): finished collecting timing info
+2020-10-23 18:10:46.084193 (Thread-4): Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '97e01ffa-fb11-4dbb-905d-f2aa02358b5c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef1b60460>]}
+2020-10-23 18:10:46.086245 (Thread-4): 11:10:46 | 4 of 4 OK created table model dbt_kristin_marketo.stg_salesforce_user_role [CREATE TABLE (96.0 rows, 4.5 KB processed) in 3.94s]
+2020-10-23 18:10:46.086422 (Thread-4): Finished running node model.salesforce_source.stg_salesforce_user_role
+2020-10-23 18:10:46.088714 (Thread-3): finished collecting timing info
+2020-10-23 18:10:46.089394 (Thread-3): Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '97e01ffa-fb11-4dbb-905d-f2aa02358b5c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef1b4b100>]}
+2020-10-23 18:10:46.090536 (Thread-3): 11:10:46 | 3 of 4 OK created table model dbt_kristin_marketo.stg_salesforce_user [CREATE TABLE (376.0 rows, 26.0 KB processed) in 3.95s]
+2020-10-23 18:10:46.090682 (Thread-3): Finished running node model.salesforce_source.stg_salesforce_user
+2020-10-23 18:10:47.141862 (Thread-2): finished collecting timing info
+2020-10-23 18:10:47.142715 (Thread-2): Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '97e01ffa-fb11-4dbb-905d-f2aa02358b5c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef1b8d070>]}
+2020-10-23 18:10:47.144027 (Thread-2): 11:10:47 | 2 of 4 OK created table model dbt_kristin_marketo.stg_salesforce_opportunity [CREATE TABLE (30.0k rows, 4.3 MB processed) in 5.01s]
+2020-10-23 18:10:47.144201 (Thread-2): Finished running node model.salesforce_source.stg_salesforce_opportunity
+2020-10-23 18:10:48.052159 (Thread-1): finished collecting timing info
+2020-10-23 18:10:48.053015 (Thread-1): Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '97e01ffa-fb11-4dbb-905d-f2aa02358b5c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef1bec9d0>]}
+2020-10-23 18:10:48.054347 (Thread-1): 11:10:48 | 1 of 4 OK created table model dbt_kristin_marketo.stg_salesforce_account [CREATE TABLE (265.4k rows, 27.5 MB processed) in 5.94s]
+2020-10-23 18:10:48.054521 (Thread-1): Finished running node model.salesforce_source.stg_salesforce_account
+2020-10-23 18:10:48.055947 (MainThread): Acquiring new bigquery connection "master".
+2020-10-23 18:10:48.056311 (MainThread): 11:10:48 | 
+2020-10-23 18:10:48.056452 (MainThread): 11:10:48 | Finished running 4 table models in 9.76s.
+2020-10-23 18:10:48.056570 (MainThread): Connection 'master' was properly closed.
+2020-10-23 18:10:48.056672 (MainThread): Connection 'model.salesforce_source.stg_salesforce_account' was properly closed.
+2020-10-23 18:10:48.056753 (MainThread): Connection 'model.salesforce_source.stg_salesforce_opportunity' was properly closed.
+2020-10-23 18:10:48.056831 (MainThread): Connection 'model.salesforce_source.stg_salesforce_user' was properly closed.
+2020-10-23 18:10:48.056906 (MainThread): Connection 'model.salesforce_source.stg_salesforce_user_role' was properly closed.
+2020-10-23 18:10:48.070603 (MainThread): 
+2020-10-23 18:10:48.070786 (MainThread): Completed successfully
+2020-10-23 18:10:48.070919 (MainThread): 
+Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
+2020-10-23 18:10:48.071137 (MainThread): Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef19336a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef1b2fac0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7feef1b2f640>]}
+2020-10-23 18:10:48.071346 (MainThread): Flushing usage events

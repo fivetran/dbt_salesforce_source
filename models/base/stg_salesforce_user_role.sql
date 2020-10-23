@@ -2,7 +2,7 @@
 with base as (
 
     select *
-    from {{ source('salesforce','user_role') }}
+    from {{ var('user_role')}}
     where not _fivetran_deleted
 
 ), fields as (

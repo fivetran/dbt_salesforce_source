@@ -1,7 +1,7 @@
 with base as (
 
     select *
-    from {{ source('salesforce','account') }}
+    from {{ var('account')}}
     where not is_deleted
 
 ), fields as (

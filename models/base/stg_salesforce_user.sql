@@ -1,7 +1,7 @@
 with base as (
 
     select *
-    from {{ source('salesforce','user') }}
+    from {{ var('user')}}
 
 ), fields as (
 
