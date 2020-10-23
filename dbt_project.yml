@@ -3,6 +3,9 @@ config-version: 2
 name: 'salesforce_source'
 version: '0.0.1'
 
+require-dbt-version: [">=0.18.0", "<0.19.0"]
+
+
 models:
     salesforce_source:
         materialized: table
