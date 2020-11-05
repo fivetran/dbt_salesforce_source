@@ -13,6 +13,10 @@ with base as (
       industry,
       number_of_employees,
       account_source
+      {% if var('account_pass_through_columns') != [] %}
+      ,
+      {{ var('account_pass_through_columns') | join (", ")}}
+      {% endif %}
 
     from base
 

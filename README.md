@@ -22,7 +22,7 @@ This package contains staging models, designed to work simultaneously with our [
 Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 
 ## Configuration
-By default, this package will run using your target database and the `salesforce` schema. If this is not where your Salesforce data is (perhaps your Salesforce schema is `salesforce_fivetran`), add the following configuration to your `dbt_project.yml` file:
+By default, this package will run using your target database and the `salesforce` schema. If this is not where your Salesforce data is (perhaps your Salesforce schema is `salesforce_fivetran`), add the following configuration to your `dbt_project.yml` file. You can also pass through additional columns for the account, opportunity, and user models.
 
 ```yml
 # dbt_project.yml
@@ -31,9 +31,15 @@ By default, this package will run using your target database and the `salesforce
 config-version: 2
 
 vars:
-  salesforce_source:
-    salesforce_database: your_database_name
-    salesforce_schema: your_schema_name
+    salesforce_source:
+        salesforce_database: your_database_name
+        salesforce_schema: your_schema_name
+        account_pass_through_columns:
+            - "custom_column_name"
+        opportunity_pass_through_columns:
+            - "custom_column_name"
+        user_pass_through_columns:
+            - "custom_column_name"
 ```
 
 ## Contributions

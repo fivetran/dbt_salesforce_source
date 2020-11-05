@@ -12,6 +12,10 @@ with base as (
       state,
       manager_id,
       user_role_id
+      {% if var('user_pass_through_columns') != [] %}
+      ,
+      {{ var('user_pass_through_columns') | join (", ")}}
+      {% endif %}
     from base
 
 )
