@@ -1,0 +1,36 @@
+name: 'salesforce_source_integration_tests'
+version: '1.0.0'
+
+config-version: 2
+
+profile: 'integration_tests'
+
+vars:
+  salesforce_source:
+      account: "{{ ref('account_data') }}"
+      opportunity: "{{ ref('opportunity_data') }}"
+      user: "{{ ref('user_data') }}"
+      user_role: "{{ ref('user_role_data') }}"
+
+seeds:
+  salesforce_source_integration_tests:
+    +column_types:
+      _fivetran_synced: timestamp
+    account_data:
+      +column_types:
+        last_activity_date: timestamp
+        last_referenced_date: timestamp
+        last_viewed_date: timestamp
+    opportunity_data:
+      +column_types:
+        close_date: timestamp
+        created_date: timestamp
+        last_activity_date: timestamp
+        last_referenced_date: timestamp
+        last_viewed_date: timestamp
+        last_login_date: timestamp
+    user_data:
+      +column_types:
+        last_referenced_date: timestamp
+        last_viewed_date: timestamp
+        offline_trial_expiration_date: timestamp

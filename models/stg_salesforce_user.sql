@@ -1,20 +1,24 @@
-with base as (
+with source as (
 
     select *
-    from {{ var('user')}}
+    from {{ ref('stg_salesforce__user_tmp') }}
 
-), fields as (
+),
 
-    select 
-      id as user_id,
-      name,
-      city,
-      state,
-      manager_id,
-      user_role_id
-    from base
+renamed as (
+
+    select
+    
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__user_tmp')),
+                staging_columns=get_user_columns()
+            )
+        }}
+
+    from source
 
 )
 
-select *
-from fields
+select * 
+from renamed

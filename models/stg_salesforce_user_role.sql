@@ -1,20 +1,25 @@
-
-with base as (
+with source as (
 
     select *
-    from {{ var('user_role')}}
-    where not _fivetran_deleted
+    from {{ ref('stg_salesforce__user_role_tmp') }}
 
-), fields as (
+),
 
-    select 
+renamed as (
 
-      id as user_role_id,
-      name as role_name
+    select
+    
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__user_role_tmp')),
+                staging_columns=get_user_role_columns()
+            )
+        }}
 
-    from base
+    from source
 
 )
 
-select *
-from fields
+select * 
+from renamed
+where not _fivetran_deleted

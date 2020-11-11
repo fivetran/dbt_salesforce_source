@@ -1,22 +1,25 @@
-with base as (
+with source as (
 
     select *
-    from {{ var('account')}}
-    where not is_deleted
+    from {{ ref('stg_salesforce__account_tmp') }}
 
-), fields as (
+),
 
-    select 
+renamed as (
 
-      id as account_id,
-      name as account_name,
-      industry,
-      number_of_employees,
-      account_source
+    select
+    
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__account_tmp')),
+                staging_columns=get_account_columns()
+            )
+        }}
 
-    from base
+    from source
 
 )
 
-select *
-from fields
+select * 
+from renamed
+where not is_deleted

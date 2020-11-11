@@ -1,24 +1,29 @@
-with base as (
+with source as (
 
     select *
-    from {{ var('opportunity')}}
-    where not is_deleted
+    from {{ ref('stg_salesforce__opportunity_tmp') }}
 
-), fields as (
+),
 
+renamed as (
+
+    select
+    
+        {{
+            fivetran_utils.fill_staging_columns(
+                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__opportunity_tmp')),
+                staging_columns=get_opportunity_columns()
+            )
+        }}
+
+    from source
+
+),
+
+calculated as (
+        
     select 
-
-        id as opportunity_id,
-        account_id as opportunity_account_id,
-        amount,
-        probability,
-        created_date, 
-        is_won,
-        is_closed,
-        forecast_category,
-        stage_name,
-        owner_id,
-        close_date,
+        *,
         created_date >= {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_created_this_month,
         created_date >= {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_created_this_quarter,
         {{ dbt_utils.datediff(dbt_utils.current_timestamp(), 'created_date', 'day') }} as days_since_created,
@@ -26,9 +31,10 @@ with base as (
         {{ dbt_utils.date_trunc('month', 'close_date') }} = {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_closed_this_month,
         {{ dbt_utils.date_trunc('quarter', 'close_date') }} = {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_closed_this_quarter
 
-    from base
+    from renamed
+    where not is_deleted
 
 )
 
-select *
-from fields
+select * 
+from renamed
