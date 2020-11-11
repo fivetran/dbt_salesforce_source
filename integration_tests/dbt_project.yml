@@ -27,9 +27,9 @@ seeds:
         last_activity_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
-        last_login_date: timestamp
     user_data:
       +column_types:
+        last_login_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
         offline_trial_expiration_date: timestamp
