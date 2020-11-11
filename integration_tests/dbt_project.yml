@@ -20,6 +20,11 @@ seeds:
         last_activity_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
+        annual_revenue: float
+        billing_latitude: float
+        billing_longitude: float
+        shipping_latitude: float
+        shipping_longitude: float
     opportunity_data:
       +column_types:
         close_date: timestamp
@@ -27,9 +32,13 @@ seeds:
         last_activity_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
+        amount: float
+        probability: float
     user_data:
       +column_types:
         last_login_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
         offline_trial_expiration_date: timestamp
+        latitude: float
+        longitude: float
