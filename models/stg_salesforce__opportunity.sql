@@ -16,6 +16,12 @@ renamed as (
             )
         }}
 
+        {% if var('opportunity_pass_through_columns') != [] %}
+        ,
+        {{ var('opportunity_pass_through_columns') | join (", ")}}
+
+        {% endif %}
+
     from source
 
 ),

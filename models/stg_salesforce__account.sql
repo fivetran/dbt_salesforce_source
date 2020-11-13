@@ -1,6 +1,7 @@
 with source as (
 
-    select *
+    select 
+        *
     from {{ ref('stg_salesforce__account_tmp') }}
 
 ),
@@ -16,10 +17,16 @@ renamed as (
             )
         }}
 
+        {% if var('account_pass_through_columns') != [] %}
+        ,
+        {{ var('account_pass_through_columns') | join (", ")}}
+
+        {% endif %}
+        
+
     from source
 
 )
-
 select * 
 from renamed
 where not is_deleted

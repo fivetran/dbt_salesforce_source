@@ -2,7 +2,6 @@ version: 2
 
 sources:
   - name: salesforce
-  
     schema: "{{ var('salesforce_schema', 'salesforce') }}" # you will need to customize if your schema name is not salesforce
     database: "{{ var('salesforce_database', target.database) }}"
     loader: fivetran
@@ -21,15 +20,15 @@ sources:
         - name: _fivetran_synced 
           description: The time at which fivetran last synced this record
         - name: account_number 
-          description: Account number assigned to this account (not the unique, system-generated ID assigned during creation). Maximum size is 40 characters.
+          description: Account number assigned to this account (not the unique, system-generated ID assigned during creation).
         - name: account_source 
           description: The source of the account record. For example, Advertisement, Data.com, or Trade Show. The source is selected from a picklist of available values, which are set by an administrator. Each picklist value can have up to 40 characters.
         - name: annual_revenue 
           description: Estimated annual revenue of the account.
         - name: billing_city 
-          description: Details for the billing address of this account. Maximum size is 40 characters.
+          description: Details for the billing address of this account.
         - name: billing_country 
-          description: Details for the billing address of this account. Maximum size is 80 characters.
+          description: Details for the billing address of this account.
         - name: billing_country_code 
           description: The ISO country code for the account’s billing address.
         - name: billing_geocode_accuracy 
@@ -39,9 +38,9 @@ sources:
         - name: billing_longitude 
           description: Used with BillingLatitude to specify the precise geolocation of a billing address. Acceptable values are numbers between –180 and 180 with up to 15 decimal places. See Compound Field Considerations and Limitations for details on geolocation compound fields.
         - name: billing_postal_code 
-          description: Details for the billing address of this account. Maximum size is 20 characters.
+          description: Details for the billing address of this account.
         - name: billing_state 
-          description: Details for the billing address of this account. Maximum size is 80 characters.
+          description: Details for the billing address of this account.
         - name: billing_state_code 
           description: The ISO state code for the account’s billing address.
         - name: billing_street 
@@ -51,11 +50,11 @@ sources:
         - name: fax 
           description: Fax number for the account.
         - name: industry 
-          description: An industry associated with this account. Maximum size is 40 characters.
+          description: An industry associated with this account.
         - name: is_deleted
           description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false). Label is Deleted.
         - name: jigsaw_company_id 
-          description: References the ID of a company in Data.com. If an account has a value in this field, it means that the account was imported from Data.com. If the field value is null, the account was not imported from Data.com. Maximum size is 20 characters. Available in API version 22.0 and later. Label is Data.com Key. This field is available on business accounts, not person accounts.The Jigsaw field is exposed in the API to support troubleshooting for import errors and reimporting of corrected data. Do not modify the value in the Jigsaw field.
+          description: References the ID of a company in Data.com. If an account has a value in this field, it means that the account was imported from Data.com. If the field value is null, the account was not imported from Data.com. 
         - name: last_activity_date
           description: Value is one of the following, whichever is the most recent
         - name: last_referenced_date
@@ -65,17 +64,17 @@ sources:
         - name: master_record_id
           description: If this object was deleted as the result of a merge, this field contains the ID of the record that was kept. If this object was deleted for any other reason, or has not been deleted, the value is null.
         - name: name 
-          description: Required. Label is Account Name. Name of the account. Maximum size is 255 characters. If the account has a record type of Person Account:This value is the concatenation of the FirstName, MiddleName, LastName, and Suffix of the associated person contact.
+          description: Required. Label is Account Name. Name of the account. If the account has a record type of Person Account:This value is the concatenation of the FirstName, MiddleName, LastName, and Suffix of the associated person contact.
         - name: number_of_employees 
-          description: Label is Employees. Number of employees working at the company represented by this account. Maximum size is eight digits.
+          description: Label is Employees. Number of employees working at the company represented by this account.
         - name: owner_id 
-          description: The ID of the user who currently owns this account. Default value is the user logged in to the API to perform the create.If you have set up account teams in your organization, updating this field has different consequences depending on your version of the API
+          description: The ID of the user who currently owns this account.
         - name: ownership 
           description: Ownership type for the account, for example Private, Public, or Subsidiary.
         - name: parent_id 
           description: ID of the parent object, if any.
         - name: phone 
-          description: Phone number for this account. Maximum size is 40 characters.
+          description: Phone number for this account.
         - name: photo_url
           description: Path to be combined with the URL of a Salesforce instance (for example, https://yourInstance.salesforce.com/) to generate a URL to request the social network profile image associated with the account. Generated URL returns an HTTP redirect (code 302) to the social network profile image for the account.
         - name: rating 
@@ -83,9 +82,9 @@ sources:
         - name: record_type_id 
           description: ID of the record type assigned to this object.
         - name: shipping_city 
-          description: Details of the shipping address for this account. City maximum size is 40 characters
+          description: Details of the shipping address for this account
         - name: shipping_country 
-          description: Details of the shipping address for this account. Country maximum size is 80 characters.
+          description: Details of the shipping address for this account. Country
         - name: shipping_country_code 
           description: The ISO country code for the account’s shipping address.
         - name: shipping_geocode_accuracy 
@@ -95,25 +94,25 @@ sources:
         - name: shipping_longitude 
           description: Used with ShippingLatitude to specify the precise geolocation of an address. Acceptable values are numbers between –180 and 180 with up to 15 decimal places. See Compound Field Considerations and Limitations for details on geolocation compound fields.
         - name: shipping_postal_code 
-          description: Details of the shipping address for this account. Postal code maximum size is 20 characters.
+          description: Details of the shipping address for this account. Postal code
         - name: shipping_state 
-          description: Details of the shipping address for this account. State maximum size is 80 characters.
+          description: Details of the shipping address for this account. State
         - name: shipping_state_code 
           description: The ISO state code for the account’s shipping address.
         - name: shipping_street 
-          description: The street address of the shipping address for this account. Maximum of 255 characters.
+          description: The street address of the shipping address for this account.
         - name: sic 
-          description: Standard Industrial Classification code of the company’s main business categorization, for example, 57340 for Electronics. Maximum of 20 characters. This field is available on business accounts, not person accounts.
+          description: Standard Industrial Classification code of the company’s main business categorization, for example, 57340 for Electronics. This field is available on business accounts, not person accounts.
         - name: sic_desc 
-          description: A brief description of an organization’s line of business, based on its SIC code. Maximum length is 80 characters. This field is available on business accounts, not person accounts.
+          description: A brief description of an organization’s line of business, based on its SIC code. This field is available on business accounts, not person accounts.
         - name: site 
           description: Name of the account’s location, for example Headquarters or London. Label is Account Site. Maximum of 80 characters.
         - name: ticker_symbol 
-          description: The stock market symbol for this account. Maximum of 20 characters. This field is available on business accounts, not person accounts.
+          description: The stock market symbol for this account. This field is available on business accounts, not person accounts.
         - name: type 
           description: Type of account, for example, Customer, Competitor, or Partner.
         - name: website 
-          description: The website of this account. Maximum of 255 characters.
+          description: The website of this account.
 
       - name: opportunity
         loaded_at_field: _fivetran_synced
@@ -144,21 +143,21 @@ sources:
         - name: fiscal_year
           description: Represents the fiscal year, for example, 2006.
         - name: forecast_category
-          description: Restricted picklist field. It is implied, but not directly controlled, by the StageName field. You can override this field to a different value than is implied by the StageName value. The values of this field are fixed enumerated values. The field labels are localized to the language of the user performing the operation, if localized versions of those labels are available for that language in the user interface.In API version 12.0 and later, the value of this field is automatically set based on the value of the ForecastCategoryName and can’t be updated any other way. The field properties Create, Defaulted on create, Nillable, and Update are not available in version 12.0.
+          description: Restricted picklist field. It is implied, but not directly controlled, by the StageName field. You can override this field to a different value than is implied by the StageName value. The values of this field are fixed enumerated values. The field labels are localized to the language of the user performing the operation, if localized versions of those labels are available for that language in the user interface.
         - name: forecast_category_name
           description: The name of the forecast category. It is implied, but not directly controlled, by the StageName field. You can override this field to a different value than is implied by the StageName value."
         - name: has_open_activity
-          description: Indicates whether an opportunity has an open event or task (true) or not (false). Available in API version 35.0 and later.
+          description: Indicates whether an opportunity has an open event or task (true) or not (false).
         - name: has_opportunity_line_item
-          description: Read-only field that indicates whether the opportunity has associated line items. A value of true means that Opportunity line items have been created for the opportunity. An opportunity can have opportunity line items only if the opportunity has a price book. The opportunity line items must correspond to PricebookEntry objects that are listed in the opportunity Pricebook2. However, you can insert opportunity line items on an opportunity that does not have an associated Pricebook2. For the first opportunity line item that you insert on an opportunity without a Pricebook2, the API automatically sets the Pricebook2Id field, if the opportunity line item corresponds to a PricebookEntry in an active Pricebook2 that has a CurrencyIsoCode field that matches the CurrencyIsoCode field of the opportunity. If the Pricebook2 is not active or the CurrencyIsoCode fields do not match, then the API returns an error. You can’t update the Pricebook2Id or PricebookId fields if opportunity line items exist on the Opportunity. You must delete the line items before attempting to update the PricebookId field.
+          description: Read-only field that indicates whether the opportunity has associated line items. A value of true means that Opportunity line items have been created for the opportunity. 
         - name: has_overdue_task
-          description: Indicates whether an opportunity has an overdue task (true) or not (false). Available in API version 35.0 and later.
+          description: Indicates whether an opportunity has an overdue task (true) or not (false).
         - name: is_closed
           description: Directly controlled by StageName. You can query and filter on this field, but you can’t directly set it in a create, upsert, or update request. It can only be set via StageName. Label is Closed.
         - name: is_deleted
           description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false). Label is Deleted.
         - name: is_excluded_from_territory_2_filter
-          description: Used for Filter-Based Opportunity Territory Assignment (Pilot in Spring ’15 / API version 33). Indicates whether the opportunity is excluded (True) or included (False) each time the APEX filter is executed.
+          description: Used for Filter-Based Opportunity Territory Assignment. Indicates whether the opportunity is excluded (True) or included (False) each time the APEX filter is executed.
         - name: is_won
           description: Directly controlled by StageName. You can query and filter on this field, but you can’t directly set the value. It can only be set via StageName. Label is Won.
         - name: last_activity_date
@@ -180,7 +179,7 @@ sources:
         - name: pricebook_2_id
           description: Unavailable as of version 3.0. As of version 8.0, the Pricebook object is no longer available. Use the Pricebook2Id field instead, specifying the ID of the Pricebook2 record.
         - name: probability
-          description: Percentage of estimated confidence in closing the opportunity. It is implied, but not directly controlled, by the StageName field. You can override this field to a different value than what is implied by the StageName.If you're changing the Probability field through the API using a partner WSDL call, or an Apex before trigger, and the value may have several decimal places, we recommend rounding the value to a whole number. 
+          description: Percentage of estimated confidence in closing the opportunity. It is implied, but not directly controlled, by the StageName field. You can override this field to a different value than what is implied by the StageName.
         - name: record_type_id
           description: ID of the record type assigned to this object.
         - name: stage_name
@@ -211,7 +210,7 @@ sources:
         - name: badge_text
           description: The community role, displayed on the user profile page just below the user name.
         - name: banner_photo_url
-          description: The URL for the user's banner photo. This field is available in API version 36.0 and later.
+          description: The URL for the user's banner photo.
         - name: call_center_id
           description: If Salesforce CRM Call Center is enabled, represents the call center to which this user is assigned.
         - name: city
@@ -261,9 +260,9 @@ sources:
         - name: individual_id
           description: ID of the data privacy record associated with this user. This field is available if Data Protection and Privacy is enabled.
         - name: is_active
-          description: Indicates whether the user has access to log in (true) or not (false). You can modify a User's active status from the user interface or via the API.
+          description: Indicates whether the user has access to log in (true) or not (false).
         - name: is_profile_photo_active
-          description: Indicates whether a user has a profile photo (true) or not (false). This field is available in API version 36.0 and later.
+          description: Indicates whether a user has a profile photo (true) or not (false).
         - name: language_locale_key
           description: Required. The user’s language, such as “French” or “Chinese (Traditional).” Label is Language.
         - name: last_login_date
@@ -277,7 +276,7 @@ sources:
         - name: latitude
           description: Used with Longitude to specify the precise geolocation of an address. Acceptable values are numbers between –90 and 90 up to 15 decimal places. For details on geolocation compound fields, see Compound Field Considerations and Limitations.
         - name: locale_sid_key
-          description: Required. This field is a restricted picklist field. The value of the field affects formatting and parsing of values, especially numeric values, in the user interface. It does not affect the API.The field values are named according to the language, and country if necessary, using two-letter ISO codes. The set of names is based on the ISO standard. You can also manually set a user’s locale in the user interface, and then use that value for inserting or updating other users via the API.
+          description: Required. This field is a restricted picklist field. The value of the field affects formatting and parsing of values, especially numeric values, in the user interface.
         - name: longitude
           description: Used with Latitude to specify the precise geolocation of an address. Acceptable values are numbers between –180 and 180 up to 15 decimal places. For details on geolocation compound fields, see Compound Field Considerations and Limitations.
         - name: manager_id
@@ -317,11 +316,11 @@ sources:
         - name: street
           description: The street address associated with the User.
         - name: time_zone_sid_key
-          description: Required. This field is a restricted picklist field. A User time zone affects the offset used when displaying or entering times in the user interface. However, the API does not use a User time zone when querying or setting values.Values for this field are named using region and key city, according to ISO standards. You can also manually set one User time zone in the user interface, and then use that value for creating or updating other User records via the API.
+          description: Required. This field is a restricted picklist field. A User time zone affects the offset used when displaying or entering times in the user interface.
         - name: title
           description: The user’s business title, such as “Vice President.”
         - name: username
-          description: Contains the name that a user enters to log in to the API or the user interface. The value for this field must be in the form of an email address, using all lowercase characters. It must also be unique across all organizations. If you try to create or update a User with a duplicate value for this field, the operation is rejected.Each inserted User also counts as a license. Every organization has a maximum number of licenses. If you attempt to exceed the maximum number of licenses by inserting User records, the create is rejected.
+          description: Contains the name that a user enters to log in. The value for this field must be in the form of an email address, using all lowercase characters. It must also be unique across all organizations.
         - name: user_role_id
           description: ID of the user’s UserRole. Label is Role ID.
         - name: user_type
@@ -342,7 +341,7 @@ sources:
         - name: contact_access_for_account_owner
           description: The contact access level for the account owner.When DefaultContactAccess is set to Controlled by Parent, you can’t create or update this field.
         - name: developer_name
-          description: The unique name of the object in the API. This name can contain only underscores and alphanumeric characters, and must be unique in your org. It must begin with a letter, not include spaces, not end with an underscore, and not contain two consecutive underscores. In managed packages, this field prevents naming conflicts on package installations. With this field, a developer can change the object’s name in a managed package and the changes are reflected in a subscriber’s organization. Corresponds to Role Name in the user interface.This field is available in API version 24.0 and later.
+          description: The unique name of the object in the API. This name can contain only underscores and alphanumeric characters, and must be unique in your org. It must begin with a letter, not include spaces, not end with an underscore, and not contain two consecutive underscores.
         - name: forecast_user_id
           description: The ID of the forecast manager associated with this role. Label is User ID.
         - name: may_forecast_manager_share
