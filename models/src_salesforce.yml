@@ -2,7 +2,6 @@ version: 2
 
 sources:
   - name: salesforce
-  
     schema: "{{ var('salesforce_schema', 'salesforce') }}" # you will need to customize if your schema name is not salesforce
     database: "{{ var('salesforce_database', target.database) }}"
     loader: fivetran
@@ -18,63 +17,314 @@ sources:
         columns:
         - name: id
           description: the unique, system-generated ID assigned during creation
-          tests:
-              - unique
-              - not_null
-        - name: name
-          description: Name of the account. Maximum size is 255 characters.
-        - name: industry
-          description: An industry associated with this account. Maximum size is 40 characters.
-        - name: number_of_employees
-          description: Number of employees working at the company represented by this account. Maximum size is eight digits.
-      
+        - name: _fivetran_synced 
+          description: The time at which fivetran last synced this record
+        - name: account_number 
+          description: Account number assigned to this account (not the unique, system-generated ID assigned during creation).
+        - name: account_source 
+          description: The source of the account record. For example, Advertisement, Data.com, or Trade Show. The source is selected from a picklist of available values, which are set by an administrator. Each picklist value can have up to 40 characters.
+        - name: annual_revenue 
+          description: Estimated annual revenue of the account.
+        - name: billing_city 
+          description: Details for the billing address of this account.
+        - name: billing_country 
+          description: Details for the billing address of this account.
+        - name: billing_country_code 
+          description: The ISO country code for the account’s billing address.
+        - name: billing_geocode_accuracy 
+          description: Accuracy level of the geocode for the billing address. See Compound Field Considerations and Limitations for details on geolocation compound fields.
+        - name: billing_latitude 
+          description: Used with BillingLongitude to specify the precise geolocation of a billing address. Acceptable values are numbers between –90 and 90 with up to 15 decimal places. See Compound Field Considerations and Limitations for details on geolocation compound fields.
+        - name: billing_longitude 
+          description: Used with BillingLatitude to specify the precise geolocation of a billing address. Acceptable values are numbers between –180 and 180 with up to 15 decimal places. See Compound Field Considerations and Limitations for details on geolocation compound fields.
+        - name: billing_postal_code 
+          description: Details for the billing address of this account.
+        - name: billing_state 
+          description: Details for the billing address of this account.
+        - name: billing_state_code 
+          description: The ISO state code for the account’s billing address.
+        - name: billing_street 
+          description: Street address for the billing address of this account.
+        - name: description 
+          description: Text description of the account. Limited to 32,000 KB.
+        - name: fax 
+          description: Fax number for the account.
+        - name: industry 
+          description: An industry associated with this account.
+        - name: is_deleted
+          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false). Label is Deleted.
+        - name: jigsaw_company_id 
+          description: References the ID of a company in Data.com. If an account has a value in this field, it means that the account was imported from Data.com. If the field value is null, the account was not imported from Data.com. 
+        - name: last_activity_date
+          description: Value is one of the following, whichever is the most recent
+        - name: last_referenced_date
+          description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
+        - name: last_viewed_date
+          description: The timestamp when the current user last viewed this record or list view. If this value is null, the user might have only accessed this record or list view (LastReferencedDate) but not viewed it.
+        - name: master_record_id
+          description: If this object was deleted as the result of a merge, this field contains the ID of the record that was kept. If this object was deleted for any other reason, or has not been deleted, the value is null.
+        - name: name 
+          description: Required. Label is Account Name. Name of the account. If the account has a record type of Person Account:This value is the concatenation of the FirstName, MiddleName, LastName, and Suffix of the associated person contact.
+        - name: number_of_employees 
+          description: Label is Employees. Number of employees working at the company represented by this account.
+        - name: owner_id 
+          description: The ID of the user who currently owns this account.
+        - name: ownership 
+          description: Ownership type for the account, for example Private, Public, or Subsidiary.
+        - name: parent_id 
+          description: ID of the parent object, if any.
+        - name: phone 
+          description: Phone number for this account.
+        - name: photo_url
+          description: Path to be combined with the URL of a Salesforce instance (for example, https://yourInstance.salesforce.com/) to generate a URL to request the social network profile image associated with the account. Generated URL returns an HTTP redirect (code 302) to the social network profile image for the account.
+        - name: rating 
+          description: The account’s prospect rating, for example Hot, Warm, or Cold.
+        - name: record_type_id 
+          description: ID of the record type assigned to this object.
+        - name: shipping_city 
+          description: Details of the shipping address for this account
+        - name: shipping_country 
+          description: Details of the shipping address for this account. Country
+        - name: shipping_country_code 
+          description: The ISO country code for the account’s shipping address.
+        - name: shipping_geocode_accuracy 
+          description: Accuracy level of the geocode for the shipping address. See Compound Field Considerations and Limitations for details on geolocation compound fields.
+        - name: shipping_latitude 
+          description: Used with ShippingLongitude to specify the precise geolocation of a shipping address. Acceptable values are numbers between –90 and 90 with up to 15 decimal places. See Compound Field Considerations and Limitations for details on geolocation compound fields.
+        - name: shipping_longitude 
+          description: Used with ShippingLatitude to specify the precise geolocation of an address. Acceptable values are numbers between –180 and 180 with up to 15 decimal places. See Compound Field Considerations and Limitations for details on geolocation compound fields.
+        - name: shipping_postal_code 
+          description: Details of the shipping address for this account. Postal code
+        - name: shipping_state 
+          description: Details of the shipping address for this account. State
+        - name: shipping_state_code 
+          description: The ISO state code for the account’s shipping address.
+        - name: shipping_street 
+          description: The street address of the shipping address for this account.
+        - name: sic 
+          description: Standard Industrial Classification code of the company’s main business categorization, for example, 57340 for Electronics. This field is available on business accounts, not person accounts.
+        - name: sic_desc 
+          description: A brief description of an organization’s line of business, based on its SIC code. This field is available on business accounts, not person accounts.
+        - name: site 
+          description: Name of the account’s location, for example Headquarters or London. Label is Account Site. Maximum of 80 characters.
+        - name: ticker_symbol 
+          description: The stock market symbol for this account. This field is available on business accounts, not person accounts.
+        - name: type 
+          description: Type of account, for example, Customer, Competitor, or Partner.
+        - name: website 
+          description: The website of this account.
+
       - name: opportunity
         loaded_at_field: _fivetran_synced
         description: Represents an opportunity, which is a sale or pending deal.
         columns:
         - name: id
           description: the unique, system-generated ID assigned during creation.
-          tests:
-              - unique
-              - not_null
+        - name: _fivetran_synced 
+          description: The time at which fivetran last synced this record 
+        - name: account_id
+          description: ID of the account associated with this opportunity.
         - name: amount
-          description: Estimated total sale amount. For opportunities with products, the amount is the sum of the related products.
-        - name: probability
-          description: Likelihood that opportunity will close, stated as a percentage.
-        - name: created_date
-          description: The system generated time stamp of when the opportunity was created.
-        - name: is_won
-          description: Boolean for if the opportunity is won.  Controled by stage_name.
-        - name: is_closed
-          description: Boolean for if the opportunity is closed.  Controled by stage_name.
-        - name: forecast_category
-          description: The category of the state of the opportunity.  Default values are 'pipeline','forecast','bestcase','closed', and 'omited'
-        - name: owner_id
-          description: ID of the User who has been assigned to work this opportunity.
+          description: Estimated total sale amount. For opportunities with products, the amount is the sum of the related products. Any attempt to update this field, if the record has products, will be ignored. The update call will not be rejected, and other fields will be updated as specified, but the Amount will be unchanged.
+        - name: campaign_id
+          description: ID of a related Campaign. This field is defined only for those organizations that have the campaign feature Campaigns enabled. The User must have read access rights to the cross-referenced Campaign object in order to create or update that campaign into this field on the opportunity.
         - name: close_date
-          description: Date when the opportunity has been, or is expected to close.
+          description: Required. Date when the opportunity is expected to close.
+        - name: created_date
+          description: Date when the opportunity is was created.
+        - name: description
+          description: Text description of the opportunity. 
+        - name: expected_revenue
+          description: Read-only field that is equal to the product of the opportunity Amount field and the Probability. You can’t directly set this field, but you can indirectly set it by setting the Amount or Probability fields.
+        - name: fiscal
+          description: If fiscal years are not enabled, the name of the fiscal quarter or period in which the opportunity CloseDate falls. Value should be in YYY Q format, for example, '2006 1' for first quarter of 2006.
+        - name: fiscal_quarter
+          description: Represents the fiscal quarter. Valid values are 1, 2, 3, or 4.
+        - name: fiscal_year
+          description: Represents the fiscal year, for example, 2006.
+        - name: forecast_category
+          description: Restricted picklist field. It is implied, but not directly controlled, by the StageName field. You can override this field to a different value than is implied by the StageName value. The values of this field are fixed enumerated values. The field labels are localized to the language of the user performing the operation, if localized versions of those labels are available for that language in the user interface.
+        - name: forecast_category_name
+          description: The name of the forecast category. It is implied, but not directly controlled, by the StageName field. You can override this field to a different value than is implied by the StageName value."
+        - name: has_open_activity
+          description: Indicates whether an opportunity has an open event or task (true) or not (false).
+        - name: has_opportunity_line_item
+          description: Read-only field that indicates whether the opportunity has associated line items. A value of true means that Opportunity line items have been created for the opportunity. 
+        - name: has_overdue_task
+          description: Indicates whether an opportunity has an overdue task (true) or not (false).
+        - name: is_closed
+          description: Directly controlled by StageName. You can query and filter on this field, but you can’t directly set it in a create, upsert, or update request. It can only be set via StageName. Label is Closed.
+        - name: is_deleted
+          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false). Label is Deleted.
+        - name: is_excluded_from_territory_2_filter
+          description: Used for Filter-Based Opportunity Territory Assignment. Indicates whether the opportunity is excluded (True) or included (False) each time the APEX filter is executed.
+        - name: is_won
+          description: Directly controlled by StageName. You can query and filter on this field, but you can’t directly set the value. It can only be set via StageName. Label is Won.
+        - name: last_activity_date
+          description: Value is one of the following, whichever is the most recent:Due date of the most recent event logged against the record or Due date of the most recently closed task associated with the record.
+        - name: last_referenced_date
+          description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
+        - name: last_viewed_date
+          description: The timestamp when the current user last viewed this record or list view. If this value is null, the user might have only accessed this record or list view (LastReferencedDate) but not viewed it.
+        - name: lead_source
+          description: Source of this opportunity, such as Advertisement or Trade Show.
+        - name: name
+          description: Required. A name for this opportunity.
+        - name: next_step
+          description: Description of next task in closing opportunity.
+        - name: owner_id
+          description: ID of the User who has been assigned to work this opportunity.If you update this field, the previous owner's access becomes Read Only or the access specified in your organization-wide default for opportunities, whichever is greater.
+        - name: Pricebook2Id
+          description: ID of a related Pricebook2 object. The Pricebook2Id field indicates which Pricebook2 applies to this opportunity. The Pricebook2Id field is defined only for those organizations that have products enabled as a feature. You can specify values for only one field (Pricebook2Id or PricebookId)—not both fields. For this reason, both fields are declared nillable.
+        - name: pricebook_2_id
+          description: Unavailable as of version 3.0. As of version 8.0, the Pricebook object is no longer available. Use the Pricebook2Id field instead, specifying the ID of the Pricebook2 record.
+        - name: probability
+          description: Percentage of estimated confidence in closing the opportunity. It is implied, but not directly controlled, by the StageName field. You can override this field to a different value than what is implied by the StageName.
+        - name: record_type_id
+          description: ID of the record type assigned to this object.
         - name: stage_name
-          description: Current stage of this record. The StageName field controls several other fields on an opportunity.
-      
+          description: Required. Current stage of this record. The StageName field controls several other fields on an opportunity. Each of the fields can be directly set or implied by changing the StageName field. In addition, the StageName field is a picklist, so it has additional members in the returned describeSObjectResult to indicate how it affects the other fields. To obtain the stage name values in the picklist, query the OpportunityStage object. If the StageName is updated, then the ForecastCategoryName, IsClosed, IsWon, and Probability are automatically updated based on the stage-category mapping.
+        - name: synced_quote_id
+          description: Read only in an Apex trigger. The ID of the Quote that syncs with the opportunity. Setting this field lets you start and stop syncing between the opportunity and a quote. The ID has to be for a quote that is a child of the opportunity.
+        - name: territory_2_id
+          description: The ID of the territory that is assigned to the opportunity. Available only if Enterprise Territory Management has been enabled for your organization.Users who have full access to an opportunity’s account can assign any territory from the active model to the opportunity. Users who do not can assign only a territory that is also assigned to the opportunity’s account. The same restriction applies to territory assignments made via Apex in system mode.
+        - name: type
+          description: Type of opportunity. For example, Existing Business or New Business. Label is Opportunity Type.
+
       - name: user
         freshness: null
         description: Represents a user in your organization.
         columns:
         - name: id
           description: the unique, system-generated ID assigned during creation.
-          tests:
-              - unique
-              - not_null
-        - name: name
-          description: Concatenation of FirstName and LastName fields.
+        - name: _fivetran_synced 
+          description: The time at which fivetran last synced this record 
+        - name: _fivetran_deleted 
+          description: True, if this field has been deleted
+        - name: about_me
+          description: Information about the user, such as areas of interest or skills. This field is available even if Chatter is disabled.
+        - name: account_id
+          description: ID of the Account associated with a Customer Portal user.This field is null for Salesforce users.
+        - name: alias
+          description: Required. The user’s alias. For example, jsmith.
+        - name: badge_text
+          description: The community role, displayed on the user profile page just below the user name.
+        - name: banner_photo_url
+          description: The URL for the user's banner photo.
+        - name: call_center_id
+          description: If Salesforce CRM Call Center is enabled, represents the call center to which this user is assigned.
         - name: city
-          description: The city associated with the user.
-        - name: state
-          description: The state associated with the user.
+          description: The city associated with the user. Up to 40 characters allowed.
+        - name: community_nickname
+          description: Name used to identify this user in the Community application, which includes the ideas and answers features.
+        - name: company_name
+          description: The name of the user’s company.
+        - name: contact_id
+          description: ID of the Contact associated with this account. The contact must have a value in the AccountId field or an error occurs.
+        - name: country
+          description: The country associated with the user. Up to 80 characters allowed.
+        - name: country_code
+          description: The ISO country code associated with the user.
+        - name: default_group_notification_frequency
+          description: The default frequency for sending the user's Chatter group email notifications when the user joins groups. 
+        - name: delegated_approver_id
+          description: Id of the user who is a delegated approver for this user.
+        - name: department
+          description: The company department associated with the user.
+        - name: digest_frequency
+          description: The frequency at which the system sends the user’s Chatter personal email digest. 
+        - name: division
+          description: The division associated with this user, similar to Department and unrelated to DefaultDivision.
+        - name: email
+          description: Required. The user’s email address.
+        - name: email_encoding_key
+          description: Required. The email encoding for the user, such as ISO-8859-1 or UTF-8.
+        - name: email_preferences_auto_bcc
+          description: Determines whether the user receives copies of sent emails. This option applies only if compliance BCC emails are not enabled.
+        - name: employee_number
+          description: The user’s employee number.
+        - name: extension
+          description: The user’s phone extension number.
+        - name: fax
+          description: The user’s fax number.
+        - name: federation_identifier
+          description: Indicates the value that must be listed in the Subject element of a Security Assertion Markup Language (SAML) IDP certificate to authenticate the user for a client application using single sign-on. This value must be specified if the SAML User ID Type is Assertion contains Federation ID from the User record. Otherwise, this field can’t be edited.
+        - name: first_name
+          description: The user’s first name.
+        - name: forecast_enabled
+          description: Indicates whether the user is enabled as a forecast manager (true) or not (false). Forecast managers see forecast rollups from users below them in the forecast hierarchy.
+        - name: full_photo_url
+          description: The URL for the user's profile photo. This field is available even if Chatter is disabled.The URL is updated every time a photo is uploaded and reflects the most recent photo. If a newer photo has been uploaded, the URL returned for an older photo is not guaranteed to return a photo. Query this field for the URL of the most recent photo.
+        - name: geocode_accuracy
+          description: The level of accuracy of a location’s geographical coordinates compared with its physical address. A geocoding service typically provides this value based on the address’s latitude and longitude coordinates.
+        - name: individual_id
+          description: ID of the data privacy record associated with this user. This field is available if Data Protection and Privacy is enabled.
+        - name: is_active
+          description: Indicates whether the user has access to log in (true) or not (false).
+        - name: is_profile_photo_active
+          description: Indicates whether a user has a profile photo (true) or not (false).
+        - name: language_locale_key
+          description: Required. The user’s language, such as “French” or “Chinese (Traditional).” Label is Language.
+        - name: last_login_date
+          description: The date and time when the user last successfully logged in. This value is updated if 60 seconds have elapsed since the user’s last login.
+        - name: last_name
+          description: Required. The user’s last name.
+        - name: last_referenced_date
+          description: The timestamp for when the current user last viewed a record related to this record.
+        - name: last_viewed_date
+          description: The timestamp for when the current user last viewed this record. If this value is null, this record might only have been referenced (LastReferencedDate) and not viewed.
+        - name: latitude
+          description: Used with Longitude to specify the precise geolocation of an address. Acceptable values are numbers between –90 and 90 up to 15 decimal places. For details on geolocation compound fields, see Compound Field Considerations and Limitations.
+        - name: locale_sid_key
+          description: Required. This field is a restricted picklist field. The value of the field affects formatting and parsing of values, especially numeric values, in the user interface.
+        - name: longitude
+          description: Used with Latitude to specify the precise geolocation of an address. Acceptable values are numbers between –180 and 180 up to 15 decimal places. For details on geolocation compound fields, see Compound Field Considerations and Limitations.
         - name: manager_id
           description: The Id of the user who manages this user.
+        - name: medium_banner_photo_url
+          description: The URL for the medium-sized user profile banner photo.
+        - name: mobile_phone
+          description: The user’s mobile or cellular phone number.
+        - name: name
+          description: Concatenation of FirstName and LastName. Limited to 203 characters, including whitespaces.
+        - name: offline_trial_expiration_date
+          description: The date and time when the user’s Connect Offline trial expires.
+        - name: phone
+          description: The user’s phone number.
+        - name: postal_code
+          description: The user’s postal or ZIP code. Label is Zip/Postal Code.
+        - name: profile_id
+          description: Required. ID of the user’s Profile. Use this value to cache metadata based on profile. In earlier releases, this was RoleId.
+        - name: receives_admin_info_emails
+          description: Indicates whether the user receives email for administrators from Salesforce (true) or not (false).
+        - name: receives_info_emails
+          description: Indicates whether the user receives informational email from Salesforce (true) or not (false).
+        - name: sender_email
+          description: The email address used as the From address when the user sends emails. This address is the same value shown in Setup on the My Email Settings page.
+        - name: sender_name
+          description: The name used as the email sender when the user sends emails. This name is the same value shown in Setup on the My Email Settings page.
+        - name: signature
+          description: The signature text added to emails. This text is the same value shown in Setup on the My Email Settings page.
+        - name: small_banner_photo_url
+          description: The URL for the small user profile banner photo.
+        - name: small_photo_url
+          description: The URL for a thumbnail of the user's profile photo. This field is available even if Chatter is disabled.The URL is updated every time a photo is uploaded and reflects the most recent photo. If a newer photo has been uploaded, the URL returned for an older photo is not guaranteed to return a photo. Query this field for the URL of the most recent photo.
+        - name: state
+          description: The state associated with the User. Up to 80 characters allowed.
+        - name: state_code
+          description: The ISO state code associated with the user.
+        - name: street
+          description: The street address associated with the User.
+        - name: time_zone_sid_key
+          description: Required. This field is a restricted picklist field. A User time zone affects the offset used when displaying or entering times in the user interface.
+        - name: title
+          description: The user’s business title, such as “Vice President.”
+        - name: username
+          description: Contains the name that a user enters to log in. The value for this field must be in the form of an email address, using all lowercase characters. It must also be unique across all organizations.
         - name: user_role_id
-          description: ID of the user’s user_role
+          description: ID of the user’s UserRole. Label is Role ID.
+        - name: user_type
+          description: The category of user license. Each UserType is associated with one or more UserLicense records. Each UserLicense is associated with one or more profiles. 
       
       - name: user_role
         freshness: null
@@ -82,8 +332,27 @@ sources:
         columns:
         - name: id
           description: the unique, system-generated ID assigned during creation
-          tests:
-              - unique
-              - not_null
+        - name: _fivetran_synced 
+          description: The time at which fivetran last synced this record 
+        - name: _fivetran_deleted 
+          description: True, if this field has been deleted
+        - name: case_access_for_account_owner
+          description: The case access level for the account owner.
+        - name: contact_access_for_account_owner
+          description: The contact access level for the account owner.When DefaultContactAccess is set to Controlled by Parent, you can’t create or update this field.
+        - name: developer_name
+          description: The unique name of the object in the API. This name can contain only underscores and alphanumeric characters, and must be unique in your org. It must begin with a letter, not include spaces, not end with an underscore, and not contain two consecutive underscores.
+        - name: forecast_user_id
+          description: The ID of the forecast manager associated with this role. Label is User ID.
+        - name: may_forecast_manager_share
+          description: Indicates whether the forecast manager can manually share their own forecast.
         - name: name
-          description: The name assigned the the role
+          description: Required. Name of the role. Corresponds to Label on the user interface.
+        - name: opportunity_access_for_account_owner
+          description: Required. The opportunity access level for the account owner. Note that you can’t set a user role with an opportunity access less than that specified in organization-wide defaults.
+        - name: parent_role_id
+          description: The ID of the parent role.
+        - name: portal_type
+          description: This value indicates the type of portal for the role
+        - name: rollup_description
+          description: Description of the forecast rollup. Label is Description.
