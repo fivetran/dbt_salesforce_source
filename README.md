@@ -1,4 +1,4 @@
-# Salesforce 
+# Salesforce ([docs](insert URL here after transform package updated)) 
 
 This package models Salesforce data from [Fivetran's connector](https://fivetran.com/docs/applications/salesforce). It uses data in the format described by [this ERD](https://docs.google.com/presentation/d/1fB6aCiX_C1lieJf55TbS2v1yv9sp-AHNNAh2x7jnJ48/edit#slide=id.g3cb9b617d1_0_237).
 
@@ -28,12 +28,25 @@ By default, this package will run using your target database and the `salesforce
 # dbt_project.yml
 
 ...
-config-version: 2
-
 vars:
   salesforce_source:
     salesforce_database: your_database_name
     salesforce_schema: your_schema_name
+```
+
+This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
+
+
+```yml
+# dbt_project.yml
+
+...
+vars:
+  salesforce_source:
+    account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
+    opportunity_pass_through_columns: [my_opp_custom_field]
+    user_pass_through_columns: [users_have_custom_fields_too]
+    user_role_pass_through_columns: [so_do_user_roles, and_this_is_a_fun_column, woohoo_im_a_column_too]
 ```
 
 ## Contributions
@@ -45,8 +58,10 @@ on the best workflow for contributing to a package.
 
 ## Resources:
 - Provide [feedback](https://www.surveymonkey.com/r/DQ7K7WW) on our existing dbt packages or what you'd like to see next
+- Have questions or feedback, or need help? Book a time during our office hours [here](https://calendly.com/fivetran-solutions-team/fivetran-solutions-team-office-hours) or shoot us an email at solutions@fivetran.com.
 - Find all of Fivetran's pre-built dbt packages in our [dbt hub](https://hub.getdbt.com/fivetran/)
-- Learn more about Fivetran [in the Fivetran docs](https://fivetran.com/docs)
+- Learn how to orchestrate dbt transformations with Fivetran [here](https://fivetran.com/docs/transformations/dbt).
+- Learn more about Fivetran overall [in our docs](https://fivetran.com/docs)
 - Check out [Fivetran's blog](https://fivetran.com/blog)
 - Learn more about dbt [in the dbt docs](https://docs.getdbt.com/docs/introduction)
 - Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
