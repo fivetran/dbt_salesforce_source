@@ -43,4 +43,4 @@ calculated as (
 )
 
 select * 
-from renamed
+from calculated
