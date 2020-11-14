@@ -1,4 +1,4 @@
-# Salesforce ([docs](insert URL here after transform package updated)) 
+# Salesforce ([docs](https://dbt-salesforce-source.netlify.app/)) 
 
 This package models Salesforce data from [Fivetran's connector](https://fivetran.com/docs/applications/salesforce). It uses data in the format described by [this ERD](https://docs.google.com/presentation/d/1fB6aCiX_C1lieJf55TbS2v1yv9sp-AHNNAh2x7jnJ48/edit#slide=id.g3cb9b617d1_0_237).
 
