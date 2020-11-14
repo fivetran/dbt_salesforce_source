@@ -56,6 +56,12 @@ or open PRs against `master`. Check out
 [this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) 
 on the best workflow for contributing to a package.
 
+
+## Database support
+This package has been tested on BigQuery, Snowflake and Redshift.
+
+Coming soon -- compatibility with Spark
+
 ## Resources:
 - Provide [feedback](https://www.surveymonkey.com/r/DQ7K7WW) on our existing dbt packages or what you'd like to see next
 - Have questions or feedback, or need help? Book a time during our office hours [here](https://calendly.com/fivetran-solutions-team/fivetran-solutions-team-office-hours) or shoot us an email at solutions@fivetran.com.
