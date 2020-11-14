@@ -28,4 +28,4 @@ renamed as (
 
 select * 
 from renamed
-where not _fivetran_deleted
+where not coalesce(_fivetran_deleted, false)

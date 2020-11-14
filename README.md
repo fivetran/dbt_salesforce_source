@@ -34,7 +34,7 @@ vars:
     salesforce_schema: your_schema_name
 ```
 
-This package includes all source columns define in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
+This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
 
 
 ```yml
