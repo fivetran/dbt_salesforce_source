@@ -45,8 +45,7 @@ vars:
   salesforce_source:
     account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
     opportunity_pass_through_columns: [my_opp_custom_field]
-    user_pass_through_columns: [users_have_custom_fields_too]
-    user_role_pass_through_columns: [so_do_user_roles, and_this_is_a_fun_column, woohoo_im_a_column_too]
+    user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
 ```
 
 ## Contributions

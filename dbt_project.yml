@@ -20,4 +20,3 @@ vars:
     account_pass_through_columns: []
     opportunity_pass_through_columns: []
     user_pass_through_columns: []
-    user_role_pass_through_columns: []
