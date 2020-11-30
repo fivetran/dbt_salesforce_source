@@ -43,3 +43,7 @@ seeds:
         offline_trial_expiration_date: timestamp
         latitude: float
         longitude: float
+
+clean-targets:
+    - target
+    - dbt_modules
