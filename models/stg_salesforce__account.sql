@@ -80,4 +80,4 @@ with source as (
 
 select *
 from renamed
-where not is_deleted
+where not coalesce(is_deleted, false)
