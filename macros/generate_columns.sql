@@ -73,7 +73,6 @@
     {"name": "name", "datatype": dbt_utils.type_string()},
     {"name": "next_step", "datatype": dbt_utils.type_string()},
     {"name": "owner_id", "datatype": dbt_utils.type_string()},
-    {"name": "pricebook_2_id", "datatype": dbt_utils.type_string()},
     {"name": "probability", "datatype": dbt_utils.type_float()},
     {"name": "record_type_id", "datatype": dbt_utils.type_string()},
     {"name": "stage_name", "datatype": dbt_utils.type_string()},

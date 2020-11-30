@@ -61,7 +61,6 @@ with source as (
         name as opportunity_name,
         next_step,
         owner_id,
-        pricebook_2_id,
         probability,
         record_type_id,
         stage_name,
@@ -95,4 +94,4 @@ with source as (
 
 select * 
 from calculated
-where not is_deleted
+where not coalesce(is_deleted, false)
