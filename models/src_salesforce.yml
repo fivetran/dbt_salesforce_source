@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: salesforce
     schema: "{{ var('salesforce_schema', 'salesforce') }}" # you will need to customize if your schema name is not salesforce
-    database: "{{ var('salesforce_database', target.database) }}"
+    database: "{{ var('salesforce_database', 'salesforce') }}"
     loader: fivetran
     loaded_at_field: _fivetran_synced
     freshness:
