@@ -1,3 +1,12 @@
+{% macro spark__datediff(first_date, second_date, datepart) %}
+
+    DATEDIFF(
+        cast({{second_date}} as datetime),
+        cast({{first_date}} as datetime),
+    )
+
+{% endmacro %}
+
 with source as (
 
     select *
@@ -83,6 +92,8 @@ with source as (
         *,
         created_date >= {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_created_this_month,
         created_date >= {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_created_this_quarter,
+        {{ spark__datediff(dbt_utils.current_timestamp(), 'created_date', 'day') }} as days_since_created,
+        {{ spark__datediff('close_date', 'created_date', 'day') }} as days_to_close,
         {{ dbt_utils.date_trunc('month', 'close_date') }} = {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_closed_this_month,
         {{ dbt_utils.date_trunc('quarter', 'close_date') }} = {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_closed_this_quarter
 
