@@ -2,6 +2,7 @@ config-version: 2
 
 name: 'salesforce_source'
 version: '0.0.1'
+profile: default
 
 require-dbt-version: [">=0.18.0", "<0.20.0"]
 
@@ -13,8 +14,8 @@ models:
 
 vars:
   salesforce_source:
-    account: "{{ source('salesforce', 'account') }}" 
-    opportunity: "{{ source('salesforce', 'opportunity') }}" 
+    account: "{{ source('salesforce', 'account') }}"
+    opportunity: "{{ source('salesforce', 'opportunity') }}"
     user: "{{ source('salesforce', 'user') }}"
     user_role: "{{ source('salesforce', 'user_role') }}"
     account_pass_through_columns: []
