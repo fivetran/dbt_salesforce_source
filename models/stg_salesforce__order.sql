@@ -34,7 +34,17 @@ with source as (
 
     select
         macro.name as order_name,
-_fivetran_synced,account_id,activated_date,effective_date,end_date,pilot_end_date_c,description,internal_notes_c,id,is_deleted,owner_id,
+        _fivetran_synced,
+        account_id,
+        activated_date,
+        effective_date,
+        end_date,
+        pilot_end_date_c,
+        description,
+        internal_notes_c,
+        id,
+        is_deleted,
+        owner_id,
         /* id as order_id,
         name as order_name,
 record_type_id,        */
