@@ -356,3 +356,70 @@ sources:
           description: This value indicates the type of portal for the role
         - name: rollup_description
           description: Description of the forecast rollup.
+
+      - name: order
+        loaded_at_field: _fivetran_synced
+        description: Represents an individual order, which is a transaction containing product items
+        columns:
+        - name: id
+          description: The unique, system-generated ID assigned during creation.
+        - name: _fivetran_synced
+          description: The time at which fivetran last synced this record
+        - name: account_id
+          description: ID of the account associated with this order.
+        - name: amount
+          description: Estimated total sale amount. For orders with products, the amount is the sum of the related products.
+        - name: close_date
+          description: Required. Date when the order closed
+        - name: created_date
+          description: Date when the order was created.
+        - name: description
+          description: Text description of the order.
+
+      - name: stg_salesforce__order
+        loaded_at_field: _fivetran_synced
+        description: Represents an annotated order, with additional metadata filled in
+        columns:
+        - name: order_id
+          description: The unique, system-generated ID assigned during creation.
+          tests:
+            - not_null
+            - unique
+        - name: _fivetran_synced
+          description: The time at which fivetran last synced this record
+        - name: account_id
+          description: ID of the account associated with this order.
+        - name: amount
+          description: Estimated total sale amount. For orders with products, the amount is the sum of the related products.
+        - name: close_date
+          description: Required. Date when the order closed
+        - name: created_date
+          description: Date when the order was created.
+        - name: description
+          description: Text description of the order.
+        - name: is_closed
+          description: True, if Stage Name Label is Closed.
+        - name: is_deleted
+          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
+        - name: is_won
+          description: True, if Stage Name Label is Won.
+        - name: last_referenced_date
+          description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
+        - name: last_viewed_date
+          description: The timestamp when the current user last viewed this record or list view. If this value is null, the user might have only accessed this record or list view (LastReferencedDate) but not viewed it.
+        - name: lead_source
+          description: Source of this order, such as Advertisement or Trade Show.
+        - name: name
+          description: Required. A name for this order.
+        - name: owner_id
+          description: ID of the User who has been assigned to work this order.
+        - name: Pricebook2Id
+          description: ID of a related Pricebook2 object. The Pricebook2Id field indicates which Pricebook2 applies to this order. The Pricebook2Id field is defined only for those organizations that have products enabled as a feature. You can specify values for only one field (Pricebook2Id or PricebookId)—not both fields. For this reason, both fields are declared nillable.
+        - name: pricebook_2_id
+          description: Unavailable as of version 3.0. As of version 8.0, the Pricebook object is no longer available. Use the Pricebook2Id field instead, specifying the ID of the Pricebook2 record.
+        - name: record_type_id
+          description: ID of the record type assigned to this object.
+        - name: stage_name
+          description: Required. Current stage of this record. The StageName field controls several other fields on an order.
+        - name: type
+          description: Type of order. For example, Existing Business or New Business.

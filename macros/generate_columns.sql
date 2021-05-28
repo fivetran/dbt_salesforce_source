@@ -43,6 +43,34 @@
 {% endmacro %}
 
 
+{% macro get_order_columns() %}
+
+{% set columns = [
+    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
+    {"name": "account_id", "datatype": dbt_utils.type_string()},
+    {"name": "amount", "datatype": dbt_utils.type_float()},
+    {"name": "close_date", "datatype": dbt_utils.type_timestamp()},
+    {"name": "created_date", "datatype": dbt_utils.type_timestamp()},
+    {"name": "description", "datatype": dbt_utils.type_string()},
+    {"name": "owner_id", "datatype": dbt_utils.type_string()},
+    {"name": "ownership", "datatype": dbt_utils.type_string()},
+    {"name": "parent_id", "datatype": dbt_utils.type_string()},
+    {"name": "record_type_id", "datatype": dbt_utils.type_string()},
+    {"name": "shipping_city", "datatype": dbt_utils.type_string()},
+    {"name": "shipping_country", "datatype": dbt_utils.type_string()},
+    {"name": "shipping_country_code", "datatype": dbt_utils.type_string()},
+    {"name": "shipping_postal_code", "datatype": dbt_utils.type_string()},
+    {"name": "shipping_state", "datatype": dbt_utils.type_string()},
+    {"name": "shipping_state_code", "datatype": dbt_utils.type_string()},
+    {"name": "shipping_street", "datatype": dbt_utils.type_string()},
+    {"name": "type", "datatype": dbt_utils.type_string()},
+] %}
+
+{{ return(columns) }}
+
+{% endmacro %}
+
+
 {% macro get_opportunity_columns() %}
 
 {% set columns = [
@@ -140,4 +168,3 @@
 {{ return(columns) }}
 
 {% endmacro %}
-
