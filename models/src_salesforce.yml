@@ -9,7 +9,7 @@ sources:
     freshness:
       warn_after: {count: 24, period: hour}
       error_after: {count: 48, period: hour}
-  
+
     tables:
       - name: account
         loaded_at_field: _fivetran_synced
@@ -17,43 +17,43 @@ sources:
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation
-        - name: _fivetran_synced 
+        - name: _fivetran_synced
           description: The time at which fivetran last synced this record
-        - name: account_number 
+        - name: account_number
           description: Account number assigned to this account (not the unique, system-generated ID assigned during creation).
-        - name: account_source 
+        - name: account_source
           description: The source of the account record. For example, Advertisement, Data.com, or Trade Show.
-        - name: annual_revenue 
+        - name: annual_revenue
           description: Estimated annual revenue of the account.
-        - name: billing_city 
+        - name: billing_city
           description: Details for the billing address of this account.
-        - name: billing_country 
+        - name: billing_country
           description: Details for the billing address of this account.
-        - name: billing_country_code 
+        - name: billing_country_code
           description: The ISO country code for the account’s billing address.
-        - name: billing_geocode_accuracy 
+        - name: billing_geocode_accuracy
           description: Accuracy level of the geocode for the billing address. See Compound Field Considerations and Limitations for details on geolocation compound fields.
-        - name: billing_latitude 
+        - name: billing_latitude
           description: Used with BillingLongitude to specify the precise geolocation of a billing address.
-        - name: billing_longitude 
+        - name: billing_longitude
           description: Used with BillingLatitude to specify the precise geolocation of a billing address.
-        - name: billing_postal_code 
+        - name: billing_postal_code
           description: Details for the billing address of this account.
-        - name: billing_state 
+        - name: billing_state
           description: Details for the billing address of this account.
-        - name: billing_state_code 
+        - name: billing_state_code
           description: The ISO state code for the account’s billing address.
-        - name: billing_street 
+        - name: billing_street
           description: Street address for the billing address of this account.
-        - name: description 
+        - name: description
           description: Text description of the account.
-        - name: fax 
+        - name: fax
           description: Fax number for the account.
-        - name: industry 
+        - name: industry
           description: An industry associated with this account.
         - name: is_deleted
           description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
-        - name: jigsaw_company_id 
+        - name: jigsaw_company_id
           description: References the ID of a company in Data.com. If an account has a value in this field, it means that the account was imported from Data.com.
         - name: last_activity_date
           description: Value is one of the following, whichever is the most recent
@@ -63,55 +63,55 @@ sources:
           description: The timestamp when the current user last viewed this record or list view. If this value is null, the user might have only accessed this record or list view (LastReferencedDate) but not viewed it.
         - name: master_record_id
           description: If this object was deleted as the result of a merge, this field contains the ID of the record that was kept. If this object was deleted for any other reason, or has not been deleted, the value is null.
-        - name: name 
+        - name: name
           description: Required. Name of the account.
-        - name: number_of_employees 
+        - name: number_of_employees
           description: Number of employees working at the company represented by this account.
-        - name: owner_id 
+        - name: owner_id
           description: The ID of the user who currently owns this account.
-        - name: ownership 
+        - name: ownership
           description: Ownership type for the account, for example Private, Public, or Subsidiary.
-        - name: parent_id 
+        - name: parent_id
           description: ID of the parent object, if any.
-        - name: phone 
+        - name: phone
           description: Phone number for this account.
         - name: photo_url
           description: Path to be combined with the URL of a Salesforce instance (for example, https://yourInstance.salesforce.com/) to generate a URL to request the social network profile image associated with the account.
-        - name: rating 
+        - name: rating
           description: The account’s prospect rating, for example Hot, Warm, or Cold.
-        - name: record_type_id 
+        - name: record_type_id
           description: ID of the record type assigned to this object.
-        - name: shipping_city 
+        - name: shipping_city
           description: Details of the shipping address for this account
-        - name: shipping_country 
+        - name: shipping_country
           description: Details of the shipping address for this account. Country
-        - name: shipping_country_code 
+        - name: shipping_country_code
           description: The ISO country code for the account’s shipping address.
-        - name: shipping_geocode_accuracy 
+        - name: shipping_geocode_accuracy
           description: Accuracy level of the geocode for the shipping address.
-        - name: shipping_latitude 
+        - name: shipping_latitude
           description: Used with ShippingLongitude to specify the precise geolocation of a shipping address.
-        - name: shipping_longitude 
+        - name: shipping_longitude
           description: Used with ShippingLatitude to specify the precise geolocation of an address.
-        - name: shipping_postal_code 
+        - name: shipping_postal_code
           description: Details of the shipping address for this account. Postal code
-        - name: shipping_state 
+        - name: shipping_state
           description: Details of the shipping address for this account. State
-        - name: shipping_state_code 
+        - name: shipping_state_code
           description: The ISO state code for the account’s shipping address.
-        - name: shipping_street 
+        - name: shipping_street
           description: The street address of the shipping address for this account.
-        - name: sic 
+        - name: sic
           description: Standard Industrial Classification code of the company’s main business categorization, for example, 57340 for Electronics.
-        - name: sic_desc 
+        - name: sic_desc
           description: A brief description of an organization’s line of business, based on its SIC code.
-        - name: site 
+        - name: site
           description: Name of the account’s location, for example Headquarters or London.
-        - name: ticker_symbol 
+        - name: ticker_symbol
           description: The stock market symbol for this account. This field is available on business accounts, not person accounts.
-        - name: type 
+        - name: type
           description: Type of account, for example, Customer, Competitor, or Partner.
-        - name: website 
+        - name: website
           description: The website of this account.
 
       - name: opportunity
@@ -120,8 +120,8 @@ sources:
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation.
-        - name: _fivetran_synced 
-          description: The time at which fivetran last synced this record 
+        - name: _fivetran_synced
+          description: The time at which fivetran last synced this record
         - name: account_id
           description: ID of the account associated with this opportunity.
         - name: amount
@@ -197,9 +197,9 @@ sources:
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation.
-        - name: _fivetran_synced 
-          description: The time at which fivetran last synced this record 
-        - name: _fivetran_deleted 
+        - name: _fivetran_synced
+          description: The time at which fivetran last synced this record
+        - name: _fivetran_deleted
           description: True, if this field has been deleted
         - name: about_me
           description: Information about the user, such as areas of interest or skills.
@@ -325,16 +325,16 @@ sources:
           description: ID of the user’s UserRole.
         - name: user_type
           description: The category of user license.
-      
+
       - name: user_role
         freshness: null
         description: Represents a user role in your organization.
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation
-        - name: _fivetran_synced 
-          description: The time at which fivetran last synced this record 
-        - name: _fivetran_deleted 
+        - name: _fivetran_synced
+          description: The time at which fivetran last synced this record
+        - name: _fivetran_deleted
           description: True, if this field has been deleted
         - name: case_access_for_account_owner
           description: The case access level for the account owner.
@@ -356,3 +356,174 @@ sources:
           description: This value indicates the type of portal for the role
         - name: rollup_description
           description: Description of the forecast rollup.
+
+      - name: order
+        loaded_at_field: _fivetran_synced
+        description: Represents an individual order, which is a transaction containing product items
+        columns:
+        - name: id
+          description: The unique, system-generated ID assigned during creation.
+        - name: _fivetran_synced
+          description: The time at which fivetran last synced this record
+        - name: account_id
+          description: ID of the account associated with this order.
+        - name: billing_account_c
+          description: ID of the account paying for this order.
+        - name: end_user_c
+          description: ID of the account of the fleet where these devices will be installed.
+        - name: company_name_c
+          description: Name of the primary account, as a string.
+        - name: total_amount
+          description: Estimated total sale amount. For orders with products, the amount is the sum of the related products.
+        - name: activated_by_id
+          description: Users who activated the order.
+        - name: activated_date
+          description: Date when the order was activated.
+        - name: created_by_id
+          description: Users who created the order.
+        - name: created_date
+          description: Date when the order was created.
+        - name: last_modified_by_id
+          description: Users who last modified the order.
+        - name: last_modified_date
+          description: Date when the order was last modified.
+        - name: effective_date
+          description: Required. Date when the opportunity closed
+        - name: end_date
+          description: Date when the order expires
+        - name: actual_ship_date_c
+          description: Date when the order shipped
+        - name: class_c
+          description: NetSuite class for classifying orders, e.g "Fleets"
+        - name: memo_c
+          description: Externally-visible Notes about this order.
+        - name: internal_notes_c
+          description: Internally-visible Notes about this order.
+        - name: description
+          description: Text description of the order.
+        - name: status
+          description: Order processing status.
+        - name: status_code
+          description: Order processing status.
+        - name: pro_install_c
+          description: Boolean for whether to schedule professional installation.
+        - name: split_order_c
+          description: Parent of this split order.
+        - name: terms_c
+          description: Payment terms, eg Net 30.
+        - name: net_suite_order_id_c
+          description: Internal ID of synced NetSuite Sales Order record.
+        - name: net_suite_sales_order_ref_id_c
+          description: Document Number of NetSuite Sales Order record.
+        - name: is_deleted
+          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
+        - name: name
+          description: A name for this order.
+        - name: order_number
+          description: Required. The number of this order.
+        - name: owner_id
+          description: ID of the User who has been assigned to work this order.
+        - name: Pricebook2Id
+          description: ID of a related Pricebook2 object. The Pricebook2Id field indicates which Pricebook2 applies to this order. The Pricebook2Id field is defined only for those organizations that have products enabled as a feature. You can specify values for only one field (Pricebook2Id or PricebookId)—not both fields. For this reason, both fields are declared nillable.
+        - name: pricebook_2_id
+          description: Unavailable as of version 3.0. As of version 8.0, the Pricebook object is no longer available. Use the Pricebook2Id field instead, specifying the ID of the Pricebook2 record.
+        - name: record_type_id
+          description: ID of the record type assigned to this object.
+        - name: branch_id_c
+          description: ID of the destination branch, eg for FedEx.
+        - name: bill_to_contact_id
+          description: Id of the billing contact.
+        - name: billing_city
+          description: Details for the billing address of this order.
+        - name: billing_country
+          description: Details for the billing address of this order.
+        - name: billing_country_code
+          description: The ISO country code for the order’s billing address.
+        - name: billing_geocode_accuracy
+          description: Accuracy level of the geocode for the billing address. See Compound Field Considerations and Limitations for details on geolocation compound fields.
+        - name: billing_latitude
+          description: Used with BillingLongitude to specify the precise geolocation of a billing address.
+        - name: billing_longitude
+          description: Used with BillingLatitude to specify the precise geolocation of a billing address.
+        - name: billing_postal_code
+          description: Details for the billing address of this order.
+        - name: billing_state
+          description: Details for the billing address of this order.
+        - name: billing_state_code
+          description: The ISO state code for the order’s billing address.
+        - name: billing_street
+          description: Street address for the billing address of this order.
+        - name: ship_to_contact_id
+          description: Id of the shipping contact.
+        - name: shipping_city
+          description: Details of the shipping address for this order
+        - name: shipping_country
+          description: Details of the shipping address for this order. Country
+        - name: shipping_country_code
+          description: The ISO country code for the order’s shipping address.
+        - name: shipping_geocode_accuracy
+          description: Accuracy level of the geocode for the shipping address.
+        - name: shipping_latitude
+          description: Used with ShippingLongitude to specify the precise geolocation of a shipping address.
+        - name: shipping_longitude
+          description: Used with ShippingLatitude to specify the precise geolocation of an address.
+        - name: shipping_postal_code
+          description: Details of the shipping address for this order. Postal code
+        - name: shipping_state
+          description: Details of the shipping address for this order. State
+        - name: shipping_state_code
+          description: The ISO state code for the order’s shipping address.
+        - name: shipping_street
+          description: The street address of the shipping address for this order.
+        - name: stage_name
+          description: Required. Current stage of this record. The StageName field controls several other fields on an order.
+        - name: type
+          description: Type of order. For example, Regular Sales Order or Pilot Order.
+
+      - name: stg_salesforce__order
+        loaded_at_field: _fivetran_synced
+        description: Represents an annotated order, with additional metadata filled in
+        columns:
+        - name: order_id
+          description: The unique, system-generated ID assigned during creation.
+          tests:
+            - not_null
+            - unique
+        - name: _fivetran_synced
+          description: The time at which fivetran last synced this record
+        - name: account_id
+          description: ID of the account associated with this order.
+        - name: amount
+          description: Estimated total sale amount. For orders with products, the amount is the sum of the related products.
+        - name: close_date
+          description: Required. Date when the order closed
+        - name: created_date
+          description: Date when the order was created.
+        - name: description
+          description: Text description of the order.
+        - name: is_closed
+          description: True, if Stage Name Label is Closed.
+        - name: is_deleted
+          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
+        - name: is_won
+          description: True, if Stage Name Label is Won.
+        - name: last_referenced_date
+          description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
+        - name: last_viewed_date
+          description: The timestamp when the current user last viewed this record or list view. If this value is null, the user might have only accessed this record or list view (LastReferencedDate) but not viewed it.
+        - name: lead_source
+          description: Source of this order, such as Advertisement or Trade Show.
+        - name: name
+          description: Required. A name for this order.
+        - name: owner_id
+          description: ID of the User who has been assigned to work this order.
+        - name: Pricebook2Id
+          description: ID of a related Pricebook2 object. The Pricebook2Id field indicates which Pricebook2 applies to this order. The Pricebook2Id field is defined only for those organizations that have products enabled as a feature. You can specify values for only one field (Pricebook2Id or PricebookId)—not both fields. For this reason, both fields are declared nillable.
+        - name: pricebook_2_id
+          description: Unavailable as of version 3.0. As of version 8.0, the Pricebook object is no longer available. Use the Pricebook2Id field instead, specifying the ID of the Pricebook2 record.
+        - name: record_type_id
+          description: ID of the record type assigned to this object.
+        - name: stage_name
+          description: Required. Current stage of this record. The StageName field controls several other fields on an order.
+        - name: type
+          description: Type of order. For example, Existing Business or New Business.
