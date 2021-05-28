@@ -20,6 +20,6 @@ vars:
     user: "{{ source('salesforce', 'user') }}"
     user_role: "{{ source('salesforce', 'user_role') }}"
     account_pass_through_columns: []
-    order_pass_through_columns: []
+    order_pass_through_columns: [ ]
     opportunity_pass_through_columns: []
     user_pass_through_columns: []
