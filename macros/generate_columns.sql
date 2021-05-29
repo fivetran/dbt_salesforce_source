@@ -174,3 +174,24 @@
 {{ return(columns) }}
 
 {% endmacro %}
+
+{% macro get_item_columns() %}
+
+{% set columns = [
+    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
+    {"name": "id", "datatype": dbt_utils.type_string()},
+    {"name": "order_item_name", "datatype": dbt_utils.type_string()},
+    {"name": "order_id", "datatype": dbt_utils.type_string()},
+    {"name": "created_by_id", "datatype": dbt_utils.type_string()},
+    {"name": "last_modified_by_id", "datatype": dbt_utils.type_string()},
+    {"name": "created_date", "datatype": dbt_utils.type_timestamp()},
+    {"name": "last_modified_date", "datatype": dbt_utils.type_timestamp()},
+    {"name": "product_2_id", "datatype": dbt_utils.type_string()},
+    {"name": "product_family_c", "datatype": dbt_utils.type_string()},
+    {"name": "product_code_text_c", "datatype": dbt_utils.type_string()},
+    {"name": "is_deleted", "datatype": "boolean"}
+] %}
+
+{{ return(columns) }}
+
+{% endmacro %}
