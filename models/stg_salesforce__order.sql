@@ -42,7 +42,7 @@ with source as (
         pilot_end_date_c,
         description,
         internal_notes_c,
-        id,
+        id as order_id,
         is_deleted,
         owner_id,
         /* id as order_id,
