@@ -415,3 +415,15 @@ models:
       description: Required. Current stage of this record. The StageName field controls several other fields on an order.
     - name: type
       description: Type of order. For example, Existing Business or New Business.
+
+  - name: stg_salesforce__item
+    loaded_at_field: _fivetran_synced
+    description: Represents an annotated item, with additional metadata filled in
+    columns:
+    - name: item_id
+      description: The unique, system-generated ID assigned during creation.
+      tests:
+        - not_null
+        - unique
+    - name: _fivetran_synced
+      description: The time at which fivetran last synced this record
