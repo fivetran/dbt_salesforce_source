@@ -487,3 +487,37 @@ sources:
           description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: created_by_id
+          description: Users who created the order.
+        - name: created_date
+          description: Date when the order was created.
+        - name: last_modified_by_id
+          description: Users who last modified the order.
+        - name: last_modified_date
+          description: Date when the order was last modified.
+        - name: product_2_id
+          description: The ID of the associated product.
+        - name: order_id
+          description: The ID of the associated order.
+        - name: pricebook_entry_id
+          description: The ID of the associated pricebook being used.
+        - name: net_suite_product_id_c
+          description: The ID of the associated product.
+        - name: product_family_c
+          description: The type of product, eg Subscription or Hardware.
+        - name: order_item_number
+          description: Required. The number of this order.
+        - name: quantity
+          description: How many units of this product.
+        - name: unit_price
+          description: Price per unit.
+        - name: total_price
+          description: Price per unit times number of units.
+        - name: total_price_custom_c
+          description: Price per unit times number of units.
+        - name: product_code_text_c
+          description: Nauto part number.
+        - name: serial_numbers_c
+          description: Nauto serial numbers for devices.
+        - name: subscription_months_c
+          description: For Subscriptions, how many months long.
