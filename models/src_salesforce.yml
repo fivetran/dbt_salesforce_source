@@ -486,9 +486,6 @@ sources:
         columns:
         - name: order_id
           description: The unique, system-generated ID assigned during creation.
-          tests:
-            - not_null
-            - unique
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
         - name: account_id
