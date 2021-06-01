@@ -105,6 +105,13 @@
     {"name": "ownership", "datatype": dbt_utils.type_string()},
     {"name": "parent_id", "datatype": dbt_utils.type_string()},
     {"name": "record_type_id", "datatype": dbt_utils.type_string()},
+    {"name": "billing_city", "datatype": dbt_utils.type_string()},
+    {"name": "billing_country", "datatype": dbt_utils.type_string()},
+    {"name": "billing_country_code", "datatype": dbt_utils.type_string()},
+    {"name": "billing_postal_code", "datatype": dbt_utils.type_string()},
+    {"name": "billing_state", "datatype": dbt_utils.type_string()},
+    {"name": "billing_state_code", "datatype": dbt_utils.type_string()},
+    {"name": "billing_street", "datatype": dbt_utils.type_string()},
     {"name": "shipping_city", "datatype": dbt_utils.type_string()},
     {"name": "shipping_country", "datatype": dbt_utils.type_string()},
     {"name": "shipping_country_code", "datatype": dbt_utils.type_string()},
@@ -189,6 +196,10 @@
     {"name": "product_2_id", "datatype": dbt_utils.type_string()},
     {"name": "product_family_c", "datatype": dbt_utils.type_string()},
     {"name": "product_code_text_c", "datatype": dbt_utils.type_string()},
+    {"name": "quantity", "datatype": dbt_utils.type_int()},
+    {"name": "unit_price", "datatype": dbt_utils.type_float()},
+    {"name": "total_price", "datatype": dbt_utils.type_float()},
+    {"name": "total_price_custom_c", "datatype": dbt_utils.type_float()},
     {"name": "is_deleted", "datatype": "boolean"}
 ] %}
 
