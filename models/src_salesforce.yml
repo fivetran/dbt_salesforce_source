@@ -330,6 +330,8 @@ sources:
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation
+        - name: is_deleted
+          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
         - name: _fivetran_deleted
@@ -361,6 +363,8 @@ sources:
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation.
+        - name: owner_id
+          description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
         - name: account_id
@@ -389,16 +393,20 @@ sources:
           description: Required. Date when the opportunity closed
         - name: end_date
           description: Date when the order expires
+        - name: pilot_end_date_c
+          description: Date when the pilot order expires (custom)
         - name: actual_ship_date_c
           description: Date when the order shipped
         - name: class_c
           description: NetSuite class for classifying orders, e.g "Fleets"
+        - name: name
+          description: Required. Name of the account.
+        - name: description
+          description: Text description of the order.
         - name: memo_c
           description: Externally-visible Notes about this order.
         - name: internal_notes_c
           description: Internally-visible Notes about this order.
-        - name: description
-          description: Text description of the order.
         - name: status
           description: Order processing status.
         - name: status_code
@@ -413,10 +421,6 @@ sources:
           description: Internal ID of synced NetSuite Sales Order record.
         - name: net_suite_sales_order_ref_id_c
           description: Document Number of NetSuite Sales Order record.
-        - name: is_deleted
-          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
-        - name: name
-          description: A name for this order.
         - name: order_number
           description: Required. The number of this order.
         - name: owner_id
