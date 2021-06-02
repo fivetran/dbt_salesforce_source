@@ -231,3 +231,30 @@
 {{ return(columns) }}
 
 {% endmacro %}
+
+{% macro get_product_columns() %}
+
+{% set columns = [
+    {"name": "id", "datatype": dbt_utils.type_string()},
+    {"name": "is_deleted", "datatype": "boolean"},
+    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
+    {"name": "created_by_id", "datatype": dbt_utils.type_string()},
+    {"name": "created_date", "datatype": dbt_utils.type_timestamp()},
+    {"name": "last_modified_by_id", "datatype": dbt_utils.type_string()},
+    {"name": "last_modified_date", "datatype": dbt_utils.type_timestamp()},
+    {"name": "product_code", "datatype": dbt_utils.type_string()},
+    {"name": "name", "datatype": dbt_utils.type_string()},
+    {"name": "description", "datatype": dbt_utils.type_string()},
+    {"name": "is_active", "datatype": boolean},
+    {"name": "family", "datatype": dbt_utils.type_string()},
+    {"name": "net_suite_product_id_c", "datatype": dbt_utils.type_string()},
+    {"name": "shipping_sku_c", "datatype": dbt_utils.type_string()},
+    {"name": "sellable_sku_c", "datatype": boolean},
+    {"name": "net_suite_on_hand_c", "datatype": dbt_utils.type_string()},
+    {"name": "subscription_months_c", "datatype": dbt_utils.type_int()},
+    {"name": "warehouse_on_hand_c", "datatype": dbt_utils.type_int()}
+] %}
+
+{{ return(columns) }}
+
+{% endmacro %}
