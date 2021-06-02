@@ -551,3 +551,55 @@ models:
       description: For Subscriptions, how many months long.
     - name: subscription_units_c
       description: For Subscriptions, how many units.
+
+  - name: stg_salesforce__product
+    loaded_at_field: _fivetran_synced
+    description: Represents a product record
+    columns:
+    - name: product_id
+      description: The unique, system-generated ID assigned during creation.
+      tests:
+        - not_null
+        - unique
+    - name: _fivetran_synced
+      description: The time at which fivetran last synced this record
+    - name: created_by_id
+      description: Users who created the order.
+      tests:
+        - not_null
+    - name: created_date
+      description: Date when the order was created.
+      tests:
+        - not_null
+    - name: last_modified_by_id
+      description: Users who last modified the order.
+      tests:
+        - not_null
+    - name: last_modified_date
+      description: Date when the order was last modified.
+      tests:
+        - not_null
+    - name: product_code
+      description: Nauto part number.
+      tests:
+        - not_null
+    - name: name
+      description: The human-readable name of the product.
+      tests:
+        - not_null
+    - name: description
+      description: Text description of the product.
+    - name: is_active
+      description: Flag for whether this product is currently active.
+    - name: family
+      description: The type of product, eg Subscription or Hardware.
+    - name: net_suite_product_id_c
+      description: The ID of the associated product.
+    - name: shipping_sku_c
+      description: The ID of the shipping SKU, if this is a billing SKU.
+    - name: sellable_sku_c
+      description: Flag for whether this product is visible to Sales Reps.
+    - name: net_suite_on_hand_c
+      description: The quantity shown as on hand by NetSuite.
+    - name: warehouse_on_hand_c
+      description: The quantity shown as on hand by NetSuite.
