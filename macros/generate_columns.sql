@@ -206,25 +206,26 @@
 {% macro get_item_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "id", "datatype": dbt_utils.type_string()},
+    {"name": "is_deleted", "datatype": "boolean"},
+    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
     {"name": "order_id", "datatype": dbt_utils.type_string()},
     {"name": "created_by_id", "datatype": dbt_utils.type_string()},
-    {"name": "last_modified_by_id", "datatype": dbt_utils.type_string()},
     {"name": "created_date", "datatype": dbt_utils.type_timestamp()},
+    {"name": "last_modified_by_id", "datatype": dbt_utils.type_string()},
     {"name": "last_modified_date", "datatype": dbt_utils.type_timestamp()},
     {"name": "pricebook_entry_id", "datatype": dbt_utils.type_string()},
     {"name": "product_2_id", "datatype": dbt_utils.type_string()},
     {"name": "product_family_c", "datatype": dbt_utils.type_string()},
     {"name": "product_code_text_c", "datatype": dbt_utils.type_string()},
+    {"name": "net_suite_product_id_c", "datatype": dbt_utils.type_string()},
     {"name": "quantity", "datatype": dbt_utils.type_int()},
     {"name": "unit_price", "datatype": dbt_utils.type_float()},
     {"name": "total_price", "datatype": dbt_utils.type_float()},
     {"name": "total_price_custom_c", "datatype": dbt_utils.type_float()},
     {"name": "serial_numbers_c", "datatype": dbt_utils.type_string()},
     {"name": "subscription_months_c", "datatype": dbt_utils.type_int()},
-    {"name": "subscription_units_c", "datatype": dbt_utils.type_int()},
-    {"name": "is_deleted", "datatype": "boolean"}
+    {"name": "subscription_units_c", "datatype": dbt_utils.type_int()}
 ] %}
 
 {{ return(columns) }}

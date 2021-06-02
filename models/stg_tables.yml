@@ -501,10 +501,10 @@ models:
         - unique
     - name: _fivetran_synced
       description: The time at which fivetran last synced this record
-    - name: id
-      description: The unique, system-generated ID assigned during creation.
-    - name: _fivetran_synced
-      description: The time at which fivetran last synced this record
+    - name: order_id
+      description: The ID of the associated order.
+      tests:
+        - not_null
     - name: created_by_id
       description: Users who created the order.
       tests:
@@ -521,22 +521,20 @@ models:
       description: Date when the order was last modified.
       tests:
         - not_null
-    - name: product_2_id
-      description: The ID of the associated product.
-      tests:
-        - not_null
-    - name: order_id
-      description: The ID of the associated order.
-      tests:
-        - not_null
     - name: pricebook_entry_id
       description: The ID of the associated pricebook being used.
+      tests:
+        - not_null
+    - name: product_2_id
+      description: The ID of the associated product.
       tests:
         - not_null
     - name: net_suite_product_id_c
       description: The ID of the associated product.
     - name: product_family_c
       description: The type of product, eg Subscription or Hardware.
+    - name: product_code_text_c
+      description: Nauto part number.
     - name: quantity
       description: How many units of this product.
       tests:
@@ -547,9 +545,9 @@ models:
       description: Price per unit times number of units.
     - name: total_price_custom_c
       description: Price per unit times number of units.
-    - name: product_code_text_c
-      description: Nauto part number.
     - name: serial_numbers_c
       description: Nauto serial numbers for devices.
     - name: subscription_months_c
       description: For Subscriptions, how many months long.
+    - name: subscription_units_c
+      description: For Subscriptions, how many units.
