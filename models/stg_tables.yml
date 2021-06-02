@@ -459,11 +459,6 @@ models:
       description: The ID of the associated product.
     - name: product_family_c
       description: The type of product, eg Subscription or Hardware.
-    - name: order_item_number
-      description: Required. The number of this order item.
-      tests:
-        - not_null
-        - unique
     - name: quantity
       description: How many units of this product.
       tests:

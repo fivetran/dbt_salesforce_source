@@ -501,8 +501,6 @@ sources:
           description: The ID of the associated product.
         - name: product_family_c
           description: The type of product, eg Subscription or Hardware.
-        - name: order_item_number
-          description: Required. The number of this order.
         - name: quantity
           description: How many units of this product.
         - name: unit_price
@@ -517,3 +515,5 @@ sources:
           description: Nauto serial numbers for devices.
         - name: subscription_months_c
           description: For Subscriptions, how many months long.
+        - name: subscription_units_c
+          description: For Subscriptions, how many units.

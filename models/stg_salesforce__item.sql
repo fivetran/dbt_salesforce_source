@@ -34,15 +34,16 @@ with source as (
 
     select
         id as item_id,
-        order_item_name,
         _fivetran_synced,
         order_id,
         created_date,
         created_by_id,
         last_modified_date,
         last_modified_by_id,
-        is_deleted
-
+        is_deleted,
+        pricebook_entry_id,
+        product_2_id,
+        quantity
       --The below script allows for pass through columns.
 
         {% if var('item_pass_through_columns') %}
