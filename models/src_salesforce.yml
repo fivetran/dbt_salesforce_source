@@ -176,8 +176,6 @@ sources:
           description: ID of the User who has been assigned to work this opportunity.
         - name: Pricebook2Id
           description: ID of a related Pricebook2 object. The Pricebook2Id field indicates which Pricebook2 applies to this opportunity. The Pricebook2Id field is defined only for those organizations that have products enabled as a feature. You can specify values for only one field (Pricebook2Id or PricebookId)—not both fields. For this reason, both fields are declared nillable.
-        - name: pricebook_2_id
-          description: Unavailable as of version 3.0. As of version 8.0, the Pricebook object is no longer available. Use the Pricebook2Id field instead, specifying the ID of the Pricebook2 record.
         - name: probability
           description: Percentage of estimated confidence in closing the opportunity.
         - name: record_type_id
@@ -332,6 +330,8 @@ sources:
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation
+        - name: is_deleted
+          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
         - name: _fivetran_deleted
@@ -363,6 +363,8 @@ sources:
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation.
+        - name: owner_id
+          description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
         - name: account_id
@@ -391,16 +393,20 @@ sources:
           description: Required. Date when the opportunity closed
         - name: end_date
           description: Date when the order expires
+        - name: pilot_end_date_c
+          description: Date when the pilot order expires (custom)
         - name: actual_ship_date_c
           description: Date when the order shipped
         - name: class_c
           description: NetSuite class for classifying orders, e.g "Fleets"
+        - name: name
+          description: Required. Name of the account.
+        - name: description
+          description: Text description of the order.
         - name: memo_c
           description: Externally-visible Notes about this order.
         - name: internal_notes_c
           description: Internally-visible Notes about this order.
-        - name: description
-          description: Text description of the order.
         - name: status
           description: Order processing status.
         - name: status_code
@@ -415,18 +421,12 @@ sources:
           description: Internal ID of synced NetSuite Sales Order record.
         - name: net_suite_sales_order_ref_id_c
           description: Document Number of NetSuite Sales Order record.
-        - name: is_deleted
-          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
-        - name: name
-          description: A name for this order.
         - name: order_number
           description: Required. The number of this order.
         - name: owner_id
           description: ID of the User who has been assigned to work this order.
         - name: Pricebook2Id
           description: ID of a related Pricebook2 object. The Pricebook2Id field indicates which Pricebook2 applies to this order. The Pricebook2Id field is defined only for those organizations that have products enabled as a feature. You can specify values for only one field (Pricebook2Id or PricebookId)—not both fields. For this reason, both fields are declared nillable.
-        - name: pricebook_2_id
-          description: Unavailable as of version 3.0. As of version 8.0, the Pricebook object is no longer available. Use the Pricebook2Id field instead, specifying the ID of the Pricebook2 record.
         - name: record_type_id
           description: ID of the record type assigned to this object.
         - name: branch_id_c
@@ -479,51 +479,45 @@ sources:
           description: Required. Current stage of this record. The StageName field controls several other fields on an order.
         - name: type
           description: Type of order. For example, Regular Sales Order or Pilot Order.
-
-      - name: stg_salesforce__order
+      - name: order_item
         loaded_at_field: _fivetran_synced
-        description: Represents an annotated order, with additional metadata filled in
+        description: Represents a product line item, linked to both an order and a product
         columns:
-        - name: order_id
+        - name: id
           description: The unique, system-generated ID assigned during creation.
-          tests:
-            - not_null
-            - unique
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
-        - name: account_id
-          description: ID of the account associated with this order.
-        - name: amount
-          description: Estimated total sale amount. For orders with products, the amount is the sum of the related products.
-        - name: close_date
-          description: Required. Date when the order closed
+        - name: order_id
+          description: The ID of the associated order.
+        - name: created_by_id
+          description: Users who created the order.
         - name: created_date
           description: Date when the order was created.
-        - name: description
-          description: Text description of the order.
-        - name: is_closed
-          description: True, if Stage Name Label is Closed.
-        - name: is_deleted
-          description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
-        - name: is_won
-          description: True, if Stage Name Label is Won.
-        - name: last_referenced_date
-          description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
-        - name: last_viewed_date
-          description: The timestamp when the current user last viewed this record or list view. If this value is null, the user might have only accessed this record or list view (LastReferencedDate) but not viewed it.
-        - name: lead_source
-          description: Source of this order, such as Advertisement or Trade Show.
-        - name: name
-          description: Required. A name for this order.
-        - name: owner_id
-          description: ID of the User who has been assigned to work this order.
-        - name: Pricebook2Id
-          description: ID of a related Pricebook2 object. The Pricebook2Id field indicates which Pricebook2 applies to this order. The Pricebook2Id field is defined only for those organizations that have products enabled as a feature. You can specify values for only one field (Pricebook2Id or PricebookId)—not both fields. For this reason, both fields are declared nillable.
-        - name: pricebook_2_id
-          description: Unavailable as of version 3.0. As of version 8.0, the Pricebook object is no longer available. Use the Pricebook2Id field instead, specifying the ID of the Pricebook2 record.
-        - name: record_type_id
-          description: ID of the record type assigned to this object.
-        - name: stage_name
-          description: Required. Current stage of this record. The StageName field controls several other fields on an order.
-        - name: type
-          description: Type of order. For example, Existing Business or New Business.
+        - name: last_modified_by_id
+          description: Users who last modified the order.
+        - name: last_modified_date
+          description: Date when the order was last modified.
+        - name: pricebook_entry_id
+          description: The ID of the associated pricebook being used.
+        - name: product_2_id
+          description: The ID of the associated product.
+        - name: product_family_c
+          description: The type of product, eg Subscription or Hardware.
+        - name: product_code_text_c
+          description: Nauto part number.
+        - name: net_suite_product_id_c
+          description: The ID of the associated product.
+        - name: quantity
+          description: How many units of this product.
+        - name: unit_price
+          description: Price per unit.
+        - name: total_price
+          description: Price per unit times number of units.
+        - name: total_price_custom_c
+          description: Price per unit times number of units.
+        - name: serial_numbers_c
+          description: Nauto serial numbers for devices.
+        - name: subscription_months_c
+          description: For Subscriptions, how many months long.
+        - name: subscription_units_c
+          description: For Subscriptions, how many units.
