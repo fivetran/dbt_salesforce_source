@@ -409,8 +409,6 @@ models:
       description: Date when the order shipped
     - name: class_c
       description: NetSuite class for classifying orders, e.g "Fleets"
-    - name: name
-      description: Required. Name of the account.
     - name: description
       description: Text description of the order.
     - name: memo_c
@@ -485,8 +483,6 @@ models:
       description: The ISO state code for the order’s shipping address.
     - name: shipping_street
       description: The street address of the shipping address for this order.
-    - name: stage_name
-      description: Required. Current stage of this record. The StageName field controls several other fields on an order.
     - name: type
       description: Type of order. For example, Regular Sales Order or Pilot Order.
 
