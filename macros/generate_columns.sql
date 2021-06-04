@@ -223,8 +223,7 @@
     {"name": "total_price", "datatype": dbt_utils.type_float()},
     {"name": "total_price_custom_c", "datatype": dbt_utils.type_float()},
     {"name": "serial_numbers_c", "datatype": dbt_utils.type_string()},
-    {"name": "subscription_months_c", "datatype": dbt_utils.type_int()},
-    {"name": "subscription_units_c", "datatype": dbt_utils.type_int()}
+    {"name": "subscription_months_c", "datatype": dbt_utils.type_int()}
 ] %}
 
 {{ return(columns) }}

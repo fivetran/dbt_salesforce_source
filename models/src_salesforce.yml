@@ -519,8 +519,6 @@ sources:
           description: Nauto serial numbers for devices.
         - name: subscription_months_c
           description: For Subscriptions, how many months long.
-        - name: subscription_units_c
-          description: For Subscriptions, how many units.
       - name: product_2
         loaded_at_field: _fivetran_synced
         description: Represents a product record
