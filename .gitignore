@@ -4,3 +4,4 @@ logs/
 keyfile.json
 .DS_Store
 develop/
+dbt-env/*
