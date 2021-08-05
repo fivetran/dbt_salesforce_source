@@ -1,7 +1,7 @@
 config-version: 2
 
 name: 'salesforce_source'
-version: '0.3.0'
+version: '0.3.1'
 
 require-dbt-version: ">=0.20.0"
 
@@ -17,6 +17,11 @@ vars:
     opportunity: "{{ source('salesforce', 'opportunity') }}" 
     user: "{{ source('salesforce', 'user') }}"
     user_role: "{{ source('salesforce', 'user_role') }}"
+
+    # Salesforce pass through column variables
     account_pass_through_columns: []
     opportunity_pass_through_columns: []
     user_pass_through_columns: []
+
+    # Variable to define if you are set up with Salesforce History Mode.
+    salesforce__using_history_mode: false
