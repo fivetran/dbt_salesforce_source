@@ -57,18 +57,25 @@ vars:
     user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
 ```
 
+### Salesforce History Mode
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector your source tables will include all historical records. With this history mode enabled you may want this package to only output active Salesforce records. If so, you may configure the `salesforce__using_history_mode` variable as `true` to filter for only active records. This variable is disabled by default; however, you may add the below variable configuration within your `dbt_project.yml` file to enable the feature.
+```yml
+# dbt_project.yml
+
+...
+vars:
+  salesforce__using_history_mode: true     # false by default
+```
+
+## Database support
+This package has been tested on BigQuery, Snowflake, Redshift, and Postgres.
+
 ## Contributions
 
 Additional contributions to this package are very welcome! Please create issues
 or open PRs against `master`. Check out 
 [this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) 
 on the best workflow for contributing to a package.
-
-
-## Database support
-This package has been tested on BigQuery, Snowflake and Redshift.
-
-Coming soon -- compatibility with Spark
 
 ## Resources:
 - Provide [feedback](https://www.surveymonkey.com/r/DQ7K7WW) on our existing dbt packages or what you'd like to see next
