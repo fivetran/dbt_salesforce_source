@@ -58,13 +58,16 @@ vars:
 ```
 
 ### Salesforce History Mode
-If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector your source tables will include all historical records. With this history mode enabled you may want this package to only output active Salesforce records. If so, you may configure the `salesforce__using_history_mode` variable as `true` to filter for only active records. This variable is disabled by default; however, you may add the below variable configuration within your `dbt_project.yml` file to enable the feature.
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector source tables, they will include all historical records. With history mode enabled on your tables, you may want this package to only output active Salesforce records. If so, you may configure the desired `using_[table]_history_mode` variable(s) as `true` to filter for only active records. These variables are disabled by default; however, you may add the below variable configuration within your `dbt_project.yml` file to enable the feature.
 ```yml
 # dbt_project.yml
 
 ...
 vars:
-  salesforce__using_history_mode: true     # false by default
+  using_account_history_mode: true      # false by default
+  using_opportunity_history_mode: true  # false by default
+  using_user_role_history_mode: true    # false by default
+  using_user_history_mode: true         # false by default
 ```
 
 ## Database support
