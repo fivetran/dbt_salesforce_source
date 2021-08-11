@@ -1,5 +1,5 @@
 select *
 from {{ var('account') }}
-{%- if var('using_account_history_mode', false) -%}
-where _fivetran_active
+{%- if var('using_account_history_mode_active_records', false) -%}
+where coalesce(_fivetran_active, false)
 {%- endif -%}
