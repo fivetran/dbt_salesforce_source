@@ -24,7 +24,7 @@ vars:
     user_pass_through_columns: []
 
     # Variable to define if you are set up with Salesforce History Mode.
-    using_account_history_mode: false
-    using_opportunity_history_mode: false
-    using_user_role_history_mode: false
-    using_user_history_mode: false
+    using_account_history_mode_active_records: false
+    using_opportunity_history_mode_active_records: false
+    using_user_role_history_mode_active_records: false
+    using_user_history_mode_active_records: false
