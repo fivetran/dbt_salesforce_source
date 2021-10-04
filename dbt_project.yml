@@ -1,10 +1,9 @@
 config-version: 2
 
 name: 'salesforce_source'
-version: '0.0.1'
-profile: default
+version: '0.3.1'
 
-require-dbt-version: [">=0.18.0", "<0.20.0"]
+require-dbt-version: ">=0.20.0"
 
 models:
   salesforce_source:
@@ -16,14 +15,25 @@ vars:
   salesforce_source:
     account: "{{ source('salesforce', 'account') }}"
     opportunity: "{{ source('salesforce', 'opportunity') }}"
+    user: "{{ source('salesforce', 'user') }}"
+    user_role: "{{ source('salesforce', 'user_role') }}"
+
+    # Salesforce pass through column variables
+    account_pass_through_columns: []
+    opportunity_pass_through_columns: []
+    user_pass_through_columns: []
+
+    # Variable to define if you are set up with Salesforce History Mode.
+    using_account_history_mode_active_records: false
+    using_opportunity_history_mode_active_records: false
+    using_user_role_history_mode_active_records: false
+    using_user_history_mode_active_records: false
+
+    # My additional variables
+
     order: "{{ source('salesforce', 'order') }}"
     item: "{{ source('salesforce', 'order_item') }}"
     product: "{{ source('salesforce', 'product_2') }}"
-    user: "{{ source('salesforce', 'user') }}"
-    user_role: "{{ source('salesforce', 'user_role') }}"
-    account_pass_through_columns: []
-    opportunity_pass_through_columns: []
     order_pass_through_columns: []
     item_pass_through_columns: []
     product_pass_through_columns: []
-    user_pass_through_columns: []
