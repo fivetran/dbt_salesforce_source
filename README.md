@@ -1,3 +1,4 @@
+[![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![dbt logo and version](https://img.shields.io/static/v1?logo=dbt&label=dbt-version&message=0.20.x&color=orange)
 # Salesforce ([docs](https://dbt-salesforce-source.netlify.app/)) 
 
 This package models Salesforce data from [Fivetran's connector](https://fivetran.com/docs/applications/salesforce). It uses data in the format described by [this ERD](https://docs.google.com/presentation/d/1fB6aCiX_C1lieJf55TbS2v1yv9sp-AHNNAh2x7jnJ48/edit#slide=id.g3cb9b617d1_0_237).
@@ -20,6 +21,14 @@ This package contains staging models, designed to work simultaneously with our [
 
 ## Installation Instructions
 Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
+
+Include in your `packages.yml`
+
+```yaml
+packages:
+  - package: fivetran/salesforce_source
+    version: [">=0.3.0", "<0.4.0"]
+```
 
 ## Configuration
 By default, this package will run using your target database and the `salesforce` schema. If this is not where your Salesforce data is (perhaps your Salesforce schema is `salesforce_fivetran`), add the following configuration to your `dbt_project.yml` file:
@@ -48,18 +57,29 @@ vars:
     user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
 ```
 
+### Salesforce History Mode
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, the source tables will include all historical records. This package is designed to deal with non-historical data. As such, if you have History Mode enabled you will want to set the desired `using_[table]_history_mode_active_records` variable(s) as `true` to filter for only active records. These variables are disabled by default; however, you may add the below variable configuration within your `dbt_project.yml` file to enable the feature.
+```yml
+# dbt_project.yml
+
+...
+vars:
+  salesforce_source:
+    using_account_history_mode_active_records: true      # false by default. Only use if you have history mode enabled.
+    using_opportunity_history_mode_active_records: true  # false by default. Only use if you have history mode enabled.
+    using_user_role_history_mode_active_records: true    # false by default. Only use if you have history mode enabled.
+    using_user_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
+```
+
+## Database support
+This package has been tested on BigQuery, Snowflake, Redshift, and Postgres.
+
 ## Contributions
 
 Additional contributions to this package are very welcome! Please create issues
 or open PRs against `master`. Check out 
 [this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) 
 on the best workflow for contributing to a package.
-
-
-## Database support
-This package has been tested on BigQuery, Snowflake and Redshift.
-
-Coming soon -- compatibility with Spark
 
 ## Resources:
 - Provide [feedback](https://www.surveymonkey.com/r/DQ7K7WW) on our existing dbt packages or what you'd like to see next
