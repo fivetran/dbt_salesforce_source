@@ -2,7 +2,7 @@ config-version: 2
 
 name: 'salesforce_source'
 version: '0.3.1'
-
+profile: default
 require-dbt-version: ">=0.20.0"
 
 models:
@@ -10,6 +10,13 @@ models:
     tmp:
       materialized: view
     materialized: table
+  file_format: delta
+
+seeds:
+  file_format: delta
+
+snapshots:
+  file_format: delta
 
 vars:
   salesforce_source:

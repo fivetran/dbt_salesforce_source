@@ -1,14 +1,14 @@
 default:
-  target: dev
+  target: prod
   outputs:
-    dev:
+    prod:
       type: spark
       method: http
       schema: dev_ernest
-      host: dbc-0b1dfbf6-3cc5.cloud.databricks.com
-      port: 443
+      host: nauto-biz-prod-us.cloud.databricks.com
       token: _token_
-      cluster: 0505-153618-tours233
+      cluster: 1004-233546-lager607
+      port: 443
       connect_timeout: 30
       connect_retries: 15
       threads: 5
