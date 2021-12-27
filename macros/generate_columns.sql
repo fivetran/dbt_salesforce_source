@@ -42,6 +42,7 @@
 
 {% endmacro %}
 
+
 {% macro get_opportunity_columns() %}
 
 {% set columns = [
@@ -83,68 +84,6 @@
 
 {% endmacro %}
 
-
-{% macro get_order_columns() %}
-
-{% set columns = [
-    {"name": "id", "datatype": dbt_utils.type_string()},
-    {"name": "is_deleted", "datatype": "boolean"},
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
-    {"name": "account_id", "datatype": dbt_utils.type_string()},
-    {"name": "billing_account_c", "datatype": dbt_utils.type_string()},
-    {"name": "end_user_c", "datatype": dbt_utils.type_string()},
-    {"name": "company_name_c", "datatype": dbt_utils.type_string()},
-    {"name": "total_amount", "datatype": dbt_utils.type_float()},
-    {"name": "activated_by_id", "datatype": dbt_utils.type_string()},
-    {"name": "activated_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "created_by_id", "datatype": dbt_utils.type_string()},
-    {"name": "created_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "last_modified_by_id", "datatype": dbt_utils.type_string()},
-    {"name": "last_modified_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "effective_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "end_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "pilot_end_date_c", "datatype": dbt_utils.type_timestamp()},
-    {"name": "actual_ship_date_c", "datatype": dbt_utils.type_timestamp()},
-    {"name": "class_c", "datatype": dbt_utils.type_string()},
-    {"name": "name", "datatype": dbt_utils.type_string()},
-    {"name": "description", "datatype": dbt_utils.type_string()},
-    {"name": "memo_c", "datatype": dbt_utils.type_string()},
-    {"name": "internal_notes_c", "datatype": dbt_utils.type_string()},
-    {"name": "status", "datatype": dbt_utils.type_string()},
-    {"name": "status_code", "datatype": dbt_utils.type_string()},
-    {"name": "pro_install_c", "datatype": boolean},
-    {"name": "split_order_c", "datatype": dbt_utils.type_string()},
-    {"name": "terms_c", "datatype": dbt_utils.type_string()},
-    {"name": "net_suite_order_id_c", "datatype": dbt_utils.type_string()},
-    {"name": "net_suite_sales_order_ref_id_c", "datatype": dbt_utils.type_string()},
-    {"name": "order_number", "datatype": dbt_utils.type_int()},
-    {"name": "owner_id", "datatype": dbt_utils.type_string()},
-    {"name": "Pricebook2Id", "datatype": dbt_utils.type_string()},
-    {"name": "record_type_id", "datatype": dbt_utils.type_string()},
-    {"name": "branch_id_c", "datatype": dbt_utils.type_string()},
-    {"name": "bill_to_contact_id", "datatype": dbt_utils.type_string()},
-    {"name": "billing_city", "datatype": dbt_utils.type_string()},
-    {"name": "billing_country", "datatype": dbt_utils.type_string()},
-    {"name": "billing_country_code", "datatype": dbt_utils.type_string()},
-    {"name": "billing_postal_code", "datatype": dbt_utils.type_string()},
-    {"name": "billing_state", "datatype": dbt_utils.type_string()},
-    {"name": "billing_state_code", "datatype": dbt_utils.type_string()},
-    {"name": "billing_street", "datatype": dbt_utils.type_string()},
-    {"name": "ship_to_contact_id", "datatype": dbt_utils.type_string()},
-    {"name": "shipping_city", "datatype": dbt_utils.type_string()},
-    {"name": "shipping_country", "datatype": dbt_utils.type_string()},
-    {"name": "shipping_country_code", "datatype": dbt_utils.type_string()},
-    {"name": "shipping_postal_code", "datatype": dbt_utils.type_string()},
-    {"name": "shipping_state", "datatype": dbt_utils.type_string()},
-    {"name": "shipping_state_code", "datatype": dbt_utils.type_string()},
-    {"name": "shipping_street", "datatype": dbt_utils.type_string()},
-    {"name": "stage_name", "datatype": dbt_utils.type_string()},
-    {"name": "type", "datatype": dbt_utils.type_string()},
-] %}
-
-{{ return(columns) }}
-
-{% endmacro %}
 
 {% macro get_user_columns() %}
 
@@ -202,57 +141,3 @@
 
 {% endmacro %}
 
-{% macro get_item_columns() %}
-
-{% set columns = [
-    {"name": "id", "datatype": dbt_utils.type_string()},
-    {"name": "is_deleted", "datatype": "boolean"},
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
-    {"name": "order_id", "datatype": dbt_utils.type_string()},
-    {"name": "created_by_id", "datatype": dbt_utils.type_string()},
-    {"name": "created_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "last_modified_by_id", "datatype": dbt_utils.type_string()},
-    {"name": "last_modified_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "pricebook_entry_id", "datatype": dbt_utils.type_string()},
-    {"name": "product_2_id", "datatype": dbt_utils.type_string()},
-    {"name": "product_family_c", "datatype": dbt_utils.type_string()},
-    {"name": "product_code_text_c", "datatype": dbt_utils.type_string()},
-    {"name": "net_suite_product_id_c", "datatype": dbt_utils.type_string()},
-    {"name": "quantity", "datatype": dbt_utils.type_int()},
-    {"name": "unit_price", "datatype": dbt_utils.type_float()},
-    {"name": "total_price", "datatype": dbt_utils.type_float()},
-    {"name": "total_price_custom_c", "datatype": dbt_utils.type_float()},
-    {"name": "serial_numbers_c", "datatype": dbt_utils.type_string()},
-    {"name": "subscription_months_c", "datatype": dbt_utils.type_int()}
-] %}
-
-{{ return(columns) }}
-
-{% endmacro %}
-
-{% macro get_product_columns() %}
-
-{% set columns = [
-    {"name": "id", "datatype": dbt_utils.type_string()},
-    {"name": "is_deleted", "datatype": "boolean"},
-    {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
-    {"name": "created_by_id", "datatype": dbt_utils.type_string()},
-    {"name": "created_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "last_modified_by_id", "datatype": dbt_utils.type_string()},
-    {"name": "last_modified_date", "datatype": dbt_utils.type_timestamp()},
-    {"name": "product_code", "datatype": dbt_utils.type_string()},
-    {"name": "name", "datatype": dbt_utils.type_string()},
-    {"name": "description", "datatype": dbt_utils.type_string()},
-    {"name": "is_active", "datatype": boolean},
-    {"name": "family", "datatype": dbt_utils.type_string()},
-    {"name": "net_suite_product_id_c", "datatype": dbt_utils.type_string()},
-    {"name": "shipping_sku_c", "datatype": dbt_utils.type_string()},
-    {"name": "sellable_sku_c", "datatype": boolean},
-    {"name": "net_suite_on_hand_c", "datatype": dbt_utils.type_string()},
-    {"name": "subscription_months_c", "datatype": dbt_utils.type_int()},
-    {"name": "warehouse_on_hand_c", "datatype": dbt_utils.type_int()}
-] %}
-
-{{ return(columns) }}
-
-{% endmacro %}
