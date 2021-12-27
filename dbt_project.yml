@@ -10,13 +10,6 @@ models:
     tmp:
       materialized: view
     materialized: table
-  file_format: delta
-
-seeds:
-  file_format: delta
-
-snapshots:
-  file_format: delta
 
 vars:
   salesforce_schema: salesforce
