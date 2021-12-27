@@ -379,11 +379,8 @@ models:
       description: The time at which fivetran last synced this record
     - name: account_id
       description: ID of the account associated with this order.
-    - name: billing_account_c
       description: ID of the account paying for this order.
-    - name: end_user_c
       description: ID of the account of the fleet where these devices will be installed.
-    - name: company_name_c
       description: Name of the primary account, as a string.
     - name: total_amount
       description: Estimated total sale amount. For orders with products, the amount is the sum of the related products.
@@ -403,31 +400,21 @@ models:
       description: Required. Date when the opportunity closed
     - name: end_date
       description: Date when the order expires
-    - name: pilot_end_date_c
       description: Date when the pilot order expires (custom)
-    - name: actual_ship_date_c
       description: Date when the order shipped
-    - name: class_c
       description: NetSuite class for classifying orders, e.g "Fleets"
     - name: description
       description: Text description of the order.
-    - name: memo_c
       description: Externally-visible Notes about this order.
-    - name: internal_notes_c
       description: Internally-visible Notes about this order.
     - name: status
       description: Order processing status.
     - name: status_code
       description: Order processing status.
-    - name: pro_install_c
       description: Boolean for whether to schedule professional installation.
-    - name: split_order_c
       description: Parent of this split order.
-    - name: terms_c
       description: Payment terms, eg Net 30.
-    - name: net_suite_order_id_c
       description: Internal ID of synced NetSuite Sales Order record.
-    - name: net_suite_sales_order_ref_id_c
       description: Document Number of NetSuite Sales Order record.
     - name: order_number
       description: Required. The number of this order.
@@ -437,7 +424,6 @@ models:
       description: ID of a related Pricebook2 object. The Pricebook2Id field indicates which Pricebook2 applies to this order. The Pricebook2Id field is defined only for those organizations that have products enabled as a feature. You can specify values for only one field (Pricebook2Id or PricebookId)—not both fields. For this reason, both fields are declared nillable.
     - name: record_type_id
       description: ID of the record type assigned to this object.
-    - name: branch_id_c
       description: ID of the destination branch, eg for FedEx.
     - name: bill_to_contact_id
       description: Id of the billing contact.
@@ -525,11 +511,8 @@ models:
       description: The ID of the associated product.
       tests:
         - not_null
-    - name: net_suite_product_id_c
       description: The ID of the associated product.
-    - name: product_family_c
       description: The type of product, eg Subscription or Hardware.
-    - name: product_code_text_c
       description: Nauto part number.
     - name: quantity
       description: How many units of this product.
@@ -539,13 +522,9 @@ models:
       description: Price per unit.
     - name: total_price
       description: Price per unit times number of units.
-    - name: total_price_custom_c
       description: Price per unit times number of units.
-    - name: serial_numbers_c
       description: Nauto serial numbers for devices.
-    - name: subscription_months_c
       description: For Subscriptions, how many months long.
-    - name: subscription_units_c
       description: For Subscriptions, how many units.
 
   - name: stg_salesforce__product
@@ -589,13 +568,8 @@ models:
       description: Flag for whether this product is currently active.
     - name: family
       description: The type of product, eg Subscription or Hardware.
-    - name: net_suite_product_id_c
       description: The ID of the associated product.
-    - name: shipping_sku_c
       description: The ID of the shipping SKU, if this is a billing SKU.
-    - name: sellable_sku_c
       description: Flag for whether this product is visible to Sales Reps.
-    - name: net_suite_on_hand_c
       description: The quantity shown as on hand by NetSuite.
-    - name: warehouse_on_hand_c
       description: The quantity shown as on hand by NetSuite.
