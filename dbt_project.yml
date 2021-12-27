@@ -19,6 +19,8 @@ snapshots:
   file_format: delta
 
 vars:
+  salesforce_schema: salesforce
+  salesforce_database: ''
   salesforce_source:
     account: "{{ source('salesforce', 'account') }}"
     opportunity: "{{ source('salesforce', 'opportunity') }}"
