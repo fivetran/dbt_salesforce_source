@@ -43,15 +43,9 @@ with source as (
         is_deleted,
         pricebook_entry_id,
         product_2_id,
-        net_suite_product_id_c,
-        product_family_c,
-        product_code_text_c,
         quantity,
         unit_price,
         total_price,
-        total_price_custom_c,
-        serial_numbers_c,
-        subscription_months_c
 
       --The below script allows for pass through columns.
 

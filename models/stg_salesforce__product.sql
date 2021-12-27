@@ -44,11 +44,6 @@ with source as (
         description,
         is_active,
         family,
-        net_suite_product_id_c,
-        shipping_sku_c,
-        sellable_sku_c,
-        net_suite_on_hand_c,
-        warehouse_on_hand_c,
         is_deleted
       --The below script allows for pass through columns.
 
