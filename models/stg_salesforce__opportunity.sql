@@ -7,8 +7,8 @@ with source as (
 
     select
         /*
-        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns
-        that are expected/needed (staging_columns from dbt_salesforce_source/models/tmp/) and compares it with columns
+        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns 
+        that are expected/needed (staging_columns from dbt_salesforce_source/models/tmp/) and compares it with columns 
         in the source (source_columns from dbt_salesforce_source/macros/).
 
         For more information refer to our dbt_fivetran_utils documentation (https://github.com/fivetran/dbt_fivetran_utils.git).
@@ -31,8 +31,8 @@ with source as (
     from source
 
 ), renamed as (
-
-    select
+    
+    select 
 
         _fivetran_synced,
         account_id,
@@ -78,13 +78,13 @@ with source as (
     from macro
 
 ), calculated as (
-
-    select
+        
+    select 
         *,
         created_date >= {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_created_this_month,
         created_date >= {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_created_this_quarter,
-        DATEDIFF('created_date',{{dbt_utils.current_timestamp()}}) as days_since_created,
-        DATEDIFF('created_date','close_date') as days_to_close,
+        {{ dbt_utils.datediff(dbt_utils.current_timestamp(), 'created_date', 'day') }} as days_since_created,
+        {{ dbt_utils.datediff('close_date', 'created_date', 'day') }} as days_to_close,
         {{ dbt_utils.date_trunc('month', 'close_date') }} = {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_closed_this_month,
         {{ dbt_utils.date_trunc('quarter', 'close_date') }} = {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_closed_this_quarter
 
@@ -92,6 +92,6 @@ with source as (
 
 )
 
-select *
+select * 
 from calculated
 where not coalesce(is_deleted, false)
