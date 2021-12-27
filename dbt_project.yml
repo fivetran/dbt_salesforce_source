@@ -1,9 +1,9 @@
 config-version: 2
 
 name: 'salesforce_source'
-version: '0.3.1'
+version: '0.4.0'
 profile: default
-require-dbt-version: ">=0.19.1"
+require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 models:
   salesforce_source:
