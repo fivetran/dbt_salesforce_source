@@ -5,4 +5,3 @@ keyfile.json
 .DS_Store
 develop/
 dbt_packages/
-dbt-env/
