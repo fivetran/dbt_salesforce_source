@@ -1,4 +1,4 @@
-[![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) 
+[![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 # Salesforce ([docs](https://dbt-salesforce-source.netlify.app/))
 
 This package models Salesforce data from [Fivetran's connector](https://fivetran.com/docs/applications/salesforce). It uses data in the format described by [this ERD](https://docs.google.com/presentation/d/1fB6aCiX_C1lieJf55TbS2v1yv9sp-AHNNAh2x7jnJ48/edit#slide=id.g3cb9b617d1_0_237).
@@ -78,7 +78,7 @@ This package has been tested on BigQuery, Snowflake, Redshift, and Postgres.
 
 Additional contributions to this package are very welcome! Please create issues
 or open PRs against `main`. Check out
-[this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657)
+[this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) 
 on the best workflow for contributing to a package.
 
 ## Resources:
