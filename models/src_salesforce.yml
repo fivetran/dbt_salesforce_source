@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: salesforce
     schema: "{{ var('salesforce_schema', 'salesforce') }}" # you will need to customize if your schema name is not salesforce
-    database: "{{ var('salesforce_database', target.database if target.type != 'databricks' else 'salesforce') }}"
+    database: "{% if target.type != 'spark'%}{{ var('salesforce_database', target.database) }}{% endif %}"
     loader: fivetran
     loaded_at_field: _fivetran_synced
     freshness:
@@ -14,6 +14,8 @@ sources:
       - name: account
         loaded_at_field: _fivetran_synced
         description: Represents an individual account, which is an organization or person involved with your business (such as customers, competitors, and partners).
+        meta:
+          is_enabled: "{{ var('account_enabled', true) }}"
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation
