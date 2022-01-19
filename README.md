@@ -38,9 +38,8 @@ By default, this package will run using your target database and the `salesforce
 
 ...
 vars:
-  salesforce_source:
-    salesforce_database: your_database_name
-    salesforce_schema: your_schema_name
+  salesforce_database: your_database_name
+  salesforce_schema: your_schema_name
 ```
 
 This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
@@ -51,10 +50,9 @@ This package includes all source columns defined in the `generate_columns.sql` m
 
 ...
 vars:
-  salesforce_source:
-    account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
-    opportunity_pass_through_columns: [my_opp_custom_field]
-    user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
+  account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
+  opportunity_pass_through_columns: [my_opp_custom_field]
+  user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
 ```
 
 ### Salesforce History Mode
@@ -64,11 +62,10 @@ If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/
 
 ...
 vars:
-  salesforce_source:
-    using_account_history_mode_active_records: true      # false by default. Only use if you have history mode enabled.
-    using_opportunity_history_mode_active_records: true  # false by default. Only use if you have history mode enabled.
-    using_user_role_history_mode_active_records: true    # false by default. Only use if you have history mode enabled.
-    using_user_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
+  using_account_history_mode_active_records: true      # false by default. Only use if you have history mode enabled.
+  using_opportunity_history_mode_active_records: true  # false by default. Only use if you have history mode enabled.
+  using_user_role_history_mode_active_records: true    # false by default. Only use if you have history mode enabled.
+  using_user_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
 ```
 
 ## Database support
