@@ -14,8 +14,6 @@ sources:
       - name: account
         loaded_at_field: _fivetran_synced
         description: Represents an individual account, which is an organization or person involved with your business (such as customers, competitors, and partners).
-        meta:
-          is_enabled: "{{ var('account_enabled', true) }}"
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation
