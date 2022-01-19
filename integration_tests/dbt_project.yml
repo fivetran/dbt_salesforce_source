@@ -45,6 +45,6 @@ seeds:
         latitude: float
         longitude: float
 
-clean-targets:
-    - target
-    - dbt_modules
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
