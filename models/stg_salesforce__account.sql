@@ -36,7 +36,7 @@ with source as (
       _fivetran_synced,
       account_number,
       account_source,
-      cast(annual_revenue as {{ dbt_utils.type_float() }}) as annual_revenue,
+      cast(annual_revenue as {{ dbt_utils.type_numeric() }}) as annual_revenue,
       billing_city,
       billing_country,
       billing_postal_code,
