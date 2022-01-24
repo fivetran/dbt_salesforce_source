@@ -1,3 +1,10 @@
+# dbt_salesforce_source v0.4.1
+## Features
+- Support for Databricks compatibility! ([#20](https://github.com/fivetran/dbt_salesforce_source/pull/20))
+
+## Contributors
+- [drernie](https://github.com/drernie) ([#20](https://github.com/fivetran/dbt_salesforce_source/pull/20))
+
 # dbt_salesforce_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
