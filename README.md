@@ -38,9 +38,8 @@ By default, this package will run using your target database and the `salesforce
 
 ...
 vars:
-  salesforce_source:
-    salesforce_database: your_database_name
-    salesforce_schema: your_schema_name
+  salesforce_database: your_database_name
+  salesforce_schema: your_schema_name
 ```
 
 This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
@@ -51,10 +50,9 @@ This package includes all source columns defined in the `generate_columns.sql` m
 
 ...
 vars:
-  salesforce_source:
-    account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
-    opportunity_pass_through_columns: [my_opp_custom_field]
-    user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
+  account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
+  opportunity_pass_through_columns: [my_opp_custom_field]
+  user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
 ```
 
 ### Salesforce History Mode
@@ -64,15 +62,24 @@ If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/
 
 ...
 vars:
-  salesforce_source:
-    using_account_history_mode_active_records: true      # false by default. Only use if you have history mode enabled.
-    using_opportunity_history_mode_active_records: true  # false by default. Only use if you have history mode enabled.
-    using_user_role_history_mode_active_records: true    # false by default. Only use if you have history mode enabled.
-    using_user_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
+  using_account_history_mode_active_records: true      # false by default. Only use if you have history mode enabled.
+  using_opportunity_history_mode_active_records: true  # false by default. Only use if you have history mode enabled.
+  using_user_role_history_mode_active_records: true    # false by default. Only use if you have history mode enabled.
+  using_user_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
 ```
 
 ## Database support
-This package has been tested on BigQuery, Snowflake, Redshift, and Postgres.
+This package has been tested on BigQuery, Snowflake, Redshift, Postgres, and Databricks.
+
+### Databricks Dispatch Configuration
+dbt `v0.20.0` introduced a new project-level dispatch configuration that enables an "override" setting for all dispatched macros. If you are using a Databricks destination with this package you will need to add the below (or a variation of the below) dispatch configuration within your `dbt_project.yml`. This is required in order for the package to accurately search for macros within the `dbt-labs/spark_utils` then the `dbt-labs/dbt_utils` packages respectively.
+```yml
+# dbt_project.yml
+
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
+```
 
 ## Contributions
 

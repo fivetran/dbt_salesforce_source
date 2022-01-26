@@ -1,5 +1,6 @@
 name: 'salesforce_source_integration_tests'
-version: '0.5.0'
+version: '0.4.1'
+
 config-version: 2
 
 profile: 'integration_tests'
@@ -45,6 +46,6 @@ seeds:
         latitude: float
         longitude: float
 
-clean-targets:
-    - target
-    - dbt_modules
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
