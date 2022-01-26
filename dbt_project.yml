@@ -1,7 +1,8 @@
 config-version: 2
 
 name: 'salesforce_source'
-version: '0.4.0'
+version: '0.4.1'
+
 
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
@@ -17,6 +18,8 @@ vars:
     opportunity: "{{ source('salesforce', 'opportunity') }}"
     user: "{{ source('salesforce', 'user') }}"
     user_role: "{{ source('salesforce', 'user_role') }}"
+    
+    salesforce__user_role_enabled: true
 
     # Salesforce pass through column variables
     account_pass_through_columns: []
