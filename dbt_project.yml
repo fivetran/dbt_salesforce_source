@@ -18,6 +18,8 @@ vars:
     user: "{{ source('salesforce', 'user') }}"
     user_role: "{{ source('salesforce', 'user_role') }}"
     
+    salesforce__user_role_enabled: true
+
     # Salesforce pass through column variables
     account_pass_through_columns: []
     opportunity_pass_through_columns: []
