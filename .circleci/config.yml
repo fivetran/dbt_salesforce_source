@@ -33,7 +33,7 @@ jobs:
             cd integration_tests
             dbt deps
             dbt seed --target spark --full-refresh
-            dbt run --vars '{using_account_history_mode_active_records: true, using_opportunity_history_mode_active_records: true, using_user_role_history_mode_active_records: true, using_user_history_mode_active_records: true}' --target spark --full-refresh
+            dbt run --vars '{using salesforce__user_role_enabled: false, using_account_history_mode_active_records: true, using_opportunity_history_mode_active_records: true, using_user_role_history_mode_active_records: true, using_user_history_mode_active_records: true}' --target spark --full-refresh
             dbt test --target spark
             dbt run --target spark --full-refresh
             dbt test --target spark
