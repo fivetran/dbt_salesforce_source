@@ -329,8 +329,6 @@ sources:
       - name: user_role
         freshness: null
         description: Represents a user role in your organization.
-        meta: 
-          is_enabled: "{{var('salesforce__user_role_enabled', true) }}"
         columns:
         - name: id
           description: The unique, system-generated ID assigned during creation
