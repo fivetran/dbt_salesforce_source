@@ -1,3 +1,6 @@
+# dbt_salesforce_source v0.4.2
+## Fixes
+- Casts the `created_date` and `closed_date` fields within the `stg_salesforce__opportunity` model to a timestamp using the `dbt_utils.type_timestamp()` macro. This is needed for Redshift users that see these fields being synced as `timestamptz` as the downstream date functions do not work with the timestamptz datatype.
 # dbt_salesforce_source v0.4.1
 ## Features
 - Support for Databricks compatibility! ([#20](https://github.com/fivetran/dbt_salesforce_source/pull/20))
