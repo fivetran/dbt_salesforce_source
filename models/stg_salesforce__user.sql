@@ -1,9 +1,10 @@
-with source as (
+with base as (
 
     select *
     from {{ ref('stg_salesforce__user_tmp') }}
+), 
 
-), macro as (
+fields as (
 
     select
         
@@ -30,14 +31,14 @@ with source as (
 
         {% endif %}
 
-    from source
+    from base
+), 
 
-), renamed as (
+final as (
     
     select 
-
         _fivetran_deleted,
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
         account_id,
         alias,
         city,
@@ -51,10 +52,10 @@ with source as (
         id as user_id,
         individual_id,
         is_active,
-        last_login_date,
+        cast(last_login_date as {{ dbt_utils.type_timestamp() }}) as last_login_date,
         last_name,
-        last_referenced_date,
-        last_viewed_date,
+        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
         manager_id,
         name as user_name,
         postal_code,
@@ -74,10 +75,9 @@ with source as (
 
         {% endif %}
     
-    from macro
-
+    from fields
 )
 
 select * 
-from renamed
+from final
 where not coalesce(_fivetran_deleted, false)

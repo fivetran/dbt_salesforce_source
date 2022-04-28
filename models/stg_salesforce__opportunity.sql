@@ -1,9 +1,10 @@
-with source as (
+with base as (
 
     select *
     from {{ ref('stg_salesforce__opportunity_tmp') }}
+), 
 
-), macro as (
+fields as (
 
     select
         /*
@@ -28,13 +29,13 @@ with source as (
 
         {% endif %}
 
-    from source
+    from base
+), 
 
-), renamed as (
+final as (
     
     select 
-
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
         account_id,
         cast(amount as {{ dbt_utils.type_numeric() }}) as amount,
         campaign_id,
@@ -54,9 +55,9 @@ with source as (
         is_closed,
         is_deleted,
         is_won,
-        last_activity_date,
-        last_referenced_date,
-        last_viewed_date,
+        cast(last_activity_date as {{ dbt_utils.type_timestamp() }}) as last_activity_date,
+        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
         lead_source,
         name as opportunity_name,
         next_step,
@@ -75,9 +76,10 @@ with source as (
 
         {% endif %}
 
-    from macro
+    from fields
+), 
 
-), calculated as (
+calculated as (
         
     select 
         *,
@@ -87,9 +89,7 @@ with source as (
         {{ dbt_utils.datediff('close_date', 'created_date', 'day') }} as days_to_close,
         {{ dbt_utils.date_trunc('month', 'close_date') }} = {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_closed_this_month,
         {{ dbt_utils.date_trunc('quarter', 'close_date') }} = {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_closed_this_quarter
-
-    from renamed
-
+    from final
 )
 
 select * 
