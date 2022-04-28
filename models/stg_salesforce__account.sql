@@ -1,10 +1,10 @@
-with source as (
+with base as (
 
-    select 
-      *
+    select *
     from {{ ref('stg_salesforce__account_tmp') }}
+), 
 
-), macro as (
+fields as (
 
     select
       /*
@@ -28,12 +28,13 @@ with source as (
 
       {% endif %}
         
-    from source
+    from base
+), 
 
-), renamed as (
+final as (
 
     select 
-      _fivetran_synced,
+      cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
       account_number,
       account_source,
       cast(annual_revenue as {{ dbt_utils.type_numeric() }}) as annual_revenue,
@@ -47,9 +48,9 @@ with source as (
       id as account_id,
       industry,
       is_deleted,
-      last_activity_date,
-      last_referenced_date,
-      last_viewed_date,
+      cast(last_activity_date as {{ dbt_utils.type_timestamp() }}) as last_activity_date,
+      cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
+      cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
       master_record_id,
       name as account_name,
       number_of_employees,
@@ -75,9 +76,9 @@ with source as (
 
       {% endif %}
       
-    from macro
+    from fields
 )
 
 select *
-from renamed
+from final
 where not coalesce(is_deleted, false)
