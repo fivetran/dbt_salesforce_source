@@ -20,8 +20,8 @@
 - Materializes staging tables which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/salesforce/#schemainformation) and is intended to work simultaneously with our [Salesforce modeling package](https://github.com/fivetran/dbt_salesforce)
     - Refer to our [Docs site](https://fivetran.github.io/dbt_salesforce_source/#!/overview/salesforce_source/models/?g_v=1) for more details about these materialized models. 
 
-# 🤔 Who is the target user of this dbt package?
-- You use Fivetran's [Salesforce connector](https://fivetran.com/docs/applications/Salesforce)
+# 🤔  Who is the target user of this dbt package?
+- You use Fivetran's [Salesforce connector](https://fivetran.com/docs/applications/salesforce)
 - You use dbt
 - You want a staging layer that cleans, tests, and prepares your Salesforce data for analysis
 - (Optional) You want to make use of the [Salesforce Modeling dbt Package](https://github.com/fivetran/dbt_salesforce)
@@ -52,15 +52,50 @@ vars:
     salesforce_database: your_database_name
     salesforce_schema: your_schema_name 
 ```
-### Disabling Components
-Your Salesforce connector might not sync every table that this package expects. If you do not have the `SPRINT`, `COMPONENT`, or `VERSION` tables synced, add the following variable to your root `dbt_project.yml` file:
+### Adding Passthrough Columns
+This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
+
 
 ```yml
+# dbt_project.yml
+
+...
 vars:
-    salesforce_using_sprints: false   # Disable if you do not have the sprint table, or if you do not want sprint related metrics reported
-    salesforce_using_components: false # Disable if you do not have the component table, or if you do not want component related metrics reported
-    salesforce_using_versions: false # Disable if you do not have the versions table, or if you do not want versions related metrics reported
+  account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
+  opportunity_pass_through_columns: [my_opp_custom_field]
+  user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
 ```
+
+### Disabling Models
+Your connector may not be syncing all tabes that this package references. This might be because you are excluding those tables. If you are not using those tables, you can disable the corresponding functionality in the package by specifying the variable in your dbt_project.yml. By default, all packages are assumed to be true. You only have to add variables for tables you want to disable, like so:
+
+The `salesforce__user_role_enabled` variable below refers to the `user_role` table. 
+
+```yml
+# dbt_project.yml
+
+...
+config-version: 2
+
+vars:
+  salesforce__user_role_enabled: false # Disable if you do not have the user_role table
+
+```
+The corresponding metrics from the disabled tables will not populate in the downstream models.
+
+### Salesforce History Mode
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, the source tables will include all historical records. This package is designed to deal with non-historical data. As such, if you have History Mode enabled you will want to set the desired `using_[table]_history_mode_active_records` variable(s) as `true` to filter for only active records. These variables are disabled by default; however, you may add the below variable configuration within your `dbt_project.yml` file to enable the feature.
+```yml
+# dbt_project.yml
+
+...
+vars:
+  using_account_history_mode_active_records: true      # false by default. Only use if you have history mode enabled.
+  using_opportunity_history_mode_active_records: true  # false by default. Only use if you have history mode enabled.
+  using_user_role_history_mode_active_records: true    # false by default. Only use if you have history mode enabled.
+  using_user_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
+```
+
 ## (Optional) Step 4: Additional Configurations
 ### Change the Build Schema
 By default, this package builds the GitHub staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your GitHub staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
