@@ -12,6 +12,7 @@ sources:
 
     tables:
       - name: account
+        identifier: "{{ var('account_identifier', 'account')}}"
         loaded_at_field: _fivetran_synced
         description: Represents an individual account, which is an organization or person involved with your business (such as customers, competitors, and partners).
         columns:
@@ -115,6 +116,7 @@ sources:
           description: The website of this account.
 
       - name: opportunity
+        identifier: "{{ var('opportunity_identifier', 'opportunity')}}"
         loaded_at_field: _fivetran_synced
         description: Represents an opportunity, which is a sale or pending deal.
         columns:
@@ -192,6 +194,7 @@ sources:
           description: Type of opportunity. For example, Existing Business or New Business.
 
       - name: user
+        identifier: "{{ var('user_identifier', 'user')}}"
         freshness: null
         description: Represents a user in your organization.
         columns:
@@ -327,6 +330,7 @@ sources:
           description: The category of user license.
 
       - name: user_role
+        identifier: "{{ var('user_role_identifier', 'user_role')}}"
         freshness: null
         description: Represents a user role in your organization.
         columns:
