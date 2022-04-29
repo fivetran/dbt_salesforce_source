@@ -11,7 +11,7 @@ This package enriches your Fivetran data by doing the following:
 
 ## Models
 
-This package contains staging models, designed to work simultaneously with our [Salesforce modeling package](https://github.com/fivetran/dbt_salesforce).  The staging models:
+This package contains staging models, designed to work simultaneously with our [Salesforce transform package](https://github.com/fivetran/dbt_salesforce).  The staging models:
 * Remove any rows that are soft-deleted
 * Name columns consistently across all packages:
     * Boolean fields are prefixed with `is_` or `has_`
