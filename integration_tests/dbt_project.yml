@@ -7,10 +7,11 @@ profile: 'integration_tests'
 
 vars:
   salesforce_source:
-      account: "{{ ref('account_data') }}"
-      opportunity: "{{ ref('opportunity_data') }}"
-      user: "{{ ref('user_data') }}"
-      user_role: "{{ ref('user_role_data') }}"
+      salesforce__account_identifier: "account"
+      salesforce__opportunity_identifier: "opportunity"
+      salesforce__user_role_identifier: "user_role"
+      salesforce__user_identifier: "user"
+      
       salesforce_schema: salesforce_source_integration_tests
 
 seeds:
