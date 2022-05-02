@@ -51,6 +51,9 @@ By default, this package will run using your target database and the `salesforce
 vars:
     salesforce_database: your_database_name
     salesforce_schema: your_schema_name 
+
+    # if an individual source table has a different name than expected, provide the name of the table as it appears in your warehouse
+    <default_source_table_name>_identifier: your_table_name 
 ```
 ### Adding Passthrough Columns
 This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
