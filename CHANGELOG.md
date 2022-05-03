@@ -1,7 +1,9 @@
 # dbt_salesforce_source v0.5.0
 ## Features
-- Updated formatting to align with most recent standards
-- The README has been updated to reflect our recent rehaul of our documentation style. 
+- Updated package to align with most recent standards:
+  - Updated formatting in our `sql` files.
+  - The README has been updated to reflect our rehaul of our documentation style to make it more straightforward. 
+  - Added `identifier` variable to each source to allow for more end-user customization on which table to pull from.
 ([#25](https://github.com/fivetran/dbt_salesforce_source/pull/25))
 
 # dbt_salesforce_source v0.4.2
