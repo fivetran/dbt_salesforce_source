@@ -1,7 +1,8 @@
 # dbt_salesforce_source v0.5.0
 ## Features
-- Updating package structure to align with most recent standards ([#25](https://github.com/fivetran/dbt_salesforce_source/pull/25))
--
+- Updated formatting to align with most recent standards
+- The README has been updated to reflect our recent rehaul of our documentation style. 
+([#25](https://github.com/fivetran/dbt_salesforce_source/pull/25))
 
 # dbt_salesforce_source v0.4.2
 ## Fixes

@@ -16,7 +16,7 @@ fields as (
         }}
 
         --The below script allows for pass through columns.
-        {% if var('opportunity_pass_through_columns') %}
+        {% if var('opportunity_pass_through_columns',[]) != [] %}
         , {{ var('opportunity_pass_through_columns') | join (", ")}}
         {% endif %}
 
@@ -59,11 +59,9 @@ final as (
         synced_quote_id,
         type
 
-      --The below script allows for pass through columns.
-
+        --The below script allows for pass through columns.
         {% if var('opportunity_pass_through_columns') %}
-        ,
-        {{ var('opportunity_pass_through_columns') | join (", ")}}
+        , {{ var('opportunity_pass_through_columns') | join (", ")}}
 
         {% endif %}
 
