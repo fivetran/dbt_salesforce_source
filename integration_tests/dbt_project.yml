@@ -10,7 +10,7 @@ vars:
       account: "{{ ref('account_data') }}"
       opportunity: "{{ ref('opportunity_data') }}"
       user: "{{ ref('user_data') }}"
-      user_role: "{{ ref('user_role_data') }}"\
+      user_role: "{{ ref('user_role_data') }}"
 
 seeds:
   salesforce_source_integration_tests:
