@@ -12,7 +12,7 @@ sources:
 
     tables:
       - name: account
-        salesforce_account_identifier: "{{ var('account_identifier', 'account')}}"
+        salesforce_account_identifier: "{{ var('salesforce_account_identifier', 'account')}}"
         loaded_at_field: _fivetran_synced
         description: Represents an individual account, which is an organization or person involved with your business (such as customers, competitors, and partners).
         columns:
@@ -116,7 +116,7 @@ sources:
           description: The website of this account.
 
       - name: opportunity
-        salesforce_opportunity_identifier: "{{ var('opportunity_identifier', 'opportunity')}}"
+        salesforce_opportunity_identifier: "{{ var('salesforce_opportunity_identifier', 'opportunity')}}"
         loaded_at_field: _fivetran_synced
         description: Represents an opportunity, which is a sale or pending deal.
         columns:
@@ -194,7 +194,7 @@ sources:
           description: Type of opportunity. For example, Existing Business or New Business.
 
       - name: user
-        salesforce_user_identifier: "{{ var('user_identifier', 'user')}}"
+        salesforce_user_identifier: "{{ var('salesforce_user_identifier', 'user')}}"
         freshness: null
         description: Represents a user in your organization.
         columns:
@@ -330,7 +330,7 @@ sources:
           description: The category of user license.
 
       - name: user_role
-        salesforce_user_role_identifier: "{{ var('user_role_identifier', 'user_role')}}"
+        salesforce_user_role_identifier: "{{ var('salesforce_user_role_identifier', 'user_role')}}"
         freshness: null
         description: Represents a user role in your organization.
         columns:
