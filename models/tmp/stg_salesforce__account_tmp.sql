@@ -5,6 +5,6 @@ where
     {% if target.type == 'snowflake' %}
         coalesce("_FIVETRAN_ACTIVE", true)
     {% endif %}
-    
-    coalesce((_fivetran_active, true)
+
+    coalesce(_fivetran_active, true)
 {% endif %}
