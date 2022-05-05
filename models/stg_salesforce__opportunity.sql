@@ -60,7 +60,7 @@ final as (
         type
 
         --The below script allows for pass through columns.
-        {% if var('opportunity_pass_through_columns') %}
+        {% if var('opportunity_pass_through_columns',[]) != [] %}
         , {{ var('opportunity_pass_through_columns') | join (", ")}}
 
         {% endif %}
