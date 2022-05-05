@@ -11,11 +11,11 @@ vars:
     salesforce_opportunity_identifier: "opportunity_data"
     salesforce_user_identifier: "user_data"
     salesforce_user_role_identifier: "user_role_data"
-    salesforce_schema: salesforce_source_integration_tests
+    salesforce_schema: salesforce_source_integration_tests_no_quotes
 
 seeds:
   salesforce_source_integration_tests:
-    +quote_columns: "{{ true if target.type in ('redshift', 'postgres', 'snowflake') else false }}"
+    +quote_columns: "{{ true if target.type in ('redshift', 'postgres') else false }}"
     +column_types:
       _fivetran_synced: timestamp
       _fivetran_active: boolean
