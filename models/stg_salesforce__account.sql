@@ -16,7 +16,7 @@ fields as (
         }}
 
         --The below script allows for pass through columns.
-        {% if var('account_pass_through_columns') %}
+        {% if var('account_pass_through_columns',[]) != [] %}
         , {{ var('account_pass_through_columns') | join (", ")}}
         {% endif %}
         
