@@ -15,7 +15,7 @@ vars:
 
 seeds:
   salesforce_source_integration_tests:
-    +quote_columns: "{{ true if target.type in ('redshift', 'postgres') else false }}"
+    +quote_columns: "{{ true if target.type in ('redshift', 'postgres', 'snowflake') else false }}"
     +column_types:
       _fivetran_synced: timestamp
       _fivetran_active: boolean
