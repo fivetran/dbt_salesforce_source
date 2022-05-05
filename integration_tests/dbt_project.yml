@@ -18,6 +18,7 @@ seeds:
     +quote_columns: "{{ true if target.type in ('redshift', 'postgres') else false }}"
     +column_types:
       _fivetran_synced: timestamp
+      _fivetran_active: boolean
     account_data:
       +column_types:
         last_activity_date: timestamp
