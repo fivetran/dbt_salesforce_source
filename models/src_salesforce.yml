@@ -20,6 +20,8 @@ sources:
           description: The unique, system-generated ID assigned during creation
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: account_number
           description: Account number assigned to this account (not the unique, system-generated ID assigned during creation).
         - name: account_source
@@ -124,6 +126,8 @@ sources:
           description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: account_id
           description: ID of the account associated with this opportunity.
         - name: amount
@@ -202,6 +206,8 @@ sources:
           description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: _fivetran_deleted
           description: True, if this field has been deleted
         - name: about_me
@@ -340,6 +346,8 @@ sources:
           description: The time at which fivetran last synced this record
         - name: _fivetran_deleted
           description: True, if this field has been deleted
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: case_access_for_account_owner
           description: The case access level for the account owner.
         - name: contact_access_for_account_owner
