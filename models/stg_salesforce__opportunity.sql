@@ -1,18 +1,13 @@
-with source as (
+with base as (
 
     select *
     from {{ ref('stg_salesforce__opportunity_tmp') }}
+), 
 
-), macro as (
+fields as (
 
     select
-        /*
-        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns 
-        that are expected/needed (staging_columns from dbt_salesforce_source/models/tmp/) and compares it with columns 
-        in the source (source_columns from dbt_salesforce_source/macros/).
 
-        For more information refer to our dbt_fivetran_utils documentation (https://github.com/fivetran/dbt_fivetran_utils.git).
-        */
         {{
             fivetran_utils.fill_staging_columns(
                 source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__opportunity_tmp')),
@@ -20,21 +15,18 @@ with source as (
             )
         }}
 
-      --The below script allows for pass through columns.
-
-        {% if var('opportunity_pass_through_columns') %}
-        ,
-        {{ var('opportunity_pass_through_columns') | join (", ")}}
-
+        --The below script allows for pass through columns.
+        {% if var('opportunity_pass_through_columns',[]) != [] %}
+        , {{ var('opportunity_pass_through_columns') | join (", ")}}
         {% endif %}
 
-    from source
+    from base
+), 
 
-), renamed as (
+final as (
     
     select 
-
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
         account_id,
         cast(amount as {{ dbt_utils.type_numeric() }}) as amount,
         campaign_id,
@@ -54,9 +46,9 @@ with source as (
         is_closed,
         is_deleted,
         is_won,
-        last_activity_date,
-        last_referenced_date,
-        last_viewed_date,
+        cast(last_activity_date as {{ dbt_utils.type_timestamp() }}) as last_activity_date,
+        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
         lead_source,
         name as opportunity_name,
         next_step,
@@ -67,17 +59,16 @@ with source as (
         synced_quote_id,
         type
 
-      --The below script allows for pass through columns.
-
-        {% if var('opportunity_pass_through_columns') %}
-        ,
-        {{ var('opportunity_pass_through_columns') | join (", ")}}
+        --The below script allows for pass through columns.
+        {% if var('opportunity_pass_through_columns',[]) != [] %}
+        , {{ var('opportunity_pass_through_columns') | join (", ")}}
 
         {% endif %}
 
-    from macro
+    from fields
+), 
 
-), calculated as (
+calculated as (
         
     select 
         *,
@@ -87,9 +78,7 @@ with source as (
         {{ dbt_utils.datediff('close_date', 'created_date', 'day') }} as days_to_close,
         {{ dbt_utils.date_trunc('month', 'close_date') }} = {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_closed_this_month,
         {{ dbt_utils.date_trunc('quarter', 'close_date') }} = {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_closed_this_quarter
-
-    from renamed
-
+    from final
 )
 
 select * 
