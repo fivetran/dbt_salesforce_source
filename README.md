@@ -38,6 +38,7 @@ Ensure you are using one of these supported databases.
 ## Step 2: Installing the Package
 Include the following salesforce_source package version in your `packages.yml`
 > Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
+
 ```yaml
 packages:
   - package: fivetran/salesforce_source
