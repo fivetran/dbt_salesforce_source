@@ -12,6 +12,7 @@ sources:
 
     tables:
       - name: account
+        identifier: "{{ var('salesforce_account_identifier', 'account')}}"
         loaded_at_field: _fivetran_synced
         description: Represents an individual account, which is an organization or person involved with your business (such as customers, competitors, and partners).
         columns:
@@ -19,6 +20,8 @@ sources:
           description: The unique, system-generated ID assigned during creation
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: account_number
           description: Account number assigned to this account (not the unique, system-generated ID assigned during creation).
         - name: account_source
@@ -115,6 +118,7 @@ sources:
           description: The website of this account.
 
       - name: opportunity
+        identifier: "{{ var('salesforce_opportunity_identifier', 'opportunity')}}"
         loaded_at_field: _fivetran_synced
         description: Represents an opportunity, which is a sale or pending deal.
         columns:
@@ -122,6 +126,8 @@ sources:
           description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: account_id
           description: ID of the account associated with this opportunity.
         - name: amount
@@ -192,6 +198,7 @@ sources:
           description: Type of opportunity. For example, Existing Business or New Business.
 
       - name: user
+        identifier: "{{ var('salesforce_user_identifier', 'user')}}"
         freshness: null
         description: Represents a user in your organization.
         columns:
@@ -199,6 +206,8 @@ sources:
           description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: _fivetran_deleted
           description: True, if this field has been deleted
         - name: about_me
@@ -327,6 +336,7 @@ sources:
           description: The category of user license.
 
       - name: user_role
+        identifier: "{{ var('salesforce_user_role_identifier', 'user_role')}}"
         freshness: null
         description: Represents a user role in your organization.
         columns:
@@ -336,6 +346,8 @@ sources:
           description: The time at which fivetran last synced this record
         - name: _fivetran_deleted
           description: True, if this field has been deleted
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: case_access_for_account_owner
           description: The case access level for the account owner.
         - name: contact_access_for_account_owner

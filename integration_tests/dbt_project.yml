@@ -1,5 +1,5 @@
 name: 'salesforce_source_integration_tests'
-version: '0.4.2'
+version: '0.5.0'
 
 config-version: 2
 
@@ -7,17 +7,18 @@ profile: 'integration_tests'
 
 vars:
   salesforce_source:
-      account: "{{ ref('account_data') }}"
-      opportunity: "{{ ref('opportunity_data') }}"
-      user: "{{ ref('user_data') }}"
-      user_role: "{{ ref('user_role_data') }}"
-      salesforce_schema: salesforce_source_integration_tests
+    salesforce_account_identifier: "account_data"
+    salesforce_opportunity_identifier: "opportunity_data"
+    salesforce_user_identifier: "user_data"
+    salesforce_user_role_identifier: "user_role_data"
+    salesforce_schema: salesforce_source_integration_tests_the_best
 
 seeds:
   salesforce_source_integration_tests:
     +quote_columns: "{{ true if target.type in ('redshift', 'postgres') else false }}"
     +column_types:
       _fivetran_synced: timestamp
+      _fivetran_active: boolean
     account_data:
       +column_types:
         last_activity_date: timestamp
