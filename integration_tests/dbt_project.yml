@@ -1,5 +1,5 @@
 name: 'salesforce_source_integration_tests'
-version: '0.5.0'
+version: '0.6.0'
 
 config-version: 2
 
@@ -11,6 +11,14 @@ vars:
     salesforce_opportunity_identifier: "opportunity_data"
     salesforce_user_identifier: "user_data"
     salesforce_user_role_identifier: "user_role_data"
+    salesforce_contact_identifier: "contact_data"
+    salesforce_account_identifier: "account_data"
+    salesforce_lead_identifier: "lead_data"
+    salesforce_task_identifier: "task_data"
+    salesforce_event_identifier: "event_data"
+    salesforce_product_identifier: "product_data"
+    salesforce_order_identifier: "order_data"
+    salesforce_opportunity_line_item_identifier: "opportunity_line_item_data"
     salesforce_schema: salesforce_source_integration_tests_the_best
 
 seeds:

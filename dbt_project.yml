@@ -1,7 +1,7 @@
 config-version: 2
 
 name: 'salesforce_source'
-version: '0.5.0'
+version: '0.6.0'
 
 
 require-dbt-version: [">=1.0.0", "<2.0.0"]
@@ -18,6 +18,14 @@ vars:
     opportunity: "{{ source('salesforce', 'opportunity') }}"
     user: "{{ source('salesforce', 'user') }}"
     user_role: "{{ source('salesforce', 'user_role') }}"
+    contact: "{{ source('salesforce', 'contact') }}"
+    account: "{{ source('salesforce', 'account') }}"
+    lead: "{{ source('salesforce', 'lead') }}"
+    task: "{{ source('salesforce', 'task') }}"
+    event: "{{ source('salesforce', 'event') }}"
+    product: "{{ source('salesforce', 'product') }}"
+    order: "{{ source('salesforce', 'order') }}"
+    opportunity_line_item: "{{ source('salesforce', 'opportunity_line_item') }}"
     
     salesforce__user_role_enabled: true
 
