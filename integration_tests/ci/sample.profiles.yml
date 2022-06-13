@@ -7,7 +7,7 @@ config:
     use_colors: True
 
 integration_tests:
-  target: snowflake
+  target: bigquery
   outputs:
     postgres:
       type: postgres
