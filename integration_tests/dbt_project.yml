@@ -54,6 +54,19 @@ seeds:
         offline_trial_expiration_date: timestamp
         latitude: float
         longitude: float
+    lead_data:
+      +column_types:
+        owner_id: string
+        master_record_id: string
+        last_modified_by_id: string
+        converted_contact_id: string
+        id: string
+        jigsaw_contact_id: string
+        created_by_id: string
+        converted_opportunity_id: string
+        converted_account_id: string
+
+
 
 dispatch:
   - macro_namespace: dbt_utils
