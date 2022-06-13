@@ -56,15 +56,15 @@ seeds:
         longitude: float
     lead_data:
       +column_types:
-        owner_id: string
-        master_record_id: string
-        last_modified_by_id: string
-        converted_contact_id: string
-        id: string
-        jigsaw_contact_id: string
-        created_by_id: string
-        converted_opportunity_id: string
-        converted_account_id: string
+        owner_id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
+        master_record_id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
+        last_modified_by_id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
+        converted_contact_id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
+        id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
+        jigsaw_contact_id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
+        created_by_id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
+        converted_opportunity_id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
+        converted_account_id: "{{ 'string' if target.type == 'bigquery' else 'varchar' }}"
 
 
 
