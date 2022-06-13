@@ -20,7 +20,7 @@ fields as (
 final as (
     
     select 
-18:20:18          _fivetran_synced,
+        _fivetran_synced,
         account_id,
         activity_date,
         affectlayer_affect_layer_call_id_c,
