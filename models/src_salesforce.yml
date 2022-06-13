@@ -369,4 +369,34 @@ sources:
         - name: rollup_description
           description: Description of the forecast rollup.
 
+
+      - name: contact
+        identifier: "{{ var('salesforce_contact_identifier', 'contact')}}"
+        freshness: null
+        
+      - name: event
+        identifier: "{{ var('salesforce_event_identifier', 'event')}}"
+        freshness: null
+        
+      - name: lead
+        identifier: "{{ var('salesforce_lead_identifier', 'lead')}}"
+        freshness: null
+        
+      - name: opportunity_line_item
+        identifier: "{{ var('salesforce_opportunity_line_item_identifier', 'opportunity_line_item')}}"
+        freshness: null
+        
+      - name: order
+        identifier: "{{ var('salesforce_order_identifier', 'order')}}"
+        freshness: null
+        
+      - name: product_2
+        identifier: "{{ var('salesforce_product_2_identifier', 'product_2')}}"
+        freshness: null
+        
+      - name: task
+        identifier: "{{ var('salesforce_task_identifier', 'task')}}"
+        freshness: null
+        
+
       - name: fivetran_formula
