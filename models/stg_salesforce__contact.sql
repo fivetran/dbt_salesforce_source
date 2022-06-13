@@ -79,7 +79,7 @@ final as (
         reports_to_id,
         salutation,
         system_modstamp,
-        title,
+        title
     from fields
 )
 
