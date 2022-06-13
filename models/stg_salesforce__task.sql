@@ -2,7 +2,7 @@
 with base as (
 
     select * 
-    from {{ ref('stg_salesforce__event_tmp') }}
+    from {{ ref('stg_salesforce__task_tmp') }}
 ),
 
 fields as (
@@ -10,8 +10,8 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__event_tmp')),
-                staging_columns=get_event_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__task_tmp')),
+                staging_columns=get_task_columns()
             )
         }}
     from base
@@ -20,10 +20,9 @@ fields as (
 final as (
     
     select 
-        _fivetran_synced,
+18:20:18          _fivetran_synced,
         account_id,
         activity_date,
-        activity_date_time,
         affectlayer_affect_layer_call_id_c,
         affectlayer_chorus_call_id_c,
         assigned_to_name_c,
@@ -32,41 +31,38 @@ final as (
         attendance_number_c,
         bizible_2_bizible_id_c,
         bizible_2_bizible_touchpoint_date_c,
+        call_disposition,
         call_disposition_2_c,
         call_disposition_c,
+        call_duration_in_seconds,
+        call_object,
         call_recording_c,
+        call_type,
         campaign_c,
+        co_sell_partner_account_c,
         co_selling_activity_c,
         collections_hold_c,
+        completed_date_time,
         created_by_id,
         created_date,
         description,
         description_c,
-        duration_in_minutes,
         duration_in_minutes_c,
-        end_date,
-        end_date_time,
         event_name_c,
-        event_subtype,
         execute_collections_plan_activity_c,
         expected_payment_date_c,
         first_meeting_c,
         first_meeting_held_c,
-        group_event_type,
         how_did_you_bring_value_or_create_trust_c,
         how_did_you_bring_value_or_earn_trust_c,
         id,
         invitee_uuid_c,
         is_a_co_sell_activity_c,
         is_archived,
-        is_child,
+        is_closed,
         is_deleted,
-        is_group_event,
-        is_private,
+        is_high_priority,
         is_recurrence,
-        is_recurrence_2,
-        is_recurrence_2_exception,
-        is_recurrence_2_exclusion,
         is_reminder_set,
         last_modified_by_id,
         last_modified_date,
@@ -74,7 +70,6 @@ final as (
         legacy_hvr_id_c,
         lid_date_sent_c,
         lid_url_c,
-        location,
         meeting_name_c,
         meeting_type_c,
         no_show_c,
@@ -83,11 +78,9 @@ final as (
         partner_account_c,
         partner_activity_type_c,
         partner_contact_c,
+        priority,
         proof_of_referral_c,
-        recurrence_2_pattern_start_date,
-        recurrence_2_pattern_text,
-        recurrence_2_pattern_time_zone,
-        recurrence_2_pattern_version,
+        record_type_id,
         recurrence_activity_id,
         recurrence_day_of_month,
         recurrence_day_of_week_mask,
@@ -95,7 +88,8 @@ final as (
         recurrence_instance,
         recurrence_interval,
         recurrence_month_of_year,
-        recurrence_start_date_time,
+        recurrence_regenerated_type,
+        recurrence_start_date_only,
         recurrence_time_zone_sid_key,
         recurrence_type,
         referral_account_c,
@@ -121,10 +115,10 @@ final as (
         sales_loft_step_name_c,
         sales_loft_step_type_c,
         sales_loft_viewed_count_c,
-        show_as,
-        start_date_time,
+        status,
         subject,
         system_modstamp,
+        task_subtype,
         topic_c,
         type,
         vidyard_c,

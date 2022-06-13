@@ -20,7 +20,7 @@ fields as (
 final as (
     
     select 
-18:30:59          _fivetran_synced,
+        _fivetran_synced,
         account_id,
         activated_by_id,
         activated_date,

@@ -20,7 +20,7 @@ fields as (
 final as (
     
     select 
-18:30:38          _fivetran_synced,
+        _fivetran_synced,
         celigo_sfnsio_contract_item_id_c,
         celigo_sfnsio_contract_term_c,
         celigo_sfnsio_end_date_c,
