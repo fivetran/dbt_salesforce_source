@@ -19,11 +19,10 @@ vars:
     user: "{{ source('salesforce', 'user') }}"
     user_role: "{{ source('salesforce', 'user_role') }}"
     contact: "{{ source('salesforce', 'contact') }}"
-    account: "{{ source('salesforce', 'account') }}"
     lead: "{{ source('salesforce', 'lead') }}"
     task: "{{ source('salesforce', 'task') }}"
     event: "{{ source('salesforce', 'event') }}"
-    product: "{{ source('salesforce', 'product') }}"
+    product_2: "{{ source('salesforce', 'product_2') }}"
     order: "{{ source('salesforce', 'order') }}"
     opportunity_line_item: "{{ source('salesforce', 'opportunity_line_item') }}"
     

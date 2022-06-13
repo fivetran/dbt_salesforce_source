@@ -368,3 +368,5 @@ sources:
           description: This value indicates the type of portal for the role
         - name: rollup_description
           description: Description of the forecast rollup.
+
+      - name: fivetran_formula

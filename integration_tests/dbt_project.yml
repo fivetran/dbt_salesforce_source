@@ -16,7 +16,7 @@ vars:
     salesforce_lead_identifier: "lead_data"
     salesforce_task_identifier: "task_data"
     salesforce_event_identifier: "event_data"
-    salesforce_product_identifier: "product_data"
+    salesforce_product_2_identifier: "product_2_data"
     salesforce_order_identifier: "order_data"
     salesforce_opportunity_line_item_identifier: "opportunity_line_item_data"
     salesforce_schema: salesforce_source_integration_tests_the_best
