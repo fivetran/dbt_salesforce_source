@@ -1,4 +1,12 @@
-# dbt_salesforce_source v0.5.0
+# dbt_salesforce_source v0.6.0
+🎉 Salesforce v2 🎉
+
+We are updating the Salesforce package! To improve its utility, the changes include:
+## Features
+  - Bringing additional tables to create a new Contact Enhanced and Sales Velocity model as well as updating the Opportunity Enhanced model.
+  - Allowing formula fields to be added as passthrough columns. We added integration with the Salesforce Formula package by embedding the macro outputs as part of our staging models so that your custom formula fields can be included. 
+  
+  # dbt_salesforce_source v0.5.0
 ## Features
 - Updated package to align with most recent standards:
   - Updated formatting in our `sql` files.
