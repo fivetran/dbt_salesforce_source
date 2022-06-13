@@ -110,6 +110,26 @@ models:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
 
+### Adding Formula Fields as Pass Through Columns
+The source tables Fivetran syncs do not include formula fields. The [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package allows you to generate those fields in order to map Salesforce formulas to existing tables. To pass through the fields, add the following configuration:
+
+To your `packages.yml` file:
+```yml
+packages:
+
+  - package: fivetran/salesforce_formula_utils
+    version: [">=0.6.0", "<0.7.0"]
+```
+
+To your `dbt_project.yml` file:
+```yml
+# Using the opportunity source table as example, update the opportunity variable to reference your newly created model that contains the formula fields:
+  opportunity: "{{ ref('your_table_name_here') }}"
+
+# In addition, add the desired field names as pass through columns
+  opportunity_pass_through_columns: ['field_1','field_2']
+```
+
 ## Step 5: Finish Setup
 Your dbt project is now setup to successfully run the dbt package models! You can now execute `dbt run` and `dbt test` to have the models materialize in your warehouse and execute the data integrity tests applied within the package.
 
