@@ -1,4 +1,4 @@
-18:30:04  {% macro get_event_columns() %}
+{% macro get_event_columns() %}
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
