@@ -1,19 +1,12 @@
-with source as (
+with base as (
 
     select *
     from {{ ref('stg_salesforce__user_tmp') }}
+), 
 
-), macro as (
+fields as (
 
     select
-        
-        /*
-        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns 
-        that are expected/needed (staging_columns from dbt_salesforce_source/models/tmp/) and compares it with columns 
-        in the source (source_columns from dbt_salesforce_source/macros/).
-
-        For more information refer to our dbt_fivetran_utils documentation (https://github.com/fivetran/dbt_fivetran_utils.git).
-        */
 
         {{
             fivetran_utils.fill_staging_columns(
@@ -22,22 +15,19 @@ with source as (
             )
         }}
 
-      --The below script allows for pass through columns.
-
-        {% if var('user_pass_through_columns') %}
-        ,
-        {{ var('user_pass_through_columns') | join (", ")}}
-
+        --The below script allows for pass through columns.
+        {% if var('user_pass_through_columns',[]) != [] %}
+        , {{ var('user_pass_through_columns') | join (", ")}}
         {% endif %}
 
-    from source
+    from base
+), 
 
-), renamed as (
+final as (
     
     select 
-
         _fivetran_deleted,
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
         account_id,
         alias,
         city,
@@ -51,10 +41,10 @@ with source as (
         id as user_id,
         individual_id,
         is_active,
-        last_login_date,
+        cast(last_login_date as {{ dbt_utils.type_timestamp() }}) as last_login_date,
         last_name,
-        last_referenced_date,
-        last_viewed_date,
+        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
         manager_id,
         name as user_name,
         postal_code,
@@ -66,18 +56,16 @@ with source as (
         user_role_id,
         user_type,
         username 
-      --The below script allows for pass through columns.
-
-        {% if var('user_pass_through_columns') %}
-        ,
-        {{ var('user_pass_through_columns') | join (", ")}}
+        
+        --The below script allows for pass through columns.
+        {% if var('user_pass_through_columns',[]) != [] %}
+        , {{ var('user_pass_through_columns') | join (", ")}}
 
         {% endif %}
     
-    from macro
-
+    from fields
 )
 
 select * 
-from renamed
+from final
 where not coalesce(_fivetran_deleted, false)

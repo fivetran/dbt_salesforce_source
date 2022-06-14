@@ -1,5 +1,5 @@
 name: 'salesforce_source_integration_tests'
-version: '0.4.2'
+version: '0.6.0'
 
 config-version: 2
 
@@ -7,17 +7,26 @@ profile: 'integration_tests'
 
 vars:
   salesforce_source:
-      account: "{{ ref('account_data') }}"
-      opportunity: "{{ ref('opportunity_data') }}"
-      user: "{{ ref('user_data') }}"
-      user_role: "{{ ref('user_role_data') }}"
-      salesforce_schema: salesforce_source_integration_tests
+    salesforce_account_identifier: "sf_account_data"
+    salesforce_opportunity_identifier: "sf_opportunity_data"
+    salesforce_user_identifier: "sf_user_data"
+    salesforce_user_role_identifier: "sf_user_role_data"
+    salesforce_contact_identifier: "sf_contact_data"
+    salesforce_account_identifier: "sf_account_data"
+    salesforce_lead_identifier: "sf_lead_data"
+    salesforce_task_identifier: "sf_task_data"
+    salesforce_event_identifier: "sf_event_data"
+    salesforce_product_2_identifier: "sf_product_2_data"
+    salesforce_order_identifier: "sf_order_data"
+    salesforce_opportunity_line_item_identifier: "sf_opportunity_line_item_data"
+    salesforce_schema: salesforce_source_integration_tests_the_best
 
 seeds:
   salesforce_source_integration_tests:
     +quote_columns: "{{ true if target.type in ('redshift', 'postgres') else false }}"
     +column_types:
       _fivetran_synced: timestamp
+      _fivetran_active: boolean
     account_data:
       +column_types:
         last_activity_date: timestamp
@@ -45,6 +54,8 @@ seeds:
         offline_trial_expiration_date: timestamp
         latitude: float
         longitude: float
+
+
 
 dispatch:
   - macro_namespace: dbt_utils

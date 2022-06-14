@@ -1,21 +1,16 @@
 --To disable this model, set the using_user_role variable within your dbt_project.yml file to False.
 {{ config(enabled=var('salesforce__user_role_enabled', True)) }}
 
-with source as (
+with base as (
 
     select *
     from {{ ref('stg_salesforce__user_role_tmp') }}
+), 
 
-), macro as (
+fields as (
 
     select
-        /*
-        The below macro is used to generate the correct SQL for package staging models. It takes a list of columns 
-        that are expected/needed (staging_columns from dbt_salesforce_source/models/tmp/) and compares it with columns 
-        in the source (source_columns from dbt_salesforce_source/macros/).
-
-        For more information refer to our dbt_fivetran_utils documentation (https://github.com/fivetran/dbt_fivetran_utils.git).
-        */
+        
         {{
             fivetran_utils.fill_staging_columns(
                 source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__user_role_tmp')),
@@ -23,23 +18,36 @@ with source as (
             )
         }}
 
-    from source
+        --The below script allows for pass through columns.
+        {% if var('user_role_pass_through_columns',[]) != [] %}
+        , {{ var('user_role_pass_through_columns') | join (", ")}}
+        {% endif %}
 
-), renamed as (
+    from base
+), 
 
-  select
-    _fivetran_deleted,
-    _fivetran_synced,
-    developer_name,
-    id as user_role_id,
-    name as user_role_name,
-    opportunity_access_for_account_owner,
-    parent_role_id,
-    rollup_description
-  from macro
+final as (
 
+    select
+        _fivetran_deleted,
+        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        developer_name,
+        id as user_role_id,
+        name as user_role_name,
+        opportunity_access_for_account_owner,
+        parent_role_id,
+        rollup_description
+    from fields
+
+        --The below script allows for pass through columns.
+        {% if var('user_role_pass_through_columns',[]) != [] %}
+        , {{ var('user_role_pass_through_columns') | join (", ")}}
+
+        {% endif %}
+        
+    from fields
 )
 
 select *
-from renamed
-where not coalesce(_fivetran_deleted, false)
+from final
+where not coalesce(is_deleted, false)

@@ -12,6 +12,7 @@ sources:
 
     tables:
       - name: account
+        identifier: "{{ var('salesforce_account_identifier', 'account')}}"
         loaded_at_field: _fivetran_synced
         description: Represents an individual account, which is an organization or person involved with your business (such as customers, competitors, and partners).
         columns:
@@ -19,6 +20,8 @@ sources:
           description: The unique, system-generated ID assigned during creation
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: account_number
           description: Account number assigned to this account (not the unique, system-generated ID assigned during creation).
         - name: account_source
@@ -115,6 +118,7 @@ sources:
           description: The website of this account.
 
       - name: opportunity
+        identifier: "{{ var('salesforce_opportunity_identifier', 'opportunity')}}"
         loaded_at_field: _fivetran_synced
         description: Represents an opportunity, which is a sale or pending deal.
         columns:
@@ -122,6 +126,8 @@ sources:
           description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: account_id
           description: ID of the account associated with this opportunity.
         - name: amount
@@ -192,6 +198,7 @@ sources:
           description: Type of opportunity. For example, Existing Business or New Business.
 
       - name: user
+        identifier: "{{ var('salesforce_user_identifier', 'user')}}"
         freshness: null
         description: Represents a user in your organization.
         columns:
@@ -199,6 +206,8 @@ sources:
           description: The unique, system-generated ID assigned during creation.
         - name: _fivetran_synced
           description: The time at which fivetran last synced this record
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: _fivetran_deleted
           description: True, if this field has been deleted
         - name: about_me
@@ -327,6 +336,7 @@ sources:
           description: The category of user license.
 
       - name: user_role
+        identifier: "{{ var('salesforce_user_role_identifier', 'user_role')}}"
         freshness: null
         description: Represents a user role in your organization.
         columns:
@@ -336,6 +346,8 @@ sources:
           description: The time at which fivetran last synced this record
         - name: _fivetran_deleted
           description: True, if this field has been deleted
+        - name: _fivetran_active
+          description: True if record is active, used to filter out only active records if History Mode is enabled
         - name: case_access_for_account_owner
           description: The case access level for the account owner.
         - name: contact_access_for_account_owner
@@ -356,3 +368,665 @@ sources:
           description: This value indicates the type of portal for the role
         - name: rollup_description
           description: Description of the forecast rollup.
+
+
+      - name: contact
+        identifier: "{{ var('salesforce_contact_identifier', 'contact')}}"
+        freshness: null
+        columns:
+        - name: _fivetran_synced
+          description: 
+        - name: account_id
+          description: ID of the account that’s the parent of this contact.
+        - name: assistant_name
+          description: The assistant’s name.
+        - name: assistant_phone
+          description: The assistant’s telephone number.
+        - name: birthdate
+          description: The contact’s birthdate.
+        - name: department
+          description: The contact’s department.
+        - name: description
+          description: A description of the contact. 
+        - name: do_not_call
+          description: 
+        - name: email
+          description: 
+        - name: email_bounced_date
+          description: 
+        - name: email_bounced_reason
+          description: 
+        - name: fax
+          description: 
+        - name: first_name
+          description: 
+        - name: has_opted_out_of_email
+          description: 
+        - name: has_opted_out_of_fax
+          description: 
+        - name: home_phone
+          description: 
+        - name: id
+          description: 
+        - name: individual_id
+          description: 
+        - name: is_deleted
+          description: 
+        - name: is_email_bounced
+          description: 
+        - name: jigsaw
+          description: 
+        - name: jigsaw_contact_id
+          description: 
+        - name: last_activity_date
+          description: 
+        - name: last_curequest_date
+          description: 
+        - name: last_cuupdate_date
+          description: 
+        - name: last_modified_by_id
+          description: 
+        - name: last_modified_date
+          description: 
+        - name: last_name
+          description: 
+        - name: last_referenced_date
+          description: 
+        - name: last_viewed_date
+          description: 
+        - name: lead_source
+          description: 
+        - name: mailing_city
+          description: 
+        - name: mailing_country
+          description: 
+        - name: mailing_country_code
+          description: 
+        - name: mailing_geocode_accuracy
+          description: 
+        - name: mailing_latitude
+          description: 
+        - name: mailing_longitude
+          description: 
+        - name: mailing_postal_code
+          description: 
+        - name: mailing_state
+          description: 
+        - name: mailing_state_code
+          description: 
+        - name: mailing_street
+          description: 
+        - name: master_record_id
+          description: 
+        - name: mobile_phone
+          description: 
+        - name: name
+          description: 
+        - name: other_city
+          description: 
+        - name: other_country
+          description: 
+        - name: other_geocode_accuracy
+          description: 
+        - name: other_latitude
+          description: 
+        - name: other_longitude
+          description: 
+        - name: other_phone
+          description: 
+        - name: other_postal_code
+          description: 
+        - name: other_state
+          description: 
+        - name: other_street
+          description: 
+        - name: owner_id
+          description: 
+        - name: phone
+          description: 
+        - name: photo_url
+          description: 
+        - name: reports_to_id
+          description: 
+        - name: salutation
+          description: 
+        - name: system_modstamp
+          description: 
+        - name: title
+          description: 
+
+        
+      - name: event
+        identifier: "{{ var('salesforce_event_identifier', 'event')}}"
+        freshness: null
+        columns:
+        - name: _fivetran_synced
+          description:
+        - name: account_id
+          description:
+        - name: activity_date
+          description:
+        - name: activity_date_time
+          description:
+        - name: created_by_id
+          description:
+        - name: created_date
+          description:
+        - name: description
+          description:
+        - name: duration_in_minutes
+          description:
+        - name: end_date
+          description:
+        - name: end_date_time
+          description:
+        - name: event_subtype
+          description:
+        - name: group_event_type
+          description:
+        - name: id
+          description:
+        - name: is_archived
+          description:
+        - name: is_child
+          description:
+        - name: is_deleted
+          description:
+        - name: is_group_event
+          description:
+        - name: is_private
+          description:
+        - name: is_recurrence
+          description:
+        - name: is_recurrence_2
+          description:
+        - name: is_recurrence_2_exception
+          description:
+        - name: is_recurrence_2_exclusion
+          description:
+        - name: is_reminder_set
+          description:
+        - name: last_modified_by_id
+          description:
+        - name: last_modified_date
+          description:
+        - name: location
+          description:
+        - name: owner_id
+          description:
+        - name: recurrence_2_pattern_start_date
+          description:
+        - name: recurrence_2_pattern_text
+          description:
+        - name: recurrence_2_pattern_time_zone
+          description:
+        - name: recurrence_2_pattern_version
+          description:
+        - name: recurrence_activity_id
+          description:
+        - name: recurrence_day_of_month
+          description:
+        - name: recurrence_day_of_week_mask
+          description:
+        - name: recurrence_end_date_only
+          description:
+        - name: recurrence_instance
+          description:
+        - name: recurrence_interval
+          description:
+        - name: recurrence_month_of_year
+          description:
+        - name: recurrence_start_date_time
+          description:
+        - name: recurrence_time_zone_sid_key
+          description:
+        - name: recurrence_type
+          description:
+        - name: reminder_date_time
+          description:
+        - name: show_as
+          description:
+        - name: start_date_time
+          description:
+        - name: subject
+          description:
+        - name: system_modstamp
+          description:
+        - name: type
+          description:
+        - name: what_count
+          description:
+        - name: what_id
+          description:
+        - name: who_count
+          description:
+        - name: who_id
+          description:
+
+        
+      - name: lead
+        identifier: "{{ var('salesforce_lead_identifier', 'lead')}}"
+        freshness: null
+        columns:
+        - name: _fivetran_synced
+          description: 
+        - name: annual_revenue
+          description: 
+        - name: city
+          description: 
+        - name: company
+          description: 
+        - name: converted_account_id
+          description: 
+        - name: converted_contact_id
+          description: 
+        - name: converted_date
+          description: 
+        - name: converted_opportunity_id
+          description: 
+        - name: country
+          description: 
+        - name: country_code
+          description: 
+        - name: created_by_id
+          description: 
+        - name: created_date
+          description: 
+        - name: description
+          description: 
+        - name: email
+          description: 
+        - name: email_bounced_date
+          description: 
+        - name: email_bounced_reason
+          description: 
+        - name: fax
+          description: 
+        - name: first_name
+          description: 
+        - name: geocode_accuracy
+          description: 
+        - name: has_opted_out_of_email
+          description: 
+        - name: id
+          description: 
+        - name: individual_id
+          description: 
+        - name: industry
+          description: 
+        - name: is_converted
+          description: 
+        - name: is_deleted
+          description: 
+        - name: is_unread_by_owner
+          description: 
+        - name: jigsaw_contact_id
+          description: 
+        - name: last_activity_date
+          description: 
+        - name: last_modified_by_id
+          description: 
+        - name: last_modified_date
+          description: 
+        - name: last_name
+          description: 
+        - name: last_referenced_date
+          description: 
+        - name: last_viewed_date
+          description: 
+        - name: latitude
+          description: 
+        - name: lead_source
+          description: 
+        - name: longitude
+          description: 
+        - name: master_record_id
+          description: 
+        - name: mobile_phone
+          description: 
+        - name: name
+          description: 
+        - name: number_of_employees
+          description: 
+        - name: owner_id
+          description: 
+        - name: phone
+          description: 
+        - name: photo_url
+          description: 
+        - name: postal_code
+          description: 
+        - name: salutation
+          description: 
+        - name: state
+          description: 
+        - name: state_code
+          description: 
+        - name: status
+          description: 
+        - name: street
+          description: 
+        - name: system_modstamp
+          description: 
+        - name: title
+          description: 
+        - name: website
+          description: 
+
+        
+      - name: opportunity_line_item
+        identifier: "{{ var('salesforce_opportunity_line_item_identifier', 'opportunity_line_item')}}"
+        freshness: null
+        columns:
+        - name: _fivetran_synced
+          description: 
+        - name: created_by_id
+          description: 
+        - name: created_date
+          description: 
+        - name: description
+          description: 
+        - name: discount
+          description: 
+        - name: has_quantity_schedule
+          description: 
+        - name: has_revenue_schedule
+          description: 
+        - name: has_schedule
+          description: 
+        - name: id
+          description: 
+        - name: is_deleted
+          description: 
+        - name: last_modified_by_id
+          description: 
+        - name: last_modified_date
+          description: 
+        - name: last_referenced_date
+          description: 
+        - name: last_viewed_date
+          description: 
+        - name: list_price
+          description: 
+        - name: name
+          description: 
+        - name: opportunity_id
+          description: 
+        - name: pricebook_entry_id
+          description: 
+        - name: product_2_id
+          description: 
+        - name: product_code
+          description: 
+        - name: quantity
+          description: 
+        - name: service_date
+          description: 
+        - name: sort_order
+          description: 
+        - name: system_modstamp
+          description: 
+        - name: total_price
+          description: 
+        - name: unit_price
+          description: 
+
+        
+      - name: order
+        identifier: "{{ var('salesforce_order_identifier', 'order')}}"
+        freshness: null
+        columns:
+        - name: _fivetran_synced
+          description: 
+        - name: account_id
+          description: 
+        - name: activated_by_id
+          description: 
+        - name: activated_date
+          description: 
+        - name: billing_city
+          description: 
+        - name: billing_country
+          description: 
+        - name: billing_country_code
+          description: 
+        - name: billing_geocode_accuracy
+          description: 
+        - name: billing_latitude
+          description: 
+        - name: billing_longitude
+          description: 
+        - name: billing_postal_code
+          description: 
+        - name: billing_state
+          description: 
+        - name: billing_state_code
+          description: 
+        - name: billing_street
+          description: 
+        - name: company_authorized_by_id
+          description: 
+        - name: contract_id
+          description: 
+        - name: created_by_id
+          description: 
+        - name: created_date
+          description: 
+        - name: customer_authorized_by_id
+          description: 
+        - name: description
+          description: 
+        - name: effective_date
+          description: 
+        - name: end_date
+          description: 
+        - name: id
+          description: 
+        - name: is_deleted
+          description: 
+        - name: is_reduction_order
+          description: 
+        - name: last_modified_by_id
+          description: 
+        - name: last_modified_date
+          description: 
+        - name: last_referenced_date
+          description: 
+        - name: last_viewed_date
+          description: 
+        - name: opportunity_id
+          description: 
+        - name: order_number
+          description: 
+        - name: original_order_id
+          description: 
+        - name: owner_id
+          description: 
+        - name: pricebook_2_id
+          description: 
+        - name: shipping_city
+          description: 
+        - name: shipping_country
+          description: 
+        - name: shipping_country_code
+          description: 
+        - name: shipping_geocode_accuracy
+          description: 
+        - name: shipping_latitude
+          description: 
+        - name: shipping_longitude
+          description: 
+        - name: shipping_postal_code
+          description: 
+        - name: shipping_state
+          description: 
+        - name: shipping_state_code
+          description: 
+        - name: shipping_street
+          description: 
+        - name: status
+          description: 
+        - name: status_code
+          description: 
+        - name: system_modstamp
+          description: 
+        - name: total_amount
+          description: 
+        - name: type
+          description: 
+        
+      - name: product_2
+        identifier: "{{ var('salesforce_product_2_identifier', 'product_2')}}"
+        freshness: null
+        columns:
+        - name: _fivetran_synced
+          description:
+        - name: created_by_id
+          description:
+        - name: created_date
+          description:
+        - name: description
+          description:
+        - name: display_url
+          description:
+        - name: external_data_source_id
+          description:
+        - name: external_id
+          description:
+        - name: family
+          description:
+        - name: id
+          description:
+        - name: is_active
+          description:
+        - name: is_archived
+          description:
+        - name: is_deleted
+          description:
+        - name: last_modified_by_id
+          description:
+        - name: last_modified_date
+          description:
+        - name: last_referenced_date
+          description:
+        - name: last_viewed_date
+          description:
+        - name: name
+          description:
+        - name: number_of_quantity_installments
+          description:
+        - name: number_of_revenue_installments
+          description:
+        - name: product_code
+          description:
+        - name: quantity_installment_period
+          description:
+        - name: quantity_schedule_type
+          description:
+        - name: quantity_unit_of_measure
+          description:
+        - name: record_type_id
+          description:
+        - name: revenue_installment_period
+          description:
+        - name: revenue_schedule_type
+          description:
+        - name: stock_keeping_unit
+          description:
+        - name: system_modstamp
+          description:
+        
+      - name: task
+        identifier: "{{ var('salesforce_task_identifier', 'task')}}"
+        freshness: null
+        columns:
+        - name: _fivetran_synced
+          description: 
+        - name: account_id
+          description: 
+        - name: activity_date
+          description: 
+        - name: call_disposition
+          description: 
+        - name: call_duration_in_seconds
+          description: 
+        - name: call_object
+          description: 
+        - name: call_type
+          description: 
+        - name: completed_date_time
+          description: 
+        - name: created_by_id
+          description: 
+        - name: created_date
+          description: 
+        - name: description
+          description: 
+        - name: id
+          description: 
+        - name: is_archived
+          description: 
+        - name: is_closed
+          description: 
+        - name: is_deleted
+          description: 
+        - name: is_high_priority
+          description: 
+        - name: is_recurrence
+          description: 
+        - name: is_reminder_set
+          description: 
+        - name: last_modified_by_id
+          description: 
+        - name: last_modified_date
+          description: 
+        - name: owner_id
+          description: 
+        - name: priority
+          description: 
+        - name: record_type_id
+          description: 
+        - name: recurrence_activity_id
+          description: 
+        - name: recurrence_day_of_month
+          description: 
+        - name: recurrence_day_of_week_mask
+          description: 
+        - name: recurrence_end_date_only
+          description: 
+        - name: recurrence_instance
+          description: 
+        - name: recurrence_interval
+          description: 
+        - name: recurrence_month_of_year
+          description: 
+        - name: recurrence_regenerated_type
+          description: 
+        - name: recurrence_start_date_only
+          description: 
+        - name: recurrence_time_zone_sid_key
+          description: 
+        - name: recurrence_type
+          description: 
+        - name: reminder_date_time
+          description: 
+        - name: status
+          description: 
+        - name: subject
+          description: 
+        - name: system_modstamp
+          description: 
+        - name: task_subtype
+          description: 
+        - name: type
+          description: 
+        - name: what_count
+          description: 
+        - name: what_id
+          description: 
+        - name: who_count
+          description: 
+        - name: who_id
+          description: 
+
+      - name: fivetran_formula
