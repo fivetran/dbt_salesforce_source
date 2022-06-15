@@ -113,7 +113,7 @@ models:
 ### Adding Formula Fields as Pass Through Columns
 The source tables Fivetran syncs do not include formula fields. The [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package allows you to generate those fields in order to map Salesforce formulas to existing tables. To pass through the fields, add the following configuration:
 
-To your `packages.yml` file:
+Include the following within your `packages.yml` file:
 ```yml
 packages:
 
@@ -121,21 +121,20 @@ packages:
     version: [">=0.6.0", "<0.7.0"]
 ```
 
-To your `dbt_project.yml` file:
+Include the following within your `dbt_project.yml` file:
 ```yml
 # Using the opportunity source table as example, update the opportunity variable to reference your newly created model that contains the formula fields:
-  opportunity: "{{ ref('your_table_name_here') }}"
+  opportunity: "{{ ref('my_opportunity_formula_table') }}"
 
 # In addition, add the desired field names as pass through columns
-  opportunity_pass_through_columns: ['field_1','field_2']
+  opportunity_pass_through_columns: ['formula_field_1','formula_field_2']
 ```
 
 ## Step 5: Finish Setup
 Your dbt project is now setup to successfully run the dbt package models! You can now execute `dbt run` and `dbt test` to have the models materialize in your warehouse and execute the data integrity tests applied within the package.
 
-## (Optional) Step 6: Orchestrate your package models with Fivetran
-Fivetran offers the ability for you to orchestrate your dbt project through the [Fivetran Transformations for dbt Core](https://fivetran.com/docs/transformations/dbt) product. Refer to the linked docs for more information on how to setup your project for orchestration through Fivetran. 
-
+# (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
+Fivetran offers the ability for you to orchestrate your dbt project through the [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt) product. Refer to the linked docs for more information on how to setup your project for orchestration through Fivetran. 
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. For more information on the below packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > **If you have any of these dependent packages in your own `packages.yml` I highly recommend you remove them to ensure there are no package version conflicts.**
