@@ -20,16 +20,8 @@
 - Materializes staging tables which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/salesforce/#schemainformation) and is intended to work simultaneously with our [Salesforce modeling package](https://github.com/fivetran/dbt_salesforce)
     - Refer to our [Docs site](https://fivetran.github.io/dbt_salesforce_source/#!/overview/salesforce_source/models/?g_v=1) for more details about these materialized models. 
 
-# 🤔  Who is the target user of this dbt package?
-- You use Fivetran's [Salesforce connector](https://fivetran.com/docs/applications/salesforce)
-- You use dbt
-- You want a staging layer that cleans, tests, and prepares your Salesforce data for analysis
-- (Optional) You want to make use of the [Salesforce Modeling dbt Package](https://github.com/fivetran/dbt_salesforce)
-
 # 🎯 How do I use the dbt package?
-To effectively install this package and leverage the pre-made models, you will follow the below steps:
 ## Step 1: Pre-Requisites
-You will need to ensure you have the following before leveraging the dbt package.
 - **Connector**: Have the Fivetran Salesforce connector syncing data into your warehouse. 
 - **Database support**: This package has been tested on **Postgres**, **Spark**, **Redshift**, **Snowflake**, and **BigQuery**.
 
@@ -52,9 +44,6 @@ By default, this package will run using your target database and the `salesforce
 vars:
     salesforce_database: your_database_name
     salesforce_schema: your_schema_name 
-
-    # if an individual source table has a different name than expected, provide the name of the table as it appears in your warehouse
-    salesforce_<default_source_table_name>_identifier: your_table_name  
 ```
 ### Adding Passthrough Columns
 This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
@@ -68,6 +57,14 @@ vars:
   account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
   opportunity_pass_through_columns: [my_opp_custom_field]
   user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
+  contact_pass_through_columns: [contact_custom_field_1, contact_custom_field_2]
+  lead_pass_through_columns: [lead_custom_field_1, lead_custom_field_2]
+  task_pass_through_columns: [task_custom_field_1, task_custom_field_2]
+  event_pass_through_columns: [event_custom_field_1, event_custom_field_2]
+  product_2_pass_through_columns: [product_2_custom_field_1, product_2_custom_field_2]
+  order_pass_through_columns: [order_custom_field_1, order_custom_field_2]
+  opportunity_line_item_pass_through_columns: [opportunity_line_item_custom_field_1, opportunity_line_item_custom_field_2]
+  user_role_pass_through_columns: [user_custom_field_1, user_custom_field_2]
 ```
 
 ### Disabling Models
@@ -98,6 +95,13 @@ vars:
   using_opportunity_history_mode_active_records: true  # false by default. Only use if you have history mode enabled.
   using_user_role_history_mode_active_records: true    # false by default. Only use if you have history mode enabled.
   using_user_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
+  using_contact_history_mode_active_records: true      # false by default. Only use if you have history mode enabled.
+  using_lead_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
+  using_task_history_mode_active_records: true         # false by default. Only use if you have history mode enabled.
+  using_event_history_mode_active_records: true        # false by default. Only use if you have history mode enabled.
+  using_product_2_history_mode_active_records: true    # false by default. Only use if you have history mode enabled.
+  using_order_history_mode_active_records: true        # false by default. Only use if you have history mode enabled.
+  using_opportunity_line_item_history_mode_active_records: true       # false by default. Only use if you have history mode enabled.
 ```
 
 ## (Optional) Step 4: Additional Configurations
@@ -109,9 +113,17 @@ models:
     salesforce_source:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
+### Change the source table references
+If an individual source table has a different name than expected, provide the name of the table as it appears in your warehouse to the respective variable:
+> IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_salesforce_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
+    
+```yml
+vars:
+    salesforce_<default_source_table_name>_identifier: your_table_name
+```  
 
 ### Adding Formula Fields as Pass Through Columns
-The source tables Fivetran syncs do not include formula fields. The [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package allows you to generate those fields in order to map Salesforce formulas to existing tables. To pass through the fields, add the following configuration:
+The source tables Fivetran syncs do not include formula fields. If your company uses them, you can generate them by referring to the [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package. To pass through the fields, add the following configuration. We recommend confirming your formula field models successfully populate before integrating with the Salesforce package. 
 
 Include the following within your `packages.yml` file:
 ```yml
@@ -130,10 +142,7 @@ Include the following within your `dbt_project.yml` file:
   opportunity_pass_through_columns: ['formula_field_1','formula_field_2']
 ```
 
-## Step 5: Finish Setup
-Your dbt project is now setup to successfully run the dbt package models! You can now execute `dbt run` and `dbt test` to have the models materialize in your warehouse and execute the data integrity tests applied within the package.
-
-# (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
+# (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
 Fivetran offers the ability for you to orchestrate your dbt project through the [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt) product. Refer to the linked docs for more information on how to setup your project for orchestration through Fivetran. 
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. For more information on the below packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
