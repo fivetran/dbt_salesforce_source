@@ -1,4 +1,4 @@
-18:29:54  {% macro get_opportunity_line_item_columns() %}
+{% macro get_opportunity_line_item_columns() %}
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},

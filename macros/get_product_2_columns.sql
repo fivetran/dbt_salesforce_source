@@ -1,4 +1,4 @@
-18:19:46  {% macro get_product_2_columns() %}
+{% macro get_product_2_columns() %}
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt_utils.type_timestamp()},
