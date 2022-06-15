@@ -24,7 +24,6 @@
     {"name": "quantity", "datatype": dbt_utils.type_float()},
     {"name": "service_date", "datatype": dbt_utils.type_timestamp()},
     {"name": "sort_order", "datatype": dbt_utils.type_int()},
-    {"name": "system_modstamp", "datatype": dbt_utils.type_timestamp()},
     {"name": "total_price", "datatype": dbt_utils.type_float()},
     {"name": "unit_price", "datatype": dbt_utils.type_float()}
 ] %}

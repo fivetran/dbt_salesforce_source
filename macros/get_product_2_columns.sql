@@ -6,7 +6,6 @@
     {"name": "created_date", "datatype": dbt_utils.type_timestamp()},
     {"name": "description", "datatype": dbt_utils.type_string()},
     {"name": "display_url", "datatype": dbt_utils.type_string()},
-    {"name": "external_data_source_id", "datatype": dbt_utils.type_string()},
     {"name": "external_id", "datatype": dbt_utils.type_string()},
     {"name": "family", "datatype": dbt_utils.type_string()},
     {"name": "id", "datatype": dbt_utils.type_string()},
@@ -27,8 +26,6 @@
     {"name": "record_type_id", "datatype": dbt_utils.type_string()},
     {"name": "revenue_installment_period", "datatype": dbt_utils.type_string()},
     {"name": "revenue_schedule_type", "datatype": dbt_utils.type_string()},
-    {"name": "stock_keeping_unit", "datatype": dbt_utils.type_string()},
-    {"name": "system_modstamp", "datatype": dbt_utils.type_timestamp()},
 ] %}
 
 {{ return(columns) }}

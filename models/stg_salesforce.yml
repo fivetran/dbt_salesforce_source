@@ -590,8 +590,6 @@ models:
         description: The lead’s fax number.
       - name: first_name
         description: The lead’s first name up to 40 characters. 
-      - name: geocode_accuracy
-        description: Accuracy level of the geocode for the address.
       - name: has_opted_out_of_email
         description: Indicates whether the lead doesn’t want to receive email from Salesforce (true) or does (false). Label is Email Opt Out.
       - name: id
@@ -782,8 +780,6 @@ models:
         description: Created By ID
       - name: created_date
         description: Created Date
-      - name: customer_authorized_by_id
-        description: ID of the contact who authorized the order. This is a relationship field.
       - name: description
         description: Description of the order.
       - name: end_date

@@ -44,7 +44,6 @@ final as (
         cast(email_bounced_date as {{ dbt_utils.type_timestamp() }}) as email_bounced_date,
         email_bounced_reason,
         first_name,
-        geocode_accuracy,
         has_opted_out_of_email,
         individual_id,
         industry,
