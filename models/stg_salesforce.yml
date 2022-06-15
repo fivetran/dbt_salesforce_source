@@ -489,9 +489,9 @@ models:
 
           The value for this field and StartDateTime must match, or one of them must be null.
       - name: created_by_id
-        description: Created By ID	
+        description: Created By ID
       - name: created_date
-        description: Created Date	
+        description: Created Date
       - name: description
         description: Contains a text description of the event.
       - name: duration_in_minutes
@@ -504,9 +504,9 @@ models:
       - name: event_subtype
         description: Provides standard subtypes to facilitate creating and searching for events. This field isn’t updateable.
       - name: group_event_type
-        description: Group Event Type	
+        description: Group Event Type
       - name: id
-        description: Activity ID	
+        description: Activity ID
       - name: is_archived
         description: Indicates whether the event has been archived.
       - name: is_child
@@ -518,9 +518,9 @@ models:
       - name: is_recurrence
         description: Indicates whether a Salesforce Classic event is scheduled to repeat itself (true) or only occurs one time (false). This field is read-only when updating records, but not when creating them. If this field value is true, then RecurrenceEndDateOnly, RecurrenceStartDateTime, RecurrenceType, and any recurrence fields associated with the given recurrence type must be populated. Label is Create recurring series of events.
       - name: last_modified_by_id
-        description: Last Modified By ID	
+        description: Last Modified By ID
       - name: last_modified_date
-        description: Last Modified Date	
+        description: Last Modified Date
       - name: location
         description: Contains the location of the event.
       - name: owner_id
@@ -575,9 +575,9 @@ models:
       - name: country_code
         description: The ISO country code for the lead’s address.
       - name: created_by_id
-        description: Created By ID	
+        description: Created By ID
       - name: created_date
-        description: Created Date	
+        description: Created Date
       - name: description
         description: The lead’s description.
       - name: email
@@ -595,7 +595,7 @@ models:
       - name: has_opted_out_of_email
         description: Indicates whether the lead doesn’t want to receive email from Salesforce (true) or does (false). Label is Email Opt Out.
       - name: id
-        description: Lead ID	
+        description: Lead ID
       - name: individual_id
         description: ID of the data privacy record associated with this lead. This field is available if you enabled Data Protection and Privacy in Setup.
       - name: industry
@@ -607,15 +607,15 @@ models:
       - name: is_unread_by_owner
         description: If true, lead has been assigned, but not yet viewed. See Unread Leads for more information. Label is Unread By Owner.
       - name: jigsaw_contact_id
-        description: Jigsaw Contact ID	
+        description: Jigsaw Contact ID
       - name: last_activity_date
         description: > 
           'Value is the most recent of either: Due date of the most recent event logged against the record.
           Due date of the most recently closed task associated with the record.'
       - name: last_modified_by_id
-        description: Last Modified By ID	
+        description: Last Modified By ID
       - name: last_modified_date
-        description: Last Modified Date	
+        description: Last Modified Date
       - name: last_name
         description: Required. Last name of the lead up to 80 characters.
       - name: last_referenced_date
@@ -655,7 +655,7 @@ models:
       - name: street
         description: Street number and name for the address of the lead.
       - name: system_modstamp
-        description: System Modstamp	
+        description: System Modstamp
       - name: title
         description: Title for the lead, such as CFO or CEO.
       - name: website
@@ -674,9 +674,9 @@ models:
       - name: _fivetran_active
         description: True if record is active, used to filter out only active records if History Mode is enabled
       - name: created_by_id
-        description: Created By ID	
+        description: Created By ID
       - name: created_date
-        description: Created Date	
+        description: Created Date
       - name: description
         description: Text description of the opportunity line item.
       - name: discount
@@ -691,13 +691,13 @@ models:
       - name: has_schedule
         description: If either HasQuantitySchedule or HasRevenueSchedule is true, this field is also true.
       - name: id
-        description: Line Item ID	
+        description: Line Item ID
       - name: is_deleted
         description: Deleted
       - name: last_modified_by_id
-        description: Last Modified By ID	
+        description: Last Modified By ID
       - name: last_modified_date
-        description: Last Modified Date	
+        description: Last Modified Date
       - name: last_referenced_date
         description: The timestamp for when the current user last viewed a record related to this record. Available in API version 50.0 and later.
       - name: last_viewed_date
@@ -779,9 +779,9 @@ models:
       - name: contract_id
         description: ID of the contract associated with this order. Can only be updated when the order’s StatusCode value is Draft. This is a relationship field. 
       - name: created_by_id
-        description: Created By ID	
+        description: Created By ID
       - name: created_date
-        description: Created Date	
+        description: Created Date
       - name: customer_authorized_by_id
         description: ID of the contact who authorized the order. This is a relationship field.
       - name: description
@@ -793,9 +793,9 @@ models:
       - name: is_deleted
         description: deleted
       - name: last_modified_by_id
-        description: Last Modified By ID	
+        description: Last Modified By ID
       - name: last_modified_date
-        description: Last Modified Date	
+        description: Last Modified Date
       - name: last_referenced_date
         description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
       - name: last_viewed_date
@@ -848,9 +848,9 @@ models:
       - name: _fivetran_active
         description: True if record is active, used to filter out only active records if History Mode is enabled
       - name: created_by_id
-        description: Created By ID	
+        description: Created By ID
       - name: created_date
-        description: Created Date	
+        description: Created Date
       - name: description
         description: A text description of this record. Label is Product Description.
       - name: display_url
@@ -868,9 +868,9 @@ models:
       - name: is_deleted
         description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false). Label is Deleted.
       - name: last_modified_by_id
-        description: Last Modified By ID	
+        description: Last Modified By ID
       - name: last_modified_date
-        description: Last Modified Date	
+        description: Last Modified Date
       - name: last_referenced_date
         description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
       - name: last_viewed_date
@@ -898,7 +898,7 @@ models:
       - name: stock_keeping_unit
         description: The SKU for the product. Use in tandem with or instead of the ProductCode field. For example, you can track the manufacturer’s identifying code in the Product Code field and assign the product a SKU when you resell it.
       - name: system_modstamp
-        description: System Modstamp	 
+        description: System Modstamp 
       
   - name: stg_salesforce__task
     description: Represents a business activity such as making a phone call or other to-do items. In the user interface, Task and Event records are collectively referred to as activities.
@@ -927,9 +927,9 @@ models:
       - name: completed_date_time
         description: The date and time the task was saved with a Closed status. For insert, if the task is saved with a Closed status the field is set. If the task is saved with an Open status the field is set to NULL. For update, if the task is saved with a new Closed status, the field is reset. If the task is saved with a new non-closed status, the field is reset to NULL. If the task is saved with the same closed status (that is, unchanged) there is no change to the field.
       - name: created_by_id
-        description: Created By ID	
+        description: Created By ID
       - name: created_date
-        description: Created Date	
+        description: Created Date
       - name: description
         description: Contains a text description of the task.
       - name: is_archived
@@ -941,9 +941,9 @@ models:
       - name: is_high_priority
         description: Indicates a high-priority task. This field is derived from the Priority field.
       - name: last_modified_by_id
-        description: Last Modified By ID	
+        description: Last Modified By ID
       - name: last_modified_date
-        description: Last Modified Date	
+        description: Last Modified Date
       - name: owner_id
         description: ID of the User or Group who owns the record. Label is Assigned To ID. This field accepts Groups of type Queue only. In the user interface, Group IDs correspond with the queue’s list view names. To create or update tasks assigned to Group, use v48.0 or later. This is a polymorphic relationship field.
       - name: priority
@@ -955,7 +955,7 @@ models:
       - name: subject
         description: The subject line of the task, such as “Call” or “Send Quote.”
       - name: system_modstamp
-        description: System Modstamp	 
+        description: System Modstamp 
       - name: task_subtype
         description: Provides standard subtypes to facilitate creating and searching for specific task subtypes.
       - name: type
