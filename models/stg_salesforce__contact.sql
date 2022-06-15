@@ -26,27 +26,22 @@ fields as (
 final as (
     
     select 
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        id as contact_id,
         account_id,
         department,
         description,
-        do_not_call,
         email,
         first_name,
-        has_opted_out_of_email,
-        has_opted_out_of_fax,
         home_phone,
-        id,
         individual_id,
         is_deleted,
-        last_activity_date,
-        last_curequest_date,
-        last_cuupdate_date,
+        cast(last_activity_date as {{ dbt_utils.type_timestamp() }}) as last_activity_date,
         last_modified_by_id,
         last_modified_date,
         last_name,
         last_referenced_date,
-        last_viewed_date,
+        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
         lead_source,
         mailing_city,
         mailing_country,
@@ -61,8 +56,6 @@ final as (
         owner_id,
         phone,
         reports_to_id,
-        salutation,
-        system_modstamp,
         title
 
         --The below script allows for pass through columns.

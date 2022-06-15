@@ -26,20 +26,20 @@ fields as (
 final as (
     
     select 
-        _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        id as opportunity_line_item_id,
         created_by_id,
-        created_date,
+        cast(created_date as {{ dbt_utils.type_timestamp() }}) as created_date,
         description,
         discount,
         has_quantity_schedule,
         has_revenue_schedule,
         has_schedule,
-        id,
         is_deleted,
         last_modified_by_id,
-        last_modified_date,
-        last_referenced_date,
-        last_viewed_date,
+        cast(last_modified_date as {{ dbt_utils.type_timestamp() }}) as last_modified_date,
+        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
         list_price,
         name,
         opportunity_id,
@@ -47,9 +47,8 @@ final as (
         product_2_id,
         product_code,
         quantity,
-        service_date,
+        cast(service_date as {{ dbt_utils.type_timestamp() }}) as service_date,
         sort_order,
-        system_modstamp,
         total_price,
         unit_price
 
