@@ -41,7 +41,6 @@ final as (
         contract_id,
         created_by_id,
         created_date,
-        customer_authorized_by_id,
         description,
         cast(end_date as {{ dbt_utils.type_timestamp() }}) as end_date,
         is_deleted,
