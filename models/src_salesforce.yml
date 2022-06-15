@@ -420,7 +420,7 @@ sources:
         - name: jigsaw
           description: Data.com Key
         - name: jigsaw_contact_id
-          description: 
+          description: Jigsaw contact OD
         - name: last_activity_date
           description: > 
             Value is the most recent of either:
@@ -511,7 +511,6 @@ sources:
         - name: title
           description: Title
 
-        
       - name: event
         identifier: "{{ var('salesforce_event_identifier', 'event')}}"
         freshness: null
@@ -908,7 +907,7 @@ sources:
         - name: end_date
           description: Date at which the order ends. Label is Order End Date.
         - name: is_deleted
-          description: 
+          description: Deleted 
         - name: is_reduction_order
           description: Read-only. Determines whether an order is a reduction order. Label is Reduction Order.
         - name: last_modified_by_id
