@@ -1,4 +1,4 @@
-# dbt_salesforce_source v0.5.0
+# dbt_salesforce_source 1.0.0
 🎉 Salesforce Package Updates 🎉
 
 We are updating the Salesforce package! To improve its utility, the changes include the following:
