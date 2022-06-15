@@ -37,7 +37,6 @@ final as (
         opportunity_access_for_account_owner,
         parent_role_id,
         rollup_description
-    from fields
 
         --The below script allows for pass through columns.
         {% if var('user_role_pass_through_columns',[]) != [] %}
@@ -50,4 +49,3 @@ final as (
 
 select *
 from final
-where not coalesce(is_deleted, false)
