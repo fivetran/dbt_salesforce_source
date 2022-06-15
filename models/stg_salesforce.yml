@@ -402,9 +402,9 @@ models:
           Due date of the most recent event logged against the record.
           Due date of the most recently closed task associated with the record.
       - name: last_modified_by_id
-        description: Last Modified By ID	
+        description: Last Modified By ID
       - name: last_modified_date
-        description: Last Modified Date	
+        description: Last Modified Date
       - name: last_name
         description: Required. Last name of the contact up to 80 characters.
       - name: last_referenced_date
