@@ -2,9 +2,6 @@
     <a alt="License"
         href="https://github.com/fivetran/dbt_salesforce_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
-    <a alt="Fivetran-Release"
-        href="https://fivetran.com/docs/getting-started/core-concepts#releasephases">
-        <img src="https://img.shields.io/badge/Fivetran Release Phase-_Beta-orange.svg" /></a>
     <a alt="dbt-core">
         <img src="https://img.shields.io/badge/dbt_core™-version_>=1.0.0_<2.0.0-orange.svg" /></a>
     <a alt="Maintained?">
@@ -23,10 +20,16 @@
 # 🎯 How do I use the dbt package?
 ## Step 1: Pre-Requisites
 - **Connector**: Have the Fivetran Salesforce connector syncing data into your warehouse. 
-- **Database support**: This package has been tested on **Postgres**, **Spark**, **Redshift**, **Snowflake**, and **BigQuery**.
+- **Database support**: This package has been tested on **Postgres**, **Databricks**, **Redshift**, **Snowflake**, and **BigQuery**.
 
-Ensure you are using one of these supported databases.
-- **dbt Version**: This dbt package requires you have a functional dbt project that utilizes a dbt version within the respective range `>=1.0.0, <2.0.0`.
+### Databricks Dispatch Configuration
+If you are using a Databricks destination with this package you will need to add the below (or a variation of the below) dispatch configuration within your `dbt_project.yml`. This is required in order for the package to accurately search for macros within the `dbt-labs/spark_utils` then the `dbt-labs/dbt_utils` packages respectively.
+```yml
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
+```
+
 ## Step 2: Installing the Package
 Include the following salesforce_source package version in your `packages.yml`
 > Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
@@ -44,27 +47,6 @@ By default, this package will run using your target database and the `salesforce
 vars:
     salesforce_database: your_database_name
     salesforce_schema: your_schema_name 
-```
-### Adding Passthrough Columns
-This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
-
-
-```yml
-# dbt_project.yml
-
-...
-vars:
-  account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
-  opportunity_pass_through_columns: [my_opp_custom_field]
-  user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
-  contact_pass_through_columns: [contact_custom_field_1, contact_custom_field_2]
-  lead_pass_through_columns: [lead_custom_field_1, lead_custom_field_2]
-  task_pass_through_columns: [task_custom_field_1, task_custom_field_2]
-  event_pass_through_columns: [event_custom_field_1, event_custom_field_2]
-  product_2_pass_through_columns: [product_2_custom_field_1, product_2_custom_field_2]
-  order_pass_through_columns: [order_custom_field_1, order_custom_field_2]
-  opportunity_line_item_pass_through_columns: [opportunity_line_item_custom_field_1, opportunity_line_item_custom_field_2]
-  user_role_pass_through_columns: [user_custom_field_1, user_custom_field_2]
 ```
 
 ### Disabling Models
@@ -142,7 +124,29 @@ Include the following within your `dbt_project.yml` file:
   opportunity_pass_through_columns: ['formula_field_1','formula_field_2']
 ```
 
-# (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
+### Adding Passthrough Columns
+This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
+
+
+```yml
+# dbt_project.yml
+
+...
+vars:
+  account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
+  opportunity_pass_through_columns: [my_opp_custom_field]
+  user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
+  contact_pass_through_columns: [contact_custom_field_1, contact_custom_field_2]
+  lead_pass_through_columns: [lead_custom_field_1, lead_custom_field_2]
+  task_pass_through_columns: [task_custom_field_1, task_custom_field_2]
+  event_pass_through_columns: [event_custom_field_1, event_custom_field_2]
+  product_2_pass_through_columns: [product_2_custom_field_1, product_2_custom_field_2]
+  order_pass_through_columns: [order_custom_field_1, order_custom_field_2]
+  opportunity_line_item_pass_through_columns: [opportunity_line_item_custom_field_1, opportunity_line_item_custom_field_2]
+  user_role_pass_through_columns: [user_custom_field_1, user_custom_field_2]
+```
+
+## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
 Fivetran offers the ability for you to orchestrate your dbt project through the [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt) product. Refer to the linked docs for more information on how to setup your project for orchestration through Fivetran. 
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. For more information on the below packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
