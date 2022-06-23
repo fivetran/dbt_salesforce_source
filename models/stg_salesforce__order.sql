@@ -41,7 +41,7 @@ final as (
         contract_id,
         created_by_id,
         created_date,
-        description,
+        description as order_description,
         cast(end_date as {{ dbt_utils.type_timestamp() }}) as end_date,
         is_deleted,
         last_modified_by_id,

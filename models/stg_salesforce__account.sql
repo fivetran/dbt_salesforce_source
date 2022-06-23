@@ -36,7 +36,7 @@ final as (
         billing_state,
         billing_state_code,
         billing_street,
-        description,
+        description as account_description,
         id as account_id,
         industry,
         is_deleted,

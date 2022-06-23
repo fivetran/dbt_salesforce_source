@@ -25,7 +25,7 @@ vars:
     product_2: "{{ source('salesforce', 'product_2') }}"
     order: "{{ source('salesforce', 'order') }}"
     opportunity_line_item: "{{ source('salesforce', 'opportunity_line_item') }}"
-    
+
     salesforce__user_role_enabled: true
 
     # Salesforce pass through column variables
@@ -53,4 +53,3 @@ vars:
     using_product_2_history_mode_active_records: false
     using_order_history_mode_active_records: false
     using_opportunity_line_item_history_mode_active_records: false
-    

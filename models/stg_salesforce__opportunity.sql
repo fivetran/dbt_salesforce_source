@@ -32,7 +32,7 @@ final as (
         campaign_id,
         cast(close_date as {{ dbt_utils.type_timestamp() }}) as close_date,
         cast(created_date as {{ dbt_utils.type_timestamp() }}) as created_date,
-        description,
+        description as opportunity_description,
         cast(expected_revenue as {{ dbt_utils.type_numeric() }}) as expected_revenue,
         fiscal,
         fiscal_quarter,

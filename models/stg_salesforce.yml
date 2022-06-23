@@ -38,7 +38,7 @@ models:
         description: The ISO state code for the account’s billing address.
       - name: billing_street 
         description: Street address for the billing address of this account.
-      - name: description 
+      - name: account_description 
         description: Text description of the account.
       - name: fax 
         description: Fax number for the account.
@@ -127,7 +127,7 @@ models:
         description: Required. Date when the opportunity is expected to close.
       - name: created_date
         description: Date when the opportunity is was created.
-      - name: description
+      - name: opportunity_description
         description: Text description of the opportunity.
       - name: expected_revenue
         description: Read-only field that is equal to the product of the opportunity Amount field and the Probability.
@@ -384,7 +384,7 @@ models:
         description: ID of the account that’s the parent of this contact.
       - name: department
         description: The contact’s department.
-      - name: description
+      - name: contact_description
         description: A description of the contact. Label is Contact Description up to 32 KB.
       - name: email
         description: The contact’s email address.
@@ -433,7 +433,7 @@ models:
           This is a relationship field.
       - name: mobile_phone
         description: Contact’s mobile phone number.
-      - name: name
+      - name: contact_name
         description: Concatenation of FirstName, MiddleName, LastName, and Suffix up to 203 characters, including whitespaces.
       - name: owner_id
         description: >
@@ -492,7 +492,7 @@ models:
         description: Created By ID
       - name: created_date
         description: Created Date
-      - name: description
+      - name: event_description
         description: Contains a text description of the event.
       - name: duration_in_minutes
         description: >
@@ -505,8 +505,6 @@ models:
         description: Provides standard subtypes to facilitate creating and searching for events. This field isn’t updateable.
       - name: group_event_type
         description: Group Event Type
-      - name: id
-        description: Activity ID
       - name: is_archived
         description: Indicates whether the event has been archived.
       - name: is_child
@@ -578,7 +576,7 @@ models:
         description: Created By ID
       - name: created_date
         description: Created Date
-      - name: description
+      - name: lead_description
         description: The lead’s description.
       - name: email
         description: The lead’s email address.
@@ -592,8 +590,6 @@ models:
         description: The lead’s first name up to 40 characters. 
       - name: has_opted_out_of_email
         description: Indicates whether the lead doesn’t want to receive email from Salesforce (true) or does (false). Label is Email Opt Out.
-      - name: id
-        description: Lead ID
       - name: individual_id
         description: ID of the data privacy record associated with this lead. This field is available if you enabled Data Protection and Privacy in Setup.
       - name: industry
@@ -630,7 +626,7 @@ models:
         description: If this record was deleted as the result of a merge, this field contains the ID of the record that was kept. If this record was deleted for any other reason, or has not been deleted, the value is null.
       - name: mobile_phone
         description: The lead’s mobile phone number.
-      - name: name
+      - name: lead_name
         description: Concatenation of FirstName, MiddleName, LastName, and Suffix up to 203 characters, including whitespaces. 
       - name: number_of_employees
         description: Number of employees at the lead’s company. Label is Employees.
@@ -675,7 +671,7 @@ models:
         description: Created By ID
       - name: created_date
         description: Created Date
-      - name: description
+      - name: opportunity_line_item_description
         description: Text description of the opportunity line item.
       - name: discount
         description: >
@@ -688,7 +684,7 @@ models:
         description: Indicates whether a revenue schedule has been created for this object (true) or not (false). If this object has a revenue schedule, the Quantity and TotalPrice fields can’t be updated. In addition, the Quantity field can’t be updated if this object has a quantity schedule. Update requests aren’t rejected but the updated values are ignored.
       - name: has_schedule
         description: If either HasQuantitySchedule or HasRevenueSchedule is true, this field is also true.
-      - name: id
+      - name: opportunity_line_item_id
         description: Line Item ID
       - name: is_deleted
         description: Deleted
@@ -702,7 +698,7 @@ models:
         description: The timestamp for when the current user last viewed this record. If this value is null, this record might only have been referenced (LastReferencedDate) and not viewed. Available in API version 50.0 and later.
       - name: list_price
         description: Corresponds to the UnitPrice on the PricebookEntry that is associated with this line item, which can be in the standard price book or a custom price book. A client application can use this information to show whether the unit price (or sales price) of the line item differs from the price book entry list price.
-      - name: name
+      - name: opportunity_line_item_name
         description: The opportunity line item name (known as “Opportunity Product” in the user interface). This read-only field is available in API version 30.0 and later.
       - name: opportunity_id
         description: Required. ID of the associated Opportunity. This is a relationship field.
@@ -780,7 +776,7 @@ models:
         description: Created By ID
       - name: created_date
         description: Created Date
-      - name: description
+      - name: order_description
         description: Description of the order.
       - name: end_date
         description: Date at which the order ends. Label is Order End Date.
@@ -847,7 +843,7 @@ models:
         description: Created By ID
       - name: created_date
         description: Created Date
-      - name: description
+      - name: product_2_description
         description: A text description of this record. Label is Product Description.
       - name: display_url
         description: URL leading to a specific version of a record in the linked external data source.
@@ -871,7 +867,7 @@ models:
         description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
       - name: last_viewed_date
         description: The timestamp when the current user last viewed this record or list view. If this value is null, the user might have only accessed this record or list view (LastReferencedDate) but not viewed it.
-      - name: name
+      - name: product_2_name
         description: Required. Default name of this record. Label is Product Name.
       - name: number_of_quantity_installments
         description: If the product has a quantity schedule, the number of installments.
@@ -926,7 +922,7 @@ models:
         description: Created By ID
       - name: created_date
         description: Created Date
-      - name: description
+      - name: task_description
         description: Contains a text description of the task.
       - name: is_archived
         description: Indicates whether the event has been archived.

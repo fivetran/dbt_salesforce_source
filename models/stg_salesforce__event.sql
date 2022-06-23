@@ -33,7 +33,7 @@ final as (
         cast(activity_date_time as {{ dbt_utils.type_timestamp() }}) as activity_date_time,
         created_by_id,
         cast(created_date as {{ dbt_utils.type_timestamp() }}) as created_date,
-        description,
+        description as event_description,
         cast(end_date as {{ dbt_utils.type_timestamp() }}) as end_date,
         cast(end_date_time as {{ dbt_utils.type_timestamp() }}) as end_date_time,
         event_subtype,

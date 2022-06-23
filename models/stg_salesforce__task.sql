@@ -37,7 +37,7 @@ final as (
         cast(completed_date_time as {{ dbt_utils.type_timestamp() }}) as completed_date_time,
         created_by_id,
         cast(created_date as {{ dbt_utils.type_timestamp() }}) as created_date,
-        description,
+        description as task_description,
         is_archived,
         is_closed,
         is_deleted,
