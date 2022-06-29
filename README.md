@@ -46,7 +46,8 @@ By default, this package will run using your target database and the `salesforce
 ```yml
 vars:
     salesforce_database: your_database_name
-    salesforce_schema: your_schema_name 
+    salesforce_schema: your_schema_name
+    salesforce__<default_source_table_name>_identifier: your_table_name
 ```
 
 ### Disabling Models
@@ -85,6 +86,17 @@ vars:
   using_order_history_mode_active_records: true        # false by default. Only use if you have history mode enabled.
   using_opportunity_line_item_history_mode_active_records: true       # false by default. Only use if you have history mode enabled.
 ```
+### Change the Source Table References
+If an individual source table has a different name than expected, provide the name of the table as it appears in your warehouse to the respective variable:
+> IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_salesforce_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
+
+```yml
+# dbt_project.yml
+...
+config-version: 2
+vars:
+    salesforce_<default_source_table_name>_identifier: your_table_name
+```  
 
 ## (Optional) Step 4: Additional Configurations
 ### Change the Build Schema
@@ -95,15 +107,6 @@ models:
     salesforce_source:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
-### Change the source table references
-If an individual source table has a different name than expected, provide the name of the table as it appears in your warehouse to the respective variable:
-> IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_salesforce_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
-    
-```yml
-vars:
-    salesforce_<default_source_table_name>_identifier: your_table_name
-```  
-
 ### Adding Formula Fields as Pass Through Columns
 The source tables Fivetran syncs do not include formula fields. If your company uses them, you can generate them by referring to the [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package. To pass through the fields, add the following configuration. We recommend confirming your formula field models successfully populate before integrating with the Salesforce package. 
 
@@ -143,7 +146,7 @@ vars:
   product_2_pass_through_columns: [product_2_custom_field_1, product_2_custom_field_2]
   order_pass_through_columns: [order_custom_field_1, order_custom_field_2]
   opportunity_line_item_pass_through_columns: [opportunity_line_item_custom_field_1, opportunity_line_item_custom_field_2]
-  user_role_pass_through_columns: [user_custom_field_1, user_custom_field_2]
+  user_role_pass_through_columns: [user_role_custom_field_1, user_role_custom_field_2]
 ```
 
 ## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
