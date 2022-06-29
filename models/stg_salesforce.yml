@@ -124,9 +124,9 @@ models:
       - name: campaign_id
         description: ID of a related Campaign. This field is defined only for those organizations that have the campaign feature Campaigns enabled.
       - name: close_date
-        description: Required. Date when the opportunity is expected to close.
+        description: Required. Date when the opportunity is expected to close. The Close Date will change as you work the sale. It should never be set in stone as it affects your sales pipeline, and it should never be in the past.
       - name: created_date
-        description: Date when the opportunity is was created.
+        description: Date when the opportunity was created.
       - name: opportunity_description
         description: Text description of the opportunity.
       - name: expected_revenue
