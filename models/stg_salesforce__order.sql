@@ -1,3 +1,5 @@
+--To disable this model, set the using_user_role variable within your dbt_project.yml file to False.
+{{ config(enabled=var('salesforce__order_enabled', True)) }}
 
 with base as (
 

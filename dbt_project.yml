@@ -27,6 +27,12 @@ vars:
     opportunity_line_item: "{{ source('salesforce', 'opportunity_line_item') }}"
 
     salesforce__user_role_enabled: true
+    salesforce__lead_enabled: true
+    salesforce__event_enabled: true
+    salesforce__task_enabled: true
+    salesforce__opportunity_line_item_enabled: true
+    salesforce__order_enabled: true
+    salesforce__product_2_enabled: true
 
     # Salesforce pass through column variables
     account_pass_through_columns: []

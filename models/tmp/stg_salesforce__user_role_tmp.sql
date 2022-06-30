@@ -1,4 +1,4 @@
---To disable this model, set the using_user_role variable within your dbt_project.yml file to False.
+--To disable this model, set the below variable within your dbt_project.yml file to False.
 {{ config(enabled=var('salesforce__user_role_enabled', True)) }}
 
 select *

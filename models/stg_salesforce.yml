@@ -12,7 +12,7 @@ models:
           - unique
       - name: _fivetran_synced 
         description: The time at which fivetran last synced this record
-      - name: account_number 
+      - name: account_number
         description: Account number assigned to this account (not the unique, system-generated ID assigned during creation).
       - name: account_source 
         description: The source of the account record. For example, Advertisement, Data.com, or Trade Show.
@@ -42,7 +42,7 @@ models:
         description: Text description of the account.
       - name: fax 
         description: Fax number for the account.
-      - name: industry 
+      - name: industry
         description: An industry associated with this account.
       - name: is_deleted
         description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false).
