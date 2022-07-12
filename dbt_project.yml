@@ -1,7 +1,7 @@
 config-version: 2
 
 name: 'salesforce_source'
-version: '0.4.2'
+version: '0.5.0'
 
 
 require-dbt-version: [">=1.0.0", "<2.0.0"]
@@ -18,12 +18,33 @@ vars:
     opportunity: "{{ source('salesforce', 'opportunity') }}"
     user: "{{ source('salesforce', 'user') }}"
     user_role: "{{ source('salesforce', 'user_role') }}"
-    
+    contact: "{{ source('salesforce', 'contact') }}"
+    lead: "{{ source('salesforce', 'lead') }}"
+    task: "{{ source('salesforce', 'task') }}"
+    event: "{{ source('salesforce', 'event') }}"
+    product_2: "{{ source('salesforce', 'product_2') }}"
+    order: "{{ source('salesforce', 'order') }}"
+    opportunity_line_item: "{{ source('salesforce', 'opportunity_line_item') }}"
+
     salesforce__user_role_enabled: true
+    salesforce__lead_enabled: true
+    salesforce__event_enabled: true
+    salesforce__task_enabled: true
+    salesforce__opportunity_line_item_enabled: true
+    salesforce__order_enabled: true
+    salesforce__product_2_enabled: true
 
     # Salesforce pass through column variables
     account_pass_through_columns: []
+    contact_pass_through_columns: []
+    event_pass_through_columns: []
+    lead_pass_through_columns: []
     opportunity_pass_through_columns: []
+    opportunity_line_item_pass_through_columns: []
+    order_pass_through_columns: []
+    product_2_pass_through_columns: []
+    task_pass_through_columns: []
+    user_role_pass_through_columns: []
     user_pass_through_columns: []
 
     # Variable to define if you are set up with Salesforce History Mode.
@@ -31,3 +52,10 @@ vars:
     using_opportunity_history_mode_active_records: false
     using_user_role_history_mode_active_records: false
     using_user_history_mode_active_records: false
+    using_contact_history_mode_active_records: false
+    using_lead_history_mode_active_records: false
+    using_task_history_mode_active_records: false
+    using_event_history_mode_active_records: false
+    using_product_2_history_mode_active_records: false
+    using_order_history_mode_active_records: false
+    using_opportunity_line_item_history_mode_active_records: false
