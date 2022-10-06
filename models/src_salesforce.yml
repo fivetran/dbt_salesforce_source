@@ -855,9 +855,8 @@ sources:
         
       - name: order
         identifier: >
-          {% if target.type == 'snowflake' %} {{ var('salesforce_order_identifier', '"ORDER"') }}
-          {% else %} {{ var('salesforce_order_identifier', 'order') }}
-          {% endif %}
+          {% if target.type == 'snowflake' %}{{ var('salesforce_order_identifier', '"ORDER"') }}
+          {% else %}{{ var('salesforce_order_identifier', 'order') }}{% endif %}
         freshness: null
         description: Represents an order associated with a contract or an account.
         columns:
