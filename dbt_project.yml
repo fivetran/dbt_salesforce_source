@@ -24,10 +24,6 @@ vars:
     event: "{{ source('salesforce', 'event') }}"
     product_2: "{{ source('salesforce', 'product_2') }}"
     order: "{{ source('salesforce', 'order') }}"
-    # order: >
-    #   "{% if target.type == 'snowflake' %} {{ source('salesforce', '"ORDER"') }}
-    #   {% else %} {{ source('salesforce', 'order') }}
-    #   {% endif %}"
     opportunity_line_item: "{{ source('salesforce', 'opportunity_line_item') }}"
 
     salesforce__user_role_enabled: true
