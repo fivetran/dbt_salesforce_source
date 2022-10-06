@@ -854,7 +854,6 @@ sources:
             If you specify Discount and Quantity, this field or TotalPrice is required.
         
       - name: order
-        # identifier: "{{ var('salesforce_order_identifier', 'order')}}"
         identifier: >
           {% if target.type == 'snowflake' %} {{ var('salesforce_order_identifier', '"ORDER"') }}
           {% else %} {{ var('salesforce_order_identifier', 'order') }}
