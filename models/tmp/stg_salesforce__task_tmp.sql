@@ -1,5 +1,5 @@
 --To disable this model, set the below variable within your dbt_project.yml file to False.
-{{ config(enabled=var('salesforce__task_role_enabled', True)) }}
+{{ config(enabled=var('salesforce__task_enabled', True)) }}
 
 select * 
 from {{ var('task') }}
