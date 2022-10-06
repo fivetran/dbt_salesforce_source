@@ -25,6 +25,20 @@ jobs:
             pip install -r integration_tests/requirements.txt
             mkdir -p ~/.dbt
             cp integration_tests/ci/sample.profiles.yml ~/.dbt/profiles.yml
+
+      - run:
+          name: "Run Tests - Spark"
+          command: |
+            . venv/bin/activate
+            echo `pwd`
+            cd integration_tests
+            dbt deps
+            dbt seed --target spark --full-refresh
+            dbt run --vars '{using_account_history_mode_active_records: true, using_opportunity_history_mode_active_records: true, using_user_role_history_mode_active_records: true, using_user_history_mode_active_records: true, salesforce__user_role_enabled: false}' --target spark --full-refresh
+            dbt test --vars '{salesforce__user_role_enabled: false}' --target spark
+            dbt run --target spark --full-refresh
+            dbt test --target spark
+            
       - run:
           name: "Run Tests - Snowflake"
           command: |
@@ -37,11 +51,11 @@ jobs:
             dbt test --vars '{salesforce__user_role_enabled: false}' --target snowflake
             dbt run --target snowflake --full-refresh
             dbt test --target snowflake
+
       - run:
           name: "Run Tests - BigQuery"
           environment:
               GCLOUD_SERVICE_KEY_PATH: "/home/circleci/gcloud-service-key.json"
-
           command: |
             . venv/bin/activate
             echo `pwd`
@@ -70,18 +84,6 @@ jobs:
             dbt run --target postgres --full-refresh
             dbt test --target postgres
       
-      - run:
-          name: "Run Tests - Spark"
-          command: |
-            . venv/bin/activate
-            echo `pwd`
-            cd integration_tests
-            dbt deps
-            dbt seed --target spark --full-refresh
-            dbt run --vars '{using_account_history_mode_active_records: true, using_opportunity_history_mode_active_records: true, using_user_role_history_mode_active_records: true, using_user_history_mode_active_records: true, salesforce__user_role_enabled: false}' --target spark --full-refresh
-            dbt test --vars '{salesforce__user_role_enabled: false}' --target spark
-            dbt run --target spark --full-refresh
-            dbt test --target spark
       - run:
           name: "Run Tests - Redshift"
           command: |
