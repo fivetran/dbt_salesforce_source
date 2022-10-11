@@ -98,6 +98,16 @@ vars:
     salesforce_<default_source_table_name>_identifier: your_table_name
 ```  
 
+### 🚨 Snowflake Users
+If you do **not** use the default all-caps naming conventions for Snowflake, you may need to provide the case-sensitive spelling of your source tables that are also Snowflake reserved words. 
+
+In this package, this would apply to the `ORDER` source. If you are receiving errors for this source, include the below identifier in your `dbt_project.yml` file:
+
+```yml
+vars:
+    salesforce_order_identifier: "your_table_name" # must include the double-quotes and is case sensitive!S
+```  
+
 ## (Optional) Step 4: Additional Configurations
 ### Change the Build Schema
 By default, this package builds the GitHub staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your GitHub staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
