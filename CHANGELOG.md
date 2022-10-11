@@ -1,3 +1,8 @@
+# dbt_salesforce_source v0.5.1
+## Bug fixes
+PR [#33](https://github.com/fivetran/dbt_salesforce_source/pull/33) incorporates the following updates:
+  - Updated `src_salesforce.yml` to accomdate Snowflake users that make have issues with the `orders` source. See updated [README](https://github.com/fivetran/dbt_salesforce_source/tree/main#-snowflake-users) for details.
+  - Updated typo in config for `stg_salesforce__task_tmp.sql`.
 # dbt_salesforce_source v0.5.0
 🎉 Salesforce Package Updates 🎉
 
