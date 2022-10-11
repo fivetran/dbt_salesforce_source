@@ -105,7 +105,7 @@ In this package, this would apply to the `ORDER` source. If you are receiving er
 
 ```yml
 vars:
-    salesforce_order_identifier: "your_table_name" # must include the double-quotes and is case sensitive!S
+    salesforce_order_identifier: "your_table_name" # must include the double-quotes and is case sensitive!
 ```  
 
 ## (Optional) Step 4: Additional Configurations
