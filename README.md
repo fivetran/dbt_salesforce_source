@@ -51,19 +51,19 @@ vars:
 ```
 
 ### Disabling Models
-Your connector may not be syncing all tabes that this package references. This might be because you are excluding those tables. If you are not using those tables, you can disable the corresponding functionality in the package by specifying the variable in your dbt_project.yml. By default, all packages are assumed to be true. You only have to add variables for tables you want to disable, like so:
+It is possible that your Salesforce connector does not sync every table that this package expects. If your syncs exclude certain tables, it is because you either don't use that functionality in Salesforce or actively excluded some tables from your syncs. 
 
-The `salesforce__user_role_enabled` variable below refers to the `user_role` table. 
+To disable the corresponding functionality in this package, you must add the corresponding variable(s) to your `dbt_project.yml`, which are listed below. By default, that is if none of these variables are added, all variables are assumed to be true. Add variables only for the tables you would like to disable:
 
 ```yml
-# dbt_project.yml
-
-...
-config-version: 2
-
 vars:
   salesforce__user_role_enabled: false # Disable if you do not have the user_role table
-
+  salesforce__lead_enabled: false # Disable if you do not have the lead table
+  salesforce__event_enabled: false # Disable if you do not have the event table
+  salesforce__task_enabled: false # Disable if you do not have the task table
+  salesforce__opportunity_line_item_enabled: false # Disable if you do not have the opportunity_line_item table
+  salesforce__order_enabled: false # Disable if you do not have the order table
+  salesforce__product_2_enabled: false # Disable if you do not have the product_2 table
 ```
 The corresponding metrics from the disabled tables will not populate in the downstream models.
 
@@ -105,7 +105,7 @@ In this package, this would apply to the `ORDER` source. If you are receiving er
 
 ```yml
 vars:
-    salesforce_order_identifier: "your_table_name" # must include the double-quotes and is case sensitive!
+    salesforce_order_identifier: "Order" # as an example, must include the double-quotes and correct case!
 ```  
 
 ## (Optional) Step 4: Additional Configurations
