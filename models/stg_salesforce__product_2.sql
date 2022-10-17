@@ -28,10 +28,10 @@ fields as (
 final as (
     
     select 
-        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         id as product_2_id,
         created_by_id,
-        cast(created_date as {{ dbt_utils.type_timestamp() }}) as created_date,
+        cast(created_date as {{ dbt.type_timestamp() }}) as created_date,
         description as product_2_description,
         display_url,
         external_id,
@@ -40,9 +40,9 @@ final as (
         is_archived,
         is_deleted,
         last_modified_by_id,
-        cast(last_modified_date as {{ dbt_utils.type_timestamp() }}) as last_modified_date,
-        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
-        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
+        cast(last_modified_date as {{ dbt.type_timestamp() }}) as last_modified_date,
+        cast(last_referenced_date as {{ dbt.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt.type_timestamp() }}) as last_viewed_date,
         name as product_2_name,
         number_of_quantity_installments,
         number_of_revenue_installments,

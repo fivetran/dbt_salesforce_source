@@ -26,10 +26,10 @@ fields as (
 final as (
 
     select 
-        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         account_number,
         account_source,
-        cast(annual_revenue as {{ dbt_utils.type_numeric() }}) as annual_revenue,
+        cast(annual_revenue as {{ dbt.type_numeric() }}) as annual_revenue,
         billing_city,
         billing_country,
         billing_postal_code,
@@ -40,9 +40,9 @@ final as (
         id as account_id,
         industry,
         is_deleted,
-        cast(last_activity_date as {{ dbt_utils.type_timestamp() }}) as last_activity_date,
-        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
-        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
+        cast(last_activity_date as {{ dbt.type_timestamp() }}) as last_activity_date,
+        cast(last_referenced_date as {{ dbt.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt.type_timestamp() }}) as last_viewed_date,
         master_record_id,
         name as account_name,
         number_of_employees,

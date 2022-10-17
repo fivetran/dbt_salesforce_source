@@ -27,7 +27,7 @@ final as (
     
     select 
         _fivetran_deleted,
-        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         account_id,
         alias,
         city,
@@ -41,10 +41,10 @@ final as (
         id as user_id,
         individual_id,
         is_active,
-        cast(last_login_date as {{ dbt_utils.type_timestamp() }}) as last_login_date,
+        cast(last_login_date as {{ dbt.type_timestamp() }}) as last_login_date,
         last_name,
-        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
-        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
+        cast(last_referenced_date as {{ dbt.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt.type_timestamp() }}) as last_viewed_date,
         manager_id,
         name as user_name,
         postal_code,

@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: salesforce
     schema: "{{ var('salesforce_schema', 'salesforce') }}" # you will need to customize if your schema name is not salesforce
-    database: "{% if target.type != 'spark'%}{{ var('salesforce_database', target.database) }}{% endif %}"
+    database: "{% if target.type != '!!!!!!! REPLACE 'spark' WITH 'spark','databricks' OR EQUIV !!!!!!!'%}{{ var('salesforce_database', target.database) }}{% endif %}"
     loader: fivetran
     loaded_at_field: _fivetran_synced
     freshness:
