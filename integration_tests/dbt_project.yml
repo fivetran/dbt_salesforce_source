@@ -1,5 +1,5 @@
 name: 'salesforce_source_integration_tests'
-version: '0.5.1'
+version: '0.6.0'
 
 config-version: 2
 
@@ -18,7 +18,7 @@ vars:
     salesforce_product_2_identifier: "sf_product_2_data"
     salesforce_order_identifier: "sf_order_data"
     salesforce_opportunity_line_item_identifier: "sf_opportunity_line_item_data"
-    salesforce_schema: salesforce_source_integration_tests_1
+    salesforce_schema: salesforce_source_integration_tests_2
 
 seeds:
   salesforce_source_integration_tests:
@@ -142,4 +142,4 @@ seeds:
 
 dispatch:
   - macro_namespace: dbt_utils
-    search_order: ['!!!!!!! REPLACE 'spark' WITH 'spark','databricks' OR EQUIV !!!!!!!_utils', 'dbt_utils']
+    search_order: ['spark_utils', 'dbt_utils']

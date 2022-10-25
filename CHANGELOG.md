@@ -1,3 +1,43 @@
+# dbt_salesforce_source v0.6.0
+## 🚨 Breaking Changes 🚨:
+[PR #34](https://github.com/fivetran/dbt_salesforce_source/pull/34) includes the following breaking changes:
+- Dispatch update for dbt-utils to dbt-core cross-db macros migration. Specifically `{{ dbt_utils.<macro> }}` have been updated to `{{ dbt.<macro> }}` for the below macros:
+    - `any_value`
+    - `bool_or`
+    - `cast_bool_to_text`
+    - `concat`
+    - `date_trunc`
+    - `dateadd`
+    - `datediff`
+    - `escape_single_quotes`
+    - `except`
+    - `hash`
+    - `intersect`
+    - `last_day`
+    - `length`
+    - `listagg`
+    - `position`
+    - `replace`
+    - `right`
+    - `safe_cast`
+    - `split_part`
+    - `string_literal`
+    - `type_bigint`
+    - `type_float`
+    - `type_int`
+    - `type_numeric`
+    - `type_string`
+    - `type_timestamp`
+    - `array_append`
+    - `array_concat`
+    - `array_construct`
+- For `current_timestamp` and `current_timestamp_in_utc` macros, the dispatch AND the macro names have been updated to the below, respectively:
+    - `dbt.current_timestamp_backcompat`
+    - `dbt.current_timestamp_in_utc_backcompat`
+- Dependencies on `fivetran/fivetran_utils` have been upgraded, previously `[">=0.3.0", "<0.4.0"]` now `[">=0.4.0", "<0.5.0"]`.
+
+## Features
+- Addition of the `fivetran_formula_model` table within the src_salesforce.yml file. This source may be leveraged when using the `dbt_salesforce_formula_utils` package.
 # dbt_salesforce_source v0.5.1
 ## Bug fixes
 PR [#33](https://github.com/fivetran/dbt_salesforce_source/pull/33) incorporates the following updates:
