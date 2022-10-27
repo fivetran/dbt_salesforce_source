@@ -10,7 +10,7 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-# Salesforce Source dbt Package ([Docs](https://fivetran.github.io/dbt_salesforce_source/))
+# Salesforce Source dbt Package ([Docs](https://fivetran.github.io/dbt_salesforce_source/)) 
 # 📣 What does this dbt package do?
 - Cleans, tests, and prepares your Salesforce data from [Fivetran's connector](https://fivetran.com/docs/applications/salesforce) for analysis.
 - Generates a comprehensive data dictionary of your Salesforce data via the [dbt docs site](https://fivetran.github.io/dbt_salesforce_source/)
