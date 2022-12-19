@@ -26,14 +26,14 @@ fields as (
 final as (
     
     select 
-        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         account_id,
-        cast(amount as {{ dbt_utils.type_numeric() }}) as amount,
+        cast(amount as {{ dbt.type_numeric() }}) as amount,
         campaign_id,
-        cast(close_date as {{ dbt_utils.type_timestamp() }}) as close_date,
-        cast(created_date as {{ dbt_utils.type_timestamp() }}) as created_date,
+        cast(close_date as {{ dbt.type_timestamp() }}) as close_date,
+        cast(created_date as {{ dbt.type_timestamp() }}) as created_date,
         description as opportunity_description,
-        cast(expected_revenue as {{ dbt_utils.type_numeric() }}) as expected_revenue,
+        cast(expected_revenue as {{ dbt.type_numeric() }}) as expected_revenue,
         fiscal,
         fiscal_quarter,
         fiscal_year,
@@ -46,9 +46,9 @@ final as (
         is_closed,
         is_deleted,
         is_won,
-        cast(last_activity_date as {{ dbt_utils.type_timestamp() }}) as last_activity_date,
-        cast(last_referenced_date as {{ dbt_utils.type_timestamp() }}) as last_referenced_date,
-        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
+        cast(last_activity_date as {{ dbt.type_timestamp() }}) as last_activity_date,
+        cast(last_referenced_date as {{ dbt.type_timestamp() }}) as last_referenced_date,
+        cast(last_viewed_date as {{ dbt.type_timestamp() }}) as last_viewed_date,
         lead_source,
         name as opportunity_name,
         next_step,
@@ -72,12 +72,12 @@ calculated as (
         
     select 
         *,
-        created_date >= {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_created_this_month,
-        created_date >= {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_created_this_quarter,
-        {{ dbt_utils.datediff(dbt_utils.current_timestamp(), 'created_date', 'day') }} as days_since_created,
-        {{ dbt_utils.datediff('close_date', 'created_date', 'day') }} as days_to_close,
-        {{ dbt_utils.date_trunc('month', 'close_date') }} = {{ dbt_utils.date_trunc('month', dbt_utils.current_timestamp()) }} as is_closed_this_month,
-        {{ dbt_utils.date_trunc('quarter', 'close_date') }} = {{ dbt_utils.date_trunc('quarter', dbt_utils.current_timestamp()) }} as is_closed_this_quarter
+        created_date >= {{ dbt.date_trunc('month', dbt.current_timestamp_backcompat()) }} as is_created_this_month,
+        created_date >= {{ dbt.date_trunc('quarter', dbt.current_timestamp_backcompat()) }} as is_created_this_quarter,
+        {{ dbt.datediff(dbt.current_timestamp_backcompat(), 'created_date', 'day') }} as days_since_created,
+        {{ dbt.datediff('close_date', 'created_date', 'day') }} as days_to_close,
+        {{ dbt.date_trunc('month', 'close_date') }} = {{ dbt.date_trunc('month', dbt.current_timestamp_backcompat()) }} as is_closed_this_month,
+        {{ dbt.date_trunc('quarter', 'close_date') }} = {{ dbt.date_trunc('quarter', dbt.current_timestamp_backcompat()) }} as is_closed_this_quarter
     from final
 )
 

@@ -30,7 +30,7 @@ final as (
 
     select
         _fivetran_deleted,
-        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         developer_name,
         id as user_role_id,
         name as user_role_name,

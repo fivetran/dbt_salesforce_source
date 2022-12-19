@@ -1124,3 +1124,6 @@ sources:
 
       - name: fivetran_formula
         description: Holds the formula fields for each of your custom fields
+
+      - name: fivetran_formula_model
+        description: Holds the formula fields for each of your salesforce objects as a single select statement

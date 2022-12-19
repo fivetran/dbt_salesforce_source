@@ -26,7 +26,7 @@ fields as (
 final as (
     
     select 
-        cast(_fivetran_synced as {{ dbt_utils.type_timestamp() }}) as _fivetran_synced,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         id as contact_id,
         account_id,
         department,
@@ -36,12 +36,12 @@ final as (
         home_phone,
         individual_id,
         is_deleted,
-        cast(last_activity_date as {{ dbt_utils.type_timestamp() }}) as last_activity_date,
+        cast(last_activity_date as {{ dbt.type_timestamp() }}) as last_activity_date,
         last_modified_by_id,
         last_modified_date,
         last_name,
         last_referenced_date,
-        cast(last_viewed_date as {{ dbt_utils.type_timestamp() }}) as last_viewed_date,
+        cast(last_viewed_date as {{ dbt.type_timestamp() }}) as last_viewed_date,
         lead_source,
         mailing_city,
         mailing_country,
