@@ -118,15 +118,7 @@ models:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
 ### Adding Formula Fields as Pass Through Columns
-The source tables Fivetran syncs do not include formula fields. If your company uses them, you can generate them by referring to the [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package. To pass through the fields, add the following configuration. We recommend confirming your formula field models successfully populate before integrating with the Salesforce package. 
-
-Include the following within your `packages.yml` file:
-```yml
-packages:
-
-  - package: fivetran/salesforce_formula_utils
-    version: [">=0.7.0", "<0.8.0"]
-```
+The source tables Fivetran syncs do not include formula fields. If your company uses them, you can generate them by referring to the [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package. To pass through the fields, add the [latest version of the package](https://github.com/fivetran/dbt_salesforce_formula_utils#installing-the-macro-package). We recommend confirming your formula field models successfully populate before integrating with the Salesforce package. 
 
 Include the following within your `dbt_project.yml` file:
 ```yml
@@ -171,6 +163,9 @@ packages:
 
     - package: dbt-labs/dbt_utils
       version: [">=1.0.0", "<2.0.0"]
+
+    - package: dbt-labs/spark_utils
+      version: [">=0.3.0", "<0.4.0"]
 ```
 # 🙌 How is this package maintained and can I contribute?
 ## Package Maintenance
