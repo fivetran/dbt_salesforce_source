@@ -110,7 +110,7 @@ vars:
 
 ## (Optional) Step 4: Additional Configurations
 ### Change the Build Schema
-By default, this package builds the GitHub staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your GitHub staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
+By default, this package builds the Salesforce staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your Salesforce staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 models:
