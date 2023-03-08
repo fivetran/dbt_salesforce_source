@@ -8,14 +8,19 @@
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
+    <a alt="Fivetran Quickstart Compatibile"
+        href="https://fivetran.com/docs/transformations/dbt/quickstart">
+        <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatibile%3F-yes-green.svg" /></a>
 </p>
 
 # Salesforce Source dbt Package ([Docs](https://fivetran.github.io/dbt_salesforce_source/)) 
 # 📣 What does this dbt package do?
+<!--section="salesforce_source_model"-->
 - Cleans, tests, and prepares your Salesforce data from [Fivetran's connector](https://fivetran.com/docs/applications/salesforce) for analysis.
 - Generates a comprehensive data dictionary of your Salesforce data via the [dbt docs site](https://fivetran.github.io/dbt_salesforce_source/)
 - Materializes staging tables which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/salesforce/#schemainformation) and is intended to work simultaneously with our [Salesforce modeling package](https://github.com/fivetran/dbt_salesforce)
     - Refer to our [Docs site](https://fivetran.github.io/dbt_salesforce_source/#!/overview/salesforce_source/models/?g_v=1) for more details about these materialized models. 
+<!--section-end-->
 
 # 🎯 How do I use the dbt package?
 ## Step 1: Pre-Requisites
@@ -179,4 +184,4 @@ We highly encourage and welcome contributions to this package. Check out [this p
 # 🏪 Are there any resources available?
 - If you encounter any questions or want to reach out for help, please refer to the [GitHub Issue](https://github.com/fivetran/dbt_salesforce_source/issues/new/choose) section to find the right avenue of support for you.
 - If you would like to provide feedback to the dbt package team at Fivetran, or would like to request a future dbt package to be developed, then feel free to fill out our [Feedback Form](https://www.surveymonkey.com/r/DQ7K7WW).
-- Have questions or want to just say hi? Book a time during our office hours [here](https://calendly.com/fivetran-solutions-team/fivetran-solutions-team-office-hours) or send us an email at solutions@fivetran.com.
+- Have questions or want to be part of the community discourse? Create a post in the [Fivetran community](https://community.fivetran.com/t5/user-group-for-dbt/gh-p/dbt-user-group) and our team along with the community can join in on the discussion!
