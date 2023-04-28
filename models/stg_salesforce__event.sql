@@ -17,11 +17,6 @@ fields as (
             )
         }}
 
-        --The below script allows for pass through columns.
-        {% if var('event_pass_through_columns',[]) != [] %}
-        , {{ var('event_pass_through_columns') | join (", ")}}
-        {% endif %}
-        
     from base
 ), 
 
@@ -56,12 +51,8 @@ final as (
         what_id,
         who_count,
         who_id
-
-        --The below script allows for pass through columns.
-        {% if var('event_pass_through_columns',[]) != [] %}
-        , {{ var('event_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__event_pass_through_columns') }}
         
     from fields
 )

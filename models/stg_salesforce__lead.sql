@@ -16,11 +16,6 @@ fields as (
                 staging_columns=get_lead_columns()
             )
         }}
-
-        --The below script allows for pass through columns.
-        {% if var('lead_pass_through_columns',[]) != [] %}
-        , {{ var('lead_pass_through_columns') | join (", ")}}
-        {% endif %}
         
     from base
 ), 
@@ -72,12 +67,8 @@ final as (
         street,
         title,
         website
-
-        --The below script allows for pass through columns.
-        {% if var('lead_pass_through_columns',[]) != [] %}
-        , {{ var('lead_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__lead_pass_through_columns') }}
         
     from fields
 )

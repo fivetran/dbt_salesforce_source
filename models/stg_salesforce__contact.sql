@@ -14,11 +14,6 @@ fields as (
                 staging_columns=get_contact_columns()
             )
         }}
-
-        --The below script allows for pass through columns.
-        {% if var('contact_pass_through_columns',[]) != [] %}
-        , {{ var('contact_pass_through_columns') | join (", ")}}
-        {% endif %}
         
     from base
 ), 
@@ -57,12 +52,8 @@ final as (
         phone,
         reports_to_id,
         title
-
-        --The below script allows for pass through columns.
-        {% if var('contact_pass_through_columns',[]) != [] %}
-        , {{ var('contact_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__contact_pass_through_columns') }}
         
     from fields
 )

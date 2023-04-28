@@ -18,11 +18,6 @@ fields as (
             )
         }}
 
-        --The below script allows for pass through columns.
-        {% if var('user_role_pass_through_columns',[]) != [] %}
-        , {{ var('user_role_pass_through_columns') | join (", ")}}
-        {% endif %}
-
     from base
 ), 
 
@@ -37,12 +32,8 @@ final as (
         opportunity_access_for_account_owner,
         parent_role_id,
         rollup_description
-
-        --The below script allows for pass through columns.
-        {% if var('user_role_pass_through_columns',[]) != [] %}
-        , {{ var('user_role_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__user_role_pass_through_columns') }}
         
     from fields
 )

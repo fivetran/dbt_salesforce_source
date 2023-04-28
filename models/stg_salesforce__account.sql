@@ -15,11 +15,6 @@ fields as (
             )
         }}
 
-        --The below script allows for pass through columns.
-        {% if var('account_pass_through_columns',[]) != [] %}
-        , {{ var('account_pass_through_columns') | join (", ")}}
-        {% endif %}
-        
     from base
 ), 
 
@@ -60,12 +55,9 @@ final as (
         shipping_street,
         type,
         website
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__account_pass_through_columns') }}
 
-        --The below script allows for pass through columns.
-        {% if var('account_pass_through_columns',[]) != [] %}
-        , {{ var('account_pass_through_columns') | join (", ")}}
-
-        {% endif %}
         
     from fields
 )

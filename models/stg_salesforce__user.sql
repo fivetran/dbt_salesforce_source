@@ -15,11 +15,6 @@ fields as (
             )
         }}
 
-        --The below script allows for pass through columns.
-        {% if var('user_pass_through_columns',[]) != [] %}
-        , {{ var('user_pass_through_columns') | join (", ")}}
-        {% endif %}
-
     from base
 ), 
 
@@ -57,11 +52,7 @@ final as (
         user_type,
         username 
         
-        --The below script allows for pass through columns.
-        {% if var('user_pass_through_columns',[]) != [] %}
-        , {{ var('user_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__user_pass_through_columns') }}
     
     from fields
 )
