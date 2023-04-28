@@ -131,7 +131,7 @@ Include the following within your `dbt_project.yml` file:
   opportunity: "{{ ref('my_opportunity_formula_table') }}"
 
 # In addition, add the desired field names as pass through columns
-  opportunity_pass_through_columns: ['formula_field_1','formula_field_2']
+  salesforce__opportunity_pass_through_columns: ['formula_field_1','formula_field_2']
 ```
 
 ### Adding Passthrough Columns
@@ -143,17 +143,40 @@ This package includes all source columns defined in the `generate_columns.sql` m
 
 ...
 vars:
-  account_pass_through_columns: [account_custom_field_1, account_custom_field_2]
-  opportunity_pass_through_columns: [my_opp_custom_field]
-  user_pass_through_columns: [users_have_custom_fields_too, lets_add_them_all]
-  contact_pass_through_columns: [contact_custom_field_1, contact_custom_field_2]
-  lead_pass_through_columns: [lead_custom_field_1, lead_custom_field_2]
-  task_pass_through_columns: [task_custom_field_1, task_custom_field_2]
-  event_pass_through_columns: [event_custom_field_1, event_custom_field_2]
-  product_2_pass_through_columns: [product_2_custom_field_1, product_2_custom_field_2]
-  order_pass_through_columns: [order_custom_field_1, order_custom_field_2]
-  opportunity_line_item_pass_through_columns: [opportunity_line_item_custom_field_1, opportunity_line_item_custom_field_2]
-  user_role_pass_through_columns: [user_role_custom_field_1, user_role_custom_field_2]
+  salesforce__account_pass_through_columns: 
+    - name: "salesforce__account_field"
+      alias: "salesforce__account_field"
+  salesforce__contact_pass_through_columns: 
+    - name: "salesforce__contact_field"
+      alias: "contact_field_x"
+  salesforce__event_pass_through_columns: 
+    - name: "salesforce__event_field"
+  salesforce__lead_pass_through_columns: 
+    - name: "salesforce__lead_field"
+  salesforce__opportunity_pass_through_columns: 
+    - name: "salesforce__opportunity_field"
+      alias: "opportunity_field_x"
+  salesforce__opportunity_line_item_pass_through_columns: 
+    - name: "salesforce__opportunity_line_item_field"
+      alias: "opportunity_line_item_field_x"
+    - name: "field_name_2"
+  salesforce__order_pass_through_columns: 
+    - name: "salesforce__order_field"
+      alias: "order_field_x"
+    - name: "another_field"
+      alias: "field_abc"
+  salesforce__product_2_pass_through_columns: 
+    - name: "salesforce__product_2_field"
+      alias: "product_2_field_x"
+  salesforce__task_pass_through_columns: 
+    - name: "salesforce__task_field"
+      alias: "task_field_x"
+  salesforce__user_role_pass_through_columns: 
+    - name: "salesforce__user_role_field"
+      alias: "user_role_field_x"
+  salesforce__user_pass_through_columns: 
+    - name: "salesforce__user_field"
+
 ```
 
 ## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
