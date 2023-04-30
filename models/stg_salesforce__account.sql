@@ -57,7 +57,6 @@ final as (
         website
         
         {{ fivetran_utils.fill_pass_through_columns('salesforce__account_pass_through_columns') }}
-
         
     from fields
 )

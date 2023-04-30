@@ -30,4 +30,6 @@
 
 {{ return(columns) }}
 
+{{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__product_2_pass_through_columns')) }}
+
 {% endmacro %}
