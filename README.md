@@ -131,7 +131,9 @@ Include the following within your `dbt_project.yml` file:
   opportunity: "{{ ref('my_opportunity_formula_table') }}"
 
 # In addition, add the desired field names as pass through columns
-  salesforce__opportunity_pass_through_columns: ['formula_field_1','formula_field_2']
+  salesforce__opportunity_pass_through_columns:
+    - name: "salesforce__opportunity_field"
+      alias: "opportunity_field_x"
 ```
 
 ### Adding Passthrough Columns
