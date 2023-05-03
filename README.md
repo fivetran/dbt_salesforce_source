@@ -42,7 +42,7 @@ Include the following salesforce_source package version in your `packages.yml`
 ```yaml
 packages:
   - package: fivetran/salesforce_source
-    version: [">=0.6.0", "<0.7.0"]
+    version: [">=0.7.0", "<0.8.0"]
 ```
 ## Step 3: Configure Your Variables
 ### Database and Schema Variables
