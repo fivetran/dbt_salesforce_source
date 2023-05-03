@@ -5,7 +5,7 @@
 
 - Updates the old passthrough column methodology to allow for aliasing of any field names brought in. This is useful, for example, if you wish to bring in fields across different Salesforce objects that may have the same names and wish to alias them to avoid confusion, particularly if any of the objects are joined together downstream.
 
-- In addition we have added the `salesforce__` prefix to all the passthrough variables:
+- In addition we have added the `salesforce__` prefix to all the passthrough variables. Please be sure to update these accordingly if you are leveraging the variables in your existing project:
 
 |**Old**|**New**
 -----|-----
