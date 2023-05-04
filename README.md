@@ -35,14 +35,14 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 ```
 
-## Step 2: Installing the Package
+## Step 2: Installing the Package (skip if also using the `salesforce` transformation package)
 Include the following salesforce_source package version in your `packages.yml`
 > Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 
 ```yaml
 packages:
   - package: fivetran/salesforce_source
-    version: [">=0.7.0", "<0.8.0"]
+    version: [">=0.7.0", "<0.8.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 ## Step 3: Configure Your Variables
 ### Database and Schema Variables
