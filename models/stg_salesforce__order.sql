@@ -16,11 +16,6 @@ fields as (
                 staging_columns=get_order_columns()
             )
         }}
-
-        --The below script allows for pass through columns.
-        {% if var('order_pass_through_columns',[]) != [] %}
-        , {{ var('order_pass_through_columns') | join (", ")}}
-        {% endif %}
         
     from base
 ), 
@@ -65,12 +60,8 @@ final as (
         status,
         total_amount,
         type
-
-        --The below script allows for pass through columns.
-        {% if var('order_pass_through_columns',[]) != [] %}
-        , {{ var('order_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__order_pass_through_columns') }}
         
     from fields
 )

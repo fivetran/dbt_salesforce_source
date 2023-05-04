@@ -1,3 +1,31 @@
+# dbt_salesforce_source v0.7.0
+
+## 🚨 Breaking Changes 🚨:
+[PR #39](https://github.com/fivetran/dbt_salesforce_source/pull/39) includes the following breaking changes:
+
+- Updates the old passthrough column methodology to allow for aliasing of any field names brought in. This is useful, for example, if you wish to bring in fields across different Salesforce objects that may have the same names and wish to alias them to avoid confusion, particularly if any of the objects are joined together downstream.
+
+- In addition we have added the `salesforce__` prefix to all the passthrough variables. Please be sure to update these accordingly if you are leveraging the variables in your existing project:
+
+|**Old**|**New**
+-----|-----
+| account_pass_through_columns | salesforce__account_pass_through_columns
+| contact_pass_through_columns | salesforce__contact_pass_through_columns
+| event_pass_through_columns | salesforce__event_pass_through_columns
+| lead_pass_through_columns | salesforce__lead_pass_through_columns
+| opportunity_pass_through_columns | salesforce__opportunity_pass_through_columns
+| opportunity_line_item_pass_through_columns   | salesforce__opportunity_line_item_pass_through_columns
+| order_pass_through_columns | salesforce__order_pass_through_columns
+| product_2_pass_through_columns | salesforce__product_2_pass_through_columns
+| task_pass_through_columns | salesforce__task_pass_through_columns
+| user_role_pass_through_columns | salesforce__user_role_pass_through_columns
+| user_pass_through_columns | salesforce__user_pass_through_columns
+
+## Under the Hood:
+
+- Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
+- Updated the pull request [templates](/.github).
+
 # dbt_salesforce_source v0.6.0
 ## 🚨 Breaking Changes 🚨:
 [PR #34](https://github.com/fivetran/dbt_salesforce_source/pull/34) includes the following breaking changes:

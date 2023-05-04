@@ -40,6 +40,8 @@
     {"name": "type", "datatype": dbt.type_string()},
 ] %}
 
+{{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__order_pass_through_columns')) }}
+
 {{ return(columns) }}
 
 {% endmacro %}

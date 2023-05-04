@@ -15,11 +15,6 @@ fields as (
             )
         }}
 
-        --The below script allows for pass through columns.
-        {% if var('opportunity_pass_through_columns',[]) != [] %}
-        , {{ var('opportunity_pass_through_columns') | join (", ")}}
-        {% endif %}
-
     from base
 ), 
 
@@ -58,12 +53,8 @@ final as (
         stage_name,
         synced_quote_id,
         type
-
-        --The below script allows for pass through columns.
-        {% if var('opportunity_pass_through_columns',[]) != [] %}
-        , {{ var('opportunity_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__opportunity_pass_through_columns') }}
 
     from fields
 ), 

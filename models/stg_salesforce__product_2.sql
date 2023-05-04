@@ -16,11 +16,6 @@ fields as (
                 staging_columns=get_product_2_columns()
             )
         }}
-
-        --The below script allows for pass through columns.
-        {% if var('product_2_pass_through_columns',[]) != [] %}
-        , {{ var('product_2_pass_through_columns') | join (", ")}}
-        {% endif %}
         
     from base
 ), 
@@ -53,12 +48,8 @@ final as (
         record_type_id,
         revenue_installment_period,
         revenue_schedule_type
-
-        --The below script allows for pass through columns.
-        {% if var('product_2_pass_through_columns',[]) != [] %}
-        , {{ var('product_2_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__product_2_pass_through_columns') }}
         
     from fields
 )

@@ -16,11 +16,6 @@ fields as (
                 staging_columns=get_opportunity_line_item_columns()
             )
         }}
-
-        --The below script allows for pass through columns.
-        {% if var('opportunity_line_item_pass_through_columns',[]) != [] %}
-        , {{ var('opportunity_line_item_pass_through_columns') | join (", ")}}
-        {% endif %}
         
     from base
 ), 
@@ -53,12 +48,8 @@ final as (
         sort_order,
         total_price,
         unit_price
-
-        --The below script allows for pass through columns.
-        {% if var('opportunity_line_item_pass_through_columns',[]) != [] %}
-        , {{ var('opportunity_line_item_pass_through_columns') | join (", ")}}
-
-        {% endif %}
+        
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__opportunity_line_item_pass_through_columns') }}
         
     from fields
 )
