@@ -137,7 +137,7 @@ Include the following within your `dbt_project.yml` file:
 ```
 
 ### Adding Passthrough Columns
-This package includes all source columns defined in the `generate_columns.sql` macro. To add additional columns to this package, do so using our pass-through column variables. This is extremely useful if you'd like to include custom fields to the package.
+This package includes all source columns defined in the `generate_columns.sql` macro.  You can add more columns using our passthrough column variables. These variables allow for the passthrough fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables:
 
 
 ```yml
@@ -147,14 +147,14 @@ This package includes all source columns defined in the `generate_columns.sql` m
 vars:
   salesforce__account_pass_through_columns: 
     - name: "salesforce__account_field"
-      alias: "salesforce__account_field"
-      transform_sql: "cast(other_field as string)"
+      alias: "renamed_field"
+      transform_sql: "cast(renamed_field as string)"
   salesforce__contact_pass_through_columns: 
     - name: "salesforce__contact_field"
       alias: "contact_field_x"
   salesforce__event_pass_through_columns: 
     - name: "salesforce__event_field"
-      transform_sql: "cast(this_other_field as int64)"
+      transform_sql: "cast(salesforce__event_field as int64)"
   salesforce__lead_pass_through_columns: 
     - name: "salesforce__lead_field"
   salesforce__opportunity_pass_through_columns: 
