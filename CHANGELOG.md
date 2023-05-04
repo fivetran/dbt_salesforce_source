@@ -3,7 +3,7 @@
 ## 🚨 Breaking Changes 🚨:
 [PR #39](https://github.com/fivetran/dbt_salesforce_source/pull/39) includes the following breaking changes:
 
-- Updates the old passthrough column methodology to allow for aliasing of any field names brought in. This is useful, for example, if you wish to bring in fields across different Salesforce objects that may have the same names and wish to alias them to avoid confusion, particularly if any of the objects are joined together downstream.
+- Updates the old passthrough column methodology to allow for aliasing and/or transformations of any field names brought in. This is useful, for example, if you wish to bring in fields across different Salesforce objects that may have the same names and wish to alias them to avoid confusion, particularly if any of the objects are joined together downstream.
 
 - In addition we have added the `salesforce__` prefix to all the passthrough variables. Please be sure to update these accordingly if you are leveraging the variables in your existing project:
 
