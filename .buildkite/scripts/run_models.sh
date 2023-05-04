@@ -21,3 +21,4 @@ dbt run --target "$db" --full-refresh
 dbt test --target "$db"
 dbt run --vars '{salesforce__user_role_enabled: false}' --target "$db" --full-refresh
 dbt test --target "$db"
+dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"

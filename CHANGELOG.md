@@ -21,6 +21,11 @@
 | user_role_pass_through_columns | salesforce__user_role_pass_through_columns
 | user_pass_through_columns | salesforce__user_pass_through_columns
 
+## Under the Hood:
+
+- Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
+- Updated the pull request [templates](/.github).
+
 # dbt_salesforce_source v0.6.0
 ## 🚨 Breaking Changes 🚨:
 [PR #34](https://github.com/fivetran/dbt_salesforce_source/pull/34) includes the following breaking changes:
