@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_salesforce__account_history
+  
+  - name: stg_salesforce__contact_history
+
+  - name: stg_salesforce__event_history
+
+  - name: stg_salesforce__lead_history
+
+  - name: stg_salesforce__opportunity_history
+
+  - name: stg_salesforce__task_history
+
+  - name: stg_salesforce__user_history
+
+  - name: stg_salesforce__user_role_history

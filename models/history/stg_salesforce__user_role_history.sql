@@ -1,10 +1,10 @@
---To disable this model, set the salesforce__user_role_enabled within your dbt_project.yml file to False.
-{{ config(enabled=var('salesforce__user_role_enabled', True)) }}
+--To disable this model, set the salesforce__user_role_history_enabled within your dbt_project.yml file to False.
+{{ config(enabled=var('salesforce__user_role_history_enabled', True)) }}
 
 with base as (
 
     select *
-    from {{ ref('stg_salesforce__user_role_tmp') }}
+    from {{ ref('stg_salesforce__user_role_history_tmp') }}
 ), 
 
 fields as (
@@ -13,8 +13,8 @@ fields as (
         
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__user_role_tmp')),
-                staging_columns=get_user_role_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__user_role_history_tmp')),
+                staging_columns=get_user_role_history_columns()
             )
         }}
 
@@ -33,7 +33,7 @@ final as (
         parent_role_id,
         rollup_description
         
-        {{ fivetran_utils.fill_pass_through_columns('salesforce__user_role_pass_through_columns') }}
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__user_role_history_pass_through_columns') }}
         
     from fields
 )

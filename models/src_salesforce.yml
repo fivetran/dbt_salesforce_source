@@ -1121,9 +1121,27 @@ sources:
         - name: who_id
           description: The WhoId represents a human such as a lead or a contact. WhoIds are polymorphic. Polymorphic means a WhoId is equivalent to a contact’s ID or a lead’s ID. The label is Name ID. If Shared Activities is enabled, the value of this field is the ID of the related lead or primary contact. If you add, update, or remove the WhoId field, you might encounter problems with triggers, workflows, and data validation rules that are associated with the record. The label is Name ID. Beginning in API version 37.0, if the contact or lead ID in the WhoId field is not in the TaskWhoIds list, no error occurs and the ID is added to the TaskWhoIds as the primary WhoId. If WhoId is set to null, an arbitrary ID from the existing TaskWhoIds list is promoted to the primary position. 
 
-
       - name: fivetran_formula
         description: Holds the formula fields for each of your custom fields
 
       - name: fivetran_formula_model
         description: Holds the formula fields for each of your salesforce objects as a single select statement
+
+  - name: salesforce_history_mode
+    schema: "{{ var('salesforce_history_schema', 'salesforce_history_mode') }}"
+    database: "{% if target.type != 'spark'%}{{ var('salesforce_database', target.database) }}{% endif %}"
+    loader: fivetran
+    loaded_at_field: _fivetran_synced
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+      - name: account
+      - name: contact
+      - name: event
+      - name: lead
+      - name: opportunity
+      - name: task
+      - name: user
+      - name: user_role

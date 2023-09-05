@@ -1,10 +1,10 @@
---To disable this model, set the salesforce__event_enabled variable within your dbt_project.yml file to False.
-{{ config(enabled=var('salesforce__event_enabled', True)) }}
+--To disable this model, set the salesforce__event_history_enabled variable within your dbt_project.yml file to False.
+{{ config(enabled=var('salesforce__event_history_enabled', True)) }}
 
 with base as (
 
     select * 
-    from {{ ref('stg_salesforce__event_tmp') }}
+    from {{ ref('stg_salesforce__event_history_tmp') }}
 ),
 
 fields as (
@@ -12,8 +12,8 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__event_tmp')),
-                staging_columns=get_event_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__event_history_tmp')),
+                staging_columns=get_event_history_columns()
             )
         }}
 
@@ -52,7 +52,7 @@ final as (
         who_count,
         who_id
         
-        {{ fivetran_utils.fill_pass_through_columns('salesforce__event_pass_through_columns') }}
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__event_history_pass_through_columns') }}
         
     from fields
 )

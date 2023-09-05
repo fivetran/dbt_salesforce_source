@@ -1,3 +1,5 @@
+# dbt_salesforce_source v0.8.0
+
 # dbt_salesforce_source v0.7.0
 
 ## 🚨 Breaking Changes 🚨:
