@@ -21,6 +21,10 @@ fields as (
 final as (
 
     select 
+
+        _fivetran_active,        
+        cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
+        cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         account_number,
         account_source,
@@ -28,8 +32,7 @@ final as (
         billing_city,
         billing_country,
         billing_postal_code,
-        billing_state,
-        billing_state_code,
+        billing_state, 
         billing_street,
         description as account_description,
         id as account_id,
@@ -48,10 +51,8 @@ final as (
         record_type_id,
         shipping_city,
         shipping_country,
-        shipping_country_code,
         shipping_postal_code,
-        shipping_state,
-        shipping_state_code,
+        shipping_state, 
         shipping_street,
         type,
         website

@@ -18,7 +18,18 @@ vars:
     salesforce_product_2_identifier: "sf_product_2_data"
     salesforce_order_identifier: "sf_order_data"
     salesforce_opportunity_line_item_identifier: "sf_opportunity_line_item_data"
+
+    salesforce_account_history_identifier: "sf_account_history_data"
+    salesforce_contact_history_identifier: "sf_contact_history_data"
+    salesforce_event_history_identifier: "sf_event_history_data"
+    salesforce_lead_history_identifier: "sf_lead_history_data"
+    salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
+    salesforce_task_history_identifier: "sf_task_history_data"
+    salesforce_user_history_identifier: "sf_user_history_data"
+    salesforce_user_role_history_identifier: "sf_user_role_history_data"
+
     salesforce_schema: salesforce_source_integrations_tests_2
+
 
 seeds:
   salesforce_source_integration_tests:
@@ -26,6 +37,8 @@ seeds:
     +column_types:
       _fivetran_synced: timestamp
       _fivetran_active: boolean
+      _fivetran_start: timestamp
+      _fivetran_end: timestamp
     sf_account_data:
       +column_types:
         last_activity_date: timestamp

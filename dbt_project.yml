@@ -29,7 +29,7 @@ vars:
     opportunity_history: "{{ source('salesforce_history', 'opportunity') }}"
     task_history: "{{ source('salesforce_history', 'task') }}"
     user_history: "{{ source('salesforce_history', 'user') }}"
-    user_role_history: "{{ source('salesforce_history', 'user_role_history') }}"
+    user_role_history: "{{ source('salesforce_history', 'user_role') }}"
 
     salesforce__user_role_enabled: true
     salesforce__lead_enabled: true
@@ -64,8 +64,8 @@ vars:
     salesforce__lead_history_pass_through_columns: []
     salesforce__opportunity_history_pass_through_columns: []
     salesforce__task_history_pass_through_columns: []
-    salesforce__user_pass_through_columns: []
-    salesforce__user_role_pass_through_columns: []
+    salesforce__user_history_pass_through_columns: []
+    salesforce__user_role_history_pass_through_columns: []
 
     using_account_history_mode_active_records: false
     using_opportunity_history_mode_active_records: false

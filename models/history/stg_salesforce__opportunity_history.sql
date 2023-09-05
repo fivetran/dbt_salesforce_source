@@ -21,6 +21,9 @@ fields as (
 final as (
     
     select 
+        _fivetran_active,        
+        cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
+        cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         account_id,
         cast(amount as {{ dbt.type_numeric() }}) as amount,

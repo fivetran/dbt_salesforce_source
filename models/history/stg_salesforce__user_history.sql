@@ -21,15 +21,16 @@ fields as (
 final as (
     
     select 
-        _fivetran_deleted,
+        _fivetran_active,        
+        cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
+        cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end, 
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         account_id,
         alias,
         city,
         company_name,
         contact_id,
-        country,
-        country_code,
+        country, 
         department,
         email,
         first_name,
@@ -45,7 +46,6 @@ final as (
         postal_code,
         profile_id,
         state,
-        state_code,
         street,
         title,
         user_role_id,

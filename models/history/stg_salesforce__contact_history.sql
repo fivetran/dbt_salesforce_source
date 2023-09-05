@@ -20,6 +20,9 @@ fields as (
 final as (
     
     select 
+        _fivetran_active,        
+        cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
+        cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         id as contact_id,
         account_id,
@@ -39,10 +42,8 @@ final as (
         lead_source,
         mailing_city,
         mailing_country,
-        mailing_country_code,
         mailing_postal_code,
-        mailing_state,
-        mailing_state_code,
+        mailing_state, 
         mailing_street,
         master_record_id,
         mobile_phone,
