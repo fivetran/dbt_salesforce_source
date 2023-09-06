@@ -11,17 +11,132 @@ sources:
     tables:
       - name: account
         identifier: "{{ var('salesforce_account_history_identifier', 'account')}}"
+        description: Represents historical records of individual accounts, which are organizations or people involved with your business (such as customers, competitors, and partners).
+        loaded_at_field: _fivetran_synced
+        columns:
+          - name: _fivetran_active        
+          - name: _fivetran_start
+          - name: _fivetran_end
+          - name: _fivetran_synced
+          - name: account_number
+          - name: account_source
+          - name: annual_revenue
+          - name: billing_city
+          - name: billing_country
+          - name: billing_postal_code
+          - name: billing_state
+          - name: billing_street
+          - name: description 
+          - name: id
+          - name: industry
+          - name: is_deleted
+          - name: last_activity_date
+          - name: last_referenced_date
+          - name: last_viewed_date
+          - name: master_record_id
+          - name: name
+          - name: number_of_employees
+          - name: owner_id
+          - name: ownership
+          - name: parent_id
+          - name: rating
+          - name: record_type_id
+          - name: shipping_city
+          - name: shipping_country
+          - name: shipping_postal_code
+          - name: shipping_state
+          - name: shipping_street
+          - name: type
+          - name: website
+
       - name: contact
         identifier: "{{ var('salesforce_contact_history_identifier', 'contact')}}"
+        loaded_at_field: _fivetran_synced
+        columns:
+          - name: _fivetran_active        
+          - name: _fivetran_start
+          - name: _fivetran_end
+          - name: _fivetran_synced
+          - name: contact_id
+          - name: account_id
+          - name: description
+          - name: email
+          - name: first_name
+          - name: home_phone
+          - name: individual_id
+          - name: is_deleted
+          - name: last_activity_date
+          - name: last_modified_by_id
+          - name: last_modified_date
+          - name: last_name
+          - name: last_referenced_date
+          - name: last_viewed_date
+          - name: lead_source
+          - name: mailing_city
+          - name: mailing_country
+          - name: mailing_postal_code
+          - name: mailing_state
+          - name: mailing_street
+          - name: master_record_id
+          - name: mobile_phone
+          - name: name
+          - name: owner_id
+          - name: phone
+          - name: reports_to_id
+          - name: title
+
       - name: event
         identifier: "{{ var('salesforce_event_history_identifier', 'event')}}"
+        loaded_at_field: _fivetran_synced
+        columns:
+          - name: _fivetran_active
+          - name: _fivetran_start
+          - name: fivetran_end
+          - name: _fivetran_synced
+          - name: id
+          - name: account_id
+          - name: activity_date
+          - name: activity_date_time
+          - name: created_by_id
+          - name: created_date
+          - name: description
+          - name: end_date
+          - name: end_date_time
+          - name: event_subtype
+          - name: group_event_type
+          - name: is_archived
+          - name: is_child
+          - name: is_deleted
+          - name: is_group_event
+          - name: is_recurrence
+          - name: last_modified_by_id
+          - name: last_modified_date  
+          - name: location
+          - name: owner_id
+          - name: start_date_time
+          - name: subject
+          - name: type
+          - name: what_count
+          - name: what_id
+          - name: who_count
+          - name: who_id
+
       - name: lead
         identifier: "{{ var('salesforce_lead_history_identifier', 'lead')}}"
+        loaded_at_field: _fivetran_synced
+
       - name: opportunity
         identifier: "{{ var('salesforce_opportunity_history_identifier', 'opportunity')}}"
+        loaded_at_field: _fivetran_synced
+
       - name: task
         identifier: "{{ var('salesforce_task_history_identifier', 'task')}}"
+        loaded_at_field: _fivetran_synced
+
       - name: user
         identifier: "{{ var('salesforce_user_history_identifier', 'user')}}"
+        loaded_at_field: _fivetran_synced
+
       - name: user_role
         identifier: "{{ var('salesforce_user_role_history_identifier', 'user_role')}}"
+        loaded_at_field: _fivetran_synced

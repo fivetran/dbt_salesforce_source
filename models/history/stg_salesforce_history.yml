@@ -2,17 +2,122 @@ version: 2
 
 models:
   - name: stg_salesforce__account_history
-  
+    description: Represents historical records of individual accounts, which are organizations or people involved with your business (such as customers, competitors, and partners).
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - account_id
+            - _fivetran_start
+            - _fivetran_end
+    columns:
+      - name: account_id
+      - name: _fivetran_active
+      - name: _fivetran_start
+      - name: _fivetran_end
+      - name: _fivetran_synced
+
   - name: stg_salesforce__contact_history
+    description: Represents the historical record of contacts, which are people associated with an account.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - contact_id
+            - _fivetran_start
+            - _fivetran_end
+    columns:
+      - name: contact_id
+      - name: _fivetran_active
+      - name: _fivetran_start
+      - name: _fivetran_end
+      - name: _fivetran_synced
 
   - name: stg_salesforce__event_history
+    description: Represents the historical record of events in the calendar. In the user interface, event and task records are collectively referred to as activities.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - event_id
+            - _fivetran_start
+            - _fivetran_end
+    columns:
+      - name: event_id
+      - name: _fivetran_active
+      - name: _fivetran_start
+      - name: _fivetran_end
+      - name: _fivetran_synced
 
   - name: stg_salesforce__lead_history
+    description: Represents historical records of prospects or leads.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - lead_id
+            - _fivetran_start
+            - _fivetran_end
+    columns:
+      - name: lead_id
+      - name: _fivetran_active
+      - name: _fivetran_start
+      - name: _fivetran_end
+      - name: _fivetran_synced
 
   - name: stg_salesforce__opportunity_history
+    description: Represents historical records of opportunities, which are sales or pending deals.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - opportunity_id
+            - _fivetran_start
+            - _fivetran_end
+    columns:
+      - name: opportunity_id
+      - name: _fivetran_active
+      - name: _fivetran_start
+      - name: _fivetran_end
+      - name: _fivetran_synced
+
 
   - name: stg_salesforce__task_history
+    description: Represents historical records of business activities such as making a phone call or other to-do items. In the user interface, Task and Event records are collectively referred to as activities.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - task_id
+            - _fivetran_start
+            - _fivetran_end
+    columns:
+      - name: task_id
+      - name: _fivetran_active
+      - name: _fivetran_start
+      - name: _fivetran_end
+      - name: _fivetran_synced
 
   - name: stg_salesforce__user_history
+    description: Represents historical records of users in your organization.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - user_id
+            - _fivetran_start
+            - _fivetran_end
+    columns:
+      - name: user_id
+      - name: _fivetran_active
+      - name: _fivetran_start
+      - name: _fivetran_end
+      - name: _fivetran_synced
 
   - name: stg_salesforce__user_role_history
+    description: Represents historical records of user roles in your organization.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - user_role_id
+            - _fivetran_start
+            - _fivetran_end
+    columns:
+      - name: user_role_id
+      - name: _fivetran_active
+      - name: _fivetran_start
+      - name: _fivetran_end
+      - name: _fivetran_synced
