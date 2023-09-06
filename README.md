@@ -20,7 +20,7 @@
 - Generates a comprehensive data dictionary of your Salesforce data via the [dbt docs site](https://fivetran.github.io/dbt_salesforce_source/)
 - Materializes staging tables which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/salesforce/#schemainformation) and is intended to work simultaneously with our [Salesforce modeling package](https://github.com/fivetran/dbt_salesforce)
     - Refer to our [Docs site](https://fivetran.github.io/dbt_salesforce_source/#!/overview/salesforce_source/models/?g_v=1) for more details about these materialized models. 
-- Alternatively (or concurrently), you can bring history mode models utilizing [Fivetran's History Mode](https://fivetran.com/docs/core-concepts/sync-modes/history-mode)
+- Alternatively (or concurrently), you can bring history mode models utilizing [Fivetran's History Mode](https://fivetran.com/docs/core-concepts/sync-modes/history-mode).
 <!--section-end-->
 
 # 🎯 How do I use the dbt package?
@@ -56,7 +56,8 @@ vars:
     salesforce__<default_source_table_name>_identifier: your_table_name
 ```
 
-If you are leveraging history_mode
+If you are leveraging history_mode...
+[TO BE FILLED IN]
 
 ### Disabling Models
 It is possible that your Salesforce connector does not sync every table that this package expects. If your syncs exclude certain tables, it is because you either don't use that functionality in Salesforce or actively excluded some tables from your syncs. 

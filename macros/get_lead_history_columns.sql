@@ -19,9 +19,7 @@
     {"name": "email", "datatype": dbt.type_string()},
     {"name": "email_bounced_date", "datatype": dbt.type_timestamp()},
     {"name": "email_bounced_reason", "datatype": dbt.type_string()},
-    {"name": "fax", "datatype": dbt.type_string()},
     {"name": "first_name", "datatype": dbt.type_string()},
-    {"name": "geocode_accuracy", "datatype": dbt.type_string()},
     {"name": "has_opted_out_of_email", "datatype": "boolean"}, 
     {"name": "id", "datatype": dbt.type_string()},
     {"name": "individual_id", "datatype": dbt.type_string()},
@@ -29,7 +27,6 @@
     {"name": "is_converted", "datatype": "boolean"},
     {"name": "is_deleted", "datatype": "boolean"},
     {"name": "is_unread_by_owner", "datatype": "boolean"},
-    {"name": "jigsaw_contact_id", "datatype": dbt.type_string()}, 
     {"name": "last_activity_date", "datatype": "date"}, 
     {"name": "last_modified_by_id", "datatype": dbt.type_string()},
     {"name": "last_modified_date", "datatype": dbt.type_timestamp()},
@@ -37,24 +34,22 @@
     {"name": "last_referenced_date", "datatype": dbt.type_timestamp()},
     {"name": "last_viewed_date", "datatype": dbt.type_timestamp()},
     {"name": "latitude", "datatype": dbt.type_float()}, 
-    {"name": "lead_source", "datatype": dbt.type_string()}, 
-    {"name": "longitude", "datatype": dbt.type_float()}, 
+    {"name": "lead_source", "datatype": dbt.type_string()},
     {"name": "master_record_id", "datatype": dbt.type_string()}, 
     {"name": "mobile_phone", "datatype": dbt.type_string()}, 
     {"name": "name", "datatype": dbt.type_string()}, 
     {"name": "number_of_employees", "datatype": dbt.type_int()}, 
     {"name": "owner_id", "datatype": dbt.type_string()}, 
-    {"name": "phone", "datatype": dbt.type_string()}, 
-    {"name": "photo_url", "datatype": dbt.type_string()},
+    {"name": "phone", "datatype": dbt.type_string()},
     {"name": "postal_code", "datatype": dbt.type_string()},
-    {"name": "salutation", "datatype": dbt.type_string()}, 
     {"name": "state", "datatype": dbt.type_string()}, 
     {"name": "status", "datatype": dbt.type_string()},
     {"name": "street", "datatype": dbt.type_string()},
-    {"name": "system_modstamp", "datatype": dbt.type_timestamp()}, 
     {"name": "title", "datatype": dbt.type_string()},
     {"name": "website", "datatype": dbt.type_string()}
 ] %}
+
+{{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__lead_history_pass_through_columns')) }}
 
 {{ return(columns) }}
 

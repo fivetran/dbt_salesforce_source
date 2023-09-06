@@ -20,28 +20,13 @@
     {"name": "is_closed", "datatype": "boolean"},
     {"name": "is_deleted", "datatype": "boolean"},
     {"name": "is_high_priority", "datatype": "boolean"},
-    {"name": "is_recurrence", "datatype": "boolean"},
-    {"name": "is_reminder_set", "datatype": "boolean"},
     {"name": "last_modified_by_id", "datatype": dbt.type_string()},
     {"name": "last_modified_date", "datatype": dbt.type_timestamp()},
     {"name": "owner_id", "datatype": dbt.type_string()}, 
     {"name": "priority", "datatype": dbt.type_string()}, 
     {"name": "record_type_id", "datatype": dbt.type_string()},
-    {"name": "recurrence_activity_id", "datatype": dbt.type_string()},
-    {"name": "recurrence_day_of_month", "datatype": dbt.type_int()},
-    {"name": "recurrence_day_of_week_mask", "datatype": dbt.type_int()},
-    {"name": "recurrence_end_date_only", "datatype": "date"},
-    {"name": "recurrence_instance", "datatype": dbt.type_string()},
-    {"name": "recurrence_interval", "datatype": dbt.type_int()},
-    {"name": "recurrence_month_of_year", "datatype": dbt.type_string()},
-    {"name": "recurrence_regenerated_type", "datatype": dbt.type_string()},
-    {"name": "recurrence_start_date_only", "datatype": "date"},
-    {"name": "recurrence_time_zone_sid_key", "datatype": dbt.type_string()},
-    {"name": "recurrence_type", "datatype": dbt.type_string()},
-    {"name": "reminder_date_time", "datatype": dbt.type_timestamp()}, 
     {"name": "status", "datatype": dbt.type_string()},
     {"name": "subject", "datatype": dbt.type_string()},
-    {"name": "system_modstamp", "datatype": dbt.type_timestamp()},
     {"name": "task_subtype", "datatype": dbt.type_string()},
     {"name": "type", "datatype": dbt.type_string()}, 
     {"name": "what_count", "datatype": dbt.type_int()},
@@ -49,6 +34,8 @@
     {"name": "who_count", "datatype": dbt.type_int()},
     {"name": "who_id", "datatype": dbt.type_string()}
 ] %}
+
+{{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__task_history_pass_through_columns')) }}
 
 {{ return(columns) }}
 

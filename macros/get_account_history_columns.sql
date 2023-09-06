@@ -13,15 +13,11 @@
     {"name": "billing_postal_code", "datatype": dbt.type_string()},
     {"name": "billing_state", "datatype": dbt.type_string()},
     {"name": "billing_street", "datatype": dbt.type_string()},
-    {"name": "created_by_id", "datatype": dbt.type_string()},
-    {"name": "created_date", "datatype": dbt.type_timestamp()},
     {"name": "description", "datatype": dbt.type_string()}, 
     {"name": "id", "datatype": dbt.type_string()}, 
     {"name": "industry", "datatype": dbt.type_string()},
     {"name": "is_deleted", "datatype": "boolean"},  
     {"name": "last_activity_date", "datatype": "date"},
-    {"name": "last_modified_by_id", "datatype": dbt.type_string()},
-    {"name": "last_modified_date", "datatype": dbt.type_timestamp()}, 
     {"name": "last_referenced_date", "datatype": dbt.type_timestamp()}, 
     {"name": "last_viewed_date", "datatype": dbt.type_timestamp()},
     {"name": "master_record_id", "datatype": dbt.type_string()},
@@ -40,6 +36,8 @@
     {"name": "type", "datatype": dbt.type_string()},
     {"name": "website", "datatype": dbt.type_string()}
 ] %}
+
+{{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__account_history_pass_through_columns')) }}
 
 {{ return(columns) }}
 

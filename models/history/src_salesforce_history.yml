@@ -1,6 +1,6 @@
 sources:
   - name: salesforce_history
-    schema: "{{ var('salesforce_history_schema', 'salesforce') }}" # you will need to customize if your schema name is not netsuite
+    schema: "{{ var('salesforce_history_schema', 'salesforce') }}" # you will need to customize if your schema name is not salesforce
     database: "{% if target.type != 'spark'%}{{ var('salesforce_history_database', target.database) }}{% endif %}"
     loader: fivetran
     loaded_at_field: _fivetran_synced
@@ -24,5 +24,4 @@ sources:
       - name: user
         identifier: "{{ var('salesforce_user_history_identifier', 'user')}}"
       - name: user_role
-
         identifier: "{{ var('salesforce_user_role_history_identifier', 'user_role')}}"
