@@ -153,8 +153,10 @@ seeds:
         service_date: timestamp
         system_modstamp: timestamp
         is_deleted: boolean
+
     sf_account_history_data:
       +column_types:
+        annual_revenue: float
         last_activity_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
