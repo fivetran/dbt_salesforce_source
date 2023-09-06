@@ -1,4 +1,7 @@
 # dbt_salesforce_source v0.8.0
+## 🚨 Breaking Changes 🚨:
+- We have enabled the history mode models.  
+
 
 # dbt_salesforce_source v0.7.0
 
