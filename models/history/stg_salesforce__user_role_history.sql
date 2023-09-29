@@ -1,5 +1,4 @@
---To disable this model, set the salesforce__user_role_history_enabled within your dbt_project.yml file to False.
-{{ config(enabled=var('salesforce__user_role_history_enabled', True)) }}
+{{ config(enabled=var('user_role_history_enabled', False)) }}
 
 with base as (
 

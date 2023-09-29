@@ -1,5 +1,4 @@
---To disable this model, set the salesforce__task_history_enabled variable within your dbt_project.yml file to False.
-{{ config(enabled=var('salesforce__task_history_enabled', True)) }}
+{{ config(enabled=var('task_history_enabled', False)) }}
 
 with base as (
 

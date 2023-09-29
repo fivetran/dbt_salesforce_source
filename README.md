@@ -20,7 +20,7 @@
 - Generates a comprehensive data dictionary of your Salesforce data via the [dbt docs site](https://fivetran.github.io/dbt_salesforce_source/)
 - Materializes staging tables which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/salesforce/#schemainformation) and is intended to work simultaneously with our [Salesforce modeling package](https://github.com/fivetran/dbt_salesforce)
     - Refer to our [Docs site](https://fivetran.github.io/dbt_salesforce_source/#!/overview/salesforce_source/models/?g_v=1) for more details about these materialized models. 
-- Alternatively (or concurrently), you can bring history mode models utilizing [Fivetran's History Mode](https://fivetran.com/docs/core-concepts/sync-modes/history-mode).
+- Optional: You can also bring in Salesforce history mode models utilizing [Fivetran's History Mode](https://fivetran.com/docs/core-concepts/sync-modes/history-mode).
 <!--section-end-->
 
 # 🎯 How do I use the dbt package?
@@ -56,7 +56,6 @@ vars:
     salesforce__<default_source_table_name>_identifier: your_table_name
 ```
 
-If you are leveraging history_mode...
 [TO BE FILLED IN]
 
 ### Disabling Models
@@ -76,7 +75,8 @@ vars:
 ```
 The corresponding metrics from the disabled tables will not populate in the downstream models.
 
-### Salesforce History Mode
+
+### Salesforce History Mode (TO BE REMOVED?)
 If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, the source tables will include all historical records. This package is designed to deal with non-historical data. As such, if you have History Mode enabled you will want to set the desired `using_[table]_history_mode_active_records` variable(s) as `true` to filter for only active records. These variables are disabled by default; however, you may add the below variable configuration within your `dbt_project.yml` file to enable the feature.
 ```yml
 # dbt_project.yml
@@ -117,7 +117,27 @@ vars:
     salesforce_order_identifier: "Order" # as an example, must include the double-quotes and correct case!
 ```  
 
-## (Optional) Step 4: Additional Configurations
+## Step 4: Enabling Salesforce History Mode Models (Optional)
+
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the tables with these historical records. These models are quite extensive so we've disabled them by default, but you can enable the history models you'd like to utilizing by adding the below variable configurations within your `dbt_project.yml` file for the equivalent models.
+
+```yml
+# dbt_project.yml
+
+...
+vars:
+  account_history_enabled: true      # False by default. Only use if you have history mode enabled.
+  contact_history_enabled: true  # False by default. Only use if you have history mode enabled.
+  event_history_enabled: true    # False by default. Only use if you have history mode enabled.
+  lead_history_enabled: true         # False by default. Only use if you have history mode enabled.
+  opportunity_history_enabled: true      # False by default. Only use if you have history mode enabled.
+  task_history_enabled: true         # False by default. Only use if you have history mode enabled.
+  user_history_enabled: true         # False by default. Only use if you have history mode enabled.
+  user_role_history_enabled: true        # False by default. Only use if you have history mode enabled. 
+```
+
+
+## (Optional) Step 5: Additional Configurations
 ### Change the Build Schema
 By default, this package builds the Salesforce staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your Salesforce staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
@@ -184,9 +204,36 @@ vars:
       alias: "user_role_field_x"
   salesforce__user_pass_through_columns: 
     - name: "salesforce__user_field"
+
+  ##history mode passthrough columns
+  salesforce__account_history_pass_through_columns:
+    - name: "salesforce__account_history_field"
+      alias: "account_history_field_x"
+  salesforce__contact__history_pass_through_columns:
+    - name: "salesforce__contact_history_field"
+      alias: "contact_history_field_x"
+  salesforce__event__history_pass_through_columns:
+    - name: "salesforce__event_history_field"
+      alias: "event_history_field_x"
+  salesforce__lead__history_pass_through_columns:
+    - name: "salesforce__lead_history_field"
+      alias: "lead_history_field_x"
+  salesforce__opportunity_history_pass_through_columns:
+    - name: "salesforce__opportunity_history_field"
+      alias: "opportunity_history_field_x"  
+  salesforce__task_history_pass_through_columns:
+    - name: "salesforce__task_history_field"
+      alias: "task_history_field_x"
+  salesforce__user_history_pass_through_columns:
+    - name: "salesforce__user_history_field"
+      alias: "user_history_field_x"
+  salesforce__user_role_history_pass_through_columns:
+    - name: "salesforce__user_role_history_field"
+      alias: "user_role_history_field_x"
+
 ```
 
-## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
+## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 Fivetran offers the ability for you to orchestrate your dbt project through the [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt) product. Refer to the linked docs for more information on how to setup your project for orchestration through Fivetran. 
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. For more information on the below packages, refer to the [dbt hub](https://hub.getdbt.com/) site.

@@ -1,5 +1,4 @@
+{{ config(enabled=var('task_history_enabled', False)) }}
+
 select * 
-from {{ var('task_history') }}
-{% if var('using_task_history_mode_active_records', false) %}
-where coalesce(_fivetran_active, true)
-{% endif %}
+from {{ var('task_history') }} 

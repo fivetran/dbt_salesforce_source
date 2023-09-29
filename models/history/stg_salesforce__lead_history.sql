@@ -1,5 +1,4 @@
---To disable this model, set the salesforce__lead_history_enabled within your dbt_project.yml file to False.
-{{ config(enabled=var('salesforce__lead_history_enabled', True)) }}
+{{ config(enabled=var('lead_history_enabled', False)) }}
 
 with base as (
 

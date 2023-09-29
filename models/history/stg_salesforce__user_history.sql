@@ -1,3 +1,5 @@
+{{ config(enabled=var('user_history_enabled', False)) }}
+
 with base as (
 
     select *

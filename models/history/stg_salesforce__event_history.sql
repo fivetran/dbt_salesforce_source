@@ -1,5 +1,4 @@
---To disable this model, set the salesforce__event_history_enabled variable within your dbt_project.yml file to False.
-{{ config(enabled=var('salesforce__event_history_enabled', True)) }}
+{{ config(enabled=var('event_history_enabled', False)) }}
 
 with base as (
 

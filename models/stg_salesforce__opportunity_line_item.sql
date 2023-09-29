@@ -1,4 +1,4 @@
---To disable this model, set the salesforce__opportunity_line_item_enabled  within your dbt_project.yml file to False.
+--To disable this model, set the salesforce__opportunity_line_item_enabled variable within your dbt_project.yml file to False.
 {{ config(enabled=var('salesforce__opportunity_line_item_enabled', True)) }}
 
 with base as (

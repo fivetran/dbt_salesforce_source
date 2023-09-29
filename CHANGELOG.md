@@ -3,8 +3,9 @@
 - We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in said table.
 
 - Here are the staging models that were added:
-|**Table added**|**Description**
------|-----
+
+| **Table added** | **Description** 
+| ----- | -----
 | `stg_salesforce__account_history` |  Represents historical records of individual accounts, which are organizations or people involved with your business (such as customers, competitors, and partners).
 | `stg_salesforce__contact_history` |  Represents the historical record of contacts, which are people associated with an account.
 | `stg_salesforce__event_history` | Represents the historical record of events in the calendar. In the user interface, event and task records are collectively referred to as activities.
