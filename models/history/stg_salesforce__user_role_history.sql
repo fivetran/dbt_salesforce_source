@@ -23,13 +23,13 @@ fields as (
 final as (
 
     select
+        id as user_role_id,
         _fivetran_active,        
         cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
         _fivetran_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         developer_name,
-        id as user_role_id,
         name as user_role_name,
         opportunity_access_for_account_owner,
         parent_role_id,

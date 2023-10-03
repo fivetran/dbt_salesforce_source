@@ -2,7 +2,7 @@
 ## 🚨 Breaking Changes 🚨:
 - We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in said table.
 
-- Here are the staging models that were added:
+- Here are the history staging models that were added:
 
 | **Table added** | **Description** 
 | ----- | -----

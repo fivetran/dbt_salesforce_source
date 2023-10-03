@@ -23,6 +23,7 @@ fields as (
 final as (
     
     select 
+        id as opportunity_id,
         _fivetran_active,        
         cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
@@ -42,7 +43,6 @@ final as (
         has_open_activity,
         has_opportunity_line_item,
         has_overdue_task,
-        id as opportunity_id,
         is_closed,
         is_deleted,
         is_won,
@@ -62,21 +62,8 @@ final as (
         {{ fivetran_utils.fill_pass_through_columns('salesforce__opportunity_history_pass_through_columns') }}
 
     from fields
-), 
-
-calculated as (
-        
-    select 
-        *,
-        created_date >= {{ dbt.date_trunc('month', dbt.current_timestamp_backcompat()) }} as is_created_this_month,
-        created_date >= {{ dbt.date_trunc('quarter', dbt.current_timestamp_backcompat()) }} as is_created_this_quarter,
-        {{ dbt.datediff(dbt.current_timestamp_backcompat(), 'created_date', 'day') }} as days_since_created,
-        {{ dbt.datediff('close_date', 'created_date', 'day') }} as days_to_close,
-        {{ dbt.date_trunc('month', 'close_date') }} = {{ dbt.date_trunc('month', dbt.current_timestamp_backcompat()) }} as is_closed_this_month,
-        {{ dbt.date_trunc('quarter', 'close_date') }} = {{ dbt.date_trunc('quarter', dbt.current_timestamp_backcompat()) }} as is_closed_this_quarter
-    from final
 )
 
-select * 
+select *
 from calculated
 where not coalesce(is_deleted, false)

@@ -22,11 +22,11 @@ fields as (
 final as (
     
     select 
+        id as task_id,
         _fivetran_active,        
         cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        id as task_id,
         account_id,
         cast(activity_date as {{ dbt.type_timestamp() }}) as activity_date,
         call_disposition,

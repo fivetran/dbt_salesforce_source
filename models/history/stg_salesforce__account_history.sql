@@ -23,6 +23,7 @@ fields as (
 final as (
 
     select 
+        id as account_id,
         _fivetran_active,        
         cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
@@ -36,7 +37,6 @@ final as (
         billing_state, 
         billing_street,
         description as account_description,
-        id as account_id,
         industry,
         is_deleted,
         cast(last_activity_date as {{ dbt.type_timestamp() }}) as last_activity_date,

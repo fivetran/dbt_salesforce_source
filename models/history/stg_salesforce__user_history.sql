@@ -23,6 +23,7 @@ fields as (
 final as (
     
     select 
+        id as user_id,
         _fivetran_active,        
         cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end, 
@@ -36,7 +37,6 @@ final as (
         department,
         email,
         first_name,
-        id as user_id,
         individual_id,
         is_active,
         cast(last_login_date as {{ dbt.type_timestamp() }}) as last_login_date,

@@ -22,11 +22,11 @@ fields as (
 final as (
     
     select 
+        id as lead_id,
         _fivetran_active,        
         cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        id as lead_id,
         annual_revenue,
         city,
         company,
