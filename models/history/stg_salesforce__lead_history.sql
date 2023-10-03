@@ -35,7 +35,6 @@ final as (
         cast(converted_date as {{ dbt.type_timestamp() }}) as converted_date,
         converted_opportunity_id,
         country,
-        country_code,
         created_by_id,
         cast(created_date as {{ dbt.type_timestamp() }}) as created_date,
         description as lead_description,
