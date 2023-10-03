@@ -27,7 +27,6 @@ final as (
         _fivetran_active,        
         cast(_fivetran_start as {{ dbt.type_timestamp() }}) as _fivetran_start,
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
-        _fivetran_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         developer_name,
         name as user_role_name,
