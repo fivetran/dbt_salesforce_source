@@ -119,7 +119,9 @@ vars:
 
 ## Step 4: Enabling Salesforce History Mode Models (Optional)
 
-If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the tables with these historical records. These models are quite extensive so we've disabled them by default, but you can enable the history models you'd like to utilizing by adding the below variable configurations within your `dbt_project.yml` file for the equivalent models.
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the tables with these historical records. These models are quite extensive so we've disabled them by default. You can enable the history models you'd like to utilize by adding the below variable configurations within your `dbt_project.yml` file for the equivalent models.
+
+Daily account, contact and opportunity history tables will be available [in our `dbt_salesforce` package](https://github.com/fivetran/dbt_salesforce)
 
 ```yml
 # dbt_project.yml

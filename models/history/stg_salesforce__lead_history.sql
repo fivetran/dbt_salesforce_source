@@ -63,7 +63,6 @@ final as (
         phone,
         postal_code,
         state,
-        state_code,
         status,
         street,
         title,
