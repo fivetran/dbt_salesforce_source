@@ -1,4 +1,4 @@
-{{ config(enabled=var('opportunity_history_enabled', False)) }}
+{{ config(enabled=var('salesforce__opportunity_history_enabled', False)) }}
 
 with base as (
 

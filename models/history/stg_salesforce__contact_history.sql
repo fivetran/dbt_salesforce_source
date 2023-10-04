@@ -1,4 +1,4 @@
-{{ config(enabled=var('contact_history_enabled', False)) }}
+{{ config(enabled=var('salesforce__contact_history_enabled', False)) }}
 
 with base as (
 

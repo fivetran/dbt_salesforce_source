@@ -1,4 +1,4 @@
-{{ config(enabled=var('lead_history_enabled', False)) }}
+{{ config(enabled=var('salesforce__lead_history_enabled', False)) }}
 
 select * 
 from {{ var('lead_history') }}

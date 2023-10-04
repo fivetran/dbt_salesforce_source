@@ -1,10 +1,10 @@
 # dbt_salesforce_source v0.8.0
 ## 🚨 Breaking Changes 🚨:
-- We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in said table.
+- We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in the equivalent tables.
 
 - Here are the history staging models that were added:
 
-| **Table added** | **Description** 
+| **Model added** | **Description** 
 | ----- | -----
 | `stg_salesforce__account_history` |  Represents historical records of individual accounts, which are organizations or people involved with your business (such as customers, competitors, and partners).
 | `stg_salesforce__contact_history` |  Represents the historical record of contacts, which are people associated with an account.
@@ -14,6 +14,16 @@
 | `stg_salesforce__task_history`   |  Represents historical records of business activities such as making a phone call or other to-do items. In the user interface, Task and Event records are collectively referred to as activities.
 | `stg_salesforce__user_history`  |  Represents historical records of users in your organization.
 | `stg_salesforce__user_role_history` | Represents historical records of user roles in your organization.
+
+- These models are disabled by default, so you will need to set the below variable configurations for the models you want to utilize in your `dbt_project.yml`. [See more detailed instructions for the models you will need to add in the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#enabling-salesforce-history-mode-models).
+
+```yml 
+vars:
+  salesforce__[history_model]_enabled: true ##Ex: salesforce__account_history_enabled: true          
+```
+
+- You can also add custom fields by setting passthrough columns in your `dbt_project.yml`. See more details [in the Adding Passthrough Columns section of the README](https://github.com/fivetran/dbt_salesforce_source#adding-passthrough-columns).
+
 
 # dbt_salesforce_source v0.7.0
 
