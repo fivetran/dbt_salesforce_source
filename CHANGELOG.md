@@ -24,7 +24,6 @@ vars:
 
 - You can also add custom fields by setting passthrough columns in your `dbt_project.yml`. See more details [in the Adding Passthrough Columns section of the README](https://github.com/fivetran/dbt_salesforce_source#adding-passthrough-columns).
 
-
 # dbt_salesforce_source v0.7.0
 
 ## 🚨 Breaking Changes 🚨:
