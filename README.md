@@ -218,7 +218,7 @@ vars:
   salesforce__user_pass_through_columns: 
     - name: "salesforce__user_field"
 
-  ##history mode passthrough columns
+  ##History mode passthrough columns
   salesforce__account_history_pass_through_columns:
     - name: "salesforce__account_history_field"
       alias: "account_history_field_x"
