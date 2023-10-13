@@ -27,6 +27,8 @@ vars:
     event_history: "{{ source('salesforce_history', 'event') }}"
     lead_history: "{{ source('salesforce_history', 'lead') }}"
     opportunity_history: "{{ source('salesforce_history', 'opportunity') }}"
+    opportunity_line_item_history: "{{ source('salesforce_history', 'opportunity_line_item') }}"
+    product_2_history: "{{ source('salesforce_history', 'product_2') }}"
     task_history: "{{ source('salesforce_history', 'task') }}"
     user_history: "{{ source('salesforce_history', 'user') }}"
     user_role_history: "{{ source('salesforce_history', 'user_role') }}"

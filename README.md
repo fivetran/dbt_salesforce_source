@@ -102,6 +102,8 @@ vars:
   salesforce__event_history_enabled: true    # False by default. Only use if you have history mode enabled and wish to leverage the event history table.
   salesforce__lead_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the lead history table.
   salesforce__opportunity_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the opportunity history table.
+  salesforce__opportunity_line_item_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the opportunity history table.
+  salesforce__product_2_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the opportunity history table.
   salesforce__task_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the task history table.
   salesforce__user_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the user history table.
   salesforce__user_role_history_enabled: true        # False by default. Only use if you have history mode enabled and wish to leverage the user role history table.
@@ -233,7 +235,13 @@ vars:
       alias: "lead_history_field_x"
   salesforce__opportunity_history_pass_through_columns:
     - name: "salesforce__opportunity_history_field"
-      alias: "opportunity_history_field_x"  
+      alias: "opportunity_history_field_x"
+  salesforce__opportunity_line_item_history_pass_through_columns:
+    - name: "salesforce__opportunity_line_item_history_field"
+      alias: "opportunity_line_item_history_field_x"
+  salesforce__product_2_history_pass_through_columns:
+    - name: "salesforce__product_2_history_field"
+      alias: "product_2_history_field_x"  
   salesforce__task_history_pass_through_columns:
     - name: "salesforce__task_history_field"
       alias: "task_history_field_x"

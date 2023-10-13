@@ -85,6 +85,7 @@ sources:
 
       - name: contact
         identifier: "{{ var('salesforce_contact_history_identifier', 'contact')}}"
+        description: Represents the historical record of contacts, which are people associated with an account.
         loaded_at_field: _fivetran_synced
         columns:
           - name: id
@@ -161,6 +162,7 @@ sources:
 
       - name: event
         identifier: "{{ var('salesforce_event_history_identifier', 'event')}}"
+        description: Represents the historical record of events in the calendar. In the user interface, event and task records are collectively referred to as activities.
         loaded_at_field: _fivetran_synced
         columns:
           - name: id
@@ -253,6 +255,7 @@ sources:
 
       - name: lead
         identifier: "{{ var('salesforce_lead_history_identifier', 'lead')}}"
+        description: Represents historical records of prospects or leads.
         loaded_at_field: _fivetran_synced
         columns:
           - name: id
@@ -351,6 +354,7 @@ sources:
 
       - name: opportunity
         identifier: "{{ var('salesforce_opportunity_history_identifier', 'opportunity')}}"
+        description: Represents historical records of opportunities, which are sales or pending deals.
         loaded_at_field: _fivetran_synced
         columns:
           - name: id
@@ -424,9 +428,157 @@ sources:
           - name: type
             description: Type of opportunity. For example, Existing Business or New Business.
 
+      - name: opportunity_line_item
+        identifier: "{{ var('salesforce_opportunity_line_item_history_identifier', 'opportunity_line_item')}}"
+        description: Represents historical records of opportunity line items, which is a member of the list of Product2 products associated with an Opportunity.
+        loaded_at_field: _fivetran_synced
+        columns:
+          - name: id
+            description: The unique, system-generated ID assigned during creation.
+          - name: _fivetran_active 
+            description: true if it is the currently active record. false if it is a historical version of the record. Only one version of the record can be true.
+          - name: _fivetran_start
+            description: The time when the record was first created or modified in the source, based on a timestamp value in the source table that monotonically increases over time with data change or update.
+          - name: _fivetran_end
+            description: The time until which the record was active minus epsilon, where epsilon is the smallest time difference that can be stored in the timestamp type value.
+          - name: _fivetran_synced
+            description: The time at which fivetran last synced this record.
+          - name: created_by_id
+            description: Created By ID
+          - name: created_date
+            description: Created Date
+          - name: description
+            description: Text description of the opportunity line item.
+          - name: discount
+            description: >
+              Discount for the product as a percentage. When updating these records:
+              If you specify Discount without specifying TotalPrice, the TotalPrice is adjusted to accommodate the new Discount value, and the UnitPrice is held constant.
+              If you specify both Discount and Quantity, you must also specify either TotalPrice or UnitPrice so the system knows which one to automatically adjust.
+          - name: has_quantity_schedule
+            description: Read-only. Indicates whether a quantity schedule has been created for this object (true) or not (false). 
+          - name: has_revenue_schedule
+            description: Indicates whether a revenue schedule has been created for this object (true) or not (false). If this object has a revenue schedule, the Quantity and TotalPrice fields can’t be updated. In addition, the Quantity field can’t be updated if this object has a quantity schedule. Update requests aren’t rejected but the updated values are ignored.
+          - name: has_schedule
+            description: If either HasQuantitySchedule or HasRevenueSchedule is true, this field is also true.
+          - name: is_deleted
+            description: Deleted
+          - name: last_modified_by_id
+            description: Last Modified By ID
+          - name: last_modified_date
+            description: Last Modified Date
+          - name: last_referenced_date
+            description: The timestamp for when the current user last viewed a record related to this record. Available in API version 50.0 and later.
+          - name: last_viewed_date
+            description: The timestamp for when the current user last viewed this record. If this value is null, this record might only have been referenced (LastReferencedDate) and not viewed. Available in API version 50.0 and later.
+          - name: list_price
+            description: Corresponds to the UnitPrice on the PricebookEntry that is associated with this line item, which can be in the standard price book or a custom price book. A client application can use this information to show whether the unit price (or sales price) of the line item differs from the price book entry list price.
+          - name: name
+            description: The opportunity line item name (known as “Opportunity Product” in the user interface). This read-only field is available in API version 30.0 and later.
+          - name: opportunity_id
+            description: Required. ID of the associated Opportunity. This is a relationship field.
+          - name: pricebook_entry_id
+            description: Required. ID of the associated PricebookEntry. Exists only for those organizations that have Products enabled as a feature. In API versions 1.0 and 2.0, you can specify values for either this field or ProductId, but not both. For this reason, both fields are declared nillable. In API version 3.0 and later, you must specify values for this field instead of ProductId. This is a relationship field.
+          - name: product_2_id
+            description: >
+              The ID of the related Product2 record. This is a read-only field available in API version 30.0 and later.
+              Use the PricebookEntryId field instead, specifying the ID of the PricebookEntry record.
+          - name: product_code
+            description: This read-only field is available in API version 30.0 and later. It references the value in the ProductCode field of the related Product2 record.
+          - name: quantity
+            description: >
+              Read-only if this record has a quantity schedule, a revenue schedule, or both a quantity and a revenue schedule.
+              When updating these records:
+              If you specify Quantity without specifying the UnitPrice, the UnitPrice value will be adjusted to accommodate the new Quantity value, and the TotalPrice will be held constant.
+              If you specify both Discount and Quantity, you must also specify either TotalPrice or UnitPrice so the system can determine which one to automatically adjust.
+          - name: service_date
+            description: >
+              Date when the product revenue will be recognized and the product quantity will be shipped. Opportunity Close Date—ServiceDate is ignored.
+              Product Date—ServiceDate is used if not null.
+              Schedule Date—ServiceDate is used if not null and there are no revenue schedules present for this line item, that is, there are no OpportunityLineItemSchedule records with a field Type value of Revenue that are children of this record.
+          - name: sort_order
+            description: Number indicating the sort order selected by the user. Client applications can use this to match the sort order in Salesforce.
+          - name: system_modstamp
+            description: System Modstamp
+          - name: total_price
+            description: >
+              This field is available only for backward compatibility. It represents the total price of the OpportunityLineItem.
+              If you do not specify UnitPrice, this field is required. If you specify Discount and Quantity, this field or UnitPrice is required. When updating these records, you can change either this value or the UnitPrice, but not both at the same time.
+
+              This field is nullable, but you can’t set both TotalPrice and UnitPrice to null in the same update request. To insert the TotalPrice via the API (given only a unit price and the quantity), calculate this field as the unit price multiplied by the quantity. This field is read-only if the opportunity line item has a revenue schedule. If the opportunity line item does not have a schedule or only has quantity schedule, this field can be updated.
+          - name: unit_price
+            description: >
+              The unit price for the opportunity line item. In the Salesforce user interface, this field’s value is calculated by dividing the total price of the opportunity line item by the quantity listed for that line item. Label is Sales Price.
+              This field or TotalPrice is required. You can’t specify both.
+
+              If you specify Discount and Quantity, this field or TotalPrice is required.
+
+      - name: product_2
+        identifier: "{{ var('salesforce_product_2_history_identifier', 'product_2')}}"
+        description: Represents historical records of products that your company sells.
+        loaded_at_field: _fivetran_synced
+        columns:
+          - name: id
+            description: The unique, system-generated ID assigned during creation.
+          - name: _fivetran_active 
+            description: true if it is the currently active record. false if it is a historical version of the record. Only one version of the record can be true.
+          - name: _fivetran_start
+            description: The time when the record was first created or modified in the source, based on a timestamp value in the source table that monotonically increases over time with data change or update.
+          - name: _fivetran_end
+            description: The time until which the record was active minus epsilon, where epsilon is the smallest time difference that can be stored in the timestamp type value.
+          - name: _fivetran_synced
+            description: The time at which fivetran last synced this record.
+          - name: created_by_id
+            description: Created By ID
+          - name: created_date
+            description: Created Date
+          - name: description
+            description: A text description of this record. Label is Product Description.
+          - name: display_url
+            description: URL leading to a specific version of a record in the linked external data source.
+          - name: external_data_source_id
+            description: ID of the related external data source.
+          - name: external_id
+            description: The unique identifier of a record in the linked external data source. For example, ID #123.
+          - name: family
+            description: Name of the product family associated with this record. Product families are configured as picklists in the user interface. To obtain a list of valid values, call describeSObjects() and process the DescribeSObjectResult for the values associated with the Family field. Label is Product Family.
+          - name: is_active
+            description: Indicates whether this record is active (true) or not (false). Inactive Product2 records are hidden in many areas in the user interface. You can change the IsActive flag on a Product2 object as often as necessary. Label is Active.
+          - name: is_archived
+            description: Describes whether the product is archived. The default value is false.
+          - name: is_deleted
+            description: Indicates whether the object has been moved to the Recycle Bin (true) or not (false). Label is Deleted.
+          - name: last_modified_by_id
+            description: Last Modified By ID
+          - name: last_modified_date
+            description: Last Modified Date
+          - name: last_referenced_date
+            description: The timestamp when the current user last accessed this record, a record related to this record, or a list view.
+          - name: last_viewed_date
+            description: The timestamp when the current user last viewed this record or list view. If this value is null, the user might have only accessed this record or list view (LastReferencedDate) but not viewed it.
+          - name: name
+            description: Required. Default name of this record. Label is Product Name.
+          - name: number_of_quantity_installments
+            description: If the product has a quantity schedule, the number of installments.
+          - name: number_of_revenue_installments
+            description: If the product has a revenue schedule, the number of installments.
+          - name: product_code
+            description: Default product code for this record. Your org defines the product code naming pattern.
+          - name: quantity_installment_period
+            description: If the product has a quantity schedule, the amount of time covered by the schedule.
+          - name: quantity_schedule_type
+            description: The type of the quantity schedule, if the product has one.
+          - name: quantity_unit_of_measure
+            description: Unit of the product; for example, kilograms, liters, or cases. This field comes with only one value, Each, so consider creating your own. The QuantityUnitOfMeasure field on ProductItem inherits this field’s values.
+          - name: record_type_id
+            description: ID of the record type assigned to this object.
+          - name: revenue_installment_period
+            description: If the product has a revenue schedule, the time period covered by the schedule.
+          - name: revenue_schedule_type
+            description: The type of the revenue schedule, if the product has one.
 
       - name: task
         identifier: "{{ var('salesforce_task_history_identifier', 'task')}}"
+        description: Represents historical records of business activities such as making a phone call or other to-do items. In the user interface, Task and Event records are collectively referred to as activities.
         loaded_at_field: _fivetran_synced
         columns:
           - name: _fivetran_active 
@@ -494,9 +646,9 @@ sources:
           - name: who_id
             description: The WhoId represents a human such as a lead or a contact. WhoIds are polymorphic. Polymorphic means a WhoId is equivalent to a contact’s ID or a lead’s ID. The label is Name ID. If Shared Activities is enabled, the value of this field is the ID of the related lead or primary contact. If you add, update, or remove the WhoId field, you might encounter problems with triggers, workflows, and data validation rules that are associated with the record. The label is Name ID. Beginning in API version 37.0, if the contact or lead ID in the WhoId field is not in the TaskWhoIds list, no error occurs and the ID is added to the TaskWhoIds as the primary WhoId. If WhoId is set to null, an arbitrary ID from the existing TaskWhoIds list is promoted to the primary position.
 
-
       - name: user
         identifier: "{{ var('salesforce_user_history_identifier', 'user')}}"
+        description: Represents historical records of users in your organization.
         loaded_at_field: _fivetran_synced
         columns:
           - name: _fivetran_active 
@@ -562,6 +714,7 @@ sources:
 
       - name: user_role
         identifier: "{{ var('salesforce_user_role_history_identifier', 'user_role')}}"
+        description: Represents historical records of user roles in your organization.
         loaded_at_field: _fivetran_synced
         columns: 
           - name: _fivetran_active 

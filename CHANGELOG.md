@@ -11,6 +11,8 @@
 | `stg_salesforce__event_history` | Represents the historical record of events in the calendar. In the user interface, event and task records are collectively referred to as activities.
 | `stg_salesforce__lead_history`  |  Represents historical records of prospects or leads.
 | `stg_salesforce__opportunity_history` | Represents historical records of opportunities, which are sales or pending deals.
+| `stg_salesforce__opportunity_line_item_history` | Represents historical records of opportunity line items, which is a member of the list of product2 products associated with an opportunity.
+| `stg_salesforce__product_2_history` | Represents historical records of products that your company sells.
 | `stg_salesforce__task_history`   |  Represents historical records of business activities such as making a phone call or other to-do items. In the user interface, Task and Event records are collectively referred to as activities.
 | `stg_salesforce__user_history`  |  Represents historical records of users in your organization.
 | `stg_salesforce__user_role_history` | Represents historical records of user roles in your organization.

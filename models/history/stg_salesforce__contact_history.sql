@@ -28,6 +28,7 @@ final as (
         cast(_fivetran_end as {{ dbt.type_timestamp() }}) as _fivetran_end,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         account_id,
+        department,
         description as contact_description,
         email,
         first_name,
