@@ -47,6 +47,7 @@ final as (
         mailing_country_code,
         mailing_postal_code,
         mailing_state, 
+        mailing_state_code,
         mailing_street,
         master_record_id,
         mobile_phone,
