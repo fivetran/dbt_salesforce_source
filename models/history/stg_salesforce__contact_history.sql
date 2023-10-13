@@ -44,6 +44,7 @@ final as (
         lead_source,
         mailing_city,
         mailing_country,
+        mailing_country_code,
         mailing_postal_code,
         mailing_state, 
         mailing_street,
