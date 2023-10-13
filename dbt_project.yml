@@ -65,6 +65,8 @@ vars:
     salesforce__event_history_pass_through_columns: []
     salesforce__lead_history_pass_through_columns: []
     salesforce__opportunity_history_pass_through_columns: []
+    salesforce__opportunity_line_item_history_pass_through_columns: []
+    salesforce__product_2_history_pass_through_columns: []
     salesforce__task_history_pass_through_columns: []
     salesforce__user_history_pass_through_columns: []
     salesforce__user_role_history_pass_through_columns: []
