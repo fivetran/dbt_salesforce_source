@@ -65,5 +65,5 @@ final as (
 ) 
 
 select * 
-from calculated
+from final
 where not coalesce(is_deleted, false)
