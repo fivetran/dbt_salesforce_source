@@ -9,8 +9,6 @@ sources:
     freshness:
       warn_after: {count: 24, period: hour}
       error_after: {count: 48, period: hour}
-    config:
-      enabled: true
 
     tables:
       - name: account
@@ -118,6 +116,8 @@ sources:
           description: Type of account, for example, Customer, Competitor, or Partner.
         - name: website
           description: The website of this account.
+          config:
+            enabled: false
 
       - name: opportunity
         identifier: "{{ var('salesforce_opportunity_identifier', 'opportunity')}}"

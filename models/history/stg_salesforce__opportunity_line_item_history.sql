@@ -52,9 +52,9 @@ final as (
         total_price,
         unit_price
 
-    from fields
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__opportunity_line_item_history_pass_through_columns') }}
 
-    {{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__opportunity_line_item_history_pass_through_columns')) }}
+    from fields
 
 )
 

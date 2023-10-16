@@ -52,9 +52,9 @@ final as (
         revenue_installment_period,
         revenue_schedule_type
 
-    from fields
+        {{ fivetran_utils.fill_pass_through_columns('salesforce__product_2_history_pass_through_columns') }}
 
-    {{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__product_2_history_pass_through_columns')) }}
+    from fields
 
 )
 

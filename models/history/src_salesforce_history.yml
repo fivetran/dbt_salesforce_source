@@ -7,14 +7,14 @@ sources:
     freshness:
       warn_after: {count: 24, period: hour}
       error_after: {count: 48, period: hour}
-    config:
-      enabled: false
 
     tables:
       - name: account
         identifier: "{{ var('salesforce_account_history_identifier', 'account')}}"
         description: Represents historical records of individual accounts, which are organizations or people involved with your business (such as customers, competitors, and partners).
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__account_history_enabled', False) }}"
         columns:
           - name: id
             description: The unique, system-generated ID assigned during creation.
@@ -89,6 +89,8 @@ sources:
         identifier: "{{ var('salesforce_contact_history_identifier', 'contact')}}"
         description: Represents the historical record of contacts, which are people associated with an account.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__contact_history_enabled', False) }}"
         columns:
           - name: id
             description: The unique, system-generated ID assigned during creation.
@@ -166,6 +168,8 @@ sources:
         identifier: "{{ var('salesforce_event_history_identifier', 'event')}}"
         description: Represents the historical record of events in the calendar. In the user interface, event and task records are collectively referred to as activities.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__event_history_enabled', False) }}"
         columns:
           - name: id
             description: The unique, system-generated ID assigned during creation.
@@ -259,6 +263,8 @@ sources:
         identifier: "{{ var('salesforce_lead_history_identifier', 'lead')}}"
         description: Represents historical records of prospects or leads.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__lead_history_enabled', False) }}"
         columns:
           - name: id
             description: The unique, system-generated ID assigned during creation.
@@ -358,6 +364,8 @@ sources:
         identifier: "{{ var('salesforce_opportunity_history_identifier', 'opportunity')}}"
         description: Represents historical records of opportunities, which are sales or pending deals.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__opportunity_history_enabled', False) }}"
         columns:
           - name: id
             description: The unique, system-generated ID assigned during creation.
@@ -434,6 +442,8 @@ sources:
         identifier: "{{ var('salesforce_opportunity_line_item_history_identifier', 'opportunity_line_item')}}"
         description: Represents historical records of opportunity line items, which is a member of the list of Product2 products associated with an Opportunity.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__opportunity_line_item_history_enabled', False) }}"
         columns:
           - name: id
             description: The unique, system-generated ID assigned during creation.
@@ -518,6 +528,8 @@ sources:
         identifier: "{{ var('salesforce_product_2_history_identifier', 'product_2')}}"
         description: Represents historical records of products that your company sells.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__product_2_history_enabled', False) }}"
         columns:
           - name: id
             description: The unique, system-generated ID assigned during creation.
@@ -582,6 +594,8 @@ sources:
         identifier: "{{ var('salesforce_task_history_identifier', 'task')}}"
         description: Represents historical records of business activities such as making a phone call or other to-do items. In the user interface, Task and Event records are collectively referred to as activities.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__task_history_enabled', False) }}"
         columns:
           - name: _fivetran_active 
             description: true if it is the currently active record. false if it is a historical version of the record. Only one version of the record can be true.
@@ -652,6 +666,8 @@ sources:
         identifier: "{{ var('salesforce_user_history_identifier', 'user')}}"
         description: Represents historical records of users in your organization.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__user_history_enabled', False) }}"
         columns:
           - name: _fivetran_active 
             description: true if it is the currently active record. false if it is a historical version of the record. Only one version of the record can be true.
@@ -718,6 +734,8 @@ sources:
         identifier: "{{ var('salesforce_user_role_history_identifier', 'user_role')}}"
         description: Represents historical records of user roles in your organization.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__user_role_history_enabled', False) }}"
         columns: 
           - name: _fivetran_active 
             description: true if it is the currently active record. false if it is a historical version of the record. Only one version of the record can be true.
