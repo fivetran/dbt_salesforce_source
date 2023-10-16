@@ -3,7 +3,7 @@
         materialized='incremental',
         unique_key='history_unique_key',
         incremental_strategy='insert_overwrite' if target.type in ('bigquery', 'spark', 'databricks') else 'delete+insert',
-        partition_by={"field": "_fivetran_date", "data_type": "date"} if target.type not in ('spark','databricks') else ['created_on'],
+        partition_by={"field": "_fivetran_date", "data_type": "date"} if target.type not in ('spark','databricks') else ['_fivetran_date'],
         file_format='parquet',
         on_schema_change='fail'
     ) 
@@ -74,7 +74,7 @@ final as (
         title,
         cast(_fivetran_start as date) as _fivetran_date,
         {{ dbt_utils.generate_surrogate_key(['id', '_fivetran_start']) }} as history_unique_key
-        
+
         {{ fivetran_utils.fill_pass_through_columns('salesforce__contact_history_pass_through_columns') }}
         
     from fields
