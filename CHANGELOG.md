@@ -24,7 +24,11 @@ vars:
   salesforce__[history_model]_enabled: true ##Ex: salesforce__account_history_enabled: true          
 ```
 
-- You can also add custom fields by setting passthrough columns in your `dbt_project.yml`. See more details [in the Adding Passthrough Columns section of the README](https://github.com/fivetran/dbt_salesforce_source#adding-passthrough-columns).
+- You can also add custom fields into each history model by setting passthrough columns in your `dbt_project.yml`. See more details [in the Adding Passthrough Columns section of the README](https://github.com/fivetran/dbt_salesforce_source#adding-passthrough-columns).
+
+## Under The Hood
+- Salesforce History Mode models can be heftier with the number of historical records, so we've introduced first date filters to narrow down how much you bring in. More details can be found in the Filter your Salesforce History Mode models with field variable conditionals section, [within Step 5 of the README](https://github.com/fivetran/dbt_salesforce_source#optional-step-4-additional-configurations).
+
 
 # dbt_salesforce_source v0.7.0
 

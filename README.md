@@ -56,6 +56,7 @@ vars:
     salesforce__<default_source_table_name>_identifier: your_table_name
 ```
  
+### Optional: Configuring Salesforce History Mode 
 If you are utilizing Salesforce History Mode and your target database and schema differ as well, you will need to add an additional configuration for the history schema and database to your `dbt_project.yml`.
 
 ```yml
@@ -68,6 +69,16 @@ vars:
 
     salesforce__<default_source_table_name>_identifier: your_table_name
 ```
+
+If you wish to switch to utilizing ONLY Salesforce History Mode tables, you should change the default config set up in the source yml within your `dbt_project.yml`.
+
+```yml
+sources:
+  salesforce:
+    +enabled: false # True by default. Disable if you wish to not utilize the default Salesforce source tables.
+  salesforce_history:
+    +enabled: true # False by default. Enable if you wish to utilize the default Salesforce source tables.
+``` 
 
 ### Disabling Models
 It is possible that your Salesforce connector does not sync every table that this package expects. If your syncs exclude certain tables, it is because you either don't use that functionality in Salesforce or actively excluded some tables from your syncs. 
@@ -152,7 +163,7 @@ vars:
 
 
 
-## (Optional) Step 5: Additional Configurations
+## (Optional) Step 4: Additional Configurations
 ### Change the Build Schema
 By default, this package builds the Salesforce staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your Salesforce staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
@@ -236,7 +247,7 @@ vars:
   salesforce__opportunity_history_pass_through_columns:
     - name: "salesforce__opportunity_history_field"
       alias: "opportunity_history_field_x"
-  salesforce__opportunity_line_item_history_pass_through_columns:
+  salesforce__opportunity_line_item_history__pass_through_columns:
     - name: "salesforce__opportunity_line_item_history_field"
       alias: "opportunity_line_item_history_field_x"
   salesforce__product_2_history_pass_through_columns:
@@ -254,7 +265,26 @@ vars:
 
 ```
 
-## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
+### Filter your Salesforce History Mode models with field variable conditionals
+By default, these models are set to bring in all your data from Salesforce History, but you may be interested in bringing in only a smaller sample of historical records, given the relative size of the Salesforce History source tables.
+
+We have set up where conditions in our data to allow you to bring in only the data you need to run in. Configure the below variables in your `dbt_project.yml` if you wish to size down your history models.
+
+```yml 
+vars:
+    account_first_date_var: 'YYYY-MM-DD' # The first date in account history you wish to pull records from, filtering on `_fivetran_start`.
+    contact_first_date_var: 'YYYY-MM-DD' # The first date in contact history you wish to pull records from, filtering on `_fivetran_start`.
+    event_first_date_var: 'YYYY-MM-DD' #  The first date in event history you wish to pull records from, filtering on `_fivetran_start`.
+    lead_first_date_var: 'YYYY-MM-DD' # The first date in lead history you wish to pull records from, filtering on `_fivetran_start`.
+    opportunity_first_date_var: 'YYYY-MM-DD' # The first date in opportunity history you wish to pull records from, filtering on `_fivetran_start`.
+    opportunity_line_item_first_date_var: 'YYYY-MM-DD' # The first date in opportunity line item history you wish to pull records from, filtering on `_fivetran_start`.
+    product_2_first_date_var: 'YYYY-MM-DD' #  The first date in product2 history you wish to pull records from, filtering on `_fivetran_start`.
+    task_first_date_var: 'YYYY-MM-DD' # The first date in task history you wish to pull records from, filtering on `_fivetran_start`.
+    user_first_date_var: 'YYYY-MM-DD' # The first date in user history you wish to pull records from, filtering on `_fivetran_start`.
+    user_role_first_date_var: 'YYYY-MM-DD' # The first date in user role history you wish to pull records from, filtering on `_fivetran_start`.
+```
+
+## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
 Fivetran offers the ability for you to orchestrate your dbt project through the [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt) product. Refer to the linked docs for more information on how to setup your project for orchestration through Fivetran. 
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. For more information on the below packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
