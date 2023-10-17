@@ -25,7 +25,7 @@
 
 # 🎯 How do I use the dbt package?
 ## Step 1: Pre-Requisites
-- **Connector**: Have the Fivetran Salesforce connector syncing data into your warehouse. 
+- **Connector**: Have the Fivetran Salesforce connector syncing data into your warehouse.  
 - **Database support**: This package has been tested on **Postgres**, **Databricks**, **Redshift**, **Snowflake**, and **BigQuery**.
 
 ### Databricks Dispatch Configuration
@@ -53,11 +53,11 @@ By default, this package will run using your target database and the `salesforce
 vars:
     salesforce_database: your_database_name
     salesforce_schema: your_schema_name
-    salesforce__<default_source_table_name>_identifier: your_table_name
+    salesforce__<default_source_table_name>_identifier: your_table_name 
 ```
  
 ### Optional: Configuring Salesforce History Mode 
-If you are utilizing Salesforce History Mode and your target database and schema differ as well, you will need to add an additional configuration for the history schema and database to your `dbt_project.yml`.
+If you are utilizing Salesforce History Mode and your target database and schema differ as well, you will need to add an additional configuration for the history schema and database to your `dbt_project.yml`. 
 
 ```yml
 vars:
@@ -70,14 +70,14 @@ vars:
     salesforce__<default_source_table_name>_identifier: your_table_name
 ```
 
-If you wish to switch to utilizing ONLY Salesforce History Mode tables, you should change the default config set up in the source yml within your `dbt_project.yml`.
+If you wish to switch to utilizing ONLY Salesforce History Mode tables, you should change the default config set up in the source yml within your `dbt_project.yml`. 
 
-```yml
-sources:
-  salesforce:
-    +enabled: false # True by default. Disable if you wish to not utilize the default Salesforce source tables.
-  salesforce_history:
-    +enabled: true # False by default. Enable if you wish to utilize the default Salesforce source tables.
+```yml 
+sources: 
+  salesforce: 
+    +enabled: false # True by default. Disable if you wish to not utilize the default Salesforce source tables. 
+  salesforce_history: 
+    +enabled: true # False by default. Enable if you wish to utilize the default Salesforce source tables. 
 ``` 
 
 ### Disabling Models
@@ -99,7 +99,7 @@ The corresponding metrics from the disabled tables will not populate in the down
 
 ## Enabling Salesforce History Mode Models  
 
-If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the tables with these historical records. These models can get quite expansive since it will take in ALL historical records, so we've disabled them by default. You can enable the history models you'd like to utilize by adding the below variable configurations within your `dbt_project.yml` file for the equivalent models.
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the tables with these historical records. These models can get quite expansive since it will take in ALL historical records, so we've disabled them by default. You can enable the history models you'd like to utilize by adding the below variable configurations within your `dbt_project.yml` file for the equivalent models. 
 
 Daily account, contact and opportunity history tables that are created from these history tables are available [in our `dbt_salesforce` package](https://github.com/fivetran/dbt_salesforce/blob/main/README.md#-what-does-this-dbt-package-do).
 
@@ -187,7 +187,7 @@ Include the following within your `dbt_project.yml` file:
 ```
 
 ### Adding Passthrough Columns
-This package includes all source columns defined in the `generate_columns.sql` macro.  You can add more columns using our passthrough column variables. These variables allow for the passthrough fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables:
+This package includes all source columns defined in the `generate_columns.sql` macro.  You can add more columns using our passthrough column variables. These variables allow for the passthrough fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables: 
 
 
 ```yml
@@ -265,7 +265,7 @@ vars:
 
 ```
 
-### Filter your Salesforce History Mode models with field variable conditionals
+### Filter your Salesforce History Mode models with field variable conditionals 
 By default, these models are set to bring in all your data from Salesforce History, but you may be interested in bringing in only a smaller sample of historical records, given the relative size of the Salesforce History source tables.
 
 We have set up where conditions in our data to allow you to bring in only the data you need to run in. Configure the below variables in your `dbt_project.yml` if you wish to size down your history models.

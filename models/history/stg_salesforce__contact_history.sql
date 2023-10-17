@@ -14,7 +14,7 @@ with base as (
     select * 
     from {{ source('salesforce_history','contact') }}
     {% if is_incremental() %}
-    where _fivetran_start >= (select max(_fivetran_start) from {{ this }} )
+    where date(_fivetran_start) >= date(_dbt_max_partition)
     {% else %}
     {% if var('contact_first_date_var',[]) %}
     where _fivetran_start >= '{{ var('account_first_date_var') }}'
@@ -82,4 +82,3 @@ final as (
 
 select *
 from final
-where not coalesce(is_deleted, false) 
