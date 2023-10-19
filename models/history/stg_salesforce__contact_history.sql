@@ -17,7 +17,7 @@ with base as (
     where _fivetran_start >= (select max(_fivetran_start) from {{ this }} )
     {% else %}
     {% if var('contact_first_date_var',[]) %}
-    where _fivetran_start >= '{{ var('account_first_date_var') }}'
+    where _fivetran_start >= '{{ var('contact_first_date_var') }}'
     {% endif %}
     {% endif %}
 ),
