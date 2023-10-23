@@ -16,8 +16,8 @@ with base as (
     {% if is_incremental() %}
     where _fivetran_start >= (select max(_fivetran_start) from {{ this }} )
     {% else %}
-    {% if var('contact_first_date_var',[]) %}
-    where _fivetran_start >= '{{ var('contact_first_date_var') }}'
+    {% if var('global_date_var',[]) or var('contact_first_date_var',[]) %}
+    where _fivetran_start >= {% var('global_date_var') if var('global_date_var',[]) else var('contact_first_date_var',[]) %}
     {% endif %}
     {% endif %}
 ),
