@@ -2,7 +2,7 @@
 ## 🚨 Breaking Changes 🚨:
 - We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in the equivalent tables.
 
-- IMPORTANT: **All fields in your Salesforce history mode connector that are being synced are being included in the end models**. To change which fields are brought in via end models, you will need to update the fields you are bringing in via your history mode connector in Fivetran and then run a `dbt run --full-refresh`. 
+- IMPORTANT: **All fields in your Salesforce history mode connector that are being synced are being included in the end models**. To change which fields are brought in via end models, you will need to update the fields you are bringing in via your history mode connector in Fivetran and then run a `dbt run --full-refresh`. [See the DECISIONLOG for more details](https://github.com/fivetran/dbt_salesforce/blob/main/DECISIONLOG.md).
 
 - Here are the history staging models that were added:
 
@@ -12,10 +12,9 @@
 | `stg_salesforce__contact_history` |  Represents the historical record of contacts, which are people associated with an account.
 | `stg_salesforce__opportunity_history` | Represents historical records of opportunities, which are sales or pending deals.
 
-- All models are incremental due to the volume of data being ingested. 
+- All history models are incremental due to the volume of data being ingested. 
 
-- We support the option to pull from both your standard Salesforce and History Mode connectors simultaneously from their specific database/schemas. We also support pulling from just your History Mode connector on its own and bypassing the standard connector on its own. 
-[See more detailed instructions for configuring your history mode database and schema variables in the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#configuring-your-salesforce-history-mode-database-and-schema-variables).
+- We support the option to pull from both your standard Salesforce and History Mode connectors simultaneously from their specific database/schemas.  We also support pulling from just your History Mode connector on its own and bypassing the standard connector on its own. [See more detailed instructions for configuring your history mode database and schema variables in the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#configuring-your-salesforce-history-mode-database-and-schema-variables).
 
 - These models are disabled by default due to their size, so you will need to set the below variable configurations for each of the individual models you want to utilize in your `dbt_project.yml`. 
 
