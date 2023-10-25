@@ -51,7 +51,7 @@ If you are **not** using the [Salesforce transformation package](https://github.
 ```yaml
 packages:
   - package: fivetran/salesforce_source
-    version: [">=0.8.0", "<0.9.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=1.0.0", "<1.1.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 ## Step 3: Configure Your Variables
 ### Database and Schema Variables (Using the standard Salesforce schema only)
