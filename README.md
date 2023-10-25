@@ -51,7 +51,7 @@ If you are **not** using the [Salesforce transformation package](https://github.
 ```yaml
 packages:
   - package: fivetran/salesforce_source
-    version: [">=0.8.0", "<0.9.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=1.0.0", "<1.1.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 ## Step 3: Configure Your Variables
 ### Database and Schema Variables (Using the standard Salesforce schema only)
@@ -86,7 +86,7 @@ The corresponding metrics from the disabled tables will not populate in the down
 If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the `account`, `contact`, and `opportunity` tables directly. This will allow you access to your historical data for these tables while taking advantage of incremental loads to help with compute.
 
 ### Configuring Your Salesforce History Mode Database and Schema Variables
-It has become apparent that customers leveraging the Salesforce connector fall into one of two categories when taking advantage of History mode. They either have one connector that is syncing non historical records and a separate connector that syncs historical records, **or** they have one connector that is syncing historical records. We have designed this feature to support both scenarios.
+Customers leveraging the Salesforce connector generally fall into one of two categories when taking advantage of History mode. They either have one connector that is syncing non-historical records and a separate connector that syncs historical records, **or** they have one connector that is syncing historical records. We have designed this feature to support both scenarios.
 
 #### Option 1: Two connectors, one with non-historical data and another with historical data
 If you are gathering data from both standard Salesforce as well as Salesforce History Mode, and your target database and schema differ as well, you will need to add an additional configuration for the history schema and database to your `dbt_project.yml`.
