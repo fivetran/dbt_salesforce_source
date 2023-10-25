@@ -35,6 +35,12 @@ vars:
     salesforce_user_history_identifier: "sf_user_history_data"
     salesforce_user_role_history_identifier: "sf_user_role_history_data"
 
+    salesforce__account_history_enabled: true
+    salesforce__contact_history_enabled: true
+    salesforce__opportunity_history_enabled: true
+
+    using_salesforce_history_mode_only: false
+
 seeds:
   salesforce_source_integration_tests:
     +quote_columns: "{{ true if target.type in ('redshift', 'postgres') else false }}"
