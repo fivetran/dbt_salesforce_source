@@ -29,24 +29,11 @@ vars:
     salesforce_lead_history_identifier: "sf_lead_history_data"
     salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
     salesforce_opportunity_line_item_history_identifier: "sf_opportunity_history_data"
+    salesforce_order_history_identifier: "sf_order_history_data"
     salesforce_product_2_history_identifier: "sf_product_2_history_data"
     salesforce_task_history_identifier: "sf_task_history_data"
     salesforce_user_history_identifier: "sf_user_history_data"
     salesforce_user_role_history_identifier: "sf_user_role_history_data"
-
-    salesforce__account_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the account history table.
-    salesforce__contact_history_enabled: true  # False by default. Only use if you have history mode enabled and wish to leverage the contact history table.
-    salesforce__event_history_enabled: true    # False by default. Only use if you have history mode enabled and wish to leverage the event history table.
-    salesforce__lead_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the lead history table.
-    salesforce__opportunity_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the opportunity history table.
-    salesforce__task_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the task history table.
-    salesforce__user_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the user history table.
-    salesforce__user_role_history_enabled: true        # False by default. Only use if you have history mode enabled and wish to leverage the user role history table.
-    salesforce__opportunity_line_item_history_enabled: true   
-    salesforce__product_2_history_enabled: true   
-
-    salesforce__opportunity_line_item_history_pass_through_columns:
-      - name: "months_c"
 
 seeds:
   salesforce_source_integration_tests:
@@ -222,6 +209,17 @@ seeds:
         last_referenced_date: timestamp
         last_viewed_date: timestamp
         service_date: timestamp
+        system_modstamp: timestamp
+        is_deleted: boolean
+    sf_order_history_data:
+      +column_types:
+        activated_date: timestamp
+        created_date: timestamp
+        effective_date: timestamp
+        end_date: timestamp
+        last_modified_date: timestamp
+        last_referenced_date: timestamp
+        last_viewed_date: timestamp
         system_modstamp: timestamp
         is_deleted: boolean
     sf_product_2_history_data:

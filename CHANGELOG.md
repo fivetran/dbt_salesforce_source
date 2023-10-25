@@ -2,33 +2,32 @@
 ## 🚨 Breaking Changes 🚨:
 - We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in the equivalent tables.
 
+- IMPORTANT: **All fields in your Salesforce history mode connector that are being synced are being included in the end models**. To change which fields are brought in via end models, you will need to update the fields you are bringing in via your history mode connector in Fivetran and then run a `dbt run --full-refresh`. 
+
 - Here are the history staging models that were added:
 
 | **Model added** | **Description** 
 | ----- | -----
 | `stg_salesforce__account_history` |  Represents historical records of individual accounts, which are organizations or people involved with your business (such as customers, competitors, and partners).
 | `stg_salesforce__contact_history` |  Represents the historical record of contacts, which are people associated with an account.
-| `stg_salesforce__event_history` | Represents the historical record of events in the calendar. In the user interface, event and task records are collectively referred to as activities.
-| `stg_salesforce__lead_history`  |  Represents historical records of prospects or leads.
 | `stg_salesforce__opportunity_history` | Represents historical records of opportunities, which are sales or pending deals.
-| `stg_salesforce__opportunity_line_item_history` | Represents historical records of opportunity line items, which is a member of the list of product2 products associated with an opportunity.
-| `stg_salesforce__product_2_history` | Represents historical records of products that your company sells.
-| `stg_salesforce__task_history`   |  Represents historical records of business activities such as making a phone call or other to-do items. In the user interface, Task and Event records are collectively referred to as activities.
-| `stg_salesforce__user_history`  |  Represents historical records of users in your organization.
-| `stg_salesforce__user_role_history` | Represents historical records of user roles in your organization.
 
-- These models are disabled by default, so you will need to set the below variable configurations for the models you want to utilize in your `dbt_project.yml`. [See more detailed instructions for the models you will need to add in the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#enabling-salesforce-history-mode-models).
+- All models are incremental due to the volume of data being ingested. 
+
+- We support the option to pull from both your standard Salesforce and History Mode connectors simultaneously from their specific database/schemas. We also support pulling from just your History Mode connector on its own and bypassing the standard connector on its own. 
+[See more detailed instructions for configuring your history mode database and schema variables in the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#configuring-your-salesforce-history-mode-database-and-schema-variables).
+
+- These models are disabled by default due to their size, so you will need to set the below variable configurations for each of the individual models you want to utilize in your `dbt_project.yml`. 
 
 ```yml 
 vars:
   salesforce__[history_model]_enabled: true ##Ex: salesforce__account_history_enabled: true          
 ```
 
-- You can also add custom fields into each history model by setting passthrough columns in your `dbt_project.yml`. See more details [in the Adding Passthrough Columns section of the README](https://github.com/fivetran/dbt_salesforce_source#adding-passthrough-columns).
+- You can also add custom fields into each history model by setting passthrough columns in your `dbt_project.yml`. See more details [in the Adding Passthrough Columns section of the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#adding-passthrough-columns).
 
 ## Under The Hood
-- Salesforce History Mode models can be heftier with the number of historical records, so we've introduced first date filters to narrow down how much you bring in. More details can be found in the Filter your Salesforce History Mode models with field variable conditionals section, [within Step 5 of the README](https://github.com/fivetran/dbt_salesforce_source#optional-step-4-additional-configurations).
-
+- Salesforce History Mode models can contain a multitude of rows if you bring in all historical data, so we've introduced the flexibility to set first date filters to bring in only the historical data you need. More details can be found in the Filter your Salesforce History Mode models with field variable conditionals section, [within Step 5 of the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#filter-your-salesforce-history-mode-models-with-field-variable-conditionals). 
 
 # dbt_salesforce_source v0.7.0
 

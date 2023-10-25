@@ -36,6 +36,14 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 ```
 
+### Database Incremental Strategies 
+Some of the end models in this package are materialized incrementally. We have chosen `insert_overwrite` as the default strategy for **BigQuery** and **Databricks** databases, as it is only available for these dbt adapters. For **Snowflake**, **Redshift**, and **Postgres** databases, we have chosen `delete+insert` as the default strategy.
+
+`insert_overwrite` is our preferred incremental strategy because it will be able to properly handle updates to records that exist outside the immediate incremental window. That is, because it leverages partitions, `insert_overwrite` will appropriately update existing rows that have been changed upstream instead of inserting duplicates of them--all without requiring a full table scan.
+
+`delete+insert` is our second-choice as it resembles `insert_overwrite` but lacks partitions. This strategy works most of the time and appropriately handles incremental loads that do not contain changes to past records. However, if a past record has been updated and is outside of the incremental window, `delete+insert` will insert a duplicate record. 😱
+> Because of this, we highly recommend that **Snowflake**, **Redshift**, and **Postgres** users periodically run a `--full-refresh` to ensure a high level of data quality and remove any possible duplicates.
+
 ## Step 2: Installing the Package (skip if also using the `salesforce` transformation package)
 If you are **not** using the [Salesforce transformation package](https://github.com/fivetran/dbt_salesforce), include the following `salesforce_source` package version in your `packages.yml`
 > Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions, or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
@@ -46,18 +54,34 @@ packages:
     version: [">=0.8.0", "<0.9.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 ## Step 3: Configure Your Variables
-### Database and Schema Variables
+### Database and Schema Variables (Using the standard Salesforce schema only)
 By default, this package will run using your target database and the `salesforce` schema. If this is not where your Salesforce data is (perhaps your Salesforce schema is `salesforce_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 vars:
     salesforce_database: your_database_name
     salesforce_schema: your_schema_name
-    salesforce__<default_source_table_name>_identifier: your_table_name
 ```
  
-### Optional: Configuring Salesforce History Mode 
-If you are utilizing Salesforce History Mode and your target database and schema differ as well, you will need to add an additional configuration for the history schema and database to your `dbt_project.yml`.
+See the below section for further configurations if you are leveraging Salesforce History Mode.
+ 
+## Optional: Utilizing Our Salesforce History Mode records
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for these tables directly. This will allow you access to your historical account, contact, and opportunity records.
+
+### IMPORTANT: How To Update Your History Models
+To ensure maximum value for these history mode models and avoid messy historical data that could come with picking and choosing which fields you bring in, **all fields in your Salesforce history mode connector are being synced into your end staging models**. That means all custom fields you picked to sync are being brought in to the final models. [See our DECISIONLOG for more details on why we are bringing in all fields](https://github.com/fivetran/dbt_salesforce_source/blob/main/DECISIONLOG.md). 
+
+To update the history mode models, you must follow these steps: 
+1) Go to your Fivetran Salesforce History Mode connector page.
+2) Update the fields that you are bringing into the model. 
+3) Run a `dbt run --full-refresh` on the specific staging models you've updated to bring in these fields and all the historical data available with these fields.
+
+We are aware that bringing in additional fields will be very process-heavy, so we do emphasize caution in making changes to your history mode connector. It would be best to batch as many field changes as possible before executing a `--full-refresh` to save on processing. 
+
+### Configuring Your Salesforce History Mode Database and Schema Variables
+
+#### Option 1: Leverage both the standard Salesforce connector along with Salesforce History Mode
+If you are gathering data from both the standard Salesforce connector as well as Salesforce History Mode, and your target database and schema differ as well, you will need to add an additional configuration for the history schema and database to your `dbt_project.yml`.
 
 ```yml
 vars:
@@ -66,19 +90,60 @@ vars:
 
     salesforce_history_database: your_history_database_name
     salesforce_history_schema: your_history_schema_name
-
-    salesforce__<default_source_table_name>_identifier: your_table_name
 ```
 
-If you wish to switch to utilizing ONLY Salesforce History Mode tables, you should change the default config set up in the source yml within your `dbt_project.yml`.
+#### Option 2: Leverage only the Salesforce History Mode connector
+Perhaps you may only want to use the Salesforce History Mode connector to bring in your data. Because the Salesforce schema is pointing to the default `salesforce` schema and database, you will want to add the following variable into your `dbt_project.yml` to point it to the `salesforce_history` equivalents.
 
 ```yml
-sources:
-  salesforce:
-    +enabled: false # True by default. Disable if you wish to not utilize the default Salesforce source tables.
-  salesforce_history:
-    +enabled: true # False by default. Enable if you wish to utilize the default Salesforce source tables.
-``` 
+vars:
+    using_salesforce_history_mode_only: true #False by default
+```
+
+Then you can configure only the Salesforce history database and schema if different. 
+
+```yml
+    salesforce_history_database: your_history_database_name
+    salesforce_history_schema: your_history_schema_name
+```
+
+**IMPORTANT**: If you utilize Option 2 and are also using the `dbt_salesforce` package, you must sync the equivalent enabled tables and fields in your history mode connector that are being brought into your end reports. Examine your data lineage and the model fields within the `salesforce` folder to see which tables and fields you are using and need to bring in and sync in the history mode connector. 
+
+### Enabling Salesforce History Mode Models  
+ The History Mode models can get quite expansive since it will take in ALL historical records, so we've disabled them by default. You can enable the history models you'd like to utilize by adding the below variable configurations within your `dbt_project.yml` file for the equivalent models.
+
+```yml
+# dbt_project.yml
+
+...
+vars:
+  salesforce__account_history_enabled: true  # False by default. Only use if you have history mode enabled and wish to view the full historical record of all your synced account fields.
+  salesforce__contact_history_enabled: true  # False by default. Only use if you have history mode enabled and wish to view the full historical record of all your synced contact fields.
+  salesforce__opportunity_history_enabled: true  # False by default. Only use if you have history mode enabled and wish to view the full historical record of all your synced opportunity fields.
+```
+
+Daily account, contact and opportunity history tables that are created from these history tables are available [in our `dbt_salesforce` package](https://github.com/fivetran/dbt_salesforce/blob/main/README.md#-what-does-this-dbt-package-do).
+
+
+### Filter your Salesforce History Mode models with field variable conditionals
+By default, these models are set to bring in all your data from Salesforce History, but you may be interested in bringing in only a smaller sample of historical records, given the relative size of the Salesforce History source tables.
+
+We have set up where conditions in our staging models to allow you to bring in only the data you need to run in. You can set a global history filter that would apply to all of our staging history models in your `dbt_project.yml`:
+
+
+```yml 
+vars:
+    global_history_start_date: 'YYYY-MM-DD' # The first `_fivetran_start` date you'd like to filter data on in all your history models.
+```
+
+If you'd like to apply model-specific conditionals, configure the below variables in your `dbt_project.yml`:
+
+```yml 
+vars:
+    account_history_start_date: 'YYYY-MM-DD' # The first date in account history you wish to pull records from, filtering on `_fivetran_start`.
+    contact_history_start_date: 'YYYY-MM-DD' # The first date in contact history you wish to pull records from, filtering on `_fivetran_start`.
+    opportunity_history_start_date: 'YYYY-MM-DD' # The first date in opportunity history you wish to pull records from, filtering on `_fivetran_start`.
+```
 
 ### Disabling Models
 It is possible that your Salesforce connector does not sync every table that this package expects. If your syncs exclude certain tables, it is because you either don't use that functionality in Salesforce or actively excluded some tables from your syncs. 
@@ -97,31 +162,8 @@ vars:
 ```
 The corresponding metrics from the disabled tables will not populate in the downstream models.
 
-## Enabling Salesforce History Mode Models  
-
-If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the tables with these historical records. These models can get quite expansive since it will take in ALL historical records, so we've disabled them by default. You can enable the history models you'd like to utilize by adding the below variable configurations within your `dbt_project.yml` file for the equivalent models.
-
-Daily account, contact and opportunity history tables that are created from these history tables are available [in our `dbt_salesforce` package](https://github.com/fivetran/dbt_salesforce/blob/main/README.md#-what-does-this-dbt-package-do).
-
-```yml
-# dbt_project.yml
-
-...
-vars:
-  salesforce__account_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the account history table.
-  salesforce__contact_history_enabled: true  # False by default. Only use if you have history mode enabled and wish to leverage the contact history table.
-  salesforce__event_history_enabled: true    # False by default. Only use if you have history mode enabled and wish to leverage the event history table.
-  salesforce__lead_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the lead history table.
-  salesforce__opportunity_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the opportunity history table.
-  salesforce__opportunity_line_item_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the opportunity history table.
-  salesforce__product_2_history_enabled: true      # False by default. Only use if you have history mode enabled and wish to leverage the opportunity history table.
-  salesforce__task_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the task history table.
-  salesforce__user_history_enabled: true         # False by default. Only use if you have history mode enabled and wish to leverage the user history table.
-  salesforce__user_role_history_enabled: true        # False by default. Only use if you have history mode enabled and wish to leverage the user role history table.
-```
-
-###  Salesforce History Mode Active Records
-If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, the source tables will include all historical records. This package is designed to deal with non-historical data. As such, if you have History Mode enabled you will want to set the desired `using_[table]_history_mode_active_records` variable(s) as `true` to filter for only active records. These variables are disabled by default; however, you may add the below variable configuration within your `dbt_project.yml` file to enable the feature.
+###  Salesforce History Mode Active Records (When Using Standard Connector)
+If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your standard connector, the source tables will include all historical records. This package is designed to deal with non-historical data. As such, if you have History Mode enabled you will want to set the desired `using_[table]_history_mode_active_records` variable(s) as `true` to filter for only active records. These variables are disabled by default; however, you may add the below variable configuration within your `dbt_project.yml` file to enable the feature.
 ```yml
 # dbt_project.yml
 
@@ -161,8 +203,6 @@ vars:
     salesforce_order_identifier: "Order" # as an example, must include the double-quotes and correct case!
 ```  
 
-
-
 ## (Optional) Step 4: Additional Configurations
 ### Change the Build Schema
 By default, this package builds the Salesforce staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your Salesforce staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
@@ -172,7 +212,7 @@ models:
     salesforce_source:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
-### Adding Formula Fields as Pass Through Columns
+### Adding Formula Fields as Pass Through Columns 
 The source tables Fivetran syncs do not include formula fields. If your company uses them, you can generate them by referring to the [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package. To pass through the fields, add the [latest version of the package](https://github.com/fivetran/dbt_salesforce_formula_utils#installing-the-macro-package). We recommend confirming your formula field models successfully populate before integrating with the Salesforce package. 
 
 Include the following within your `dbt_project.yml` file:
@@ -265,24 +305,6 @@ vars:
 
 ```
 
-### Filter your Salesforce History Mode models with field variable conditionals
-By default, these models are set to bring in all your data from Salesforce History, but you may be interested in bringing in only a smaller sample of historical records, given the relative size of the Salesforce History source tables.
-
-We have set up where conditions in our data to allow you to bring in only the data you need to run in. Configure the below variables in your `dbt_project.yml` if you wish to size down your history models.
-
-```yml 
-vars:
-    account_first_date_var: 'YYYY-MM-DD' # The first date in account history you wish to pull records from, filtering on `_fivetran_start`.
-    contact_first_date_var: 'YYYY-MM-DD' # The first date in contact history you wish to pull records from, filtering on `_fivetran_start`.
-    event_first_date_var: 'YYYY-MM-DD' #  The first date in event history you wish to pull records from, filtering on `_fivetran_start`.
-    lead_first_date_var: 'YYYY-MM-DD' # The first date in lead history you wish to pull records from, filtering on `_fivetran_start`.
-    opportunity_first_date_var: 'YYYY-MM-DD' # The first date in opportunity history you wish to pull records from, filtering on `_fivetran_start`.
-    opportunity_line_item_first_date_var: 'YYYY-MM-DD' # The first date in opportunity line item history you wish to pull records from, filtering on `_fivetran_start`.
-    product_2_first_date_var: 'YYYY-MM-DD' #  The first date in product2 history you wish to pull records from, filtering on `_fivetran_start`.
-    task_first_date_var: 'YYYY-MM-DD' # The first date in task history you wish to pull records from, filtering on `_fivetran_start`.
-    user_first_date_var: 'YYYY-MM-DD' # The first date in user history you wish to pull records from, filtering on `_fivetran_start`.
-    user_role_first_date_var: 'YYYY-MM-DD' # The first date in user role history you wish to pull records from, filtering on `_fivetran_start`.
-```
 
 ## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
 Fivetran offers the ability for you to orchestrate your dbt project through the [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt) product. Refer to the linked docs for more information on how to setup your project for orchestration through Fivetran. 
