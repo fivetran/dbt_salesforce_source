@@ -17,10 +17,10 @@ with base as (
     select *      
     from {{ source('salesforce_history', 'contact') }}
     {% if is_incremental() %}
-    where _fivetran_start >=  (select max(cast((_fivetran_start) as {{ dbt.type_timestamp() }})) from {{ this }} )
+    where cast(_fivetran_start as {{ dbt.type_timestamp() }}) >=  (select max(cast((_fivetran_start) as {{ dbt.type_timestamp() }})) from {{ this }} )
     {% else %}
     {% if var('global_history_start_date',[]) or var('contact_history_start_date',[]) %}
-    where _fivetran_start >= 
+    where cast(_fivetran_start as {{ dbt.type_timestamp() }}) >= 
         {% if var('contact_history_start_date', []) %}
             "{{ var('contact_history_start_date') }}"
         {% else %}
