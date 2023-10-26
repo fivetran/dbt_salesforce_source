@@ -21,8 +21,6 @@ dbt run --target "$db" --full-refresh
 dbt test --target "$db"
 dbt run --vars '{salesforce__user_role_enabled: false}' --target "$db" --full-refresh
 dbt test --target "$db"
-dbt run --vars '{using_salesforce_history_mode_only: true}' --target "$db"
-dbt test --target "$db"
 dbt run --vars '{salesforce__account_history_enabled: true, salesforce__contact_history_enabled: true, salesforce__opportunity_history_enabled: true}' --target "$db" --full-refresh
 dbt test --target "$db"
 dbt run --vars '{salesforce__account_history_enabled: true, salesforce__contact_history_enabled: true, salesforce__opportunity_history_enabled: true}' --target "$db"
