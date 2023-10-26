@@ -1,6 +1,6 @@
 # dbt_salesforce_source v1.0.0 
 
-**📣 MAJOR RELEASE! 📣** More details below. 
+**📣 THIS IS A MAJOR PACKAGE RELEASE! 📣** More details below. 
 ## 🚨 Breaking Changes 🚨:
 - We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in the equivalent tables.
 
@@ -33,6 +33,7 @@ vars:
 
 - We have removed all `tmp` models and will use the `fivetran_utils.fill_staging_column` macro to compare directly to our source models in your schemas.
 - Salesforce standard models have been moved into the `salesforce` folder to clearly delineate between the two sets of models. 
+- We have deprecated the `using_[source]_history_mode_active_records` variables. The introduction of our new logic to fit pulling from makes these redundant. 
 
 # dbt_salesforce_source v0.7.0
 

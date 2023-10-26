@@ -1,9 +1,12 @@
 {{ config(
-        enabled=var('salesforce__account_history_enabled', False),
+        enabled= var('salesforce__account_history_enabled', False),
         materialized='incremental',
         unique_key='history_unique_key',
         incremental_strategy='insert_overwrite' if target.type in ('bigquery', 'spark', 'databricks') else 'delete+insert',
-        partition_by={"field": "_fivetran_date", "data_type": "date"} if target.type not in ('spark','databricks') else ['_fivetran_date'],
+        partition_by={
+            "field": "_fivetran_date", 
+            "data_type": "date"
+        } if target.type not in ('spark','databricks') else ['_fivetran_date'],
         file_format='parquet',
         on_schema_change='fail'
     )
@@ -11,7 +14,7 @@
 
 with base as (
 
-    select *        
+    select *      
     from {{ source('salesforce_history', 'account') }}
     {% if is_incremental() %}
     where _fivetran_start >= (select max(cast((_fivetran_start) as {{ dbt.type_timestamp() }})) from {{ this }} )
