@@ -37,7 +37,7 @@ dispatch:
 ```
 
 ### Database Incremental Strategies 
-Some of the end models in this package are materialized incrementally. We have chosen `insert_overwrite` as the default strategy for **BigQuery** and **Databricks** databases, as it is only available for these dbt adapters. For **Snowflake**, **Redshift**, and **Postgres** databases, we have chosen `delete+insert` as the default strategy.
+The history models in this package are materialized incrementally. We have chosen `insert_overwrite` as the default strategy for **BigQuery** and **Databricks** databases, as it is only available for these dbt adapters. For **Snowflake**, **Redshift**, and **Postgres** databases, we have chosen `delete+insert` as the default strategy.
 
 `insert_overwrite` is our preferred incremental strategy because it will be able to properly handle updates to records that exist outside the immediate incremental window. That is, because it leverages partitions, `insert_overwrite` will appropriately update existing rows that have been changed upstream instead of inserting duplicates of them--all without requiring a full table scan.
 
@@ -62,8 +62,6 @@ vars:
     salesforce_database: your_database_name
     salesforce_schema: your_schema_name
 ```
- 
-See the below section for further configurations if you are leveraging Salesforce History Mode.
 
 ### Disabling Models
 It is possible that your Salesforce connector does not sync every table that this package expects. If your syncs exclude certain tables, it is because you either don't use that functionality in Salesforce or actively excluded some tables from your syncs. 
@@ -82,18 +80,8 @@ vars:
 ```
 The corresponding metrics from the disabled tables will not populate in the downstream models.
 
-## Optional: Utilizing Salesforce History Mode records
+## (Optional) Step 4: Utilizing Salesforce History Mode records
 If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the `account`, `contact`, and `opportunity` tables directly. This will allow you access to your historical data for these tables while taking advantage of incremental loads to help with compute.
-
-### IMPORTANT: How To Update Your History Models
-To ensure maximum value for these history mode models and avoid messy historical data that could come with picking and choosing which fields you bring in, **all fields in your Salesforce history mode connector are being synced into your end staging models**. That means all custom fields you picked to sync are being brought in to the final models. [See our DECISIONLOG for more details on why we are bringing in all fields](https://github.com/fivetran/dbt_salesforce_source/blob/main/DECISIONLOG.md). 
-
-To update the history mode models, you must follow these steps: 
-1) Go to your Fivetran Salesforce History Mode connector page.
-2) Update the fields that you are bringing into the model. 
-3) Run a `dbt run --full-refresh` on the specific staging models you've updated to bring in these fields and all the historical data available with these fields.
-
-We are aware that bringing in additional fields will be very process-heavy, so we do emphasize caution in making changes to your history mode connector. It would be best to batch as many field changes as possible before executing a `--full-refresh` to save on processing. 
 
 ### Configuring Your Salesforce History Mode Database and Schema Variables
 Customers leveraging the Salesforce connector generally fall into one of two categories when taking advantage of History mode. They either have one connector that is syncing non-historical records and a separate connector that syncs historical records, **or** they have one connector that is syncing historical records. We have designed this feature to support both scenarios.
@@ -160,6 +148,15 @@ vars:
     opportunity_history_start_date: 'YYYY-MM-DD' # The first date in opportunity history you wish to pull records from, filtering on `_fivetran_start`.
 ```
 
+### IMPORTANT: How To Update Your History Models
+To ensure maximum value for these history mode models and avoid messy historical data that could come with picking and choosing which fields you bring in, **all fields in your Salesforce history mode connector are being synced into your end staging models**. That means all custom fields you picked to sync are being brought in to the final models. [See our DECISIONLOG for more details on why we are bringing in all fields](https://github.com/fivetran/dbt_salesforce_source/blob/main/DECISIONLOG.md). 
+
+To update the history mode models, you must follow these steps: 
+1) Go to your Fivetran Salesforce History Mode connector page.
+2) Update the fields that you are bringing into the model. 
+3) Run a `dbt run --full-refresh` on the specific staging models you've updated to bring in these fields and all the historical data available with these fields.
+
+We are aware that bringing in additional fields will be very process-heavy, so we do emphasize caution in making changes to your history mode connector. It would be best to batch as many field changes as possible before executing a `--full-refresh` to save on processing. 
 
 ### Change the Source Table References
 If an individual source table has a different name than expected, provide the name of the table as it appears in your warehouse to the respective variable:
@@ -183,7 +180,7 @@ vars:
     salesforce_order_identifier: "Order" # as an example, must include the double-quotes and correct case!
 ```  
 
-## (Optional) Step 4: Additional Configurations
+## (Optional) Step 5: Additional Configurations
 ### Change the Build Schema
 By default, this package builds the Salesforce staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your Salesforce staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
@@ -258,35 +255,12 @@ vars:
   salesforce__contact__history_pass_through_columns:
     - name: "salesforce__contact_history_field"
       alias: "contact_history_field_x"
-  salesforce__event__history_pass_through_columns:
-    - name: "salesforce__event_history_field"
-      alias: "event_history_field_x"
-  salesforce__lead__history_pass_through_columns:
-    - name: "salesforce__lead_history_field"
-      alias: "lead_history_field_x"
   salesforce__opportunity_history_pass_through_columns:
     - name: "salesforce__opportunity_history_field"
       alias: "opportunity_history_field_x"
-  salesforce__opportunity_line_item_history__pass_through_columns:
-    - name: "salesforce__opportunity_line_item_history_field"
-      alias: "opportunity_line_item_history_field_x"
-  salesforce__product_2_history_pass_through_columns:
-    - name: "salesforce__product_2_history_field"
-      alias: "product_2_history_field_x"  
-  salesforce__task_history_pass_through_columns:
-    - name: "salesforce__task_history_field"
-      alias: "task_history_field_x"
-  salesforce__user_history_pass_through_columns:
-    - name: "salesforce__user_history_field"
-      alias: "user_history_field_x"
-  salesforce__user_role_history_pass_through_columns:
-    - name: "salesforce__user_role_history_field"
-      alias: "user_role_history_field_x"
-
 ```
 
-
-## (Optional) Step 5: Orchestrate your models with Fivetran Transformations for dbt Core™
+## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 Fivetran offers the ability for you to orchestrate your dbt project through the [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt) product. Refer to the linked docs for more information on how to setup your project for orchestration through Fivetran. 
 # 🔍 Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. For more information on the below packages, refer to the [dbt hub](https://hub.getdbt.com/) site.

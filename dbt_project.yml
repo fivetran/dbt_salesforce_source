@@ -24,15 +24,7 @@ vars:
     
     account_history: "{{ source('salesforce_history', 'account') }}"
     contact_history: "{{ source('salesforce_history', 'contact') }}"
-    event_history: "{{ source('salesforce_history', 'event') }}"
-    lead_history: "{{ source('salesforce_history', 'lead') }}"
     opportunity_history: "{{ source('salesforce_history', 'opportunity') }}"
-    opportunity_line_item_history: "{{ source('salesforce_history', 'opportunity_line_item') }}"
-    order_history: "{{ source('salesforce_history', 'order') }}"
-    product_2_history: "{{ source('salesforce_history', 'product_2') }}"
-    task_history: "{{ source('salesforce_history', 'task') }}"
-    user_history: "{{ source('salesforce_history', 'user') }}"
-    user_role_history: "{{ source('salesforce_history', 'user_role') }}"
 
     salesforce__user_role_enabled: true
     salesforce__lead_enabled: true
