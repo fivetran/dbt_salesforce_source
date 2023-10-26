@@ -58,15 +58,3 @@ vars:
     salesforce__task_pass_through_columns: []
     salesforce__user_role_pass_through_columns: []
     salesforce__user_pass_through_columns: []
-
-    using_account_history_mode_active_records: false
-    using_opportunity_history_mode_active_records: false
-    using_user_role_history_mode_active_records: false
-    using_user_history_mode_active_records: false
-    using_contact_history_mode_active_records: false
-    using_lead_history_mode_active_records: false
-    using_task_history_mode_active_records: false
-    using_event_history_mode_active_records: false
-    using_product_2_history_mode_active_records: false
-    using_order_history_mode_active_records: false
-    using_opportunity_line_item_history_mode_active_records: false
