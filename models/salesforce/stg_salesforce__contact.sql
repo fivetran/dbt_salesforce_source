@@ -1,21 +1,15 @@
 
-with base as (
-
-    select * 
-    from {{ ref('stg_salesforce__contact_tmp') }}
-),
-
-fields as (
+with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__contact_tmp')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce','contact')),
                 staging_columns=get_contact_columns()
             )
         }}
         
-    from base
+    from {{ source('salesforce','contact') }}
 ), 
 
 final as (
@@ -56,6 +50,7 @@ final as (
         {{ fivetran_utils.fill_pass_through_columns('salesforce__contact_pass_through_columns') }}
         
     from fields
+    where coalesce(_fivetran_active, true)
 )
 
 select *

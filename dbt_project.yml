@@ -1,6 +1,6 @@
 config-version: 2
 name: 'salesforce_source'
-version: '0.8.0'
+version: '1.0.0'
 require-dbt-version: [">=1.3.0", "<2.0.0"]
 models:
   salesforce_source:
@@ -21,7 +21,7 @@ vars:
     product_2: "{{ source('salesforce', 'product_2') }}"
     order: "{{ source('salesforce', 'order') }}"
     opportunity_line_item: "{{ source('salesforce', 'opportunity_line_item') }}"
-
+    
     account_history: "{{ source('salesforce_history', 'account') }}"
     contact_history: "{{ source('salesforce_history', 'contact') }}"
     event_history: "{{ source('salesforce_history', 'event') }}"

@@ -1,23 +1,17 @@
 --To disable this model, set the salesforce__order_enabled within your dbt_project.yml file to False.
 {{ config(enabled=var('salesforce__order_enabled', True)) }}
 
-with base as (
-
-    select * 
-    from {{ ref('stg_salesforce__order_tmp') }}
-),
-
-fields as (
+with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__order_tmp')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce','order')),
                 staging_columns=get_order_columns()
             )
         }}
         
-    from base
+    from {{ source('salesforce','order') }}
 ), 
 
 final as (
@@ -64,6 +58,7 @@ final as (
         {{ fivetran_utils.fill_pass_through_columns('salesforce__order_pass_through_columns') }}
         
     from fields
+    where coalesce(_fivetran_active, true)
 )
 
 select *

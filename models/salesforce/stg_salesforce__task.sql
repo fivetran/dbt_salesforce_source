@@ -1,23 +1,17 @@
 --To disable this model, set the salesforce__task_enabled variable within your dbt_project.yml file to False.
 {{ config(enabled=var('salesforce__task_enabled', True)) }}
 
-with base as (
-
-    select * 
-    from {{ ref('stg_salesforce__task_tmp') }}
-),
-
-fields as (
+with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__task_tmp')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce','task')),
                 staging_columns=get_task_columns()
             )
         }}
         
-    from base
+    from {{ source('salesforce','task') }}
 ), 
 
 final as (
@@ -56,6 +50,7 @@ final as (
         {{ fivetran_utils.fill_pass_through_columns('salesforce__task_pass_through_columns') }}
         
     from fields
+    where coalesce(_fivetran_active, true)
 )
 
 select *
