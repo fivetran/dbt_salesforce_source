@@ -1,7 +1,6 @@
 # dbt_salesforce_source v1.0.0 
 
-**MAJOR RELEASE!** More details below. 
-
+**📣 MAJOR RELEASE! 📣** More details below. 
 ## 🚨 Breaking Changes 🚨:
 - We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in the equivalent tables.
 
@@ -28,8 +27,12 @@ vars:
 
 - You can also add custom fields into each history model by setting passthrough columns in your `dbt_project.yml`. See more details [in the Adding Passthrough Columns section of the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#adding-passthrough-columns).
 
-## Under The Hood
 - Salesforce History Mode models can contain a multitude of rows if you bring in all historical data, so we've introduced the flexibility to set first date filters to bring in only the historical data you need. More details can be found in the Filter your Salesforce History Mode models with field variable conditionals section, [within Step 5 of the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#filter-your-salesforce-history-mode-models-with-field-variable-conditionals). 
+
+## Under The Hood
+
+- We have removed all `tmp` models and will use the `fivetran_utils.fill_staging_column` macro to compare directly to our source models in your schemas.
+- Salesforce standard models have been moved into the `salesforce` folder to clearly delineate between the two sets of models. 
 
 # dbt_salesforce_source v0.7.0
 
