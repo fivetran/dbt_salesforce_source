@@ -158,6 +158,16 @@ To update the history mode models, you must follow these steps:
 
 We are aware that bringing in additional fields will be very process-heavy, so we do emphasize caution in making changes to your history mode connector. It would be best to batch as many field changes as possible before executing a `--full-refresh` to save on processing. 
 
+## (Optional) Step 5: Additional Configurations
+### Change the Build Schema
+By default, this package builds the Salesforce staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your Salesforce staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
+
+```yml
+models:
+    salesforce_source:
+      +schema: my_new_schema_name # leave blank for just the target_schema
+```
+
 ### Change the Source Table References
 If an individual source table has a different name than expected, provide the name of the table as it appears in your warehouse to the respective variable:
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_salesforce_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
@@ -180,15 +190,6 @@ vars:
     salesforce_order_identifier: "Order" # as an example, must include the double-quotes and correct case!
 ```  
 
-## (Optional) Step 5: Additional Configurations
-### Change the Build Schema
-By default, this package builds the Salesforce staging models within a schema titled (<target_schema> + `_stg_salesforce`) in your target database. If this is not where you would like your Salesforce staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
-
-```yml
-models:
-    salesforce_source:
-      +schema: my_new_schema_name # leave blank for just the target_schema
-```
 ### Adding Formula Fields as Pass Through Columns 
 The source tables Fivetran syncs do not include formula fields. If your company uses them, you can generate them by referring to the [Salesforce Formula Utils](https://github.com/fivetran/dbt_salesforce_formula_utils) package. To pass through the fields, add the [latest version of the package](https://github.com/fivetran/dbt_salesforce_formula_utils#installing-the-macro-package). We recommend confirming your formula field models successfully populate before integrating with the Salesforce package. 
 
@@ -247,17 +248,6 @@ vars:
       alias: "user_role_field_x"
   salesforce__user_pass_through_columns: 
     - name: "salesforce__user_field"
-
-  ##History mode passthrough columns
-  salesforce__account_history_pass_through_columns:
-    - name: "salesforce__account_history_field"
-      alias: "account_history_field_x"
-  salesforce__contact__history_pass_through_columns:
-    - name: "salesforce__contact_history_field"
-      alias: "contact_history_field_x"
-  salesforce__opportunity_history_pass_through_columns:
-    - name: "salesforce__opportunity_history_field"
-      alias: "opportunity_history_field_x"
 ```
 
 ## (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™

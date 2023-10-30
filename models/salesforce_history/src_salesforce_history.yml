@@ -168,6 +168,8 @@ sources:
         identifier: "{{ var('salesforce_opportunity_history_identifier', 'opportunity')}}"
         description: Represents historical records of opportunities, which are sales or pending deals.
         loaded_at_field: _fivetran_synced
+        config:
+          enabled: "{{ var('salesforce__opportunity_history_enabled', False) }}"
         columns:
           - name: id
             description: The unique, system-generated ID assigned during creation.
