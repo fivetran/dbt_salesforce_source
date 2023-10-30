@@ -27,9 +27,9 @@ vars:
     salesforce_contact_history_identifier: "sf_contact_history_data"
     salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
 
-    salesforce__account_history_enabled: true
-    salesforce__contact_history_enabled: true
-    salesforce__opportunity_history_enabled: true
+    salesforce__account_history_enabled: false
+    salesforce__contact_history_enabled: false
+    salesforce__opportunity_history_enabled: false
 
 seeds:
   salesforce_source_integration_tests:
