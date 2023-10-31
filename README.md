@@ -196,7 +196,7 @@ The source tables Fivetran syncs do not include formula fields. If your company 
 Include the following within your `dbt_project.yml` file:
 ```yml
 # Using the opportunity source table as example, update the opportunity variable to reference your newly created model that contains the formula fields:
-  opportunity: "{{ ref('my_opportunity_formula_table') }}"
+  salesforce_opportunity_identifier: "my_new_opportunity_formula_table"
 
 # In addition, add the desired field names as pass through columns
   salesforce__opportunity_pass_through_columns:
