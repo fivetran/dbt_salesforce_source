@@ -1,23 +1,17 @@
---To disable this model, set the using_user_role variable within your dbt_project.yml file to False.
+--To disable this model, set the salesforce__event_enabled variable within your dbt_project.yml file to False.
 {{ config(enabled=var('salesforce__event_enabled', True)) }}
 
-with base as (
-
-    select * 
-    from {{ ref('stg_salesforce__event_tmp') }}
-),
-
-fields as (
+with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_salesforce__event_tmp')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce','event')),
                 staging_columns=get_event_columns()
             )
         }}
 
-    from base
+    from {{ source('salesforce','event') }}
 ), 
 
 final as (
@@ -55,6 +49,7 @@ final as (
         {{ fivetran_utils.fill_pass_through_columns('salesforce__event_pass_through_columns') }}
         
     from fields
+    where coalesce(_fivetran_active, true)
 )
 
 select *

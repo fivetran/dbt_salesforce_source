@@ -1,12 +1,13 @@
 config-version: 2
 name: 'salesforce_source'
-version: '0.7.0'
+version: '1.0.0'
 require-dbt-version: [">=1.3.0", "<2.0.0"]
 models:
   salesforce_source:
     tmp:
       materialized: view
     materialized: table
+
 vars:
   salesforce_source:
     account: "{{ source('salesforce', 'account') }}"
@@ -20,6 +21,11 @@ vars:
     product_2: "{{ source('salesforce', 'product_2') }}"
     order: "{{ source('salesforce', 'order') }}"
     opportunity_line_item: "{{ source('salesforce', 'opportunity_line_item') }}"
+    
+    account_history: "{{ source('salesforce_history', 'account') }}"
+    contact_history: "{{ source('salesforce_history', 'contact') }}"
+    opportunity_history: "{{ source('salesforce_history', 'opportunity') }}"
+
     salesforce__user_role_enabled: true
     salesforce__lead_enabled: true
     salesforce__event_enabled: true
@@ -27,6 +33,12 @@ vars:
     salesforce__opportunity_line_item_enabled: true
     salesforce__order_enabled: true
     salesforce__product_2_enabled: true
+
+    salesforce__account_history_enabled: false
+    salesforce__contact_history_enabled: false
+    salesforce__opportunity_history_enabled: false
+
+# Salesforce pass through columns.
     salesforce__account_pass_through_columns: []
     salesforce__contact_pass_through_columns: []
     salesforce__event_pass_through_columns: []
@@ -38,14 +50,3 @@ vars:
     salesforce__task_pass_through_columns: []
     salesforce__user_role_pass_through_columns: []
     salesforce__user_pass_through_columns: []
-    using_account_history_mode_active_records: false
-    using_opportunity_history_mode_active_records: false
-    using_user_role_history_mode_active_records: false
-    using_user_history_mode_active_records: false
-    using_contact_history_mode_active_records: false
-    using_lead_history_mode_active_records: false
-    using_task_history_mode_active_records: false
-    using_event_history_mode_active_records: false
-    using_product_2_history_mode_active_records: false
-    using_order_history_mode_active_records: false
-    using_opportunity_line_item_history_mode_active_records: false

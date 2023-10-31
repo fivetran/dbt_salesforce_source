@@ -1,3 +1,42 @@
+# dbt_salesforce_source v1.0.0 
+
+**📣 THIS IS A MAJOR PACKAGE RELEASE! 📣** More details below.
+
+[PR #40](https://github.com/fivetran/dbt_salesforce_source/pull/40) includes the following updates:
+
+## 🚨 Breaking Change 🚨:
+- We have removed all `tmp` models and will use the `fivetran_utils.fill_staging_column` macro to compare directly to our source models in your schemas.
+
+## 🚀 Feature Updates 🚀 :
+- We have added history mode models in the [`models/history`](https://github.com/fivetran/dbt_salesforce_source/tree/main/models/history) folder [to support Fivetran's history mode feature](https://fivetran.com/docs/core-concepts/sync-modes/history-mode). This will allow customers to utilize the Fivetran history mode feature, which records every version of each record in the source table from the moment this mode is activated in the equivalent tables.
+
+- These models are disabled by default due to their size, so you will need to set the below variable configurations for each of the individual models you want to utilize in your `dbt_project.yml`. 
+
+```yml 
+vars:
+  salesforce__[history_model]_enabled: true ##Ex: salesforce__account_history_enabled: true          
+```
+
+- **IMPORTANT: All fields in your Salesforce history mode connector that are being synced are being included in the end models**. To change which fields are brought in via end models, you will need to update the fields you are bringing in via your history mode connector in Fivetran and then run a `dbt run --full-refresh`. [See the DECISIONLOG for more details](https://github.com/fivetran/dbt_salesforce_source/blob/main/DECISIONLOG.md).
+
+- Here are the history staging models that were added:
+
+| **Model added** | **Description** 
+| ----- | -----
+| `stg_salesforce__account_history` |  Represents historical records of individual accounts, which are organizations or people involved with your business (such as customers, competitors, and partners).
+| `stg_salesforce__contact_history` |  Represents the historical record of contacts, which are people associated with an account.
+| `stg_salesforce__opportunity_history` | Represents historical records of opportunities, which are sales or pending deals.
+
+- All history models are incremental due to the volume of data being ingested. 
+
+- We support the option to pull from both your standard Salesforce and History Mode connectors simultaneously from their specific database/schemas.  We also support pulling from just your History Mode connector on its own and bypassing the standard connector on its own. [See more detailed instructions in the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#configuring-your-salesforce-history-mode-database-and-schema-variables).
+
+- Salesforce History Mode models can contain a multitude of rows if you bring in all historical data, so we've introduced the flexibility to set first date filters to bring in only the historical data you need. [More details can be found in the README](https://github.com/fivetran/dbt_salesforce_source/blob/main/README.md#filter-your-salesforce-history-mode-models-with-field-variable-conditionals).
+
+## 🔎 Under The Hood 🔎
+- Salesforce standard models have been moved into the `salesforce` folder to clearly delineate between the two sets of models. 
+- We have deprecated the `using_[source]_history_mode_active_records` variables. The introduction of the new history mode capabilities in this package made these variables redundant.  
+
 # dbt_salesforce_source v0.7.0
 
 ## 🚨 Breaking Changes 🚨:
