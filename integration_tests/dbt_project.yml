@@ -1,5 +1,5 @@
 name: 'salesforce_source_integration_tests'
-version: '1.0.0'
+version: '1.0.1'
 
 config-version: 2
 
@@ -58,14 +58,6 @@ seeds:
         last_viewed_date: timestamp
         amount: float
         probability: float
-    sf_user_data:
-      +column_types:
-        last_login_date: timestamp
-        last_referenced_date: timestamp
-        last_viewed_date: timestamp
-        offline_trial_expiration_date: timestamp
-        latitude: float
-        longitude: float
     sf_user_data:
       +column_types:
         last_login_date: timestamp
@@ -159,7 +151,6 @@ seeds:
         last_activity_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
-        annual_revenue: float
         is_deleted: boolean
     sf_contact_history_data:
       +column_types:

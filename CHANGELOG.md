@@ -1,3 +1,13 @@
+# dbt_salesforce_source v1.0.1
+
+[PR #41](https://github.com/fivetran/dbt_salesforce_source/pull/41) includes the following updates:
+
+## Bug Fix
+- Adds the missing `version: 2` tag to the `src_salesforce_history.yml` [file](https://github.com/fivetran/dbt_salesforce_source/blob/main/models/salesforce_history/src_salesforce_history.yml).
+
+## Under the Hood
+- Cleans up duplicate seed configurations in `integration_tests/dbt_project.yml`. 
+
 # dbt_salesforce_source v1.0.0 
 
 **📣 THIS IS A MAJOR PACKAGE RELEASE! 📣** More details below.

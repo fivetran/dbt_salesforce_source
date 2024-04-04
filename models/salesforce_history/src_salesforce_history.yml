@@ -1,3 +1,5 @@
+version: 2
+
 sources:
   - name: salesforce_history
     schema: "{{ var('salesforce_history_schema', 'salesforce_history') }}" # you will need to customize if your schema name is not salesforce
