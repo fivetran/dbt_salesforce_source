@@ -1,6 +1,6 @@
 # dbt_salesforce_source v1.0.1
 
-[PR #41](https://github.com/fivetran/dbt_salesforce_source/pull/41) includes the following updates:
+[PR #44](https://github.com/fivetran/dbt_salesforce_source/pull/44) includes the following updates:
 
 ## Bug Fix
 - Adds the missing `version: 2` tag to the `src_salesforce_history.yml` [file](https://github.com/fivetran/dbt_salesforce_source/blob/main/models/salesforce_history/src_salesforce_history.yml).
