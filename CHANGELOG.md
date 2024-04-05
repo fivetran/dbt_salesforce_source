@@ -7,6 +7,7 @@
 
 ## Under the Hood
 - Cleans up duplicate seed configurations in `integration_tests/dbt_project.yml`. 
+- Updates the pull request [templates](/.github).
 - Includes auto-releaser GitHub Actions workflow to automate future releases.
 
 # dbt_salesforce_source v1.0.0 
