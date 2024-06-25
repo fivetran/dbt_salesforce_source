@@ -81,7 +81,7 @@ vars:
 The corresponding metrics from the disabled tables will not populate in the downstream models.
 
 ## (Optional) Step 4: Utilizing Salesforce History Mode records
-If you have Salesforce [History Mode](https://fivetran.com/docs/getting-started/feature/history-mode) enabled for your connector, we now include support for the `account`, `contact`, and `opportunity` tables directly. This will allow you access to your historical data for these tables while taking advantage of incremental loads to help with compute.
+If you have Salesforce [History Mode](https://fivetran.com/docs/using-fivetran/features#historymode) enabled for your connector, we now include support for the `account`, `contact`, and `opportunity` tables directly. This will allow you access to your historical data for these tables while taking advantage of incremental loads to help with compute.
 
 ### Configuring Your Salesforce History Mode Database and Schema Variables
 Customers leveraging the Salesforce connector generally fall into one of two categories when taking advantage of History mode. They either have one connector that is syncing non-historical records and a separate connector that syncs historical records, **or** they have one connector that is syncing historical records. We have designed this feature to support both scenarios.
