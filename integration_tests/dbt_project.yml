@@ -7,7 +7,7 @@ profile: 'integration_tests'
 
 vars:
   salesforce_source:
-    salesforce_schema: zz_dbt_catherine_sf #salesforce_source_integrations_tests_3
+    salesforce_schema: salesforce_source_integrations_tests_3
     salesforce_history_schema: salesforce_source_integrations_tests_3
 
     salesforce_account_identifier: "sf_account_data"
