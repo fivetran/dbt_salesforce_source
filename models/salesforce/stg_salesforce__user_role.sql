@@ -20,12 +20,12 @@ final as (
     select
         _fivetran_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        developer_name,
+        {{ coalesce_w_renamed_col('developer_name') }},
         id as user_role_id,
         name as user_role_name,
-        opportunity_access_for_account_owner,
-        parent_role_id,
-        rollup_description
+        {{ coalesce_w_renamed_col('opportunity_access_for_account_owner') }},
+        {{ coalesce_w_renamed_col('parent_role_id') }},
+        {{ coalesce_w_renamed_col('rollup_description') }}
         
         {{ fivetran_utils.fill_pass_through_columns('salesforce__user_role_pass_through_columns') }}
         
