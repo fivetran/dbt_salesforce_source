@@ -2,7 +2,7 @@
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
-    {"name": "_fivetran_active", "datatype": "boolean"},
+    {"name": "_fivetran_active", "datatype": dbt.type_boolean()},
     {"name": "account_id", "datatype": dbt.type_string()},
     {"name": "accountid", "datatype": dbt.type_string()},
     {"name": "department", "datatype": dbt.type_string()},
@@ -15,8 +15,8 @@
     {"name": "id", "datatype": dbt.type_string()},
     {"name": "individual_id", "datatype": dbt.type_string()},
     {"name": "individualid", "datatype": dbt.type_string()},
-    {"name": "is_deleted", "datatype": "boolean"},
-    {"name": "isdeleted", "datatype": "boolean"},
+    {"name": "is_deleted", "datatype": dbt.type_boolean()},
+    {"name": "isdeleted", "datatype": dbt.type_boolean()},
     {"name": "last_activity_date", "datatype": dbt.type_timestamp()},
     {"name": "lastactivitydate", "datatype": dbt.type_timestamp()},
     {"name": "last_modified_by_id", "datatype": dbt.type_string()},

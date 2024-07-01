@@ -30,7 +30,7 @@ final as (
         {{ coalesce_w_renamed_col('first_name') }},
         id as user_id,
         {{ coalesce_w_renamed_col('individual_id') }},
-        {{ coalesce_w_renamed_col('is_active') }},
+        {{ coalesce_w_renamed_col('is_active', datatype=dbt.type_boolean()) }},
         {{ coalesce_w_renamed_col('last_login_date', datatype=dbt.type_timestamp()) }},
         {{ coalesce_w_renamed_col('last_name') }},
         {{ coalesce_w_renamed_col('last_referenced_date', datatype=dbt.type_timestamp()) }},

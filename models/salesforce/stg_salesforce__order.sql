@@ -31,10 +31,10 @@ final as (
         {{ coalesce_w_renamed_col('billing_street') }},
         {{ coalesce_w_renamed_col('contract_id') }},
         {{ coalesce_w_renamed_col('created_by_id') }},
-        {{ coalesce_w_renamed_col('created_date') }},
+        {{ coalesce_w_renamed_col('created_date', datatype=dbt.type_timestamp()) }},
         description as order_description,
         {{ coalesce_w_renamed_col('end_date', datatype=dbt.type_timestamp()) }},
-        {{ coalesce_w_renamed_col('is_deleted') }},
+        {{ coalesce_w_renamed_col('is_deleted', datatype=dbt.type_boolean()) }},
         {{ coalesce_w_renamed_col('last_modified_by_id') }},
         {{ coalesce_w_renamed_col('last_modified_date', datatype=dbt.type_timestamp()) }},
         {{ coalesce_w_renamed_col('last_referenced_date', datatype=dbt.type_timestamp()) }},
@@ -52,7 +52,7 @@ final as (
         {{ coalesce_w_renamed_col('shipping_state_code') }},
         {{ coalesce_w_renamed_col('shipping_street') }},
         status,
-        {{ coalesce_w_renamed_col('total_amount') }},
+        {{ coalesce_w_renamed_col('total_amount', datatype=dbt.type_numeric()) }},
         type
         
         {{ fivetran_utils.fill_pass_through_columns('salesforce__order_pass_through_columns') }}

@@ -29,11 +29,11 @@ final as (
         {{ coalesce_w_renamed_col('end_date_time', datatype=dbt.type_timestamp()) }},
         {{ coalesce_w_renamed_col('event_subtype') }},
         {{ coalesce_w_renamed_col('group_event_type') }},
-        {{ coalesce_w_renamed_col('is_archived') }},
-        {{ coalesce_w_renamed_col('is_child') }},
-        {{ coalesce_w_renamed_col('is_deleted') }},
-        {{ coalesce_w_renamed_col('is_group_event') }},
-        {{ coalesce_w_renamed_col('is_recurrence') }},
+        {{ coalesce_w_renamed_col('is_archived', datatype=dbt.type_boolean()) }},
+        {{ coalesce_w_renamed_col('is_child', datatype=dbt.type_boolean()) }},
+        {{ coalesce_w_renamed_col('is_deleted', datatype=dbt.type_boolean()) }},
+        {{ coalesce_w_renamed_col('is_group_event', datatype=dbt.type_boolean()) }},
+        {{ coalesce_w_renamed_col('is_recurrence', datatype=dbt.type_boolean()) }},
         {{ coalesce_w_renamed_col('last_modified_by_id') }},
         {{ coalesce_w_renamed_col('last_modified_date', datatype=dbt.type_timestamp()) }},
         location,
@@ -41,9 +41,9 @@ final as (
         {{ coalesce_w_renamed_col('start_date_time', datatype=dbt.type_timestamp()) }},
         subject,
         type,
-        {{ coalesce_w_renamed_col('what_count') }},
+        {{ coalesce_w_renamed_col('what_count', datatype=dbt.type_int()) }},
         {{ coalesce_w_renamed_col('what_id') }},
-        {{ coalesce_w_renamed_col('who_count') }},
+        {{ coalesce_w_renamed_col('who_count', datatype=dbt.type_int()) }},
         {{ coalesce_w_renamed_col('who_id') }}
         
         {{ fivetran_utils.fill_pass_through_columns('salesforce__event_pass_through_columns') }}

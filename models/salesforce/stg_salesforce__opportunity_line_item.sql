@@ -23,15 +23,15 @@ final as (
         {{ coalesce_w_renamed_col('created_date', datatype=dbt.type_timestamp()) }},
         description as opportunity_line_item_description,
         discount,
-        {{ coalesce_w_renamed_col('has_quantity_schedule') }},
-        {{ coalesce_w_renamed_col('has_revenue_schedule') }},
-        {{ coalesce_w_renamed_col('has_schedule') }},
-        {{ coalesce_w_renamed_col('is_deleted') }},
+        {{ coalesce_w_renamed_col('has_quantity_schedule', datatype=dbt.type_boolean()) }},
+        {{ coalesce_w_renamed_col('has_revenue_schedule', datatype=dbt.type_boolean()) }},
+        {{ coalesce_w_renamed_col('has_schedule', datatype=dbt.type_boolean()) }},
+        {{ coalesce_w_renamed_col('is_deleted', datatype=dbt.type_boolean()) }},
         {{ coalesce_w_renamed_col('last_modified_by_id') }},
         {{ coalesce_w_renamed_col('last_modified_date', datatype=dbt.type_timestamp()) }},
         {{ coalesce_w_renamed_col('last_referenced_date', datatype=dbt.type_timestamp()) }},
         {{ coalesce_w_renamed_col('last_viewed_date', datatype=dbt.type_timestamp()) }},
-        {{ coalesce_w_renamed_col('list_price') }},
+        {{ coalesce_w_renamed_col('list_price', datatype=dbt.type_numeric()) }},
         name as opportunity_line_item_name,
         {{ coalesce_w_renamed_col('opportunity_id') }},
         {{ coalesce_w_renamed_col('pricebook_entry_id') }},
@@ -39,9 +39,9 @@ final as (
         {{ coalesce_w_renamed_col('product_code') }},
         quantity,
         {{ coalesce_w_renamed_col('service_date', datatype=dbt.type_timestamp()) }},
-        {{ coalesce_w_renamed_col('sort_order') }},
-        {{ coalesce_w_renamed_col('total_price') }},
-        {{ coalesce_w_renamed_col('unit_price') }}
+        {{ coalesce_w_renamed_col('sort_order', datatype=dbt.type_int()) }},
+        {{ coalesce_w_renamed_col('total_price', datatype=dbt.type_numeric()) }},
+        {{ coalesce_w_renamed_col('unit_price', datatype=dbt.type_numeric()) }}
         
         {{ fivetran_utils.fill_pass_through_columns('salesforce__opportunity_line_item_pass_through_columns') }}
         

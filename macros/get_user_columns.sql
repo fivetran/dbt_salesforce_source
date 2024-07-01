@@ -1,8 +1,8 @@
 {% macro get_user_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_deleted", "datatype": "boolean"},
-    {"name": "_fivetran_active", "datatype": "boolean"},
+    {"name": "_fivetran_deleted", "datatype": dbt.type_boolean()},
+    {"name": "_fivetran_active", "datatype": dbt.type_boolean()},
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
     {"name": "account_id", "datatype": dbt.type_string()},
     {"name": "accountid", "datatype": dbt.type_string()},
@@ -22,8 +22,8 @@
     {"name": "id", "datatype": dbt.type_string()},
     {"name": "individual_id", "datatype": dbt.type_string()},
     {"name": "individualid", "datatype": dbt.type_string()},
-    {"name": "is_active", "datatype": "boolean"},
-    {"name": "isactive", "datatype": "boolean"},
+    {"name": "is_active", "datatype": dbt.type_boolean()},
+    {"name": "isactive", "datatype": dbt.type_boolean()},
     {"name": "last_login_date", "datatype": dbt.type_timestamp()},
     {"name": "lastlogindate", "datatype": dbt.type_timestamp()},
     {"name": "last_name", "datatype": dbt.type_string()},
