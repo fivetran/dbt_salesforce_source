@@ -32,7 +32,7 @@ final as (
         {{ coalesce_w_renamed_col('is_archived', datatype=dbt.type_boolean()) }},
         {{ coalesce_w_renamed_col('is_closed', datatype=dbt.type_boolean()) }},
         {{ coalesce_w_renamed_col('is_deleted', datatype=dbt.type_boolean()) }},
-        {{ coalesce_w_renamed_col('is_high_priority') }},
+        {{ coalesce_w_renamed_col('is_high_priority', datatype=dbt.type_boolean()) }},
         {{ coalesce_w_renamed_col('last_modified_by_id') }},
         {{ coalesce_w_renamed_col('last_modified_date', datatype=dbt.type_timestamp()) }},
         {{ coalesce_w_renamed_col('owner_id') }},
