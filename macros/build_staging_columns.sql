@@ -6,16 +6,17 @@
     {% set final_column_name = col.alias | default(col.name) %}
 
     {%- if col.renamed_column_name %}
+        {{- ',' if not loop.first }}
         coalesce(cast({{ col.renamed_column_name }} as {{ col.datatype }}),
             cast({{ final_column_name }} as {{ col.datatype }}))
             as {{ final_column_name }}
-        {{- ',' if not loop.last }}
+        
 
     {%- elif not col.is_rename and not col.exclude_from_final %}
+        {{- ',' if not loop.last }}
         cast({{ final_column_name }} as {{ col.datatype }})
             as {{ final_column_name }}
-        {{- ',' if not loop.last }}
     {%- endif %}
 {%- endfor %}
 
-{%- endmacro %}
+{% endmacro %}
