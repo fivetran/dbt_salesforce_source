@@ -5,10 +5,13 @@ config-version: 2
 
 profile: 'integration_tests'
 
+models:
+  +schema: "salesforce_source_{{ var('directed_schema','dev') }}"
+
 vars:
   salesforce_source:
-    salesforce_schema: salesforce_source_integrations_tests_3
-    salesforce_history_schema: salesforce_source_integrations_tests_3
+    salesforce_schema: zz_dbt_catherine_sf # salesforce_source_integrations_tests_3
+    salesforce_history_schema: zz_dbt_catherine_sf # salesforce_source_integrations_tests_3
 
     salesforce_account_identifier: "sf_account_data"
     salesforce_opportunity_identifier: "sf_opportunity_data"
