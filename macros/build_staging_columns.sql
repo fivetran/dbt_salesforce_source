@@ -13,7 +13,7 @@
         
 
     {%- elif not col.is_rename and not col.exclude_from_final %}
-        {{- ',' if not loop.last }}
+        {{- ',' if not loop.first }}
         cast({{ final_column_name }} as {{ col.datatype }})
             as {{ final_column_name }}
     {%- endif %}
