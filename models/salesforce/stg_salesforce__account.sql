@@ -28,6 +28,7 @@ final as (
         {{ coalesce_rename("billing_street", account_dict) }},
         {{ coalesce_rename("description", account_dict, alias="account_description" ) }},
         {{ coalesce_rename("id", account_dict, alias="account_id") }},
+        {{ coalesce_rename("industry", account_dict) }},
         {{ coalesce_rename("is_deleted", account_dict) }},
         {{ coalesce_rename("last_activity_date", account_dict) }},
         {{ coalesce_rename("last_referenced_date", account_dict) }},
