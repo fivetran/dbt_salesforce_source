@@ -2,7 +2,7 @@
 
 {% set columns = [
     {"name": "_fivetran_deleted", "datatype": "boolean"},
-    {"name": "_fivetran_active", "datatype": dbt.type_boolean(), "exclude_from_final": true},
+    {"name": "_fivetran_active", "datatype": dbt.type_boolean()},
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
     {"name": "account_id", "datatype": dbt.type_string()},
     {"name": "alias", "datatype": dbt.type_string()},
@@ -14,7 +14,7 @@
     {"name": "department", "datatype": dbt.type_string()},
     {"name": "email", "datatype": dbt.type_string()},
     {"name": "first_name", "datatype": dbt.type_string()},
-    {"name": "id", "datatype": dbt.type_string(), "alias": "user_id"},
+    {"name": "id", "datatype": dbt.type_string()},
     {"name": "individual_id", "datatype": dbt.type_string()},
     {"name": "is_active", "datatype": "boolean"},
     {"name": "last_login_date", "datatype": dbt.type_timestamp()},
@@ -22,7 +22,7 @@
     {"name": "last_referenced_date", "datatype": dbt.type_timestamp()},
     {"name": "last_viewed_date", "datatype": dbt.type_timestamp()},
     {"name": "manager_id", "datatype": dbt.type_string()},
-    {"name": "name", "datatype": dbt.type_string(), "alias": "user_name"},
+    {"name": "name", "datatype": dbt.type_string()},
     {"name": "postal_code", "datatype": dbt.type_string()},
     {"name": "profile_id", "datatype": dbt.type_string()},
     {"name": "state", "datatype": dbt.type_string()},

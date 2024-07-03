@@ -2,6 +2,8 @@
 {{ config(enabled=var('salesforce__user_role_enabled', True)) }}
 
 {% set column_list = get_user_role_columns() -%}
+{% set column_dict = column_list_to_dict(column_list) -%}
+
 with fields as (
 
     select
@@ -19,7 +21,15 @@ with fields as (
 final as (
 
     select
-        {{ salesforce_source.build_staging_columns(column_list) }}
+        _fivetran_deleted,
+        cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
+        {{ coalesce_rename("developer_name", column_dict ) }},
+        {{ coalesce_rename("id", column_dict, alias="user_role_id") }},
+        {{ coalesce_rename("name", column_dict, alias="user_role_name") }},
+        {{ coalesce_rename("opportunity_access_for_account_owner", column_dict ) }},
+        {{ coalesce_rename("parent_role_id", column_dict ) }},
+        {{ coalesce_rename("rollup_description", column_dict ) }}
+        
         {{ fivetran_utils.fill_pass_through_columns('salesforce__user_role_pass_through_columns') }}
         
     from fields
