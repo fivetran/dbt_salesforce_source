@@ -54,27 +54,26 @@ seeds:
         shipping_longitude: float
     sf_opportunity_data:
       +column_types:
-        amount: float
         close_date: timestamp
         created_date: timestamp
         last_activity_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
+        amount: float
         probability: float
     sf_user_data:
       +column_types:
         last_login_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
+        offline_trial_expiration_date: timestamp
         latitude: float
         longitude: float
-        offline_trial_expiration_date: timestamp
     sf_contact_data:
       +column_types:
         birthdate: timestamp
         created_date: timestamp
         email_bounced_date: timestamp
-        is_deleted: boolean
         last_activity_date: timestamp
         last_curequest_date: timestamp
         last_cuupdate_date: timestamp
@@ -82,6 +81,7 @@ seeds:
         last_referenced_date: timestamp
         last_viewed_date: timestamp
         system_modstamp: timestamp
+        is_deleted: boolean
     sf_lead_data:
       +column_types:
         converted_date: timestamp
@@ -98,12 +98,12 @@ seeds:
         activity_date: timestamp
         completed_date_time: timestamp
         created_date: timestamp
-        is_deleted: boolean
         last_modified_date: timestamp
         recurrence_end_date_only: timestamp
         recurrence_start_date_only: timestamp
         reminder_date_time: timestamp
         system_modstamp: timestamp
+        is_deleted: boolean
     sf_event_data:
       +column_types:
         activity_date: timestamp
@@ -111,7 +111,6 @@ seeds:
         created_date: timestamp
         end_date: timestamp
         end_date_time: timestamp
-        group_event_type: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
         last_modified_date   : timestamp
         recurrence_2_pattern_start_date   : timestamp
         recurrence_end_date_only: timestamp
@@ -123,53 +122,31 @@ seeds:
     sf_product_2_data:
       +column_types:
         created_date: timestamp
-        display_url: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        is_deleted: boolean
         last_modified_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
         system_modstamp: timestamp
+        is_deleted: boolean
     sf_order_data:
       +column_types:
-        account_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        activated_by_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
         activated_date: timestamp
-        billing_country_code: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        billing_state_code: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        contract_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        created_by_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
         created_date: timestamp
         effective_date: timestamp
         end_date: timestamp
-        is_deleted: boolean
-        last_modified_by_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
         last_modified_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
-        opportunity_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        order_number: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        original_order_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        owner_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        pricebook_2_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        shipping_country_code: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        shipping_postal_code: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
-        shipping_state_code: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
         system_modstamp: timestamp
+        is_deleted: boolean
     sf_opportunity_line_item_data:
       +column_types:
-        campaign_id: "{{ 'string' if target.name in ['bigquery','spark', 'databricks'] else 'varchar' }}" 
         created_date: timestamp
-        has_quantity_schedule: boolean
-        has_revenue_schedule: boolean
-        has_schedule: boolean
-        is_deleted: boolean
         last_modified_date: timestamp
         last_referenced_date: timestamp
         last_viewed_date: timestamp
         service_date: timestamp
         system_modstamp: timestamp
-    sf_user_role_data:
-      +column_types:
+        is_deleted: boolean
 
     sf_account_history_data:
       +column_types:
@@ -180,7 +157,7 @@ seeds:
         is_deleted: boolean
     sf_contact_history_data:
       +column_types:
-        birthdate: timestamp
+        birthdate: timestamp 
         last_activity_date: timestamp 
         last_modified_date: timestamp 
         last_viewed_date: timestamp
