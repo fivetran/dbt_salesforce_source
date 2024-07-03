@@ -1,3 +1,9 @@
+# dbt_salesforce_source v1.0.2
+[PR #48](https://github.com/fivetran/dbt_salesforce_source/pull/48) includes the following updates:
+
+## Bug Fix
+- Resolved an issue where the Fivetran Salesforce connector syncs column names using the original Salesforce API naming. For example, while Fivetran usually provides the column `created_date`, some users may opt to receive the API naming as `CreatedDate`. This update includes logic to ensure the package is automatically compatible with both naming conventions.
+
 # dbt_salesforce_source v1.0.1
 
 [PR #44](https://github.com/fivetran/dbt_salesforce_source/pull/44) includes the following updates:
