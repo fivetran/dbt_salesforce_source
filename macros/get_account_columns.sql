@@ -6,7 +6,7 @@
     {"name": "_fivetran_active", "datatype": dbt.type_boolean()},
     {"name": "account_number", "datatype": dbt.type_string()},
     {"name": "account_source", "datatype": dbt.type_string()},
-    {"name": "annual_revenue", "datatype": dbt.type_numeric()},
+    {"name": "annual_revenue", "datatype": dbt.type_float()},
     {"name": "billing_city", "datatype": dbt.type_string()},
     {"name": "billing_country", "datatype": dbt.type_string()},
     {"name": "billing_postal_code", "datatype": dbt.type_string()},
