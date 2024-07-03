@@ -19,7 +19,7 @@ final as (
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
         {{ coalesce_rename("account_number", account_dict) }},
         {{ coalesce_rename("account_source", account_dict) }},
-        {{ coalesce_rename("annual_revenue", account_dict, datatype="dbt.type_numeric()") }},
+        {{ coalesce_rename("annual_revenue", account_dict, datatype=dbt.type_numeric()) }},
         {{ coalesce_rename("billing_city", account_dict) }},
         {{ coalesce_rename("billing_country", account_dict) }},
         {{ coalesce_rename("billing_postal_code", account_dict) }},

@@ -10,8 +10,8 @@ models:
 
 vars:
   salesforce_source:
-    salesforce_schema: salesforce_source_integrations_tests_3
-    salesforce_history_schema: salesforce_source_integrations_tests_3
+    salesforce_schema: zz_dbt_catherine_salesforce #salesforce_source_integrations_tests_3
+    salesforce_history_schema: zz_dbt_catherine_salesforce #salesforce_source_integrations_tests_3
 
     salesforce_account_identifier: "sf_account_data"
     salesforce_opportunity_identifier: "sf_opportunity_data"
