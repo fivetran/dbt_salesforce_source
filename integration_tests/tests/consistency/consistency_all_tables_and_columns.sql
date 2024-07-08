@@ -17,6 +17,7 @@ with prod as (
             else data_type 
             end as data_type
     from {{ target.schema }}_salesforce_source_prod.INFORMATION_SCHEMA.COLUMNS
+    where table_name like 'stg_%'
 ),
 
 dev as (
@@ -27,6 +28,7 @@ dev as (
             else data_type 
             end as data_type
     from {{ target.schema }}_salesforce_source_dev.INFORMATION_SCHEMA.COLUMNS
+    where table_name like 'stg_%'
 ),
 
 final as (
