@@ -3,9 +3,9 @@
     enabled=var('fivetran_validation_tests_enabled', false)
 ) }}
 
-/* This test is to make sure the final columns are the same between versions.
-Only one test is needed since it will FETCH all tables and all columns in each schema.
-!!! TEST IS WRITTEN FOR BIGQUERY!!! */
+/* This test is to make sure the final columns produced are the same between versions.
+Only one test is needed since it will fetch all tables and all columns in each schema.
+!!! THIS TEST IS WRITTEN FOR BIGQUERY!!! */
 with prod as (
     select
         table_name,
