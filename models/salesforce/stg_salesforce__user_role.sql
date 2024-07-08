@@ -23,12 +23,12 @@ final as (
     select
         _fivetran_deleted,
         cast(_fivetran_synced as {{ dbt.type_timestamp() }}) as _fivetran_synced,
-        {{ coalesce_rename("developer_name", user_role_dict ) }},
-        {{ coalesce_rename("id", user_role_dict, alias="user_role_id") }},
-        {{ coalesce_rename("name", user_role_dict, alias="user_role_name") }},
-        {{ coalesce_rename("opportunity_access_for_account_owner", user_role_dict ) }},
-        {{ coalesce_rename("parent_role_id", user_role_dict ) }},
-        {{ coalesce_rename("rollup_description", user_role_dict ) }}
+        {{ salesforce_source.coalesce_rename("developer_name", user_role_dict ) }},
+        {{ salesforce_source.coalesce_rename("id", user_role_dict, alias="user_role_id") }},
+        {{ salesforce_source.coalesce_rename("name", user_role_dict, alias="user_role_name") }},
+        {{ salesforce_source.coalesce_rename("opportunity_access_for_account_owner", user_role_dict ) }},
+        {{ salesforce_source.coalesce_rename("parent_role_id", user_role_dict ) }},
+        {{ salesforce_source.coalesce_rename("rollup_description", user_role_dict ) }}
         
         {{ fivetran_utils.fill_pass_through_columns('salesforce__user_role_pass_through_columns') }}
         

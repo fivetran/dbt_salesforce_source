@@ -4,14 +4,25 @@
 ) }}
 
 -- this test is to make sure the final columns are the same between versions
+-- ONLY RUNS IN BIGQUERY!
 with prod as (
-    select *
-    from {{ ref('stg_salesforce__task') }}
+    select
+        table_name,
+        column_name,
+        case when lower(data_type) like '%numeric%' then 'numeric'
+            else data_type 
+            end as data_type
+    from {{ target.schema }}_salesforce_source_prod.INFORMATION_SCHEMA.COLUMNS
 ),
 
 dev as (
-    select *
-    from {{ ref('stg_salesforce__task') }}
+    select
+        table_name,
+        column_name,
+        case when lower(data_type) like '%numeric%' then 'numeric'
+            else data_type 
+            end as data_type
+    from {{ target.schema }}_salesforce_source_dev.INFORMATION_SCHEMA.COLUMNS
 ),
 
 final as (
