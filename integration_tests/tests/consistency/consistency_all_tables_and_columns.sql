@@ -6,13 +6,14 @@
 /* This test is to make sure the final columns produced are the same between versions.
 Only one test is needed since it will fetch all tables and all columns in each schema.
 !!! THIS TEST IS WRITTEN FOR BIGQUERY!!! */
+{% if target.type == 'bigquery' %}
 with prod as (
     select
         table_name,
         column_name,
-        /* Need the case since the prod version is uncasted, and bigquery automatically produces a value of "bignumeric"
+        /* Need the case since the prod version is uncasted, and bigquery automatically produces a value of "bignumeric" or "float"
         while the dev is casted as dbt.type_numeric() and produces a value of "numeric" */
-        case when lower(data_type) like '%numeric%' then 'numeric' 
+        case when lower(data_type) like '%numeric%' or lower(data_type) like '%float%' then 'numeric'
             else data_type 
             end as data_type
     from {{ target.schema }}_salesforce_source_prod.INFORMATION_SCHEMA.COLUMNS
@@ -22,7 +23,7 @@ dev as (
     select
         table_name,
         column_name,
-        case when lower(data_type) like '%numeric%' then 'numeric'
+        case when lower(data_type) like '%numeric%' or lower(data_type) like '%float%' then 'numeric'
             else data_type 
             end as data_type
     from {{ target.schema }}_salesforce_source_dev.INFORMATION_SCHEMA.COLUMNS
@@ -44,3 +45,8 @@ final as (
 
 select *
 from final
+
+{% else %}
+{{ print('This is written to run on bigquery. If you need to run on another warehouse, add a version!') }}
+
+{% endif %}
