@@ -1,9 +1,12 @@
 name: 'salesforce_source_integration_tests'
-version: '1.0.1'
+version: '1.1.0'
 
 config-version: 2
 
 profile: 'integration_tests'
+
+models:
+  +schema: "salesforce_source_{{ var('directed_schema','dev') }}"
 
 vars:
   salesforce_source:

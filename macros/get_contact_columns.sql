@@ -2,7 +2,7 @@
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
-    {"name": "_fivetran_active", "datatype": "boolean"},
+    {"name": "_fivetran_active", "datatype": dbt.type_boolean()},
     {"name": "account_id", "datatype": dbt.type_string()},
     {"name": "department", "datatype": dbt.type_string()},
     {"name": "description", "datatype": dbt.type_string()},
@@ -34,6 +34,8 @@
     {"name": "reports_to_id", "datatype": dbt.type_string()},
     {"name": "title", "datatype": dbt.type_string()},
 ] %}
+
+{{ salesforce_source.add_renamed_columns(columns) }}
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__contact_pass_through_columns')) }}        
 

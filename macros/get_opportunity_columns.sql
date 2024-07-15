@@ -34,8 +34,10 @@
     {"name": "record_type_id", "datatype": dbt.type_string()},
     {"name": "stage_name", "datatype": dbt.type_string()},
     {"name": "synced_quote_id", "datatype": dbt.type_string()},
-    {"name": "type", "datatype": dbt.type_string()},
+    {"name": "type", "datatype": dbt.type_string()}
 ] %}
+
+{{ salesforce_source.add_renamed_columns(columns) }}
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__opportunity_pass_through_columns')) }}
 

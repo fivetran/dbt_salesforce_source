@@ -2,7 +2,7 @@
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
-    {"name": "_fivetran_active", "datatype": "boolean"},
+    {"name": "_fivetran_active", "datatype": dbt.type_boolean()},
     {"name": "account_id", "datatype": dbt.type_string()},
     {"name": "activated_by_id", "datatype": dbt.type_string()},
     {"name": "activated_date", "datatype": dbt.type_timestamp()},
@@ -40,6 +40,8 @@
     {"name": "total_amount", "datatype": dbt.type_float()},
     {"name": "type", "datatype": dbt.type_string()},
 ] %}
+
+{{ salesforce_source.add_renamed_columns(columns) }}
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__order_pass_through_columns')) }}
 

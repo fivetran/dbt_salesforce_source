@@ -2,7 +2,7 @@
 
 {% set columns = [
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
-    {"name": "_fivetran_active", "datatype": "boolean"},
+    {"name": "_fivetran_active", "datatype": dbt.type_boolean()},
     {"name": "created_by_id", "datatype": dbt.type_string()},
     {"name": "created_date", "datatype": dbt.type_timestamp()},
     {"name": "description", "datatype": dbt.type_string()},
@@ -28,6 +28,8 @@
     {"name": "total_price", "datatype": dbt.type_float()},
     {"name": "unit_price", "datatype": dbt.type_float()}
 ] %}
+
+{{ salesforce_source.add_renamed_columns(columns) }}
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__opportunity_line_item_pass_through_columns')) }}
 

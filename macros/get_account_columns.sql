@@ -3,7 +3,7 @@
 {% set columns = [
 
     {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
-    {"name": "_fivetran_active", "datatype": "boolean"},
+    {"name": "_fivetran_active", "datatype": dbt.type_boolean()},
     {"name": "account_number", "datatype": dbt.type_string()},
     {"name": "account_source", "datatype": dbt.type_string()},
     {"name": "annual_revenue", "datatype": dbt.type_float()},
@@ -16,7 +16,7 @@
     {"name": "description", "datatype": dbt.type_string()},
     {"name": "id", "datatype": dbt.type_string()},
     {"name": "industry", "datatype": dbt.type_string()},
-    {"name": "is_deleted", "datatype": "boolean"},
+    {"name": "is_deleted", "datatype": dbt.type_boolean()},
     {"name": "last_activity_date", "datatype": dbt.type_timestamp()},
     {"name": "last_referenced_date", "datatype": dbt.type_timestamp()},
     {"name": "last_viewed_date", "datatype": dbt.type_timestamp()},
@@ -38,6 +38,8 @@
     {"name": "type", "datatype": dbt.type_string()},
     {"name": "website", "datatype": dbt.type_string()}
 ] %}
+
+{{ salesforce_source.add_renamed_columns(columns) }}
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__account_pass_through_columns')) }}
 
