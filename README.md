@@ -187,7 +187,7 @@ In this package, this would apply to the `ORDER` source. If you are receiving er
 
 ```yml
 vars:
-    salesforce_order_identifier: "Order" # as an example, must include the double-quotes and correct case!
+    salesforce_order_identifier: "Order" # as an example, must include the double-quotes and correct case.
 ```  
 
 #### Adding Formula Fields as Pass Through Columns
