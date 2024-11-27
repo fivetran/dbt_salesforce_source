@@ -12,6 +12,10 @@
 {%- if original_column_name|lower == renamed_column_name|lower %}
     cast({{ renamed_column_name }} as {{ datatype }}) as {{ alias }}
 
+{# If renamed_column_name is not defined, this indicates it is a passthrough column. #}
+{%- elif renamed_column_name is not defined or renamed_column_name == '' %}
+    cast({{ original_column_name }} as {{ datatype }}) as {{ original_column_name }}
+
 {%- else %}
     coalesce(cast({{ renamed_column_name }} as {{ datatype }}),
         cast({{ original_column_name }} as {{ datatype }}))

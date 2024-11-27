@@ -14,7 +14,7 @@
 
 {{ salesforce_source.add_renamed_columns(columns) }}
 
-{{ fivetran_utils.add_pass_through_columns(columns, var('salesforce__user_role_pass_through_columns')) }}
+{{ salesforce_source.sf_add_pass_through_columns(columns, var('salesforce__user_role_pass_through_columns')) }}
 
 {{ return(columns) }}
 
