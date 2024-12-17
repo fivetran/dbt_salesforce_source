@@ -1,4 +1,6 @@
-<p align="center">
+# Salesforce Source dbt Package ([Docs](https://fivetran.github.io/dbt_salesforce_source/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_salesforce_source/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -13,7 +15,6 @@
         <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
-# Salesforce Source dbt Package ([Docs](https://fivetran.github.io/dbt_salesforce_source/))
 ## What does this dbt package do?
 <!--section="salesforce_source_model"-->
 - Cleans, tests, and prepares your Salesforce data from [Fivetran's connector](https://fivetran.com/docs/applications/salesforce) for analysis.

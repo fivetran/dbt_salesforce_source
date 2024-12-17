@@ -1,3 +1,9 @@
+# dbt_salesforce_source version.version
+
+## Documentation
+- Minor README updates
+- Updated macro comments to provide clearer and more detailed explanations of the workflow.
+
 # dbt_salesforce_source v1.1.0
 [PR #48](https://github.com/fivetran/dbt_salesforce_source/pull/48) includes the following updates:
 
