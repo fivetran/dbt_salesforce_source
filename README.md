@@ -26,7 +26,7 @@
 
 ## How do I use the dbt package?
 ### Step 1: Pre-Requisites
-- **Connector**: Have the Fivetran Salesforce connector syncing data into your warehouse.
+- At least one  Fivetran Salesforce connection syncing data into your destination.
 - **Database support**: This package has been tested on **Postgres**, **Databricks**, **Redshift**, **Snowflake**, and **BigQuery**.
 
 #### Databricks Dispatch Configuration
@@ -87,7 +87,7 @@ If you have Salesforce [History Mode](https://fivetran.com/docs/using-fivetran/f
 #### Configuring Your Salesforce History Mode Database and Schema Variables
 Customers leveraging the Salesforce connector generally fall into one of two categories when taking advantage of History mode. They either have one connector that is syncing non-historical records and a separate connector that syncs historical records, **or** they have one connector that is syncing historical records. We have designed this feature to support both scenarios.
 
-##### Option 1: Two connectors, one with non-historical data and another with historical data
+##### Option 1: Two connections, one with non-historical data and another with historical data
 If you are gathering data from both standard Salesforce as well as Salesforce History Mode, and your target database and schema differ as well, you will need to add an additional configuration for the history schema and database to your `dbt_project.yml`.
 
 ```yml
