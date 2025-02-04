@@ -1,6 +1,11 @@
 # dbt_salesforce_source version.version
 
 ## Documentation
+- Corrected references to connectors and connections in the README. ([#54](https://github.com/fivetran/dbt_salesforce_source/pull/54))
+
+# dbt_salesforce_source version.version
+
+## Documentation
 - Minor README updates
 - Updated macro comments to provide clearer and more detailed explanations of the workflow.
 
