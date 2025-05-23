@@ -5,8 +5,8 @@ require-dbt-version: [">=1.3.0", "<2.0.0"]
 models:
   salesforce_source:
     tmp:
-      materialized: view
-    materialized: table
+      +materialized: view
+    +materialized: table
 
 vars:
   salesforce_source:
