@@ -1,5 +1,5 @@
 name: 'salesforce_source_integration_tests'
-version: '1.1.0'
+version: '1.1.1'
 
 config-version: 2
 
@@ -30,6 +30,7 @@ vars:
     salesforce_contact_history_identifier: "sf_contact_history_data"
     salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
 
+    ## COMMENT OUT FOR DOCS GENERATION
     salesforce__account_history_enabled: false
     salesforce__contact_history_enabled: false
     salesforce__opportunity_history_enabled: false

@@ -1,13 +1,16 @@
-# dbt_salesforce_source version.version
+# dbt_salesforce_source v1.1.1
+
+## Under the Hood
+- Prepends `materialized` configs in the package's `dbt_project.yml` file with `+` to improve compatibility with the newer versions of dbt-core starting with v1.10.0. ([PR #55](https://github.com/fivetran/dbt_salesforce_source/pull/55))
+- Updates the package maintainer pull request template. ([PR #56](https://github.com/fivetran/dbt_salesforce_source/pull/56))
 
 ## Documentation
 - Corrected references to connectors and connections in the README. ([#54](https://github.com/fivetran/dbt_salesforce_source/pull/54))
-
-# dbt_salesforce_source version.version
-
-## Documentation
-- Minor README updates
+- Minor README updates.
 - Updated macro comments to provide clearer and more detailed explanations of the workflow.
+
+## Contributors
+- [@b-per](https://github.com/b-per) ([PR #55](https://github.com/fivetran/dbt_salesforce_source/pull/55))
 
 # dbt_salesforce_source v1.1.0
 [PR #48](https://github.com/fivetran/dbt_salesforce_source/pull/48) includes the following updates:
