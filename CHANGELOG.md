@@ -5,9 +5,8 @@
 - Updates the package maintainer pull request template. ([PR #56](https://github.com/fivetran/dbt_salesforce_source/pull/56))
 
 ## Documentation
-- Corrected references to connectors and connections in the README. ([#54](https://github.com/fivetran/dbt_salesforce_source/pull/54))
-- Minor README updates.
-- Updated macro comments to provide clearer and more detailed explanations of the workflow.
+- Corrected references to connectors and connections in the README. ([PR #54](https://github.com/fivetran/dbt_salesforce_source/pull/54))
+- Updated macro comments to provide clearer and more detailed explanations of the workflow.  ([PR #53](https://github.com/fivetran/dbt_salesforce_source/pull/53))
 
 ## Contributors
 - [@b-per](https://github.com/b-per) ([PR #55](https://github.com/fivetran/dbt_salesforce_source/pull/55))
