@@ -6,9 +6,10 @@ sources:
     database: "{% if target.type != 'spark'%}{{ var('salesforce_database', target.database) }}{% endif %}"
     loader: fivetran
     loaded_at_field: _fivetran_synced 
-    freshness:
-      warn_after: {count: 24, period: hour}
-      error_after: {count: 48, period: hour}
+    config:
+      freshness:
+        warn_after: {count: 24, period: hour}
+        error_after: {count: 48, period: hour}
 
     tables:
       - name: account
@@ -199,7 +200,8 @@ sources:
 
       - name: user
         identifier: "{{ var('salesforce_user_identifier', 'user')}}"
-        freshness: null
+        config:
+          freshness: null
         description: Represents a user in your organization.
         columns:
         - name: id
@@ -337,7 +339,8 @@ sources:
 
       - name: user_role
         identifier: "{{ var('salesforce_user_role_identifier', 'user_role')}}"
-        freshness: null
+        config:
+          freshness: null
         description: Represents a user role in your organization.
         columns:
         - name: id
@@ -372,7 +375,8 @@ sources:
 
       - name: contact
         identifier: "{{ var('salesforce_contact_identifier', 'contact')}}"
-        freshness: null
+        config:
+          freshness: null
         description: Represents a contact, which is a person associated with an account.
         columns:
         - name: id
@@ -513,7 +517,8 @@ sources:
 
       - name: event
         identifier: "{{ var('salesforce_event_identifier', 'event')}}"
-        freshness: null
+        config:
+          freshness: null
         description: Represents an event in the calendar. In the user interface, event and task records are collectively referred to as activities.
         columns:
         - name: id
@@ -661,7 +666,8 @@ sources:
         
       - name: lead
         identifier: "{{ var('salesforce_lead_identifier', 'lead')}}"
-        freshness: null
+        config:
+          freshness: null
         description: Represents a prospect or lead.
         columns:
         - name: id
@@ -775,7 +781,8 @@ sources:
         
       - name: opportunity_line_item
         identifier: "{{ var('salesforce_opportunity_line_item_identifier', 'opportunity_line_item')}}"
-        freshness: null
+        config:
+          freshness: null
         description: Represents an opportunity line item, which is a member of the list of Product2 products associated with an Opportunity.
         columns:
         - name: id
@@ -857,7 +864,8 @@ sources:
         identifier: >
           {% if target.type == 'snowflake' %}{{ var('salesforce_order_identifier', '"ORDER"') }}
           {% else %}{{ var('salesforce_order_identifier', 'order') }}{% endif %}
-        freshness: null
+        config:
+          freshness: null
         description: Represents an order associated with a contract or an account.
         columns:
         - name: id
@@ -963,7 +971,8 @@ sources:
         
       - name: product_2
         identifier: "{{ var('salesforce_product_2_identifier', 'product_2')}}"
-        freshness: null
+        config:
+          freshness: null
         description: Represents a product that your company sells.
         columns:
         - name: id
@@ -1027,7 +1036,8 @@ sources:
         
       - name: task
         identifier: "{{ var('salesforce_task_identifier', 'task')}}"
-        freshness: null
+        config:
+          freshness: null
         description: Represents a business activity such as making a phone call or other to-do items. In the user interface, Task and Event records are collectively referred to as activities.
         columns:
         - name: id
