@@ -10,9 +10,6 @@
         <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
-    <a alt="Fivetran Quickstart Compatibile"
-        href="https://fivetran.com/docs/transformations/dbt/quickstart">
-        <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
 ## What does this dbt package do?
@@ -128,12 +125,10 @@ vars:
 
 Daily account, contact and opportunity history tables that are created from these history tables are available [in our `dbt_salesforce` package](https://github.com/fivetran/dbt_salesforce/blob/main/README.md#-what-does-this-dbt-package-do).
 
-
 #### Filter your Salesforce History Mode models with field variable conditionals
 By default, these models are set to bring in all your data from Salesforce History, but you may be interested in bringing in only a smaller sample of historical records, given the relative size of the Salesforce History source tables.
 
 We have set up where conditions in our staging models to allow you to bring in only the data you need to run in. You can set a global history filter that would apply to all of our staging history models in your `dbt_project.yml`:
-
 
 ```yml 
 vars:
@@ -207,7 +202,6 @@ Include the following within your `dbt_project.yml` file:
 
 #### Adding Passthrough Columns
 This package includes all source columns defined in the `generate_columns.sql` macro.  You can add more columns using our passthrough column variables. These variables allow for the passthrough fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables:
-
 
 ```yml
 # dbt_project.yml
