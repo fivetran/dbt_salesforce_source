@@ -15,7 +15,7 @@ with fields as (
             )
         }}
 
-    from {{ source('salesforce','user_role') }}
+    from {{ source('salesforce', snake_or_camel('user_role')) }}
 ), 
 
 final as (
