@@ -14,7 +14,7 @@ with fields as (
             )
         }}
         
-    from {{ source('salesforce', 'opportunity_line_item') }}
+    from {{ source('salesforce','opportunity_line_item') }}
 ), 
 
 final as (
