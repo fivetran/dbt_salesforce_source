@@ -15,7 +15,7 @@
 with base as (
 
     select *      
-    from {{ source('salesforce_history','account') }}
+    from {{ source('salesforce_history', 'account') }}
     {% if is_incremental() %}
     where cast(_fivetran_start as {{ dbt.type_timestamp() }}) >= (select max(cast((_fivetran_start) as {{ dbt.type_timestamp() }})) from {{ this }} )
     {% else %}
