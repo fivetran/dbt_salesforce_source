@@ -56,7 +56,7 @@ final as (
 select *
 from final
 
-{% else %}
-{{ print('This is written to run on bigquery. If you need to run on another warehouse, add a version!') }}
+{# {% else %} #}
+{# {{ print('This is written to run on bigquery. If you need to run on another warehouse, add a version!') }} #}
 
 {% endif %}

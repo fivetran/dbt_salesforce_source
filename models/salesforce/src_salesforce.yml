@@ -337,6 +337,11 @@ sources:
         - name: user_type
           description: The category of user license.
 
+      - name: userrole
+        identifier: "{{ var('salesforce_userrole_identifier', 'userrole')}}"
+        config:
+          freshness: null
+
       - name: user_role
         identifier: "{{ var('salesforce_user_role_identifier', 'user_role')}}"
         config:

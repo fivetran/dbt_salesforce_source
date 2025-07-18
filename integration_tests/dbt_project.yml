@@ -16,7 +16,7 @@ vars:
     salesforce_account_identifier: "sf_account_data"
     salesforce_opportunity_identifier: "sf_opportunity_data"
     salesforce_user_identifier: "sf_user_data"
-    salesforce_user_role_identifier: "sf_user_role_data"
+    salesforce_userrole_identifier: "sf_user_role_data"
     salesforce_contact_identifier: "sf_contact_data"
     salesforce_lead_identifier: "sf_lead_data"
     salesforce_task_identifier: "sf_task_data"
