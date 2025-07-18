@@ -14,7 +14,7 @@ with fields as (
             )
         }}
         
-    from {{ source('salesforce', snake_or_camel('product_2')) }}
+    from {{ source('salesforce', 'product_2') }}
 ), 
 
 final as (

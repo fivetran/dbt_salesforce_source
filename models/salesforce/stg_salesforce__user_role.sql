@@ -10,7 +10,7 @@ with fields as (
         
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','user_role')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce',snake_or_camel('user_role'))),
                 staging_columns=user_role_column_list
             )
         }}

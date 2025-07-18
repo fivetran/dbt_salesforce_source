@@ -12,11 +12,10 @@
     )
 }}
 
-{% set account_table_spelling = snake_or_camel('account') %}
 with base as (
 
     select *      
-    from {{ source('salesforce_history', account_table_spelling) }}
+    from {{ source('salesforce_history','account') }}
     {% if is_incremental() %}
     where cast(_fivetran_start as {{ dbt.type_timestamp() }}) >= (select max(cast((_fivetran_start) as {{ dbt.type_timestamp() }})) from {{ this }} )
     {% else %}
@@ -40,7 +39,7 @@ final as (
         cast(_fivetran_start as date) as _fivetran_date,
         {{ dbt_utils.generate_surrogate_key(['id', '_fivetran_start']) }} as history_unique_key,
 
-        {{ dbt_utils.star(from=source('salesforce_history',account_table_spelling),
+        {{ dbt_utils.star(from=source('salesforce_history','account'),
                         except=["id", "_fivetran_start", "_fivetran_end"]) }}
     from base
 )
