@@ -36,6 +36,8 @@ vars:
     salesforce__opportunity_history_enabled: false
 
 seeds:
+  +docs:
+    show: False
   salesforce_source_integration_tests:
     +quote_columns: "{{ true if target.type in ('redshift', 'postgres') else false }}"
     +column_types:
@@ -179,3 +181,5 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 flags:
   send_anonymous_usage_stats: False
+
+  use_colors: True
