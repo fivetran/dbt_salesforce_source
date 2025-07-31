@@ -3,7 +3,7 @@
 
 {% set opportunity_line_item_column_list = get_opportunity_line_item_columns() -%}
 {% set opportunity_line_item_dict = column_list_to_dict(opportunity_line_item_column_list) -%}
-{% set source_table = salesforce_source.check_for_rename('opportunity_line_item') %}
+{% set source_table = salesforce_source.check_for_rename('salesforce', 'opportunity_line_item') %}
 
 with fields as (
 

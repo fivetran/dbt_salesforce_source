@@ -10,7 +10,7 @@ models:
 
 vars:
   salesforce_source:
-    salesforce_schema: zz_sf #salesforce_source_integrations_tests_3
+    salesforce_schema: salesforce_source_integrations_tests_3
     salesforce_history_schema: salesforce_source_integrations_tests_3
 
     salesforce_account_identifier: "sf_account_data"
@@ -25,15 +25,19 @@ vars:
     salesforce_order_identifier: "sf_order_data"
     salesforce_opportunity_line_item_identifier: "sf_opportunity_line_item_data"
 
+    # history mode identifiers
+    salesforce_account_history_identifier: "sf_account_history_data"
+    salesforce_contact_history_identifier: "sf_contact_history_data"
+    salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
+
+    # no-rename identifiers
+    salesforce_account_history_no_rename_identifier: "sfAccountHistory"
+    salesforce_contact_history_no_rename_identifier: "sfContactHistory"
+    salesforce_opportunity_history_no_rename_identifier: "sfOpportunityHistory"
     salesforce_opportunity_line_item_no_rename_identifier: "sfOpportunityLineItem"
     salesforce_order_no_rename_identifier: "sfOrder"
     salesforce_product_2_no_rename_identifier: "sfProduct2"
     salesforce_user_role_no_rename_identifier: "sfUserRole"
-
-    ##history mode identifiers
-    salesforce_account_history_identifier: "sf_account_history_data"
-    salesforce_contact_history_identifier: "sf_contact_history_data"
-    salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
 
     ## COMMENT OUT FOR DOCS GENERATION
     salesforce__account_history_enabled: false # @docs-ignore

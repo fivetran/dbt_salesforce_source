@@ -1146,9 +1146,8 @@ sources:
 
       - name: order_no_rename
         identifier: >
-          {{ var('salesforce_order_no_rename_identifier', 'Order') }}
-        quoting:
-          identifier: True
+          {% if target.type == 'snowflake' %}{{ var('salesforce_order_identifier', '"Order"') }}
+          {% else %}{{ var('salesforce_order_identifier', 'order') }}{% endif %}
         config:
           freshness: null
         description: Alternative spelling of the `order` source. See the `order` source for column descriptions.

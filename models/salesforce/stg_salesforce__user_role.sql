@@ -3,7 +3,7 @@
 
 {% set user_role_column_list = get_user_role_columns() -%}
 {% set user_role_dict = column_list_to_dict(user_role_column_list) -%}
-{% set source_table = salesforce_source.check_for_rename('user_role') %}
+{% set source_table = salesforce_source.check_for_rename('salesforce', 'user_role') %}
 
 with fields as (
 
