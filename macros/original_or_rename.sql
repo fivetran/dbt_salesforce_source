@@ -8,7 +8,7 @@
         {%- set source_relation = adapter.get_relation(
             database=source(source_name, table_name).database,
             schema=source(source_name, table_name).schema,
-            identifier=table_name) -%}
+            identifier=source(source_name, table_name).name) -%}
 
         {{ return(table_name if source_relation else table_name  ~ '_no_rename' ) }}
 
