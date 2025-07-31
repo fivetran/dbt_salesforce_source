@@ -1,8 +1,8 @@
-{%- macro snake_or_camel(table_name) -%}
-    {{ return(adapter.dispatch('snake_or_camel', 'salesforce_source')(table_name)) }}
+{%- macro check_for_rename(table_name) -%}
+    {{ return(adapter.dispatch('check_for_rename', 'salesforce_source')(table_name)) }}
 {% endmacro %}
 
-{% macro default__snake_or_camel(table_name) %}
+{% macro default__check_for_rename(table_name) %}
     {%- if execute -%}
 
         {%- set source_relation = adapter.get_relation(
@@ -10,7 +10,7 @@
             schema=source('salesforce', table_name).schema,
             identifier=source('salesforce', table_name).name) -%}
 
-        {{ return(table_name | replace('_', '') if source_relation is none else table_name) }}
+        {{ return(table_name if source_relation else table_name  ~ '_no_rename' ) }}
 
     {% else %}
     {{ return(table_name) }}

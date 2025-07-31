@@ -1,20 +1,22 @@
 --To disable this model, set the salesforce__order_enabled within your dbt_project.yml file to False.
 {{ config(enabled=var('salesforce__order_enabled', True)) }}
 
+{% if execute and flags.WHICH in ('run', 'build') %}
 {% set order_column_list = get_order_columns() -%}
 {% set order_dict = column_list_to_dict(order_column_list) -%}
+{% set source_table = salesforce_source.check_for_rename('order') %}
 
 with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','order')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table)),
                 staging_columns=order_column_list
             )
         }}
         
-    from {{ source('salesforce','order') }}
+    from {{ source('salesforce', source_table) }}
 ), 
 
 final as (
@@ -67,3 +69,8 @@ final as (
 select *
 from final
 where not coalesce(is_deleted, false)
+
+{% else %}
+select 'compile'
+{{ print('compiling...............')}}
+{% endif %}

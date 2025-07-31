@@ -10,13 +10,13 @@ models:
 
 vars:
   salesforce_source:
-    salesforce_schema: salesforce_source_integrations_tests_3
+    salesforce_schema: zz_sf #salesforce_source_integrations_tests_3
     salesforce_history_schema: salesforce_source_integrations_tests_3
 
     salesforce_account_identifier: "sf_account_data"
     salesforce_opportunity_identifier: "sf_opportunity_data"
     salesforce_user_identifier: "sf_user_data"
-    salesforce_userrole_identifier: "sf_user_role_data"
+    salesforce_user_role_identifier: "sf_user_role_data"
     salesforce_contact_identifier: "sf_contact_data"
     salesforce_lead_identifier: "sf_lead_data"
     salesforce_task_identifier: "sf_task_data"
@@ -25,15 +25,20 @@ vars:
     salesforce_order_identifier: "sf_order_data"
     salesforce_opportunity_line_item_identifier: "sf_opportunity_line_item_data"
 
+    salesforce_opportunity_line_item_no_rename_identifier: "sfOpportunityLineItem"
+    salesforce_order_no_rename_identifier: "sfOrder"
+    salesforce_product_2_no_rename_identifier: "sfProduct2"
+    salesforce_user_role_no_rename_identifier: "sfUserRole"
+
     ##history mode identifiers
     salesforce_account_history_identifier: "sf_account_history_data"
     salesforce_contact_history_identifier: "sf_contact_history_data"
     salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
 
     ## COMMENT OUT FOR DOCS GENERATION
-    salesforce__account_history_enabled: false
-    salesforce__contact_history_enabled: false
-    salesforce__opportunity_history_enabled: false
+    salesforce__account_history_enabled: false # @docs-ignore
+    salesforce__contact_history_enabled: false # @docs-ignore
+    salesforce__opportunity_history_enabled: false # @docs-ignore
 
 seeds:
   salesforce_source_integration_tests:
@@ -148,7 +153,6 @@ seeds:
         service_date: timestamp
         system_modstamp: timestamp
         is_deleted: boolean
-
     sf_account_history_data:
       +column_types:
         annual_revenue: float
@@ -172,6 +176,34 @@ seeds:
         last_viewed_date: timestamp
         amount: float
         expected_revenue: float
+        is_deleted: boolean
+    sfProduct2:
+      +column_types:
+        created_date: timestamp
+        last_modified_date: timestamp
+        last_referenced_date: timestamp
+        last_viewed_date: timestamp
+        system_modstamp: timestamp
+        is_deleted: boolean
+    sfOrder:
+      +column_types:
+        activated_date: timestamp
+        created_date: timestamp
+        effective_date: timestamp
+        end_date: timestamp
+        last_modified_date: timestamp
+        last_referenced_date: timestamp
+        last_viewed_date: timestamp
+        system_modstamp: timestamp
+        is_deleted: boolean
+    sfOpportunityLineItem:
+      +column_types:
+        created_date: timestamp
+        last_modified_date: timestamp
+        last_referenced_date: timestamp
+        last_viewed_date: timestamp
+        service_date: timestamp
+        system_modstamp: timestamp
         is_deleted: boolean
 
 dispatch:
