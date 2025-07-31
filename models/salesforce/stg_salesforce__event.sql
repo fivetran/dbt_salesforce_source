@@ -3,18 +3,19 @@
 
 {% set event_column_list = get_event_columns() -%}
 {% set event_dict = column_list_to_dict(event_column_list) -%}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'event') %}
 
 with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','event')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=event_column_list
             )
         }}
 
-    from {{ source('salesforce','event') }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (

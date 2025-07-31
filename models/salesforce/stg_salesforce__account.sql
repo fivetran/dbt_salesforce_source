@@ -1,17 +1,18 @@
 {% set account_column_list = get_account_columns() -%}
 {% set account_dict = column_list_to_dict(account_column_list) -%}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'account') %}
 
 with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','account')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=account_column_list
             )
         }}
 
-    from {{ source('salesforce','account') }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (

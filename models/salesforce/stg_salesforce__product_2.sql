@@ -3,7 +3,7 @@
 
 {% set product_2_column_list = get_product_2_columns() -%}
 {% set product_2_dict = column_list_to_dict(product_2_column_list) -%}
-{% set source_table_name = salesforce_source.check_for_rename('salesforce', 'product_2') %}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'product_2') %}
 
 with fields as (
 

@@ -1,5 +1,6 @@
 {% set user_column_list = get_user_columns() -%}
 {% set user_dict = column_list_to_dict(user_column_list) -%}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'user') %}
 
 with fields as (
 
@@ -7,12 +8,12 @@ with fields as (
 
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','user')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=user_column_list
             )
         }}
 
-    from {{ source('salesforce','user') }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (

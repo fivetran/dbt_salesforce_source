@@ -1,17 +1,18 @@
 {% set contact_column_list = get_contact_columns() -%}
 {% set contact_dict = column_list_to_dict(contact_column_list) -%}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'contact') %}
 
 with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','contact')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=contact_column_list
             )
         }}
         
-    from {{ source('salesforce','contact') }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (

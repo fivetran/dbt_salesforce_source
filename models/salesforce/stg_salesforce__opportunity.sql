@@ -1,5 +1,6 @@
 {% set opportunity_column_list = get_opportunity_columns() -%}
 {% set opportunity_dict = column_list_to_dict(opportunity_column_list) -%}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'opportunity') %}
 
 with fields as (
 
@@ -7,12 +8,12 @@ with fields as (
 
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','opportunity')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=opportunity_column_list
             )
         }}
 
-    from {{ source('salesforce','opportunity') }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (

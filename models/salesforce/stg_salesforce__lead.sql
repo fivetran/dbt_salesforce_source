@@ -3,18 +3,19 @@
 
 {% set lead_column_list = get_lead_columns() -%}
 {% set lead_dict = column_list_to_dict(lead_column_list) -%}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'lead') %}
 
 with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','lead')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=lead_column_list
             )
         }}
         
-    from {{ source('salesforce','lead') }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (

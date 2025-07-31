@@ -3,18 +3,19 @@
 
 {% set task_column_list = get_task_columns() -%}
 {% set task_dict = column_list_to_dict(task_column_list) -%}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'task') %}
 
 with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce','task')),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=task_column_list
             )
         }}
         
-    from {{ source('salesforce','task') }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (

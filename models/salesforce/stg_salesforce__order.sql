@@ -4,7 +4,7 @@
 {% if execute and flags.WHICH in ('run', 'build') %}
 {% set order_column_list = get_order_columns() -%}
 {% set order_dict = column_list_to_dict(order_column_list) -%}
-{% set source_table_name = salesforce_source.check_for_rename('salesforce', 'order') %}
+{% set source_table_name = salesforce_source.original_or_rename('salesforce', 'order') %}
 
 with fields as (
 

@@ -10,6 +10,8 @@ sources:
       freshness:
         warn_after: {count: 24, period: hour}
         error_after: {count: 48, period: hour}
+    quoting:
+      identifier: false
 
     tables:
       - name: account
@@ -371,7 +373,6 @@ sources:
           description: This value indicates the type of portal for the role
         - name: rollup_description
           description: Description of the forecast rollup.
-
 
       - name: contact
         identifier: "{{ var('salesforce_contact_identifier', 'contact')}}"
@@ -1137,6 +1138,36 @@ sources:
       - name: fivetran_formula_model
         description: Holds the formula fields for each of your salesforce objects as a single select statement
 
+      - name: account_no_rename
+        identifier: >
+          {{ var('salesforce_account_no_rename_identifier', 'Account') }}
+        loaded_at_field: _fivetran_synced
+        description: Alternative spelling of the `account` source. See the `account` source for column descriptions.
+
+      - name: contact_no_rename
+        identifier: >
+          {{ var('salesforce_contact_no_rename_identifier', 'Contact') }}
+        loaded_at_field: _fivetran_synced
+        description: Alternative spelling of the `contact` source. See the `contact` source for column descriptions.
+
+      - name: event_no_rename
+        identifier: >
+          {{ var('salesforce_event_no_rename_identifier', 'Event') }}
+        loaded_at_field: _fivetran_synced
+        description: Alternative spelling of the `event` source. See the `event` source for column descriptions.
+
+      - name: lead_no_rename
+        identifier: >
+          {{ var('salesforce_lead_no_rename_identifier', 'Lead') }}
+        loaded_at_field: _fivetran_synced
+        description: Alternative spelling of the `lead` source. See the `lead` source for column descriptions.
+
+      - name: opportunity_no_rename
+        identifier: >
+          {{ var('salesforce_opportunity_no_rename_identifier', 'Opportunity') }}
+        loaded_at_field: _fivetran_synced
+        description: Alternative spelling of the `opportunity` source. See the `opportunity` source for column descriptions.
+
       - name: opportunity_line_item_no_rename
         identifier: >
           {{ var('salesforce_opportunity_line_item_no_rename_identifier', 'OpportunityLineItem') }}
@@ -1146,7 +1177,7 @@ sources:
 
       - name: order_no_rename
         identifier: >
-          {{ var('salesforce_order_no_rename_identifier', '`Order`' if target.type in ('bigquery', 'databricks') else '"Order"') }}
+          {{ var('salesforce_order_no_rename_identifier', '"Order"' if target.type=='snowflake' else 'Order') }}
         config:
           freshness: null
         description: Alternative spelling of the `order` source. See the `order` source for column descriptions.
@@ -1157,8 +1188,20 @@ sources:
           freshness: null
         description: Alternative spelling of the `product_2` source. See the `product_2` source for column descriptions.
 
+      - name: task_no_rename
+        identifier: "{{ var('salesforce_task_role_no_rename_identifier', 'Task')}}"
+        config:
+          freshness: null
+        description: Alternative spelling of the `task` source. See the `task` source for column descriptions.
+
       - name: user_role_no_rename
         identifier: "{{ var('salesforce_user_role_no_rename_identifier', 'UserRole')}}"
         config:
           freshness: null
         description: Alternative spelling of the `user_role` source. See the `user_role` source for column descriptions.
+
+      - name: user_no_rename
+        identifier: "{{ var('salesforce_user_no_rename_identifier', 'User')}}"
+        config:
+          freshness: null
+        description: Alternative spelling of the `user` source. See the `user` source for column descriptions.
