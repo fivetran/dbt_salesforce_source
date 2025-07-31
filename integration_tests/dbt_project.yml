@@ -25,19 +25,16 @@ vars:
     salesforce_order_identifier: "sf_order_data"
     salesforce_opportunity_line_item_identifier: "sf_opportunity_line_item_data"
 
-    # history mode identifiers
-    salesforce_account_history_identifier: "sf_account_history_data"
-    salesforce_contact_history_identifier: "sf_contact_history_data"
-    salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
-
     # no-rename identifiers
-    salesforce_account_history_no_rename_identifier: "sfaccounthistory"
-    salesforce_contact_history_no_rename_identifier: "sfcontacthistory"
-    salesforce_opportunity_history_no_rename_identifier: "sfopportunityhistory"
     salesforce_opportunity_line_item_no_rename_identifier: "sfopportunitylineitem"
     salesforce_order_no_rename_identifier: "sforder"
     salesforce_product_2_no_rename_identifier: "sfproduct2"
     salesforce_user_role_no_rename_identifier: "sfuserrole"
+
+    # history mode identifiers
+    salesforce_account_history_identifier: "sf_account_history_data"
+    salesforce_contact_history_identifier: "sf_contact_history_data"
+    salesforce_opportunity_history_identifier: "sf_opportunity_history_data"
 
     ## COMMENT OUT FOR DOCS GENERATION
     salesforce__account_history_enabled: false # @docs-ignore
