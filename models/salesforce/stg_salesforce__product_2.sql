@@ -3,19 +3,19 @@
 
 {% set product_2_column_list = get_product_2_columns() -%}
 {% set product_2_dict = column_list_to_dict(product_2_column_list) -%}
-{% set source_table = salesforce_source.check_for_rename('salesforce', 'product_2') %}
+{% set source_table_name = salesforce_source.check_for_rename('salesforce', 'product_2') %}
 
 with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table)),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=product_2_column_list
             )
         }}
         
-    from {{ source('salesforce', source_table) }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (

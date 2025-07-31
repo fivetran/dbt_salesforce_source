@@ -3,19 +3,19 @@
 
 {% set opportunity_line_item_column_list = get_opportunity_line_item_columns() -%}
 {% set opportunity_line_item_dict = column_list_to_dict(opportunity_line_item_column_list) -%}
-{% set source_table = salesforce_source.check_for_rename('salesforce', 'opportunity_line_item') %}
+{% set source_table_name = salesforce_source.check_for_rename('salesforce', 'opportunity_line_item') %}
 
 with fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table)),
+                source_columns=adapter.get_columns_in_relation(source('salesforce', source_table_name)),
                 staging_columns=opportunity_line_item_column_list
             )
         }}
         
-    from {{ source('salesforce', source_table) }}
+    from {{ source('salesforce', source_table_name) }}
 ), 
 
 final as (
